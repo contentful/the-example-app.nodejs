@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEEBUG=example-contentful-university-js:server node ./bin/www"
+    "start:watch": "nodemon ./bin/www --ignore public/",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -13,5 +14,8 @@
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
