@@ -6,7 +6,7 @@
     "start:watch": "nodemon ./bin/www --ignore public/",
     "start": "node ./bin/www",
     "lint": "eslint ./app.js routes",
-    "format": "eslint --fix . --ignore public node_modules"
+    "format": "eslint --fix . bin --ignore public node_modules"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
