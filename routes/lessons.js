@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-/* GET courses listing. */
+/* GET lessons listing. */
 router.get('/', function (req, res, next) {
-  res.render('courses', { title: 'Courses' })
+  res.render('lessons', { title: 'Lessons' })
 })
 
-/* GET courses listing. */
+/* GET lessons listing. */
 router.get('/:slug', function (req, res, next) {
-  res.render('courses', { title: `Course with slug ${req.params.slug}` })
+  res.render('lessons', { title: `Lesson with slug ${req.params.slug}` })
 })
 
 module.exports = router
