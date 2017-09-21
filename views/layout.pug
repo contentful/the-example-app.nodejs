@@ -4,4 +4,22 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    header
+      .header__navbar--logo
+        a.logo--link(href='#') Contentful University
+      .header__navbar--navigation
+        nav
+          ul
+            li
+              a.button--navigation(href='/') Home
+            li
+              a.button--navigation(href='/courses') Courses
+            li
+              a.button--navigation(href='/categories') Categories
+            li
+              a.button--navigation(href='/about') About
+            li
+              a.button--navigation(href='/settings') Settings
+            li
+              a.button--navigation(href='/sitemap') Sitemap
     block content
