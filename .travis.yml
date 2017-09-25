@@ -1,0 +1,5 @@
+dist: trusty
+addons:
+  chrome: stable
+script:
+  - npm run test

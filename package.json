@@ -7,8 +7,13 @@
     "start": "node ./bin/www",
     "lint": "eslint ./app.js routes",
     "format": "eslint --fix . bin --ignore public node_modules",
+    "test": "npm run test:integration",
     "test:integration": "jest test/integration",
-    "test:integration:watch": "jest test/integration --watch"
+    "test:integration:watch": "jest test/integration --watch",
+    "test:visual:test": "./bin/visual-regression-test test",
+    "test:visual:reference": "./bin/visual-regression-test reference",
+    "precommit": "npm run lint",
+    "prepush": "npm run test"
   },
   "engines": {
     "node": ">=8.4.0"
@@ -35,6 +40,7 @@
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
     "jest": "^21.2.1",
+    "husky": "^0.14.3",
     "nodemon": "^1.12.1",
     "pug-lint": "^2.5.0",
     "superagent": "^3.6.3",

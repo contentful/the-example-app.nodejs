@@ -15,19 +15,19 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "url": "http://localhost:3000/"
+      "url": "http://localhost:3007/"
     },
     {
       "label": "Courses",
-      "url": "http://localhost:3000/courses"
+      "url": "http://localhost:3007/courses"
     },
     {
-      "label": "Homepage",
-      "url": "http://localhost:3000/categories"
+      "label": "Categories",
+      "url": "http://localhost:3007/categories"
     },
     {
       "label": "About",
-      "url": "http://localhost:3000/categories"
+      "url": "http://localhost:3007/categories"
     }
   ],
   "paths": {
@@ -43,5 +43,7 @@
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
   "debug": false,
-  "debugWindow": false
+  "debugWindow": false,
+  "delay": 500,
+  "misMatchThreshold": 0.3
 }
