@@ -1,9 +1,18 @@
 const express = require('express')
 const router = express.Router()
 
-/* GET seeting page. */
+/* GET settings page. */
 router.get('/', function (req, res, next) {
-  res.render('settings', { title: 'Settings' })
+  const cookie = req.cookies.universitySettings
+  const settings = cookie || { cpa: '', cda: '', space: '' }
+  res.render('settings', { title: 'Settings', settings })
+})
+
+/* POST settings page. */
+router.post('/', function (req, res, next) {
+  const settings = {space: req.body.space, cda: req.body.cda, cpa: req.body.cpa}
+  res.cookie('universitySettings', settings, { maxAge: 900000, httpOnly: true })
+  res.render('settings', settings)
 })
 
 module.exports = router

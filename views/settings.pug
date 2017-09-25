@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(action=`/settings` method="POST" class="form")
+    label(for="space") Space
+    input(type="text" name="space" value=settings.space)
+    label(for="cda") Delivery API Key
+    input(type="text" name="cda" value=settings.cda)
+    label(for="cpa") Preview API Key
+    input(type="text" name="cpa" value=settings.cpa)
+    input(type="submit" value="Save →" class="button")
