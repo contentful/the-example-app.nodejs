@@ -1,22 +1,25 @@
 const { createClient } = require('contentful')
 
-const client = createClient({space: process.env.CF_SPACE, accessToken: process.env.CF_ACCESS_TOKEN})
+let client = null
 
-export function getCourses () {
+exports.initClient = () => {
+  client = createClient({space: process.env.CF_SPACE, accessToken: process.env.CF_ACCESS_TOKEN})
+}
+exports.getCourses = () => {
   // to get all the courses we simply request from Contentful all the entries
   // with the content_type `course`
   return client.getEntries({content_type: 'course'})
 }
 
-export function getLessons (courseId) {
+exports.getLessons = (courseId) => {
   // TODO
 }
 
-export function getCategories () {
+exports.getCategories = () => {
   // TODO
 }
 
-export function getCoursesByCategory (category) {
+exports.getCoursesByCategory = (category) => {
   // TODO
 }
 

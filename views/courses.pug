@@ -1,5 +1,8 @@
 extends layout
 
+include mixins/_courseCard
+
 block content
   h1= title
-  p Welcome to #{title}
+  each course in courses
+    +courseCard(course)

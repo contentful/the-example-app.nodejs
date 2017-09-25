@@ -129,7 +129,25 @@ label {
   padding: 2rem;
   box-shadow: $grad;
 }
-
+/* Course */
+.course {
+  position: relative;
+  background-color: white;
+  padding: 10px;
+  width: 30%;
+  height: 500px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.45);
+  position:relative;
+}
+.course__description {
+  border-top: 2px solid black;
+  margin: 60px 0 20px 0;
+}
+.course__link {
+  position: absolute;
+  bottom:20px;
+}
 /* Home Page __ hero*/
 .hero {
   display: flex;

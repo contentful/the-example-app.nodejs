@@ -6,7 +6,6 @@
 
 const app = require('../app')
 const http = require('http')
-require('dotenv').config({ path: 'variables.env' })
 /**
  * Get port from environment and store in Express.
  */
