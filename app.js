@@ -1,3 +1,4 @@
+require('dotenv').config({ path: 'variables.env' })
 const express = require('express')
 const path = require('path')
 // const favicon = require('serve-favicon')
@@ -11,7 +12,7 @@ const categories = require('./routes/categories')
 const about = require('./routes/about')
 const settings = require('./routes/settings')
 const sitemap = require('./routes/sitemap')
-
+const {initClient} = require('./services/contentful')
 const app = express()
 
 // view engine setup
@@ -50,5 +51,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+// init the contentful client
+initClient()
 
 module.exports = app

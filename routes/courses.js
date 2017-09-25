@@ -1,9 +1,18 @@
 const express = require('express')
+const {getCourses} = require('./../services/contentful')
+
 const router = express.Router()
 
 /* GET courses listing. */
-router.get('/', function (req, res, next) {
-  res.render('courses', { title: 'Courses' })
+router.get('/', async function (req, res, next) {
+  // we get all the entries with the content type `course`
+  let courses = []
+  try {
+    courses = await getCourses()
+  } catch (e) {
+    console.log('Error ', e)
+  }
+  res.render('courses', { title: 'Courses', courses: courses.items })
 })
 
 /* GET course detail. */
