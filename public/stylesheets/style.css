@@ -113,6 +113,22 @@ nav ul li:last-child {
 nav ul li a {
   transform: skew(15deg);
 }
+/* Form */
+input, textarea {
+  width:100%;
+  padding:10px;
+  border: 1px solid $grey;
+}
+
+label {
+  padding: 10px 0;
+  display: block;
+}
+.form {
+  background: white;
+  padding: 2rem;
+  box-shadow: $grad;
+}
 
 /* Home Page __ hero*/
 .hero {
