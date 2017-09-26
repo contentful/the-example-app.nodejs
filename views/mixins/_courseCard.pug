@@ -1,7 +1,7 @@
 mixin courseCard(course = {fields: {title: '', description: '', categories: [], slug: ''}})
   .course
     .course__categories
-      if(course.fields.categories)
+      if course.fields.categories
         each category in course.fields.categories
           a.course__categories--category(href=`categories/${category.fields.slug}`) #{category.title}
     h1.course__title #{course.fields.title}

@@ -1,11 +1,22 @@
 extends layout
 
+include mixins/_copyModule
+include mixins/_heroImageModule
+include mixins/_highlightedCourse
+include mixins/_highlightedLessonsModule
+
 block content
   .container
-    section.hero
-      .hero__image
-      .featured-cards-list
-        .featured-cards__list
-        .featured-cards__list
-        .featured-cards__list
+    each module in landingPage.fields.contentModules
+      case module.sys.contentType.sys.id
+        when 'landingPageModuleCopy'
+          +copyModule(module)
 
+        when 'landingPageModuleHeroImage'
+          +heroImageModule(module)
+
+        when 'landingPageModuleHighlightedCourse'
+          +highlightedCourseModule(module)
+
+        when 'landingPageModuleHighlightedLessons'
+          +highlightLessonsModule(module)
