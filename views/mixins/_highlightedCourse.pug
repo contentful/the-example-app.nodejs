@@ -4,4 +4,4 @@ mixin highlightedCourseModule(module)
   .module
     .module__higlightedCourse
       h1.module__higlightedCourse__title #{module.fields.title}
-      +courseCard(module.course)
+      +courseCard(module.fields.course)

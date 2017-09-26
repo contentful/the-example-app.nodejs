@@ -498,8 +498,8 @@ body {
             flex: 0 0 220px;
     padding: 1rem;
     border-radius: 7px;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .45);
-            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .45);
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
   }
 
   .wrapper__sidebar > h2 {
@@ -815,8 +815,8 @@ body {
   width: 65%;
   height: 600px;
   border-radius: .375rem;
-  -webkit-box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
-          box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
 }
 
 .featured-cards-list {
@@ -838,8 +838,8 @@ body {
   background-color: #00AAE0;
   height: 150px;
   border-radius: .375rem;
-  -webkit-box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
-          box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
 }
 
 .course-card {
@@ -855,8 +855,8 @@ body {
   padding: 1rem;
 
   border-radius: 7px;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .45);
-          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .45)
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45)
 }
 
 .course-card > * + * {
@@ -903,4 +903,27 @@ body {
   border-bottom: 1px solid #5c9fef;
   text-transform: uppercase;
   color: #5c9fef;
+}
+
+.module {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 2vw;
+}
+
+@media (min-width: 700px) {
+
+  .module {
+    padding: 0;
+  }
+}
+
+.module img {
+  width: 100%;
+  height: auto;
+}
+
+.module + .module {
+  margin-top: 16px;
+  margin-top: 1rem;
 }
