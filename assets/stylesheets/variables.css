@@ -4,11 +4,18 @@
   --grid-gutter: 1rem;
   --border-radius: 3px;
 
+  --line-height: 1.5em;
+
   --color-text-default: #2a303a;
+  --color-text-grey: #8091a5;
+
+  --color-link-content: #5c9fef;
+
   --color-bg-default: #fff;
   --color-bg-grey: #f7f9fa;
   --color-bg-separator: #f2f5f7;
-  --color-menu-item: #8091a5;
-  --color-menu-item-active: #2a303a;
+
   --color-sidebar-bg: #f7f9fa;
+
+  --color-course-active: #536171;
 }

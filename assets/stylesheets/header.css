@@ -54,7 +54,7 @@
       margin: 0;
       border: none;
       background: var(--color-bg-grey);
-      color: var(--color-menu-item);
+      color: var(--color-text-grey);
       border-radius: var(--border-radius);
       font-size: 0.8em;
 
@@ -94,7 +94,7 @@
           text-transform: uppercase;
           font-weight: bold;
           padding: 0.7em 1em;
-          color: var(--color-menu-item);
+          color: var(--color-text-grey);
           border-radius: var(--border-radius);
 
           &.active,
@@ -103,7 +103,7 @@
           }
 
           &.active {
-            color: var(--color-menu-item-active);
+            color: var(--color-text-default);
           }
         }
       }
