@@ -1,0 +1,14 @@
+@custom-media --breakpoint-desktop (min-width: 700px);
+
+:root {
+  --grid-gutter: 1rem;
+  --border-radius: 3px;
+
+  --color-text-default: #2a303a;
+  --color-bg-default: #fff;
+  --color-bg-grey: #f7f9fa;
+  --color-bg-separator: #f2f5f7;
+  --color-menu-item: #8091a5;
+  --color-menu-item-active: #2a303a;
+  --color-sidebar-bg: #f7f9fa;
+}

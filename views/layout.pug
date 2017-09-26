@@ -4,22 +4,36 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    header
-      .header__navbar--logo
-        a.logo--link(href='#') Contentful University
-      .header__navbar--navigation
-        nav
-          ul
-            li
-              a.button--navigation(href='/') Home
-            li
-              a.button--navigation(href='/courses') Courses
-            li
-              a.button--navigation(href='/categories') Categories
-            li
-              a.button--navigation(href='/about') About
-            li
-              a.button--navigation(href='/settings') Settings
-            li
-              a.button--navigation(href='/sitemap') Sitemap
+    header.header.wrapper
+      section.header__logo
+        a.logo--link(href='#')
+          img(src='/images/logo.png' alt='Contentful University')
+      section.header__navarea
+        section.controls
+          form(action="." method="get")
+            fieldset
+              label(for='api') API type:
+              select(name='api' onChange='this.form.submit()')
+                option(value='CDA') Delivery API
+                option(value='CPA') Preview API
+            fieldset
+              label(for='locale') API type:
+              select(name='locale' onChange='this.form.submit()')
+                option(value='en-US') English
+                option(value='de-DE') German
+        section.navigation
+          nav
+            ul
+              li
+                a.active(href='/') Home
+              li
+                a(href='/courses') Courses
+              li
+                a(href='/categories') Categories
+              li
+                a(href='/about') About
+              li
+                a(href='/settings') Settings
+              li
+                a(href='/sitemap') Sitemap
     block content

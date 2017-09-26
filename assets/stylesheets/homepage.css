@@ -1,0 +1,25 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+}
+.hero__image {
+  background-color: #20B5B6;
+  width: 65%;
+  height: 600px;
+  border-radius: .375rem;
+  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+}
+.featured-cards-list {
+  width: 30%;
+  height: 600px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.featured-cards__list {
+  background-color: #00AAE0;
+  height: 150px;
+  border-radius: .375rem;
+  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+}

@@ -1,0 +1,57 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.2em;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: .5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+h2 + p {
+  color: #757575;
+  font-family: Montserrat, Helvetica Neue, Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+  margin-top: -.5rem;
+  text-transform: uppercase;
+}
+p code {
+  background-color: rgba(251, 175, 93, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 .25rem;
+  padding: 0 .25rem;
+}
+
+/* Form
+input, textarea {
+  width:100%;
+  padding:10px;
+  border: 1px solid $grey;
+}
+
+label {
+  padding: 10px 0;
+  display: block;
+}
+.form {
+  background: white;
+  padding: 2rem;
+  box-shadow: $grad;
+} */
