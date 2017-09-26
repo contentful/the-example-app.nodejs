@@ -1,6 +1,7 @@
 require('dotenv').config({ path: 'variables.env' })
 const express = require('express')
 const path = require('path')
+const helpers = require('./helpers')
 // const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
@@ -27,6 +28,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Pass custo helpers to all our templates
+app.use(function (req, res, next) {
+  res.locals.helpers = helpers
+  next()
+})
+
 app.use('/', index)
 app.use('/courses', courses)
 app.use('/categories', categories)
@@ -52,6 +59,7 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
+// app.use()
 // init the contentful client
 initClient()
 

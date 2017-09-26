@@ -17,6 +17,8 @@
     "debug": "~2.2.0",
     "dotenv": "^4.0.0",
     "express": "~4.14.0",
+    "jstransformer-markdown-it": "^2.0.0",
+    "marked": "^0.3.6",
     "morgan": "~1.7.0",
     "normalize.css": "^7.0.0",
     "pug": "~2.0.0-beta6",
