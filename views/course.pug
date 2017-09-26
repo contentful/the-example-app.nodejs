@@ -16,6 +16,6 @@ block content
 
       if lesson
         h2= lesson.fields.title
-        p= lesson.fields.description
+        p !{helpers.markdown(lesson.fields.description)}
       else
-        p= course.fields.description
+        p !{helpers.markdown(course.fields.description)}

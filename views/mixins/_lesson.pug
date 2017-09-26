@@ -1,7 +1,7 @@
 mixin lesson(lesson)
   .lesson
     h1.lesson__tilte #{lesson.fields.title}
-    div.lesson__shortDescription #{lesson.fields.shortDescription}
+    div.lesson__shortDescription !{helpers.markdown(lesson.fields.shortDescription)}
     img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
 
 

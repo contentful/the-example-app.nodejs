@@ -7,7 +7,7 @@ mixin courseCard(course = {fields: {title: '', description: '', categories: [], 
     .course-card__title
       h2= course.fields.title
     .course-card__description
-      p= course.fields.shortDescription
+      p !{helpers.markdown(course.fields.shortDescription)}
     .course-card__link
       a(href=`/courses/${course.fields.slug}`) view course
 
