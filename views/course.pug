@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= course.fields.title
+  if lesson 
+   p= lesson.fields.description  
+  else
+    p= course.fields.description
+  ul
+    each lesson in course.fields.lessons
+      li
+        a(href=`/courses/${course.fields.slug}/lessons/${lesson.fields.slug}`) #{lesson.fields.title}
