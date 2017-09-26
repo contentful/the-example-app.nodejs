@@ -7,10 +7,17 @@ exports.initClient = (config = {space: process.env.CF_SPACE, accessToken: proces
   client = createClient(config)
   previewClient = createClient({...config, host: 'preview.contentful.com'})
 }
+
 exports.getCourses = () => {
   // to get all the courses we simply request from Contentful all the entries
   // with the content_type `course`
   return client.getEntries({content_type: 'course'})
+}
+
+exports.getLandingPage = () => {
+  // our Home page is fully configureable via contentful
+  return client.getEntries({content_type: 'landingPage', 'fields.slug': 'contentful-university'})
+    .then((response) => response.items[0])
 }
 
 exports.getCourse = (slug) => {

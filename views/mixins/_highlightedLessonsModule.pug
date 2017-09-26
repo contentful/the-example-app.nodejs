@@ -1,0 +1,9 @@
+include _lesson
+
+mixin _highlightLessonsModule(module)
+  .module
+    .module__higlightedLessons
+      h1.module__higlightedLessons__title #{module.fields.title}
+      each lesson in module.fields.lessons
+        +lesson(lesson)
+
