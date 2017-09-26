@@ -17,7 +17,7 @@ exports.getCourses = () => {
 
 exports.getLandingPage = () => {
   // our Home page is fully configureable via contentful
-  return client.getEntries({content_type: 'landingPage', 'fields.slug': 'contentful-university'})
+  return client.getEntries({content_type: 'landingPage', 'fields.slug': 'contentful-university', include: 10})
     .then((response) => response.items[0])
 }
 

@@ -1,0 +1,19 @@
+.module {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 2vw;
+
+  @media (--breakpoint-desktop) {
+    padding: 0;
+  }
+
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
+
+  & + .module {
+    margin-top: var(--grid-gutter);
+  }
+}
