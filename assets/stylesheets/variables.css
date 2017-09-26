@@ -1,0 +1,23 @@
+@custom-media --breakpoint-desktop (min-width: 700px);
+
+:root {
+  --grid-gutter: 1rem;
+  --border-radius: 3px;
+
+  --line-height: 1.5em;
+
+  --color-text-default: #2a303a;
+  --color-text-grey: #8091a5;
+
+  --color-link-content: #5c9fef;
+
+  --color-bg-default: #fff;
+  --color-bg-grey: #f7f9fa;
+  --color-bg-separator: #f2f5f7;
+
+  --color-sidebar-bg: #f7f9fa;
+
+  --color-course-active: #536171;
+
+  --card-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+}

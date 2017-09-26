@@ -3,9 +3,18 @@ extends layout
 include mixins/_courseCard
 
 block content
-  ul
-  each category in categories
-    li
-      a(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
-  each course in courses
-    +courseCard(course)
+  .wrapper.wrapper-with-sidebar
+    section.wrapper__sidebar
+      h2 Categories
+      .sidebar-menu
+        ul
+          li
+            a.active(href=`/courses`) All courses
+          each category in categories
+            li
+              a(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
+    section.wrapper__content
+      h1= title
+      .courses.grid-list-small
+        each course in courses
+          +courseCard(course)
