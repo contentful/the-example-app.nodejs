@@ -6,6 +6,21 @@ body {
   line-height: var(--line-height);
 }
 
+#main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+#main__header {
+  flex: 0 0 auto;
+}
+#main__content {
+  flex: 1 0 auto;
+}
+#main__footer {
+  flex: 0 0 auto;
+}
+
 .wrapper {
   max-width: 1024px;
   margin: 0 auto;

@@ -5,6 +5,7 @@
 @import './typography';
 @import './global';
 @import './header';
+@import './footer';
 
 @import './homepage';
 @import './course';
