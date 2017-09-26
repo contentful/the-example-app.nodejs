@@ -1,5 +1,5 @@
 const express = require('express')
-const {getCourses} = require('./../services/contentful')
+const {getCourses, getCourse} = require('./../services/contentful')
 
 const router = express.Router()
 
@@ -16,13 +16,18 @@ router.get('/', async function (req, res, next) {
 })
 
 /* GET course detail. */
-router.get('/:slug', function (req, res, next) {
-  res.render('courses', { title: `Course with slug ${req.params.slug}` })
+router.get('/:slug', async function (req, res, next) {
+  let course = {}
+  course = await getCourse(req.params.slug)
+  res.render('course', {course})
 })
 
 /* GET course lesson detail. */
-router.get('/:cslug/lessons/:lslug', function (req, res, next) {
-  res.render('courses', { title: `Course with slug ${req.params.cslug}` })
+router.get('/:cslug/lessons/:lslug', async function (req, res, next) {
+  let course = await getCourse(req.params.cslug)
+  let lesson = course.fields.lessons.find((lesson) => lesson.fields.slug === req.params.lslug)
+  console.log(lesson)
+  res.render('course', {course, lesson})
 })
 
 module.exports = router

@@ -6,5 +6,5 @@ mixin courseCard(course = {fields: {title: '', description: '', categories: [], 
           a.course__categories--category(href=`categories/${category.fields.slug}`) #{category.title}
     h1.course__title #{course.fields.title}
     .course__description #{course.fields.shortDescription}
-    a.course__link(href=`/courses/${course.fields}`) view more 
+    a.course__link(href=`/courses/${course.fields.slug}`) view more 
 
