@@ -3,6 +3,9 @@ extends layout
 include mixins/_courseCard
 
 block content
-  h1= title
+  ul
+  each category in categories
+    li
+      a(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
   each course in courses
     +courseCard(course)
