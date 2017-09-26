@@ -1,5 +1,5 @@
 const express = require('express')
-const {getCourses, getCourse} = require('./../services/contentful')
+const {getCourses, getCourse, getCategories, getCoursesByCategory} = require('./../services/contentful')
 
 const router = express.Router()
 
@@ -7,12 +7,28 @@ const router = express.Router()
 router.get('/', async function (req, res, next) {
   // we get all the entries with the content type `course`
   let courses = []
+  let categories = []
   try {
     courses = await getCourses()
+    categories = await getCategories()
   } catch (e) {
     console.log('Error ', e)
   }
-  res.render('courses', { title: 'Courses', courses: courses.items })
+  res.render('courses', { title: 'Courses', categories, courses })
+})
+
+/* GET courses listing. */
+router.get('/categories/:category', async function (req, res, next) {
+  // we get all the entries with the content type `course`
+  let courses = []
+  let categories = []
+  try {
+    courses = await getCoursesByCategory(req.params.category)
+    categories = await getCategories()
+  } catch (e) {
+    console.log('Error ', e)
+  }
+  res.render('courses', { title: 'Courses', categories, courses })
 })
 
 /* GET course detail. */

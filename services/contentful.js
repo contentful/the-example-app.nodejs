@@ -12,6 +12,7 @@ exports.getCourses = () => {
   // to get all the courses we simply request from Contentful all the entries
   // with the content_type `course`
   return client.getEntries({content_type: 'course'})
+    .then((response) => response.items)
 }
 
 exports.getLandingPage = () => {
@@ -33,10 +34,15 @@ exports.getLessons = (courseId) => {
 }
 
 exports.getCategories = () => {
-  // TODO
+  return client.getEntries({content_type: 'category'})
+    .then((response) => response.items)
 }
 
 exports.getCoursesByCategory = (category) => {
-  // TODO
+  return client.getEntries({
+    content_type: 'course',
+    'fields.category.sys.contentType.sys.id': category
+  })
+    .then((response) => response.items)
 }
 
