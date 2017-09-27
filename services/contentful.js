@@ -11,7 +11,7 @@ exports.initClient = (config = {space: process.env.CF_SPACE, accessToken: proces
 exports.getCourses = () => {
   // to get all the courses we simply request from Contentful all the entries
   // with the content_type `course`
-  return client.getEntries({content_type: 'course'})
+  return client.getEntries({content_type: 'course', include: 10})
     .then((response) => response.items)
 }
 
