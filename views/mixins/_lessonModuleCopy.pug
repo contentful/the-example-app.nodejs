@@ -1,0 +1,5 @@
+mixin lessonModuleCopy(module)
+   .lessonModule
+     .lessonModule__copy
+        h1.lessonModule__copy__title #{module.fields.title}
+        .lessonModule__copy__copy !{helpers.markdown(module.fields.copy)}

@@ -1,0 +1,15 @@
+mixin lessonModuleCodeSnippet(module)
+   .lessonModule
+     .lessonModule__code
+        h1.lessonModule__title #{module.fields.title}
+        pre.lessonModule__code__curl !{helpers.markdown(module.fields.curl)}
+        pre.lessonModule__code__dotnet !{helpers.markdown(module.fields.dotNet)}
+        pre.lessonModule__code__javascript !{helpers.markdown(module.fields.javascript)}
+        pre.lessonModule__code__java !{helpers.markdown(module.fields.java)}
+        pre.lessonModule__code__javaAndroid !{helpers.markdown(module.fields.javaAndroid)}
+        pre.lessonModule__code__php !{helpers.markdown(module.fields.php)}
+        pre.lessonModule__code__python !{helpers.markdown(module.fields.python)}
+        pre.lessonModule__code__ruby !{helpers.markdown(module.fields.ruby)}
+        pre.lessonModule__code__swift !{helpers.markdown(module.fields.swift)}
+
+        

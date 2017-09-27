@@ -25,7 +25,7 @@ exports.getCourse = (slug) => {
   // the SDK support link resolution only when you request the collection endpoint
   // That's why we are using getEntries with a query instead of getEntry(entryId)
   // make sure to specify the content_type whenever you want to perform a query
-  return client.getEntries({content_type: 'course', 'fields.slug': slug})
+  return client.getEntries({content_type: 'course', 'fields.slug': slug, include: 10})
     .then((response) => response.items[0])
 }
 
