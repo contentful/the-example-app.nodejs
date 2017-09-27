@@ -105,6 +105,13 @@
       & label + select {
         margin-left: 0.5em;
       }
+
+      & select,
+      & label {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
   }
 }

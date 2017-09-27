@@ -148,14 +148,3 @@ body {
     }
   }
 }
-
-.cta {
-  display: inline-block;
-  box-sizing: border-box;
-  min-width: 200px;
-  padding: 0.5em 2em;
-  color: var(--cta-color);
-  background: var(--cta-bg);
-  border-radius: var(--cta-radius);
-  text-align: center;
-}
