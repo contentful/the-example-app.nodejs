@@ -17,5 +17,8 @@ block content
       if lesson
         h2= lesson.fields.title
         p !{helpers.markdown(lesson.fields.description)}
+        if lessonIndex + 1< lessons.length
+          a.cta(href=`/courses/${course.fields.slug}/lessons/${lessons[lessonIndex + 1].fields.slug}`) View next lesson
       else
         p !{helpers.markdown(course.fields.description)}
+        a.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}`) Start course

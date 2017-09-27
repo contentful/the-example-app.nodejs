@@ -31,6 +31,7 @@
 
     @media (--breakpoint-desktop) {
       flex: 1 0 auto;
+      min-height: 90px;
     }
   }
 

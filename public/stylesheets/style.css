@@ -672,6 +672,18 @@ body {
   font-weight: bold;
 }
 
+.cta {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 200px;
+  padding: 0.5em 2em;
+  color: #fff;
+  background: #5b9fef;
+  border-radius: 3px;
+  text-align: center;
+}
+
 #header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -735,6 +747,7 @@ body {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 auto;
             flex: 1 0 auto;
+    min-height: 90px;
   }
 }
 
