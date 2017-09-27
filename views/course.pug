@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_lesson
+
 block content
   .wrapper.wrapper-with-sidebar
     section.wrapper__sidebar
@@ -15,8 +17,7 @@ block content
       h1= course.fields.title
 
       if lesson
-        h2= lesson.fields.title
-        p !{helpers.markdown(lesson.fields.description)}
+        +lesson(lesson)
         if lessonIndex + 1< lessons.length
           a.cta(href=`/courses/${course.fields.slug}/lessons/${lessons[lessonIndex + 1].fields.slug}`) View next lesson
       else

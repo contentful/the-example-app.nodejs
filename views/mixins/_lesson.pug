@@ -1,7 +1,17 @@
+include _lessonModuleCodeSnippet
+include _lessonModuleCopy
+include _lessonModuleImage
+
 mixin lesson(lesson)
   .lesson
     h1.lesson__tilte #{lesson.fields.title}
-    div.lesson__shortDescription !{helpers.markdown(lesson.fields.shortDescription)}
+    div.lesson__shortDescription !{helpers.markdown(lesson.fields.description)}
     img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
-
-
+    each module in lesson.fields.modules
+     case module.sys.contentType.sys.id 
+      when 'lessonModuleCodeSnippets'
+        +lessonModuleCodeSnippet(module)
+      when 'lessonModuleCopy'
+        +lessonModuleCopy(module)
+      when 'lessonModuleImage'
+        +lessonModuleImage(module)
