@@ -1,0 +1,10 @@
+.form-item {
+  & + .form-item {
+    margin-top: var(--grid-gutter);
+  }
+  & .help-text {
+    font-size: 0.9em;
+    color: var(--color-text-grey);
+    margin-top: calc(var(--grid-gutter) * -1);
+  }
+}

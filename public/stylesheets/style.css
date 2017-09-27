@@ -459,6 +459,259 @@ a {
   text-decoration: none;
 }
 
+/* Based on FormHack v1.2.0 (formhack.io) */
+
+/* But with some custom modifications */
+
+/* Config ----------------------------- */
+
+:root {
+
+  /* Font */
+
+  /* Borders */
+
+  /* Inputs, Textareas, Select, Option */
+
+  /* Select Vendor Styling */ /* comment this out to maintain vendor styling */
+
+
+  /* Buttons & Input Submits */
+
+  /* Layout */ /* change to "10px auto" to center */
+}
+
+/* Global Reset Styles ------------------ */
+
+input,
+textarea,
+select,
+option,
+optgroup,
+button,
+legend,
+fieldset,
+.cta {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: rgb(40, 40, 40);
+  vertical-align: top;
+
+  display: block;
+  margin: 16px 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+datalist {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+
+label {
+  display: block;
+  margin: 16px 0;
+  margin: 1rem 0;
+  text-align: left;
+  font-weight: bold
+}
+
+label + input {
+  margin-top: -8px;
+  margin-top: -0.5rem;
+}
+
+/* Input & Textarea ------------------ */
+
+/* Fields with standard width */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="color"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="number"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+input[list],
+input[type="file"],
+/* select, */
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  background-color: #fff;
+
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(200, 200, 200);
+}
+
+/* Fields with standard height */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="color"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="number"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+input[list] {
+  height: 40px;
+  -webkit-appearance: none;
+}
+
+/* Other */
+
+textarea {
+  -webkit-appearance: none;
+  overflow: auto;
+}
+
+input[type="range"] {
+  height: 40px;
+  width: 100%;
+  max-width: 100%;
+}
+
+input[type="file"] {
+  min-height: 40px;
+}
+
+input[type="search"] {
+  height: 40px;
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* For checkbox and radio to be centered, need to wrap the input and label in a span -
+/* .checkbox-container {
+/*  display: block;
+/*  text-align: center;
+/* }
+
+
+/* Fieldset ------------------ */
+
+fieldset {
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+  font-weight: inherit;
+}
+
+/* Buttons, Input Type Submit/Reset ------------------ */
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="image"],
+.cta {
+  display: inline-block;
+  height: 40px;
+  min-width: 200px;
+  background-color: #5c9fef;
+  padding: 0 2em;
+  cursor: pointer;
+
+  line-height: 40px;
+  color: #fff;
+  font-weight: normal;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+}
+
+input[type="image"] {
+  text-align: center;
+  padding: 8px;
+}
+
+/* States ------------------ */
+
+input[disabled],
+textarea[disabled],
+select[disabled],
+option[disabled],
+button[disabled] {
+  cursor: not-allowed;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+option:focus,
+button:focus,
+.cta:focus  {
+  background-color: rgb(125, 178, 242);
+  color: #fff;
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+  outline: #5c9fef solid 2px;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+.cta:hover,
+.cta:focus {
+  background-color: rgb(125, 178, 242);
+  color: #fff;
+}
+
+.form-item + .form-item {
+  margin-top: 16px;
+  margin-top: 1rem;
+}
+
+.form-item .help-text {
+  font-size: 0.9em;
+  color: #8091a5;
+  margin-top: -16px;
+  margin-top: -1rem;
+}
+
 body {
   background-color: #fff;
   color: #2a303a;
@@ -672,18 +925,6 @@ body {
   font-weight: bold;
 }
 
-.cta {
-  display: inline-block;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  min-width: 200px;
-  padding: 0.5em 2em;
-  color: #fff;
-  background: #5b9fef;
-  border-radius: 3px;
-  text-align: center;
-}
-
 #header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -838,6 +1079,13 @@ body {
 
 .header__navarea form fieldset label + select {
   margin-left: 0.5em;
+}
+
+.header__navarea form fieldset select,
+      .header__navarea form fieldset label {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 #footer {

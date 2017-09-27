@@ -3,6 +3,9 @@
 @import './variables';
 
 @import './typography';
+@import './formhack';
+@import './forms';
+
 @import './global';
 @import './header';
 @import './footer';

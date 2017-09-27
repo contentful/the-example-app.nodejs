@@ -6,10 +6,12 @@
 
   --line-height: 1.5em;
 
+  --color-palette-blue: #5c9fef;
+
   --color-text-default: #2a303a;
   --color-text-grey: #8091a5;
 
-  --color-link-content: #5c9fef;
+  --color-link-content: var(--color-palette-blue);
 
   --color-bg-default: #fff;
   --color-bg-grey: #f7f9fa;
@@ -22,6 +24,6 @@
   --card-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
 
   --cta-color: #fff;
-  --cta-bg: #5b9fef;
+  --cta-bg: var(--color-palette-blue);
   --cta-radius: 3px;
 }

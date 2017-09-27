@@ -3,11 +3,23 @@ extends layout
 block content
   .wrapper
     h1= title
+    p To query and get content using the APIs, client apllications need to authenticate iwth both the Space ID and an access token.
+
     form(action=`/settings` method="POST" class="form")
-      label(for="space") Space
-      input(type="text" name="space" value=settings.space)
-      label(for="cda") Delivery API Key
-      input(type="text" name="cda" value=settings.cda)
-      label(for="cpa") Preview API Key
-      input(type="text" name="cpa" value=settings.cpa)
-      input(type="submit" value="Save →" class="button")
+      .form-item
+        label(for="space") Space ID
+        input(type="text" name="space" value=settings.space)
+        .help-text Some help text we still need to define
+
+      .form-item
+        label(for="cda") Delivery API Key
+        input(type="text" name="cda" value=settings.cda)
+        .help-text Some help text we still need to define
+
+      .form-item
+        label(for="cpa") Preview API Key
+        input(type="text" name="cpa" value=settings.cpa)
+        .help-text Some help text we still need to define
+
+      .form-item
+        input.cta(type="submit" value="Load settings")
