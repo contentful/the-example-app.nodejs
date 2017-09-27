@@ -34,6 +34,7 @@ body {
 @block wrapper-with-sidebar {
   @media (--breakpoint-desktop) {
     display: flex;
+    align-items: flex-start;
   }
 
   @element sidebar {
