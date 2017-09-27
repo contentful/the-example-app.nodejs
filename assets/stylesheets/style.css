@@ -5,6 +5,7 @@
 @import './typography';
 @import './formhack';
 @import './forms';
+@import './hljs-github';
 
 @import './global';
 @import './header';
@@ -12,4 +13,5 @@
 
 @import './homepage';
 @import './course';
-@import './module';
+@import './module-landing';
+@import './module-lesson';

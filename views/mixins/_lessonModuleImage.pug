@@ -1,5 +1,4 @@
 mixin lessonModuleImage(module)
-   .lessonModule
-     .lessonModule__image
-        h1.lessonModule__image__title #{module.fields.title}
-        img.lessonModule__image__image(src=module.fields.file.url alt=module.fields.title)
+  .lesson-module.lesson-module__image
+    img.lesson-module__image__image(src=module.fields.file.url alt=module.fields.title)
+    div.lesson-module__image__title #{module.fields.title}

@@ -1,15 +1,21 @@
 mixin lessonModuleCodeSnippet(module)
-   .lessonModule
-     .lessonModule__code
-        h1.lessonModule__title #{module.fields.title}
-        pre.lessonModule__code__curl !{helpers.markdown(module.fields.curl)}
-        pre.lessonModule__code__dotnet !{helpers.markdown(module.fields.dotNet)}
-        pre.lessonModule__code__javascript !{helpers.markdown(module.fields.javascript)}
-        pre.lessonModule__code__java !{helpers.markdown(module.fields.java)}
-        pre.lessonModule__code__javaAndroid !{helpers.markdown(module.fields.javaAndroid)}
-        pre.lessonModule__code__php !{helpers.markdown(module.fields.php)}
-        pre.lessonModule__code__python !{helpers.markdown(module.fields.python)}
-        pre.lessonModule__code__ruby !{helpers.markdown(module.fields.ruby)}
-        pre.lessonModule__code__swift !{helpers.markdown(module.fields.swift)}
-
-        
+  .lesson-module.lesson-module__code
+    h1.lesson-module__title #{module.fields.title}
+    pre.lesson-module__code__curl
+      code.shell= module.fields.curl
+    pre.lesson-module__code__dotnet
+      code.csharp= module.fields.dotNet
+    pre.lesson-module__code__javascript
+      code.javascript= module.fields.javascript
+    pre.lesson-module__code__java
+      code.java= module.fields.java
+    pre.lesson-module__code__javaAndroid
+      code.java= module.fields.javaAndroid
+    pre.lesson-module__code__php
+      code.php= module.fields.php
+    pre.lesson-module__code__python
+      code.python= module.fields.python
+    pre.lesson-module__code__ruby
+      code.ruby= module.fields.ruby
+    pre.lesson-module__code__swift
+      code.swift= module.fields.swift

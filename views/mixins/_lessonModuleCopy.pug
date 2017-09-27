@@ -1,5 +1,4 @@
 mixin lessonModuleCopy(module)
-   .lessonModule
-     .lessonModule__copy
-        h1.lessonModule__copy__title #{module.fields.title}
-        .lessonModule__copy__copy !{helpers.markdown(module.fields.copy)}
+  .lesson-module.lesson-module__copy
+    h3.lesson-module__copy__title #{module.fields.title}
+    .lesson-module__copy__copy !{helpers.markdown(module.fields.copy)}

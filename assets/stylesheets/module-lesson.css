@@ -1,0 +1,8 @@
+.lesson-module {
+  margin-top: calc(var(--grid-gutter) * 3);
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
+}
