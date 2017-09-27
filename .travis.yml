@@ -8,3 +8,12 @@ node_js:
   - "8"
 script:
   - npm run test
+after_script
+  - mkdir reports
+  - mv ./backstop_data/html_report ./reports/html_report_`date +%Y-%m-%d_%H-%M-%S`
+addons:
+  artifacts: true
+  s3_region: "us-east-1"
+  debug: true
+  paths:
+    - "./reports/"

@@ -22,9 +22,11 @@ server.listen(TEST_PORT, function () {
     .then(() => {
       console.log(`Success to ${mode} the visual regression tests.`)
       server.close()
+      process.exit(0)
     }).catch(() => {
       console.log(`Failed to ${mode} the visual regression tests.`)
       server.close()
+      process.exit(1)
     })
 })
 
