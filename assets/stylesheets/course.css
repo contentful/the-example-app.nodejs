@@ -15,6 +15,11 @@
 .course-card__categories {
   flex: 0 0 var(--line-height);
   color: var(--color-text-grey);
+
+  & a {
+    display: inline-block;
+    margin-right: var(--grid-gutter);
+  }
 }
 
 .course-card__title {
