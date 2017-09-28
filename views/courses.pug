@@ -12,7 +12,7 @@ block content
             a.active(href=`/courses`) All courses
           each category in categories
             li
-              a(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
+              a(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
     section.wrapper-with-sidebar__content
       h1= title
       .courses.grid-list-small

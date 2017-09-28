@@ -1,5 +1,6 @@
 require('dotenv').config({ path: 'variables.env' })
 const express = require('express')
+const url = require('url')
 const path = require('path')
 const helpers = require('./helpers')
 // const favicon = require('serve-favicon')
@@ -31,6 +32,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Pass custo helpers to all our templates
 app.use(function (req, res, next) {
   res.locals.helpers = helpers
+  const qs = url.parse(req.url).query
+  res.locals.queryString = qs ? `?${qs}` : ''
+  res.locals.query = req.query
+  res.locals.currentPath = req.path
+  console.log(req.path)
   next()
 })
 

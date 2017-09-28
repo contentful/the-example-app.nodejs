@@ -13,7 +13,7 @@ block content
           each l in course.fields.lessons
             if l.fields
               li
-                a(href=`/courses/${course.fields.slug}/lessons/${l.fields.slug}`) #{l.fields.title}
+                a(href=`/courses/${course.fields.slug}/lessons/${l.fields.slug}${queryString}`) #{l.fields.title}
     section.wrapper-with-sidebar__content
       h1= course.fields.title
 
@@ -21,7 +21,7 @@ block content
         +lesson(lesson)
         if lessonIndex + 1< lessons.length
           if lessons[lessonIndex + 1].fields
-            a.cta(href=`/courses/${course.fields.slug}/lessons/${lessons[lessonIndex + 1].fields.slug}`) View next lesson
+            a.cta(href=`/courses/${course.fields.slug}/lessons/${lessons[lessonIndex + 1].fields.slug}${queryString}`) View next lesson
       else
         p !{helpers.markdown(course.fields.description)}
-        a.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}`) Start course
+        a.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course

@@ -5,7 +5,7 @@ let cpaClient = null
 
 exports.initClient = (config = {space: process.env.CF_SPACE, accessToken: process.env.CF_ACCESS_TOKEN}) => {
   cdaClient = createClient(config)
-  cpaClient = createClient({...config, host: 'preview.contentful.com'})
+  cpaClient = createClient({space: process.env.CF_SPACE, accessToken: process.env.CF_PREVIEW_ACCESS_TOKEN, host: 'preview.contentful.com'})
 }
 
 exports.getCourses = (locale = 'en-US', api = `cda`) => {

@@ -3,10 +3,10 @@ mixin courseCard(course = {fields: {title: '', description: '', categories: [], 
     .course-card__categories
       if(course.fields.categories)
         each category in course.fields.categories
-          a.course-card__category(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
+          a.course-card__category(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
     h2.course-card__title= course.fields.title
     .course-card__description-wrapper
       p !{helpers.markdown(course.fields.shortDescription)}
     .course-card__link-wrapper
-      a.course-card__link(href=`/courses/${course.fields.slug}`) view course
+      a.course-card__link(href=`/courses/${course.fields.slug}${queryString}`) view course
 
