@@ -37,6 +37,7 @@
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^11.0.0",
     "postcss-reporter": "^5.0.0",
-    "postcss-url": "^7.1.2"
+    "postcss-url": "^7.1.2",
+    "pug-lint": "^2.5.0"
   }
 }

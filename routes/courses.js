@@ -33,9 +33,11 @@ router.get('/categories/:category', async function (req, res, next) {
 
 /* GET course detail. */
 router.get('/:slug', async function (req, res, next) {
-  let course = {}
-  course = await getCourse(req.params.slug)
-  res.render('course', {title: course.fields.title, course})
+  let course = await getCourse(req.params.slug)
+  const lessons = course.fields.lessons
+  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
+  const lesson = lessons[lessonIndex]
+  res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex})
 })
 
 /* GET course lesson detail. */
