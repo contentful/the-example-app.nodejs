@@ -1,8 +1,5 @@
 mixin copyModule(module)
-  .module
-    .module__copy
-      h1.module__copy__title #{module.fields.title}
-      h3.module__copy__headline #{module.fields.headline}
-      div.module__copy__copy !{helpers.markdown(module.fields.copy)}
-
-
+  .module.module-copy
+    h1.module-copy__title #{module.fields.title}
+    h3.module-copy__headline #{module.fields.headline}
+    div.module-copy__copy !{helpers.markdown(module.fields.copy)}

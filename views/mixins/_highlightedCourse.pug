@@ -1,7 +1,6 @@
 include ./_courseCard
 
 mixin highlightedCourseModule(module)
-  .module
-    .module__higlightedCourse
-      h2.module__higlightedCourse__title #{module.fields.title}
-      +courseCard(module.fields.course)
+  .module.module-higlighted-course
+    h2.module-higlighted-course__title #{module.fields.title}
+    +courseCard(module.fields.course)

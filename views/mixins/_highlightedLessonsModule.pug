@@ -1,9 +1,8 @@
 include _lesson
 
 mixin _highlightLessonsModule(module)
-  .module
-    .module__higlightedLessons
-      h2.module__higlightedLessons__title #{module.fields.title}
-      each lesson in module.fields.lessons
-        +lesson(lesson)
+  .module.module-higlighted-lessons
+    h2.module-higlighted-lessons__title #{module.fields.title}
+    each lesson in module.fields.lessons
+      +lesson(lesson)
 

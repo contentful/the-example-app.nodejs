@@ -4,7 +4,7 @@ include mixins/_courseCard
 
 block content
   .wrapper.wrapper-with-sidebar
-    section.wrapper__sidebar
+    section.wrapper-with-sidebar__sidebar
       h2 Categories
       .sidebar-menu
         ul
@@ -13,7 +13,7 @@ block content
           each category in categories
             li
               a(href=`/courses/categories/${category.sys.id}`) #{category.fields.title}
-    section.wrapper__content
+    section.wrapper-with-sidebar__content
       h1= title
       .courses.grid-list-small
         each course in courses

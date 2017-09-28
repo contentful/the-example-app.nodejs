@@ -1,6 +1,5 @@
 mixin heroImageModule(module)
-  .module
-    .module__heroImage
-      h2.module__heroImage__title #{module.fields.title}
-      h3.module__heroImage__headline #{module.fields.headline}
-      img.module__heroImage__image(src=`${module.fields.backgroundImage.fields.file.url}` alt=`${module.fields.backgroundImage.fields.title}`)
+  .module.module-hero-image
+    h2.module-hero-image__title #{module.fields.title}
+    h3.module-hero-image__headline #{module.fields.headline}
+    img.module-hero-image__image(src=`${module.fields.backgroundImage.fields.file.url}` alt=`${module.fields.backgroundImage.fields.title}`)
