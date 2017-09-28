@@ -17,23 +17,23 @@ html
                   fieldset
                     label(for='api') API type:
                     select(name='api' onChange='this.form.submit()')
-                      option(value='CDA') Delivery API
-                      option(value='CPA') Preview API
+                      option(value='cda' selected=query.api === 'cda') Delivery API
+                      option(value='cpa' selected=query.api === 'cpa') Preview API
                   fieldset
                     label(for='locale') Language:
                     select(name='locale' onChange='this.form.submit()')
-                      option(value='en-US') English
-                      option(value='de-DE') German
+                      option(value='en-US' selected=query.locale === 'en-US') English
+                      option(value='de-DE' selected=query.locale === 'de-DE') German
               nav.header__navigation
                 ul
                   li
-                    a.active(href='/') Home
+                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
                   li
-                    a(href='/courses') Courses
+                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
                   li
-                    a(href='/about') About
+                    a(href=`/about${queryString}` class=(currentPath.startsWith('/about') ? 'active' : '')) About
                   li
-                    a(href='/settings') Settings
+                    a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
 
       #main__content
         block content
@@ -45,13 +45,13 @@ html
               nav.footer__navigation
                 ul
                   li
-                    a.active(href='/') Home
+                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
                   li
-                    a(href='/courses') Courses
+                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
                   li
-                    a(href='/about') About
+                    a(href=`/about${queryString}` class=(currentPath.startsWith('/about') ? 'active' : '')) About
                   li
-                    a(href='/settings') Settings
+                    a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
               .footer__apps
                 a(href='#')
                   img(src='/images/app-store-badge.png')

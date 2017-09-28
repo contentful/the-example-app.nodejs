@@ -9,8 +9,8 @@ router.get('/', async function (req, res, next) {
   let courses = []
   let categories = []
   try {
-    courses = await getCourses()
-    categories = await getCategories()
+    courses = await getCourses(req.query.locale, req.query.api)
+    categories = await getCategories(req.query.locale, req.query.api)
   } catch (e) {
     console.log('Error ', e)
   }
@@ -23,7 +23,7 @@ router.get('/categories/:category', async function (req, res, next) {
   let courses = []
   let categories = []
   try {
-    courses = await getCoursesByCategory(req.params.category)
+    courses = await getCoursesByCategory(req.params.category, req.query.locale, req.query.api)
     categories = await getCategories()
   } catch (e) {
     console.log('Error ', e)
@@ -33,7 +33,7 @@ router.get('/categories/:category', async function (req, res, next) {
 
 /* GET course detail. */
 router.get('/:slug', async function (req, res, next) {
-  let course = await getCourse(req.params.slug)
+  let course = await getCourse(req.params.slug, req.query.locale, req.query.api)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
@@ -42,7 +42,7 @@ router.get('/:slug', async function (req, res, next) {
 
 /* GET course lesson detail. */
 router.get('/:cslug/lessons/:lslug', async function (req, res, next) {
-  let course = await getCourse(req.params.cslug)
+  let course = await getCourse(req.params.cslug, req.query.locale, req.query.api)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
