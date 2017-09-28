@@ -1,66 +1,68 @@
-#footer {
+@block footer {
   margin: var(--grid-gutter) 0;
   padding-top: var(--grid-gutter);
 
   border-top: 2px solid var(--color-bg-separator);
 
-  & .upper {
+  @element upper {
     display: flex;
 
     & > * {
       display: flex;
       align-items: center;
     }
+  }
 
-    & .navigation {
-      flex: 1 0 auto;
-      font-size: 0.9em;
+  @element navigation {
+    flex: 1 0 auto;
+    font-size: 0.9em;
 
-      & ul {
-        display: flex;
-        list-style: none;
+    & ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      & li {
         margin: 0;
-        padding: 0;
 
-        & li {
-          margin: 0;
-
-          & + li {
-            margin-left: calc(var(--grid-gutter) * 2);
-          }
-        }
-      }
-    }
-
-    & .apps {
-      flex: 0 0 auto;
-
-      & a {
-        display: inline-block;
-        width: 150px;
-
-        & + a {
-          margin-left: var(--grid-gutter);
-        }
-
-        & img {
-          width: 100%;
-          height: auto;
+        & + li {
+          margin-left: calc(var(--grid-gutter) * 2);
         }
       }
     }
   }
-  & .lower {
-    display: flex;
 
-    & .disclaimer {
-      flex: 1 0 auto;
-      font-size: 0.7em;
-      color: var(--color-text-grey);
+  @element apps {
+    flex: 0 0 auto;
+
+    & a {
+      display: inline-block;
+      width: 150px;
+
+      & + a {
+        margin-left: var(--grid-gutter);
+      }
+
+      & img {
+        width: 100%;
+        height: auto;
+      }
     }
-    & .social {
-      flex: 0 0 auto;
-    }
+  }
+
+  @element lower {
+    display: flex;
+  }
+
+  @element disclaimer {
+    flex: 1 0 auto;
+    font-size: 0.7em;
+    color: var(--color-text-grey);
+  }
+
+  @element social {
+    flex: 0 0 auto;
   }
 }
 

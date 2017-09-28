@@ -1,21 +1,21 @@
 mixin lessonModuleCodeSnippet(module)
-  .lesson-module.lesson-module__code
+  .lesson-module.lesson-module-code
     h1.lesson-module__title #{module.fields.title}
-    pre.lesson-module__code__curl
+    pre.lesson-module-code__curl
       code.shell= module.fields.curl
-    pre.lesson-module__code__dotnet
-      code.csharp= module.fields.dotNet
-    pre.lesson-module__code__javascript
+    pre.lesson-module-code__dotnet
+      code.csharp= module.fields.dot-net
+    pre.lesson-module-code__javascript
       code.javascript= module.fields.javascript
-    pre.lesson-module__code__java
+    pre.lesson-module-code__java
       code.java= module.fields.java
-    pre.lesson-module__code__javaAndroid
+    pre.lesson-module-code__java-android
       code.java= module.fields.javaAndroid
-    pre.lesson-module__code__php
+    pre.lesson-module-code__php
       code.php= module.fields.php
-    pre.lesson-module__code__python
+    pre.lesson-module-code__python
       code.python= module.fields.python
-    pre.lesson-module__code__ruby
+    pre.lesson-module-code__ruby
       code.ruby= module.fields.ruby
-    pre.lesson-module__code__swift
+    pre.lesson-module-code__swift
       code.swift= module.fields.swift

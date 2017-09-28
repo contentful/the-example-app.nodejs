@@ -7,12 +7,12 @@ html
     #main
       #main__header
         .wrapper
-          header#header
+          header.header
             section.header__logo
-              a.logo--link(href='#')
+              a.header__logo-link(href='#')
                 img(src='/images/logo.png' alt='Contentful University')
             section.header__navarea
-              section.controls
+              section.header__controls
                 form(action="." method="get")
                   fieldset
                     label(for='api') API type:
@@ -24,7 +24,7 @@ html
                     select(name='locale' onChange='this.form.submit()')
                       option(value='en-US') English
                       option(value='de-DE') German
-              nav.navigation
+              nav.header__navigation
                 ul
                   li
                     a.active(href='/') Home
@@ -40,9 +40,9 @@ html
 
       #main__footer
         .wrapper
-          footer#footer
-            .upper
-              nav.navigation
+          footer.footer
+            .footer__upper
+              nav.footer__navigation
                 ul
                   li
                     a.active(href='/') Home
@@ -52,15 +52,15 @@ html
                     a(href='/about') About
                   li
                     a(href='/settings') Settings
-              .apps
+              .footer__apps
                 a(href='#')
                   img(src='/images/app-store-badge.png')
                 a(href='#')
                   img(src='/images/google-play-badge.png')
-            .lower
-              .disclaimer
+            .footer__lower
+              .footer__disclaimer
                 p This website and the materials fond on it are for demo purposes using Contentful. You can use this to preview the content created on your Contentful account.
-              .social
+              .footer__social
                 p
                   a(href='#') FB
                   a(href='#') TW

@@ -5,7 +5,7 @@ include _lessonModuleImage
 mixin lesson(lesson)
   .lesson
     h2.lesson__tilte #{lesson.fields.title}
-    div.lesson__shortDescription !{helpers.markdown(lesson.fields.description)}
+    div.lesson__short-description !{helpers.markdown(lesson.fields.description)}
     if lesson.fields.image
       img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
     each module in lesson.fields.modules

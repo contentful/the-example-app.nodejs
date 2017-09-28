@@ -1,4 +1,4 @@
-#header {
+@block header {
   display: flex;
   flex-wrap: wrap;
 
@@ -11,13 +11,9 @@
     flex-wrap: nowrap;
   }
 
-  & .header__logo,
-  & .header__navarea {
+  @element logo {
     display: flex;
     flex: 0 0 100%;
-  }
-
-  & .header__logo {
     align-items: center;
 
     @media (--breakpoint-desktop) {
@@ -25,7 +21,9 @@
     }
   }
 
-  & .header__navarea {
+  @element navarea {
+    display: flex;
+    flex: 0 0 100%;
     flex-direction: column;
     justify-content: space-around;
 
@@ -35,7 +33,7 @@
     }
   }
 
-  & .navigation {
+  @element navigation {
     & ul {
       display: flex;
       list-style: none;
@@ -74,45 +72,44 @@
       }
     }
   }
-}
 
-.header__navarea {
-  & form {
-    display: flex;
-    flex-wrap: wrap;
+  @element navarea {
+    & form {
+      display: flex;
+      flex-wrap: wrap;
 
-    @media (--breakpoint-desktop) {
-      justify-content: flex-end;
-    }
-
-    & > * {
-      flex: 0 0 auto;
-    }
-
-    & fieldset {
-      padding: 0.2em 1em;
-      margin: 0;
-      border: none;
-      background: var(--color-bg-grey);
-      color: var(--color-text-grey);
-      border-radius: var(--border-radius);
-      font-size: 0.8em;
-
-      & + fieldset {
-        margin-left: var(--grid-gutter)
+      @media (--breakpoint-desktop) {
+        justify-content: flex-end;
       }
 
-      & label + select {
-        margin-left: 0.5em;
+      & > * {
+        flex: 0 0 auto;
       }
 
-      & select,
-      & label {
-        display: inline-block;
-        margin-top: 0;
-        margin-bottom: 0;
+      & fieldset {
+        padding: 0.2em 1em;
+        margin: 0;
+        border: none;
+        background: var(--color-bg-grey);
+        color: var(--color-text-grey);
+        border-radius: var(--border-radius);
+        font-size: 0.8em;
+
+        & + fieldset {
+          margin-left: var(--grid-gutter)
+        }
+
+        & label + select {
+          margin-left: 0.5em;
+        }
+
+        & select,
+        & label {
+          display: inline-block;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
       }
     }
   }
 }
-

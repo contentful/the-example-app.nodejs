@@ -1,7 +1,7 @@
 @custom-media --breakpoint-desktop (min-width: 700px);
 
 :root {
-  --grid-gutter: 1rem;
+  --grid-gutter: 22px;
   --border-radius: 3px;
 
   --line-height: 1.5em;

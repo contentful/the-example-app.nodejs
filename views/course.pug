@@ -4,7 +4,7 @@ include mixins/_lesson
 
 block content
   .wrapper.wrapper-with-sidebar
-    section.wrapper__sidebar
+    section.wrapper-with-sidebar__sidebar
       h2 Table of contents
       .table-of-contents
         ul
@@ -13,7 +13,7 @@ block content
           each lesson in course.fields.lessons
             li
               a(href=`/courses/${course.fields.slug}/lessons/${lesson.fields.slug}`) #{lesson.fields.title}
-    section.wrapper__content
+    section.wrapper-with-sidebar__content
       h1= course.fields.title
 
       if lesson

@@ -31,6 +31,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "nodemon": "^1.12.1",
     "postcss": "^6.0.12",
+    "postcss-atrule-bem": "^3.0.1",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cli": "^4.1.1",
     "postcss-cssnext": "^3.0.2",
