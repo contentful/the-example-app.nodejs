@@ -6,24 +6,31 @@ html
   body
     #main
       #main__header
-        .wrapper
-          header.header
-            section.header__logo
-              a.header__logo-link(href='#')
-                img(src='/images/logo.svg' alt='Contentful Example App')
-            section.header__navarea
-              section.header__controls
+        header.header
+          .header__upper-wrapper
+            .header__upper.wrapper
+              .header__title
+                img(src='/images/icon-info.svg')
+                span Example Application
+              div Malin is still thinking about this part
+              .header__controls
                 form(action="" method="get")
-                  fieldset
+                  .group
                     label(for='api') API type:
                     select(name='api' onChange='this.form.submit()')
                       option(value='cda' selected=query.api === 'cda') Delivery API
                       option(value='cpa' selected=query.api === 'cpa') Preview API
-                  fieldset
-                    label(for='locale') Language:
+                  .group
+                    label(for='locale') Locale:
                     select(name='locale' onChange='this.form.submit()')
                       option(value='en-US' selected=query.locale === 'en-US') English
                       option(value='de-DE' selected=query.locale === 'de-DE') German
+          .header__lower-wrapper
+            .header__lower.wrapper
+              .header__logo
+                a.header__logo-link(href='/')
+                  img(src='/images/logo.svg' alt='Contentful Example App')
+
               nav.header__navigation.main-navigation
                 ul
                   li

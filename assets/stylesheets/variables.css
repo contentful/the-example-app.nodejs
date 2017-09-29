@@ -11,9 +11,12 @@
   --font-light: 'robotomedium', Helvetica, sans-serif;
 
   --color-palette-blue: #5c9fef;
+  --color-palette-blue-medium: #3c80cf;
+  --color-palette-blue-dark: #3072be;
 
   --color-text-default: #2a303a;
   --color-text-grey: #8091a5;
+  --color-text-dark-bg: #fff;
 
   --color-link-content: var(--color-palette-blue);
 

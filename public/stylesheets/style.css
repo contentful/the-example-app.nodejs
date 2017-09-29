@@ -1103,16 +1103,7 @@ body {
 }
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-
-  margin: 22px 0;
-  padding-bottom: 22px;
-
-  border-bottom: 2px solid #e5ebed;
+  margin-bottom: 22px;
 }
 
 @media (min-width: 700px) {
@@ -1123,6 +1114,71 @@ body {
   }
 }
 
+.header__upper-wrapper {
+    background: #3072be;
+    padding: 11px 0;
+    color: #fff;
+}
+
+.header__upper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    font-size: 0.8em;
+}
+
+@media (min-width: 700px) {
+
+  .header__upper {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.header__lower-wrapper {}
+
+.header__lower {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 22px 0 5.5px;
+    border-bottom: 1px solid #e5ebed;
+}
+
+.header__title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-family: 'roboto', Helvetica, sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.header__title img {
+  display: inline-block;
+  width: 24px;
+  height: auto;
+  margin-right: 11px;
+}
+
 .header__logo {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1130,9 +1186,9 @@ body {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 @media (min-width: 700px) {
@@ -1150,7 +1206,7 @@ body {
   max-width: 169px;
 }
 
-.header__navarea {
+.header__controls {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1167,60 +1223,70 @@ body {
 
 @media (min-width: 700px) {
 
-  .header__navarea {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-            flex: 1 0 auto;
-    min-height: 90px;
+  .header__controls {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
   }
 }
 
-.header__navarea form {
+.header__controls form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media (min-width: 700px) {
 
-  .header__navarea form {
+  .header__controls form {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
   }
 }
 
-.header__navarea form > * {
+.header__controls form .group {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-}
-
-.header__navarea form fieldset {
-  padding: 0.2em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 11px;
   margin: 0;
   border: none;
-  background: #f7f9fa;
-  color: #8091a5;
+  background: #3c80cf;
   border-radius: 3px;
-  font-size: 0.8em;
+  color: inherit;
 }
 
-.header__navarea form fieldset + fieldset {
+.header__controls form .group + .group {
   margin-left: 22px;
 }
 
-.header__navarea form fieldset label + select {
-  margin-left: 0.5em;
-}
-
-.header__navarea form fieldset select,
-        .header__navarea form fieldset label {
+.header__controls form .group select,
+        .header__controls form .group label {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: inline-block;
   margin-top: 0;
   margin-bottom: 0;
+  color: inherit;
+  font-weight: normal;
+  font-family: 'robotomedium', Helvetica, sans-serif;
+  font-size: 0.8em;
+  background: transparent;
+  border: none;
+}
+
+.header__controls form .group select {
+  margin-top: 2px;
 }
 
 .footer {
@@ -1236,7 +1302,7 @@ body {
         flex-wrap: wrap;
     min-height: 80px;
 
-    border-bottom: 2px solid #e5ebed;
+    border-bottom: 1px solid #e5ebed;
 }
 
 .footer__upper > * {
