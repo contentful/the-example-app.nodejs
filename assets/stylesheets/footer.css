@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     min-height: 80px;
 
-    border-bottom: 2px solid var(--color-bg-separator);
+    border-bottom: 1px solid var(--color-bg-separator);
 
     & > * {
       display: flex;

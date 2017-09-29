@@ -1,20 +1,59 @@
 @block header {
-  display: flex;
-  flex-wrap: wrap;
-
-  margin: var(--grid-gutter) 0;
-  padding-bottom: var(--grid-gutter);
-
-  border-bottom: 2px solid var(--color-bg-separator);
+  margin-bottom: var(--grid-gutter);
 
   @media (--breakpoint-desktop) {
     flex-wrap: nowrap;
   }
 
+  @element upper-wrapper {
+    background: var(--color-palette-blue-dark);
+    padding: calc(var(--grid-gutter) / 2) 0;
+    color: var(--color-text-dark-bg);
+  }
+
+  @element upper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.8em;
+
+    @media (--breakpoint-desktop) {
+      justify-content: space-between;
+    }
+  }
+
+  @element lower-wrapper {
+  }
+
+  @element lower {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: var(--grid-gutter) 0 calc(var(--grid-gutter) / 4);
+    border-bottom: 1px solid var(--color-bg-separator);
+  }
+
+  @element title {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-regular);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    & img {
+      display: inline-block;
+      width: 24px;
+      height: auto;
+      margin-right: calc(var(--grid-gutter) / 2);
+    }
+  }
+
   @element logo {
     display: flex;
     flex: 0 0 100%;
-    align-items: center;
+    justify-content: center;
 
     @media (--breakpoint-desktop) {
       flex: 0 0 200px;
@@ -27,53 +66,58 @@
     }
   }
 
-  @element navarea {
+  @element controls {
     display: flex;
     flex: 0 0 100%;
     flex-direction: column;
     justify-content: space-around;
 
     @media (--breakpoint-desktop) {
-      flex: 1 0 auto;
-      min-height: 90px;
+      flex: 0 0 auto;
     }
-  }
 
-  @element navarea {
     & form {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
 
       @media (--breakpoint-desktop) {
         justify-content: flex-end;
       }
 
-      & > * {
+      & .group {
         flex: 0 0 auto;
-      }
-
-      & fieldset {
-        padding: 0.2em 1em;
+        display: flex;
+        padding: 0 calc(var(--grid-gutter) / 2);
         margin: 0;
+
         border: none;
-        background: var(--color-bg-grey);
-        color: var(--color-text-grey);
+        background: var(--color-palette-blue-medium);
         border-radius: var(--border-radius);
-        font-size: 0.8em;
+        color: inherit;
 
-        & + fieldset {
+        & + .group {
           margin-left: var(--grid-gutter)
-        }
-
-        & label + select {
-          margin-left: 0.5em;
         }
 
         & select,
         & label {
+          flex: 0 0 auto;
           display: inline-block;
           margin-top: 0;
           margin-bottom: 0;
+
+          color: inherit;
+          font-weight: normal;
+          font-family: var(--font-light);
+          font-size: 0.8em;
+
+          background: transparent;
+          border: none;
+        }
+
+        & select {
+          margin-top: 2px;
         }
       }
     }
