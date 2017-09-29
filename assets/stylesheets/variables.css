@@ -1,6 +1,7 @@
 @custom-media --breakpoint-desktop (min-width: 700px);
 
 :root {
+  --content-max-width: 980px;
   --grid-gutter: 22px;
   --border-radius: 3px;
 
@@ -15,7 +16,7 @@
 
   --color-bg-default: #fff;
   --color-bg-grey: #f7f9fa;
-  --color-bg-separator: #f2f5f7;
+  --color-bg-separator: #e5ebed;
 
   --color-sidebar-bg: #f7f9fa;
 

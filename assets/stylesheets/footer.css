@@ -1,11 +1,13 @@
 @block footer {
-  margin: var(--grid-gutter) 0;
+  margin-top: var(--grid-gutter) 0;
   padding-top: var(--grid-gutter);
-
-  border-top: 2px solid var(--color-bg-separator);
 
   @element upper {
     display: flex;
+    flex-wrap: wrap;
+    min-height: 80px;
+
+    border-bottom: 2px solid var(--color-bg-separator);
 
     & > * {
       display: flex;
@@ -14,31 +16,20 @@
   }
 
   @element navigation {
-    flex: 1 0 auto;
-    font-size: 0.9em;
-
-    & ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      & li {
-        margin: 0;
-
-        & + li {
-          margin-left: calc(var(--grid-gutter) * 2);
-        }
-      }
-    }
+    flex: 1 1 auto;
   }
 
   @element apps {
-    flex: 0 0 auto;
+    flex: 1 0 auto;
+    justify-content: center;
+
+    @media (--breakpoint-desktop) {
+      justify-content: flex-end;
+    }
 
     & a {
       display: inline-block;
-      width: 150px;
+      width: 138px;
 
       & + a {
         margin-left: var(--grid-gutter);
@@ -53,16 +44,31 @@
 
   @element lower {
     display: flex;
+    min-height: 80px;
   }
 
   @element disclaimer {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
     font-size: 0.7em;
     color: var(--color-text-grey);
   }
 
   @element social {
     flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--grid-gutter);
+
+    & a + a {
+      margin-left: var(--grid-gutter);
+    }
+
+    & img {
+      width: 24px;
+      height: auto;
+    }
   }
 }
 

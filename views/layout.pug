@@ -10,7 +10,7 @@ html
           header.header
             section.header__logo
               a.header__logo-link(href='#')
-                img(src='/images/logo.png' alt='Contentful University')
+                img(src='/images/logo.svg' alt='Contentful Example App')
             section.header__navarea
               section.header__controls
                 form(action="" method="get")
@@ -24,7 +24,7 @@ html
                     select(name='locale' onChange='this.form.submit()')
                       option(value='en-US' selected=query.locale === 'en-US') English
                       option(value='de-DE' selected=query.locale === 'de-DE') German
-              nav.header__navigation
+              nav.header__navigation.main-navigation
                 ul
                   li
                     a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
@@ -42,7 +42,7 @@ html
         .wrapper
           footer.footer
             .footer__upper
-              nav.footer__navigation
+              nav.footer__navigation.main-navigation
                 ul
                   li
                     a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
@@ -54,15 +54,19 @@ html
                     a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
               .footer__apps
                 a(href='#')
-                  img(src='/images/app-store-badge.png')
+                  img(src='/images/badge-app-store.svg')
                 a(href='#')
-                  img(src='/images/google-play-badge.png')
+                  img(src='/images/badge-google-play.svg')
             .footer__lower
               .footer__disclaimer
-                p This website and the materials fond on it are for demo purposes using Contentful. You can use this to preview the content created on your Contentful account.
+                p
+                  span This website and the materials found on it are for demo purposes using Contentful. You can use this to preview the content created on your Contentful account.
+                  a(href='#todo') View details.
               .footer__social
                 p
-                  a(href='#') FB
-                  a(href='#') TW
+                  a(href='https://www.facebook.com/contentful/' target='_blank')
+                    img(src='/images/icon-facebook.svg' alt='Our Facebook profile')
+                  a(href='https://twitter.com/contentful' target='_blank')
+                    img(src='/images/icon-twitter.svg' alt='Our Twitter profile')
   script(src='/scripts/highlight.pack.js')
   script hljs.initHighlightingOnLoad();

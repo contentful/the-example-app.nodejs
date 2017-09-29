@@ -19,6 +19,12 @@
     @media (--breakpoint-desktop) {
       flex: 0 0 200px;
     }
+
+    & img {
+      width: 100%;
+      height: auto;
+      max-width: 169px;
+    }
   }
 
   @element navarea {
@@ -30,46 +36,6 @@
     @media (--breakpoint-desktop) {
       flex: 1 0 auto;
       min-height: 90px;
-    }
-  }
-
-  @element navigation {
-    & ul {
-      display: flex;
-      list-style: none;
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
-
-      @media (--breakpoint-desktop) {
-        justify-content: flex-end;
-      }
-
-      & li {
-        margin: 0;
-
-        & + li {
-          margin-left: calc(var(--grid-gutter) / 4);
-        }
-
-        & a {
-          display: block;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 0.7em 1em;
-          color: var(--color-text-grey);
-          border-radius: var(--border-radius);
-
-          &.active,
-          &:hover {
-            background: var(--color-bg-grey);
-          }
-
-          &.active {
-            color: var(--color-text-default);
-          }
-        }
-      }
     }
   }
 
