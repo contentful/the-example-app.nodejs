@@ -1,11 +1,7 @@
 .module {
-  max-width: 1024px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 2vw;
-
-  @media (--breakpoint-desktop) {
-    padding: 0;
-  }
 
   & img {
     width: 100%;
