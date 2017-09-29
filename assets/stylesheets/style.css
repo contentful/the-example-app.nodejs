@@ -1,6 +1,7 @@
 @import 'normalize.css';
 
 @import './variables';
+@import './fonts';
 
 @import './typography';
 @import './formhack';

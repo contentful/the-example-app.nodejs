@@ -7,6 +7,9 @@
 
   --line-height: 1.5em;
 
+  --font-regular: 'roboto', Helvetica, sans-serif;
+  --font-light: 'robotomedium', Helvetica, sans-serif;
+
   --color-palette-blue: #5c9fef;
 
   --color-text-default: #2a303a;
