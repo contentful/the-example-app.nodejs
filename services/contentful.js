@@ -3,9 +3,21 @@ const { createClient } = require('contentful')
 let cdaClient = null
 let cpaClient = null
 
-exports.initClient = (config = {space: process.env.CF_SPACE, accessToken: process.env.CF_ACCESS_TOKEN}) => {
-  cdaClient = createClient(config)
-  cpaClient = createClient({space: process.env.CF_SPACE, accessToken: process.env.CF_PREVIEW_ACCESS_TOKEN, host: 'preview.contentful.com'})
+exports.initClient = (options) => {
+  const config = options || {
+    space: process.env.CF_SPACE,
+    cda: process.env.CF_ACCESS_TOKEN,
+    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
+  }
+  cdaClient = createClient({
+    space: config.space,
+    accessToken: config.cda
+  })
+  cpaClient = createClient({
+    space: config.space,
+    accessToken: config.cpa,
+    host: 'preview.contentful.com'
+  })
 }
 
 exports.getCourses = (locale = 'en-US', api = `cda`) => {

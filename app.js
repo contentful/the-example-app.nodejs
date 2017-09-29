@@ -37,6 +37,17 @@ app.use(function (req, res, next) {
   res.locals.query = req.query
   res.locals.currentPath = req.path
   console.log(req.path)
+
+  // Allow setting of credentials via query parameters
+  const { space_id, preview_access_token, delivery_access_token } = req.query
+  if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
+    const settings = {space: space_id, cda: delivery_access_token, cpa: preview_access_token}
+    res.cookie('universitySettings', settings, { maxAge: 900000, httpOnly: true })
+    initClient(settings)
+  } else {
+    initClient(req.cookies.universitySettings)
+  }
+
   next()
 })
 
@@ -64,9 +75,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
-
-// app.use()
-// init the contentful client
-initClient()
 
 module.exports = app
