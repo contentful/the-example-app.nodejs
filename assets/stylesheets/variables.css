@@ -3,12 +3,12 @@
 :root {
   --content-max-width: 980px;
   --grid-gutter: 22px;
-  --border-radius: 3px;
+  --border-radius: 4px;
 
   --line-height: 1.5em;
 
   --font-regular: 'roboto', Helvetica, sans-serif;
-  --font-light: 'robotomedium', Helvetica, sans-serif;
+  --font-medium: 'robotomedium', Helvetica, sans-serif;
 
   --color-palette-blue: #5c9fef;
   --color-palette-blue-medium: #3c80cf;
@@ -29,8 +29,12 @@
   --color-sidebar-seperator: #eeeeee;
 
   --color-course-active: #536171;
+  --color-course-card-description: #536171;
 
-  --card-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+  --layout-sidebar-sidebar-width: 228px;
+  --layout-sidebar-content-width: 732px;
+
+  --card-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 
   --cta-color: #fff;
   --cta-bg: var(--color-palette-blue);
