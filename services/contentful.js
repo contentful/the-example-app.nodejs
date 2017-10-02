@@ -58,7 +58,7 @@ exports.getCoursesByCategory = (category, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
     content_type: 'course',
-    'fields.category.sys.contentType.sys.id': category,
+    'fields.categories.sys.id': category,
     locale,
     include: 10
   })

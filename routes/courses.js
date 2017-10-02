@@ -14,7 +14,7 @@ router.get('/', async function (req, res, next) {
   } catch (e) {
     console.log('Error ', e)
   }
-  res.render('courses', { title: 'Courses', categories, courses })
+  res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
 })
 
 /* GET courses listing. */
@@ -22,13 +22,15 @@ router.get('/categories/:category', async function (req, res, next) {
   // we get all the entries with the content type `course`
   let courses = []
   let categories = []
+  let activeCategory = ''
   try {
     courses = await getCoursesByCategory(req.params.category, req.query.locale, req.query.api)
     categories = await getCategories()
+    activeCategory = categories.find((category) => category.sys.id === req.params.category)
   } catch (e) {
     console.log('Error ', e)
   }
-  res.render('courses', { title: 'Courses', categories, courses })
+  res.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 })
 
 /* GET course detail. */
