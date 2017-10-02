@@ -1,17 +1,13 @@
 @import 'normalize.css';
 
 @import './variables';
-@import './fonts';
 
-@import './typography';
-@import './formhack';
-@import './forms';
-@import './hljs-github';
+@import './base';
 
 @import './global';
-@import './header';
-@import './footer';
+
+@import './hljs-github';
 
 @import './course';
 @import './landing-page';
-@import './module-lesson';
+@import './lesson';
