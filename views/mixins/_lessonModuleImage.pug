@@ -1,4 +1,7 @@
 mixin lessonModuleImage(module)
   .lesson-module.lesson-module-image
-    img.lesson-module-image__image(src=module.fields.file.url alt=module.fields.title)
-    div.lesson-module-image__title #{module.fields.title}
+    h2.lesson-module-image__title #{module.fields.title}
+    if module.fields.file && module.fields.file.url
+      img.lesson-module-image__image(src=module.fields.file.url alt=module.fields.title)
+    else
+      h3 ⚠️ Image missing
