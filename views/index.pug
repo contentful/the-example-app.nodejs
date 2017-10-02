@@ -1,22 +1,18 @@
 extends layout
 
-include mixins/_copyModule
-include mixins/_heroImageModule
-include mixins/_highlightedCourse
-include mixins/_highlightedLessonsModule
+include mixins/_moduleCopy
+include mixins/_moduleHeroImage
+include mixins/_moduleHighlightedCourse
 
 block content
   .container
     each module in landingPage.fields.contentModules
       case module.sys.contentType.sys.id
         when 'landingPageModuleCopy'
-          +copyModule(module)
+          +moduleCopy(module)
 
         when 'landingPageModuleHeroImage'
-          +heroImageModule(module)
+          +moduleHeroImage(module)
 
         when 'landingPageModuleHighlightedCourse'
-          +highlightedCourseModule(module)
-
-        when 'landingPageModuleHighlightedLessons'
-          +highlightLessonsModule(module)
+          +moduleHighlightedCourse(module)
