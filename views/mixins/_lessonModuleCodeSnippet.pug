@@ -1,6 +1,5 @@
 mixin lessonModuleCodeSnippet(module)
   .lesson-module.lesson-module-code
-    h1.lesson-module__title #{module.fields.title}
     if module.fields.curl
       pre.lesson-module-code__curl
         code.shell= module.fields.curl

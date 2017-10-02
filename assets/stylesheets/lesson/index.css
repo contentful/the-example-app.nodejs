@@ -1,8 +1,22 @@
 .lesson-module {
-  margin-top: calc(var(--grid-gutter) * 3);
+  margin-top: var(--grid-gutter);
 
   & img {
     width: 100%;
     height: auto;
+  }
+}
+
+@block lesson {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @element title {
+    margin-bottom: calc(var(--grid-gutter));
+  }
+
+  @element cta {
+    margin-bottom: 0;
   }
 }

@@ -7,22 +7,35 @@ block content
     section.layout-sidebar__sidebar
       .layout-sidebar__sidebar-header
         h2.layout-sidebar__sidebar-title Table of contents
-      .table-of-contents
-        ul
-          li
-            a.active(href=`/courses/${course.fields.slug}`) Course overview
-          each l in course.fields.lessons
-            if l.fields
-              li
-                a(href=`/courses/${course.fields.slug}/lessons/${l.fields.slug}${queryString}`) #{l.fields.title}
+      .layout-sidebar__sidebar-content
+        .table-of-contents
+          .table-of-contents__list
+            .table-of-contents__item
+              a.table-of-contents__link.active(href=`/courses/${course.fields.slug}`) Course overview
+            each l in course.fields.lessons
+              if l.fields
+                .table-of-contents__item
+                  a.table-of-contents__link(href=`/courses/${course.fields.slug}/lessons/${l.fields.slug}${queryString}`) #{l.fields.title}
     section.layout-sidebar__content
-      h1= course.fields.title
-
       if lesson
-        +lesson(lesson)
-        if lessonIndex + 1< lessons.length
-          if lessons[lessonIndex + 1].fields
-            a.cta(href=`/courses/${course.fields.slug}/lessons/${lessons[lessonIndex + 1].fields.slug}${queryString}`) View next lesson
+        +lesson(lesson, course, nextLesson)
       else
-        p !{helpers.markdown(course.fields.description)}
-        a.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+        .course
+          .course__content
+            h1.course__title= course.fields.title
+            .course__overview
+              h3.course__overview-title Overview
+              if course.fields.duration
+                .course__overview-item
+                  img.course__overview-icon(src='/images/icon-duration.svg')
+                  .course__overview-value Duration: #{course.fields.duration}min
+              if course.fields.skillLevel
+                .course__overview-item
+                  img.course__overview-icon(src='/images/icon-skill-level.svg')
+                  .course__overview-value Skill level: #{course.fields.skillLevel}
+              .course__overview-cta-wrapper
+                a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+            .course__description !{helpers.markdown(course.fields.description)}
+          .course__footer
+            a.course__cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+          //pre= helpers.dump(course)

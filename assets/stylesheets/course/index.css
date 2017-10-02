@@ -1,1 +1,65 @@
 @import './card';
+
+@block course {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @element title {
+    margin-bottom: calc(var(--grid-gutter));
+  }
+
+  @element overview {
+    font-family: var(--font-medium);
+
+    @media (--breakpoint-desktop) {
+      float: right;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-box-shadow);
+      width: 228px;
+      margin: 0 0 var(--grid-gutter) var(--grid-gutter);
+    }
+  }
+
+  @element overview-title {
+    border-bottom: 1px solid var(--color-sidebar-seperator);
+    padding: calc(var(--grid-gutter) / 2) 0;
+    margin: 0;
+    line-height: 1.31;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  @element overview-item {
+    display: flex;
+    align-items: center;
+    padding: calc(var(--grid-gutter) / 2);
+    border-bottom: 1px solid var(--color-sidebar-seperator);
+
+    line-height: 1.54;
+    font-size: 0.8em;
+  }
+
+  @element overview-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    padding-right: calc(var(--grid-gutter) / 2);
+  }
+
+  @element overview-value {
+    flex: 1 0 auto;
+  }
+
+  @element overview-cta-wrapper {
+    padding: calc(var(--grid-gutter) / 2) 0;
+    text-align: center;
+  }
+  @element overview-cta {
+    margin: 0;
+  }
+  @element cta {
+    margin-bottom: 0;
+  }
+}

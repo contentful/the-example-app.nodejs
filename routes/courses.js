@@ -48,7 +48,14 @@ router.get('/:cslug/lessons/:lslug', async function (req, res, next) {
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
-  res.render('course', {title: `${course.fields.title} | ${lesson.fields.title}`, course, lesson, lessons, lessonIndex})
+  const nextLesson = lessons[lessonIndex + 1] || null
+  res.render('course', {
+    title: `${course.fields.title} | ${lesson.fields.title}`,
+    course,
+    lesson,
+    lessons,
+    nextLesson
+  })
 })
 
 module.exports = router
