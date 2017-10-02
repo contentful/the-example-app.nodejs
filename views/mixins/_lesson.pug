@@ -9,10 +9,16 @@ mixin lesson(lesson)
     if lesson.fields.image
       img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
     each module in lesson.fields.modules
-     case module.sys.contentType.sys.id
-      when 'lessonModuleCodeSnippets'
-        +lessonModuleCodeSnippet(module)
-      when 'lessonModuleCopy'
-        +lessonModuleCopy(module)
-      when 'lessonModuleImage'
-        +lessonModuleImage(module)
+      if module.sys.contentType
+        case module.sys.contentType.sys.id
+          when 'lessonModuleCodeSnippets'
+            +lessonModuleCodeSnippet(module)
+          when 'lessonModuleCopy'
+            +lessonModuleCopy(module)
+          when 'lessonModuleImage'
+            +lessonModuleImage(module)
+      else
+        h2 ️️⚠️ Invalid lesson module
+        p
+          span Could not determine type of
+          strong  #{module.sys.id}
