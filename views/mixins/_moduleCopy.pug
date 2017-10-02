@@ -1,5 +1,7 @@
 mixin moduleCopy(module)
   .module.module-copy
-    h1.module-copy__title #{module.fields.title}
-    h3.module-copy__headline #{module.fields.headline}
+    h1.module-copy__headline #{module.fields.headline}
     div.module-copy__copy !{helpers.markdown(module.fields.copy)}
+
+    if module.fields.ctaTitle && module.fields.ctaLink
+      a.cta(href=module.fields.ctaLink)= module.fields.ctaTitle
