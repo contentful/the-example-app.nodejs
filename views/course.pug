@@ -3,9 +3,10 @@ extends layout
 include mixins/_lesson
 
 block content
-  .wrapper.wrapper-with-sidebar
-    section.wrapper-with-sidebar__sidebar
-      h2 Table of contents
+  .layout-sidebar
+    section.layout-sidebar__sidebar
+      .layout-sidebar__sidebar-header
+        h2.layout-sidebar__sidebar-title Table of contents
       .table-of-contents
         ul
           li
@@ -14,7 +15,7 @@ block content
             if l.fields
               li
                 a(href=`/courses/${course.fields.slug}/lessons/${l.fields.slug}${queryString}`) #{l.fields.title}
-    section.wrapper-with-sidebar__content
+    section.layout-sidebar__content
       h1= course.fields.title
 
       if lesson

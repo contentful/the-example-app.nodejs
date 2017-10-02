@@ -1,0 +1,20 @@
+.sidebar-menu {
+  & ul {
+    list-style: none;
+    margin: var(--grid-gutter) 0;
+    padding: 0;
+
+    & li {
+      margin: 0 0 var(--grid-gutter);
+      padding: 0;
+    }
+
+    & a {
+      display: block;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+}

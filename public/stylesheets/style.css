@@ -755,15 +755,21 @@ input[type="reset"]:focus,
   margin-top: -22px;
 }
 
-.wrapper {
+.layout-centered {
   max-width: 980px;
   margin: 0 auto;
   padding: 0 2vw;
 }
 
+.layout-sidebar {
+  padding: 0 2vw;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
 @media (min-width: 700px) {
 
-  .wrapper-with-sidebar {
+  .layout-sidebar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -775,28 +781,38 @@ input[type="reset"]:focus,
 
 @media (min-width: 700px) {
 
-  .wrapper-with-sidebar__sidebar {
+  .layout-sidebar__sidebar {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 220px;
             flex: 0 0 220px;
-    padding: 22px;
     border-radius: 7px;
     -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
             box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
   }
-
-  .wrapper-with-sidebar__sidebar > h2 {
-    margin-bottom: 66px;
-  }
 }
 
-.wrapper-with-sidebar__content {
+.layout-sidebar__sidebar-header {
+    padding: 22px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.layout-sidebar__sidebar-title {
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.layout-sidebar__sidebar-content {
+    background: #f7f9fa;
+    padding: 22px;
+}
+
+.layout-sidebar__content {
     padding: 22px 0;
 }
 
 @media (min-width: 700px) {
 
-  .wrapper-with-sidebar__content {
+  .layout-sidebar__content {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
@@ -1149,44 +1165,6 @@ input[type="reset"]:focus,
   height: auto;
 }
 
-body {
-  background-color: #fff;
-  color: #2a303a;
-  font-family: 'roboto', Helvetica, sans-serif;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.5em;
-}
-
-#main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  min-height: 100vh;
-}
-
-#main__header {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
-}
-
-#main__content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
-}
-
-#main__footer {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
-}
-
 .table-of-contents ul {
   list-style: none;
   margin: 22px 0;
@@ -1292,7 +1270,45 @@ body {
 }
 
 .main-navigation ul li a.active {
-  color: #2a303a;
+  color: #2a3039;
+}
+
+body {
+  background-color: #fff;
+  color: #2a3039;
+  font-family: 'roboto', Helvetica, sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.5em;
+}
+
+#main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+}
+
+#main__header {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
+#main__content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+#main__footer {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
 }
 
 /*
@@ -1395,7 +1411,73 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   font-weight: bold;
 }
 
-@include './card';
+.course-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 30vh;
+  padding: 22px;
+
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+}
+
+.course-card > * + * {
+  margin-top: 22px;
+}
+
+.course-card__categories {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 1.5em;
+            flex: 0 0 1.5em;
+}
+
+.course-card__category {
+    display: inline-block;
+    margin-right: 22px;
+    color: #8091a5;
+    font-size: 0.75em;
+    letter-spacing: 2px;
+}
+
+.course-card__title {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    margin-bottom: 0;
+}
+
+.course-card__description-wrapper {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+.course-card__description-wrapper p {
+  margin: 0;
+}
+
+.course-card__link-wrapper {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+}
+
+.course-card__link {
+    display: inline-block;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #5c9fef;
+    text-transform: uppercase;
+    color: #5c9fef;
+    font-size: 0.75em;
+    line-height: 2.17;
+    letter-spacing: 2px;
+}
 
 .module-hero-image {}
 

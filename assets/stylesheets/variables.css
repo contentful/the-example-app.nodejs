@@ -14,7 +14,7 @@
   --color-palette-blue-medium: #3c80cf;
   --color-palette-blue-dark: #3072be;
 
-  --color-text-default: #2a303a;
+  --color-text-default: #2a3039;
   --color-text-grey: #8091a5;
   --color-text-dark-bg: #fff;
   --color-text-dark-bg-grey: #a9b9c0;
@@ -26,6 +26,7 @@
   --color-bg-separator: #e5ebed;
 
   --color-sidebar-bg: #f7f9fa;
+  --color-sidebar-seperator: #eeeeee;
 
   --color-course-active: #536171;
 
