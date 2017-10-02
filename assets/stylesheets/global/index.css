@@ -1,6 +1,9 @@
-@import './layout';
 @import './header';
 @import './footer';
+
+@import './table-of-contents';
+@import './sidebar-menu';
+@import './main-navigation';
 
 body {
   background-color: var(--color-bg-default);
@@ -24,105 +27,3 @@ body {
 #main__footer {
   flex: 0 0 auto;
 }
-
-.table-of-contents {
-  & ul {
-    list-style: none;
-    margin: var(--grid-gutter) 0;
-    padding: 0;
-    padding-left: calc(var(--grid-gutter) * 2);
-
-    & li {
-      margin: 0 0 var(--grid-gutter);
-      padding: 0;
-    }
-
-    & a {
-      display: block;
-
-      &.active {
-        position: relative;
-        font-weight: bold;
-
-        &:before,
-        &:after {
-          position: absolute;
-          top: 0;
-        }
-        &:before {
-          content: '';
-          left: calc(var(--grid-gutter) * 3 * -1);
-          bottom: 0;
-          width: 3px;
-          background: var(--color-course-active);
-        }
-        &:after {
-          content: '👁';
-          left: calc(var(--grid-gutter) * 2 * -1);
-        }
-      }
-    }
-  }
-}
-
-.sidebar-menu {
-  & ul {
-    list-style: none;
-    margin: var(--grid-gutter) 0;
-    padding: 0;
-
-    & li {
-      margin: 0 0 var(--grid-gutter);
-      padding: 0;
-    }
-
-    & a {
-      display: block;
-
-      &.active {
-        font-weight: bold;
-      }
-    }
-  }
-}
-
-@block main-navigation {
-    & ul {
-      display: flex;
-      list-style: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-
-      @media (--breakpoint-desktop) {
-        justify-content: flex-end;
-      }
-
-      & li {
-        margin: 0;
-
-        & + li {
-          margin-left: calc(var(--grid-gutter) / 4);
-        }
-
-        & a {
-          display: block;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 0.7em 1em;
-          color: var(--color-text-grey);
-          border-radius: var(--border-radius);
-
-          &.active,
-          &:hover {
-            background: var(--color-bg-grey);
-          }
-
-          &.active {
-            color: var(--color-text-default);
-          }
-        }
-      }
-    }
-  }

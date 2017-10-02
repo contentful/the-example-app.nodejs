@@ -4,6 +4,8 @@
 
 @import './base';
 
+@import './layout';
+
 @import './global';
 
 @import './hljs-github';

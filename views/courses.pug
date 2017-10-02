@@ -3,18 +3,21 @@ extends layout
 include mixins/_courseCard
 
 block content
-  .wrapper.wrapper-with-sidebar
-    section.wrapper-with-sidebar__sidebar
-      h2 Categories
-      .sidebar-menu
-        ul
-          li
-            a.active(href=`/courses`) All courses
-          each category in categories
+  .layout-sidebar
+    section.layout-sidebar__sidebar
+      .layout-sidebar__sidebar-header
+        h2.layout-sidebar__sidebar-title Categories
+      .layout-sidebar__sidebar-content
+        .sidebar-menu
+          ul
             li
-              a(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
-    section.wrapper-with-sidebar__content
+              a.active(href=`/courses`) All courses
+            each category in categories
+              li
+                a(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
+    section.layout-sidebar__content
       h1= title
       .courses.grid-list-small
         each course in courses
-          +courseCard(course)
+          .grid-list-small__item
+            +courseCard(course)

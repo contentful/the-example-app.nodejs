@@ -1,0 +1,5 @@
+@block layout-centered {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 2vw;
+}
