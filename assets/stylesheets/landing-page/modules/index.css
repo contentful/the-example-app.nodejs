@@ -1,4 +1,7 @@
-.module {
+@import './hero-image';
+@import './highlighted-course';
+
+@block module {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 2vw;
