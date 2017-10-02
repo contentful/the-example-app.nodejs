@@ -783,21 +783,24 @@ input[type="reset"]:focus,
 
   .layout-sidebar__sidebar {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 220px;
-            flex: 0 0 220px;
-    border-radius: 7px;
-    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
-            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 228px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+            box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
   }
 }
 
 .layout-sidebar__sidebar-header {
-    padding: 22px;
+    padding: 1em 22px;
     border-bottom: 1px solid #eeeeee;
 }
 
 .layout-sidebar__sidebar-title {
+    font-family: 'robotomedium', Helvetica, sans-serif;
     font-size: 1.25em;
+    font-weight: normal;
     margin: 0;
 }
 
@@ -813,63 +816,33 @@ input[type="reset"]:focus,
 @media (min-width: 700px) {
 
   .layout-sidebar__content {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    width: 732px;
     margin-left: 22px;
-    overflow: hidden;
   }
 }
 
 .grid-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 0 -11px
+  margin: 0 -11px;
 }
 
-.grid-list > * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0 11px 22px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(50% - 22px);
-          flex: 0 0 calc(50% - 22px);
-}
-
-@media (min-width: 700px) {
-
-  .grid-list > * {
+.grid-list__item {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0 11px 22px;
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc(33% - 22px);
-            flex: 0 0 calc(33% - 22px);
-  }
-}
-
-.grid-list-small {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 0 -11px
-}
-
-.grid-list-small > * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0 11px 22px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(50% - 22px);
-          flex: 0 0 calc(50% - 22px);
+        -ms-flex: 0 0 calc(50% - 22px);
+            flex: 0 0 calc(50% - 22px);
 }
 
 .header {
@@ -1031,7 +1004,7 @@ input[type="reset"]:focus,
   margin: 0;
   border: none;
   background: #3c80cf;
-  border-radius: 3px;
+  border-radius: 4px;
   color: inherit;
 }
 
@@ -1205,23 +1178,29 @@ input[type="reset"]:focus,
   left: -44px;
 }
 
-.sidebar-menu ul {
-  list-style: none;
-  margin: 22px 0;
-  padding: 0;
+.sidebar-menu {}
+
+.sidebar-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.sidebar-menu ul li {
-  margin: 0 0 22px;
-  padding: 0;
+.sidebar-menu__item {
+    margin: 0 0 5.5px;
+    padding: 0;
+    font-size: 0.9em;
+    line-height: 1.8;
 }
 
-.sidebar-menu ul a {
-  display: block;
+.sidebar-menu__link {
+    display: block;
+    color: #8091a5;
 }
 
-.sidebar-menu ul a.active {
-  font-weight: bold;
+.sidebar-menu__link.active {
+  font-family: 'robotomedium', Helvetica, sans-serif;
+  color: #2a3039;
 }
 
 .main-navigation ul {
@@ -1261,7 +1240,7 @@ input[type="reset"]:focus,
   font-weight: bold;
   padding: 0.7em 1em;
   color: #8091a5;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .main-navigation ul li a.active,
@@ -1419,47 +1398,64 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 30vh;
   padding: 22px;
 
-  border-radius: 3px;
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
-          box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .45);
-}
-
-.course-card > * + * {
-  margin-top: 22px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+          box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
 }
 
 .course-card__categories {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 1.5em;
             flex: 0 0 1.5em;
+    margin-bottom: 22px;
+    height: 1.5em;
 }
 
 .course-card__category {
     display: inline-block;
-    margin-right: 22px;
     color: #8091a5;
     font-size: 0.75em;
     letter-spacing: 2px;
 }
 
+.course-card__category:after {
+  content: '/';
+  display: inline-block;
+  padding: 0 0.3em;
+}
+
+.course-card__category:last-child:after {
+  display: none;
+}
+
 .course-card__title {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-    margin-bottom: 0;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 12vh;
+            flex: 0 1 12vh;
+    margin: 0;
+    overflow: hidden;
+
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #e5ebed;
+
+    font-family: 'robotomedium', Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 1.625em;
+    line-height: 1.38;
 }
 
-.course-card__description-wrapper {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-}
+.course-card__description {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 20vh;
+            flex: 0 1 20vh;
+    overflow: hidden;
+    margin: 0 0 22px;
 
-.course-card__description-wrapper p {
-  margin: 0;
+    line-height: 1.63;
+    color: #536171;
 }
 
 .course-card__link-wrapper {
@@ -1485,7 +1481,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     position: relative;
     overflow: hidden;
     max-height: 60vh;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 .module-hero-image__image {
@@ -1519,7 +1515,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     position: relative;
     overflow: hidden;
     max-height: 60vh;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 .module-higlighted-course__image {

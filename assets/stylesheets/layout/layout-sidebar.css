@@ -10,19 +10,22 @@
 
   @element sidebar {
     @media (--breakpoint-desktop) {
-      flex: 0 0 220px;
-      border-radius: 7px;
+      flex: 0 0 auto;
+      width: var(--layout-sidebar-sidebar-width);
+      border-radius: var(--border-radius);
       box-shadow: var(--card-box-shadow);
     }
   }
 
   @element sidebar-header {
-    padding: var(--grid-gutter);
+    padding: 1em var(--grid-gutter);
     border-bottom: 1px solid var(--color-sidebar-seperator);
   }
 
   @element sidebar-title {
+    font-family: var(--font-medium);
     font-size: 1.25em;
+    font-weight: normal;
     margin: 0;
   }
 
@@ -35,9 +38,9 @@
     padding: var(--grid-gutter) 0;
 
     @media (--breakpoint-desktop) {
-      flex: 1 1 auto;
+      flex: 0 1 auto;
+      width: var(--layout-sidebar-content-width);
       margin-left: var(--grid-gutter);
-      overflow: hidden;
     }
   }
 }

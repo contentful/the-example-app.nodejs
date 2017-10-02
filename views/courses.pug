@@ -9,15 +9,15 @@ block content
         h2.layout-sidebar__sidebar-title Categories
       .layout-sidebar__sidebar-content
         .sidebar-menu
-          ul
-            li
-              a.active(href=`/courses`) All courses
+          ul.sidebar-menu__list
+            li.sidebar-menu__item
+              a.sidebar-menu__link.active(href=`/courses`) All courses
             each category in categories
-              li
-                a(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
+              li.sidebar-menu__item
+                a.sidebar-menu__link(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
     section.layout-sidebar__content
       h1= title
-      .courses.grid-list-small
+      .courses.grid-list
         each course in courses
-          .grid-list-small__item
+          .grid-list__item
             +courseCard(course)

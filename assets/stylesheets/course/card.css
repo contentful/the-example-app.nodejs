@@ -1,39 +1,56 @@
 @block course-card {
   display: flex;
   flex-direction: column;
-  min-height: 30vh;
   padding: var(--grid-gutter);
 
   border-radius: var(--border-radius);
   box-shadow: var(--card-box-shadow);
 
-  & > * + * {
-    margin-top: var(--grid-gutter);
-  }
-
-  @element categories{
+  @element categories {
     flex: 0 0 var(--line-height);
+    margin-bottom: var(--grid-gutter);
+    height: var(--line-height);
   }
 
-  @element category{
+  @element category {
     display: inline-block;
-    margin-right: var(--grid-gutter);
     color: var(--color-text-grey);
     font-size: 0.75em;
     letter-spacing: 2px;
+
+    &:after {
+      content: '/';
+      display: inline-block;
+      padding: 0 0.3em;
+    }
+
+    &:last-child:after {
+      display: none;
+    }
   }
 
   @element title {
-    flex: 1 1 auto;
-    margin-bottom: 0;
+    flex: 0 1 12vh;
+    margin: 0;
+    overflow: hidden;
+
+    padding-bottom: var(--grid-gutter);
+    margin-bottom: var(--grid-gutter);
+    border-bottom: 1px solid var(--color-bg-separator);
+
+    font-family: var(--font-medium);
+    font-weight: normal;
+    font-size: 1.625em;
+    line-height: 1.38;
   }
 
-  @element description-wrapper {
-    flex: 1 1 auto;
+  @element description {
+    flex: 0 1 20vh;
+    overflow: hidden;
+    margin: 0 0 var(--grid-gutter);
 
-    & p {
-      margin: 0;
-    }
+    line-height: 1.63;
+    color: var(--color-course-card-description);
   }
 
   @element link-wrapper {

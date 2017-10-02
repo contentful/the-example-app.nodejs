@@ -1,0 +1,12 @@
+@block grid-list {
+display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 calc(var(--grid-gutter) / 2 * -1);
+
+  @element item {
+    box-sizing: border-box;
+    margin: 0 calc(var(--grid-gutter) / 2) var(--grid-gutter);
+    flex: 0 0 calc(50% - var(--grid-gutter));
+  }
+}
