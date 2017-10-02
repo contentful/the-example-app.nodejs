@@ -793,7 +793,7 @@ input[type="reset"]:focus,
 }
 
 .layout-sidebar__sidebar-header {
-    padding: 1em 22px;
+    padding: 11px 22px;
     border-bottom: 1px solid #eeeeee;
 }
 
@@ -810,7 +810,16 @@ input[type="reset"]:focus,
 }
 
 .layout-sidebar__content {
-    padding: 22px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+    padding-top: 11px;
 }
 
 @media (min-width: 700px) {
@@ -1138,44 +1147,50 @@ display: flex;
   height: auto;
 }
 
-.table-of-contents ul {
-  list-style: none;
-  margin: 22px 0;
-  padding: 0;
-  padding-left: 44px;
+.table-of-contents {}
+
+.table-of-contents__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 11px;
 }
 
-.table-of-contents ul li {
-  margin: 0 0 22px;
-  padding: 0;
+.table-of-contents__item {
+    margin: 0 0 5.5px;
+    padding: 0;
+    font-size: 0.9em;
+    line-height: 1.8;
 }
 
-.table-of-contents ul a {
-  display: block;
+.table-of-contents__link {
+    display: block;
+    color: #8091a5;
 }
 
-.table-of-contents ul a.active {
+.table-of-contents__link.active {
   position: relative;
-  font-weight: bold;
+  font-family: 'robotomedium', Helvetica, sans-serif;
+  color: #2a3039;
 }
 
-.table-of-contents ul a.active:before,
-        .table-of-contents ul a.active:after {
+.table-of-contents__link.active:before,
+      .table-of-contents__link.active:after {
   position: absolute;
   top: 0;
 }
 
-.table-of-contents ul a.active:before {
+.table-of-contents__link.active:before {
   content: '';
-  left: -66px;
+  left: -33px;
   bottom: 0;
   width: 3px;
   background: #536171;
 }
 
-.table-of-contents ul a.active:after {
+.table-of-contents__link.active:after {
   content: '👁';
-  left: -44px;
+  left: -22px;
 }
 
 .sidebar-menu {}
@@ -1475,6 +1490,91 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     letter-spacing: 2px;
 }
 
+.course {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.course__title {
+    margin-bottom: 22px;
+}
+
+.course__overview {
+    font-family: 'robotomedium', Helvetica, sans-serif;
+}
+
+@media (min-width: 700px) {
+
+  .course__overview {
+    float: right;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+            box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+    width: 228px;
+    margin: 0 0 22px 22px;
+  }
+}
+
+.course__overview-title {
+    border-bottom: 1px solid #eeeeee;
+    padding: 11px 0;
+    margin: 0;
+    line-height: 1.31;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.course__overview-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 11px;
+    border-bottom: 1px solid #eeeeee;
+
+    line-height: 1.54;
+    font-size: 0.8em;
+}
+
+.course__overview-icon {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    padding-right: 11px;
+}
+
+.course__overview-value {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+}
+
+.course__overview-cta-wrapper {
+    padding: 11px 0;
+    text-align: center;
+}
+
+.course__overview-cta {
+    margin: 0;
+}
+
+.course__cta {
+    margin-bottom: 0;
+}
+
 .module-hero-image {}
 
 .module-hero-image__wrapper {
@@ -1646,10 +1746,31 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .lesson-module {
-  margin-top: 66px
+  margin-top: 22px
 }
 
 .lesson-module img {
   width: 100%;
   height: auto;
+}
+
+.lesson {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.lesson__title {
+    margin-bottom: 22px;
+}
+
+.lesson__cta {
+    margin-bottom: 0;
 }
