@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-/* GET courses listing. */
+/* GET categories listing. */
 router.get('/', function (req, res, next) {
   res.render('categories', { title: 'Categories' })
 })
