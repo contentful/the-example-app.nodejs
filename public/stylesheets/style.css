@@ -1193,6 +1193,26 @@ display: flex;
   left: -22px;
 }
 
+.table-of-contents__link:hover {
+  font-family: 'robotomedium', Helvetica, sans-serif;
+  color: #2a3039;
+}
+
+.table-of-contents__link.visited {
+  position:relative;
+}
+
+.table-of-contents__link.visited:before,
+      .table-of-contents__link.visited:after {
+  position: absolute;
+  top: 0;
+}
+
+.table-of-contents__link.visited:after {
+  content: '👁';
+  left: -22px;
+}
+
 .sidebar-menu {}
 
 .sidebar-menu__list {
