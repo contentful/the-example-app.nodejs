@@ -24,9 +24,9 @@ router.get('/categories/:category', async function (req, res, next) {
   let categories = []
   let activeCategory = ''
   try {
-    courses = await getCoursesByCategory(req.params.category, req.query.locale, req.query.api)
     categories = await getCategories()
-    activeCategory = categories.find((category) => category.sys.id === req.params.category)
+    activeCategory = categories.find((category) => category.fields.slug === req.params.category)
+    courses = await getCoursesByCategory(activeCategory.sys.id, req.query.locale, req.query.api)    
   } catch (e) {
     console.log('Error ', e)
   }
