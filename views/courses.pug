@@ -14,7 +14,7 @@ block content
               a.sidebar-menu__link.active(href=`/courses`) All courses
             each category in categories
               li.sidebar-menu__item
-                a.sidebar-menu__link(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
+                a.sidebar-menu__link(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
     section.layout-sidebar__content
       .courses
         h1= title
