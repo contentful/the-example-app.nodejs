@@ -561,13 +561,14 @@ datalist {
 
 label {
   display: block;
-  margin: 22px 0;
+  margin: 22px 0 0 0;
   text-align: left;
-  font-weight: bold
+  font-weight: bold;
+  font-size: 0.875em
 }
 
 label + input {
-  margin-top: -11px;
+  margin-top: 5.5px;
 }
 
 /* Input & Textarea ------------------ */
@@ -719,9 +720,13 @@ button[disabled] {
 input:focus,
 textarea:focus,
 select:focus,
-option:focus,
+option:focus {
+  border-color: #5c9fef;
+  color: rgb(40, 40, 40);
+}
+
 button:focus,
-.cta:focus  {
+.cta:focus {
   background-color: rgb(125, 178, 242);
   color: #fff;
 }
@@ -749,10 +754,70 @@ input[type="reset"]:focus,
   margin-top: 22px;
 }
 
-.form-item .help-text {
-  font-size: 0.9em;
-  color: #8091a5;
-  margin-top: -22px;
+.form-item input {
+  margin-bottom: 5.5px;
+}
+
+.form-item__help-text {
+    font-size: 0.875em;
+    color: #8091a5;
+}
+
+.form-item__error-message {
+    font-size: 0.875em;
+    color: #cd3f39;
+}
+
+.form-item__error-message:before {
+  content: '';
+  display: inline-block;
+  background: url('/images/icon-error.svg') no-repeat left center;
+  background-size: contain;
+  width: 12px;
+  height: 12px;
+  padding-right: 0.3em;
+}
+
+.status-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 22px 0;
+  padding: 22px;
+  border-radius: 4px;
+
+  font-size: 0.875em;
+}
+
+.status-block--success {
+    background: #f4fffb;
+}
+
+.status-block--error {
+    background: #fbe3e2;
+}
+
+.status-block__icon {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin-right: 11px;
+}
+
+.status-block__content {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+.status-block__title {
+    font-weight: bold;
+}
+
+.status-block__message {
+    color: #536171;
 }
 
 .layout-centered {

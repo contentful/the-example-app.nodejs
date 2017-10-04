@@ -1,10 +1,65 @@
-.form-item {
+@block form-item {
   & + .form-item {
     margin-top: var(--grid-gutter);
   }
-  & .help-text {
-    font-size: 0.9em;
+
+  & input {
+    margin-bottom: calc(var(--grid-gutter) * 0.25);
+  }
+
+  @element help-text {
+    font-size: 0.875em;
     color: var(--color-text-grey);
-    margin-top: calc(var(--grid-gutter) * -1);
+  }
+
+  @element error-message {
+    font-size: 0.875em;
+    color: var(--color-text-error);
+
+    &:before {
+      content: '';
+      display: inline-block;
+      background: url('/images/icon-error.svg') no-repeat left center;
+      background-size: contain;
+      width: 12px;
+      height: 12px;
+      padding-right: 0.3em;
+    }
+  }
+}
+
+@block status-block {
+  display: flex;
+  margin: var(--grid-gutter) 0;
+  padding: calc(var(--grid-gutter) * 1);
+  border-radius: var(--border-radius);
+
+  font-size: 0.875em;
+
+  @modifier success {
+    background: var(--color-status-block-bg-success);
+  }
+
+  @modifier error {
+    background: var(--color-status-block-bg-error);
+  }
+
+  @element icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin-right: calc(var(--grid-gutter) * 0.5);
+  }
+
+  @element content {
+    flex: 1 1 auto;
+  }
+
+  @element title {
+    font-weight: bold;
+  }
+
+  @element message {
+    color: var(--color-status-block-message);
   }
 }

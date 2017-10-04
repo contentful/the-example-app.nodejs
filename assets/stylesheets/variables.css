@@ -13,11 +13,13 @@
   --color-palette-blue: #5c9fef;
   --color-palette-blue-medium: #3c80cf;
   --color-palette-blue-dark: #3072be;
+  --color-palette-red: #cd3f39;
 
   --color-text-default: #2a3039;
   --color-text-grey: #8091a5;
   --color-text-dark-bg: #fff;
   --color-text-dark-bg-grey: #a9b9c0;
+  --color-text-error: var(--color-palette-red);
 
   --color-link-content: var(--color-palette-blue);
 
@@ -32,6 +34,10 @@
 
   --color-course-active: #536171;
   --color-course-card-description: #536171;
+
+  --color-status-block-bg-success: #f4fffb;
+  --color-status-block-bg-error: #fbe3e2;
+  --color-status-block-message: #536171;
 
   --layout-sidebar-sidebar-width: 228px;
   --layout-sidebar-content-width: 732px;
