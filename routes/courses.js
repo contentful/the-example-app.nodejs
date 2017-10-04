@@ -39,7 +39,12 @@ router.get('/:slug', async function (req, res, next) {
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
-  res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex})
+  const cookie = req.cookies.visitedLessons
+  let visitedLessons = cookie ||  []
+  visitedLessons.push(course.sys.id)
+  visitedLessons = [...new Set(visitedLessons)]
+  res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+  res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 })
 
 /* GET course lesson detail. */
@@ -49,12 +54,18 @@ router.get('/:cslug/lessons/:lslug', async function (req, res, next) {
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
   const nextLesson = lessons[lessonIndex + 1] || null
+  const cookie = req.cookies.visitedLessons
+  let visitedLessons = cookie ||  []
+  visitedLessons.push(lesson.sys.id)
+  visitedLessons = [...new Set(visitedLessons)]
+  res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
   res.render('course', {
     title: `${course.fields.title} | ${lesson.fields.title}`,
     course,
     lesson,
     lessons,
-    nextLesson
+    nextLesson,
+    visitedLessons
   })
 })
 
