@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Pass custo helpers to all our templates
+// Pass custom helpers to all our templates
 app.use(function (req, res, next) {
   res.locals.helpers = helpers
   const qs = url.parse(req.url).query
