@@ -39,6 +39,10 @@
   --color-status-block-bg-error: #fbe3e2;
   --color-status-block-message: #536171;
 
+  --color-input-text: #536171;
+  --color-input-bg: #fff;
+  --color-input-border: #d3dce0;
+
   --layout-sidebar-sidebar-width: 228px;
   --layout-sidebar-content-width: 732px;
 

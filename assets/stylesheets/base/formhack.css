@@ -7,19 +7,19 @@
   /* Font */
   --fh-font-family: 'Raleway', sans-serif;
   --fh-font-size: 16px;
-  --fh-font-color: rgb(40, 40, 40);
+  --fh-font-color: var(--color-input-text);
 
   /* Borders */
   --fh-border-radius: 5px;
   --fh-border-width: 1px;
   --fh-border-style: solid;
-  --fh-border-color: rgb(200, 200, 200);
+  --fh-border-color: var(--color-input-border);
 
   /* Inputs, Textareas, Select, Option */
   --fh-input-height: 40px;
   --fh-input-width: 100%;
   --fh-input-max-width: 100%;
-  --fh-input-bg-color: #fff;
+  --fh-input-bg-color: var(--color-input-bg);
   --fh-focus-bg-color: var(--fh-input-bg-color);
   --fh-focus-border-color: var(--color-palette-blue);
   --fh-focus-font-color: var(--fh-font-color);

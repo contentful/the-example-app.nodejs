@@ -546,7 +546,7 @@ fieldset,
 
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
-  color: rgb(40, 40, 40);
+  color: #536171;
   vertical-align: top;
 
   display: block;
@@ -600,7 +600,7 @@ textarea {
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
-  border-color: rgb(200, 200, 200);
+  border-color: #d3dce0;
 }
 
 /* Fields with standard height */
@@ -722,7 +722,7 @@ textarea:focus,
 select:focus,
 option:focus {
   border-color: #5c9fef;
-  color: rgb(40, 40, 40);
+  color: #536171;
 }
 
 button:focus,
