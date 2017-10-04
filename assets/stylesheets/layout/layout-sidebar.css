@@ -36,8 +36,8 @@
 
   @element content {
     display: flex;
-    flex-direction: column;
     align-self: stretch;
+    align-items: stretch;
     padding-top: calc(var(--grid-gutter) / 2);
 
     @media (--breakpoint-desktop) {

@@ -1,2 +1,2 @@
-# example-contentful-university-js
-Contentful university example app
+# the-example-app.js
+The Contentful example app, written in JS

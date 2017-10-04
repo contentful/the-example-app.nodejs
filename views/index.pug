@@ -5,7 +5,7 @@ include mixins/_moduleHeroImage
 include mixins/_moduleHighlightedCourse
 
 block content
-  .container
+  .modules-container
     each module in landingPage.fields.contentModules
       case module.sys.contentType.sys.id
         when 'landingPageModuleCopy'
