@@ -4,18 +4,19 @@ let cdaClient = null
 let cpaClient = null
 
 exports.initClient = (options) => {
+  const { version } = require('../package.json')
   const config = options || {
     space: process.env.CF_SPACE,
     cda: process.env.CF_ACCESS_TOKEN,
     cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
   }
   cdaClient = createClient({
-    application: 'contentful.the-example-app.node',
+    application: `contentful.the-example-app.node/${version}`,
     space: config.space,
     accessToken: config.cda
   })
   cpaClient = createClient({
-    application: 'contentful.the-example-app.node',
+    application: `contentful.the-example-app.node/${version}`,
     space: config.space,
     accessToken: config.cpa,
     host: 'preview.contentful.com'
