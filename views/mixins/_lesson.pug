@@ -26,3 +26,4 @@ mixin lesson(lesson, course, nextLesson)
     .lesson_footer
       if nextLesson
         a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) View next lesson
+
