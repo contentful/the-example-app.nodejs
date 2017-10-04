@@ -17,9 +17,9 @@ router.get('/', async function (req, res, next) {
   res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
 })
 
-/* GET courses listing. */
+/* GET courses listing by category. */
 router.get('/categories/:category', async function (req, res, next) {
-  // we get all the entries with the content type `course`
+  // we get all the entries with the content type `course` filtered by a category
   let courses = []
   let categories = []
   let activeCategory = ''
