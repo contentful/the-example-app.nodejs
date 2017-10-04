@@ -42,5 +42,23 @@
         left: calc(var(--toc-gap-left) * 2 * -1);
       }
     }
+
+    &:hover {
+      font-family: var(--font-medium);
+      color: var(--color-text-default);
+    }
+
+    &.visited {
+      position:relative;
+      &:before,
+      &:after {
+        position: absolute;
+        top: 0;
+      }
+      &:after {
+        content: '👁';
+        left: calc(var(--toc-gap-left) * 2 * -1);
+      }
+    }
   }
 }
