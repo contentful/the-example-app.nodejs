@@ -10,10 +10,12 @@ exports.initClient = (options) => {
     cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
   }
   cdaClient = createClient({
+    application: 'contentful.the-example-app.node',
     space: config.space,
     accessToken: config.cda
   })
   cpaClient = createClient({
+    application: 'contentful.the-example-app.node',
     space: config.space,
     accessToken: config.cpa,
     host: 'preview.contentful.com'
