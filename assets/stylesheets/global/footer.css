@@ -51,8 +51,28 @@
     flex: 1 1 auto;
     display: flex;
     align-items: center;
-    font-size: 0.7em;
-    color: var(--color-text-grey);
+  }
+
+  @element disclaimer-logo {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 27px;
+    margin-right: var(--grid-gutter);
+  }
+
+  @element disclaimer-text {
+    flex: 1 1 auto;
+
+    color: var(--color-text-footer);
+    font-size: 0.75em;
+    line-height: 1.5;
+
+    & a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   @element social {

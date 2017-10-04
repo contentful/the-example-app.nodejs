@@ -23,6 +23,8 @@ body {
 }
 #main__content {
   flex: 1 0 auto;
+  display: flex;
+  align-items: stretch;
 }
 #main__footer {
   flex: 0 0 auto;
