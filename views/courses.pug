@@ -16,8 +16,9 @@ block content
               li.sidebar-menu__item
                 a.sidebar-menu__link(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
     section.layout-sidebar__content
-      h1= title
-      .courses.grid-list
-        each course in courses
-          .grid-list__item
-            +courseCard(course)
+      .courses
+        h1= title
+        .grid-list
+          each course in courses
+            .grid-list__item
+              +courseCard(course)

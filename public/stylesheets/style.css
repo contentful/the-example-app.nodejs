@@ -813,12 +813,12 @@ input[type="reset"]:focus,
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    // flex-direction: column;
     -ms-flex-item-align: stretch;
         align-self: stretch;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
     padding-top: 11px;
 }
 
@@ -1121,8 +1121,33 @@ display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 0.7em;
-    color: #8091a5;
+}
+
+.footer__disclaimer-logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 24px;
+    height: 27px;
+    margin-right: 22px;
+}
+
+.footer__disclaimer-text {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+
+    color: #a9b9c0;
+    font-size: 0.75em;
+    line-height: 1.5;
+}
+
+.footer__disclaimer-text a {
+  text-decoration: underline;
+}
+
+.footer__disclaimer-text a:hover {
+  text-decoration: none;
 }
 
 .footer__social {
@@ -1297,6 +1322,12 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
 }
 
 #main__footer {
@@ -1603,10 +1634,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     color: #fff;
     text-align: center;
     font-size: 4.5vw;
+    line-height: 1;
     text-shadow: 0px 3px 0px #b2a98f,
                  0px 14px 10px rgba(0, 0, 0, .15),
                  0px 24px 2px rgba(0, 0, 0, .1),
                  0px 34px 30px rgba(0, 0, 0, .1);
+}
+
+@media (min-width: 700px) {
+
+  .module-hero-image__headline {
+    font-size: 4em;
+  }
 }
 
 .module-higlighted-course {}
@@ -1743,6 +1782,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .module + .module {
   margin-top: 22px;
+}
+
+.modules-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .lesson-module {
