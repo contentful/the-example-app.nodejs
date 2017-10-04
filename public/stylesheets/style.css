@@ -813,7 +813,6 @@ input[type="reset"]:focus,
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    // flex-direction: column;
     -ms-flex-item-align: stretch;
         align-self: stretch;
     -webkit-box-align: stretch;
@@ -1500,6 +1499,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 0;
         -ms-flex: 0 1 12vh;
             flex: 0 1 12vh;
+    max-height: 120px;
     margin: 0;
     overflow: hidden;
 
@@ -1517,6 +1517,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 0;
         -ms-flex: 0 1 20vh;
             flex: 0 1 20vh;
+    max-height: 180px;
     overflow: hidden;
     margin: 0 0 22px;
 

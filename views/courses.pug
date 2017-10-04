@@ -11,7 +11,7 @@ block content
         .sidebar-menu
           ul.sidebar-menu__list
             li.sidebar-menu__item
-              a.sidebar-menu__link.active(href=`/courses`) All courses
+              a.sidebar-menu__link.active(href=`/courses${queryString}`) All courses
             each category in categories
               li.sidebar-menu__item
                 a.sidebar-menu__link(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
