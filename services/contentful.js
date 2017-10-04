@@ -31,6 +31,7 @@ exports.getCourses = (locale = 'en-US', api = `cda`) => {
 exports.getLandingPage = (locale = 'en-US', api = `cda`) => {
   // our Home page is fully configureable via contentful
   const client = api === 'cda' ? cdaClient : cpaClient
+  // TODO slug should be renamed to `contentful-the-example-app` or something ....
   return client.getEntries({content_type: 'landingPage', locale, 'fields.slug': 'contentful-university', include: 10})
     .then((response) => response.items[0])
 }
