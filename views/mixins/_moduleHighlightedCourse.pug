@@ -11,7 +11,7 @@ mixin moduleHighlightedCourse(module, course)
         if(course.fields.categories)
           .module-higlighted-course__categories
             each category in course.fields.categories
-              a.module-higlighted-course__category(href=`/courses/categories/${category.sys.id}${queryString}`) #{category.fields.title}
+              a.module-higlighted-course__category(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
         h2.module-higlighted-course__title= course.fields.title
         .module-higlighted-course__description-wrapper
           p !{helpers.markdown(course.fields.shortDescription)}
