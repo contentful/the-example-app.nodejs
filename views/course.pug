@@ -11,7 +11,7 @@ block content
         .table-of-contents
           .table-of-contents__list
             .table-of-contents__item
-              a.table-of-contents__link(href=`/courses/${course.fields.slug}` class=(currentPath.endsWith(course.fields.slug) ? 'active' : '') class=(visitedLessons.includes(course.sys.id) ? 'visited' : '')) Course overview
+              a.table-of-contents__link(href=`/courses/${course.fields.slug}${queryString}` class=(currentPath.endsWith(course.fields.slug) ? 'active' : '') class=(visitedLessons.includes(course.sys.id) ? 'visited' : '')) Course overview
             each l in course.fields.lessons
               if l.fields
                 .table-of-contents__item
@@ -38,4 +38,3 @@ block content
             .course__description !{helpers.markdown(course.fields.description)}
           .course__footer
             a.course__cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
-          //pre= helpers.dump(course)
