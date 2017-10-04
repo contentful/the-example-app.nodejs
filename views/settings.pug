@@ -5,21 +5,43 @@ block content
     h1= title
     p To query and get content using the APIs, client applications need to authenticate with both the Space ID and an access token.
 
+    if success
+      .status-block.status-block--success
+        img.status-block__icon(src='/images/icon-success.svg')
+        .status-block__content
+          .status-block__title Changes saved successfully!
+
+    if hasErrors
+      .status-block.status-block--error
+        img.status-block__icon(src='/images/icon-error.svg')
+        .status-block__content
+          .status-block__title Error occurred
+          .status-block__message Some errors occurred. Please check the error messages next to the fields.
+
     form(action=`/settings` method="POST" class="form")
       .form-item
         label(for="space") Space ID
         input(type="text" name="space" value=settings.space)
-        .help-text Some help text we still need to define
+        if 'space' in errors
+          each message in errors.space
+            .form-item__error-message= message
+        .form-item__help-text Some help text we still need to define
 
       .form-item
         label(for="cda") Delivery API key
         input(type="text" name="cda" value=settings.cda)
-        .help-text Some help text we still need to define
+        if 'cda' in errors
+          each message in errors.cda
+            .form-item__error-message= message
+        .form-item__help-text Some help text we still need to define
 
       .form-item
         label(for="cpa") Preview API key
         input(type="text" name="cpa" value=settings.cpa)
-        .help-text Some help text we still need to define
+        if 'cpa' in errors
+          each message in errors.cpa
+            .form-item__error-message= message
+        .form-item__help-text Some help text we still need to define
 
       .form-item
         input.cta(type="submit" value="Load settings")

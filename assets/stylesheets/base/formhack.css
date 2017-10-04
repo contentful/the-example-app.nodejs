@@ -77,12 +77,13 @@ datalist {
 
 label {
   display: var(--fh-layout-display);
-  margin: var(--fh-layout-margin);
+  margin: var(--fh-layout-margin) 0 0;
   text-align: var(--fh-layout-text-align);
   font-weight: bold;
+  font-size: 0.875em;
 
   & + input {
-    margin-top: calc(var(--grid-gutter) * 0.5 * -1)
+    margin-top: calc(var(--grid-gutter) * 0.25)
   }
 }
 
@@ -233,9 +234,13 @@ button[disabled] {
 input:focus,
 textarea:focus,
 select:focus,
-option:focus,
+option:focus {
+  border-color: var(--color-palette-blue);
+  color: var(--fh-font-color);
+}
+
 button:focus,
-.cta:focus  {
+.cta:focus {
   background-color: var(--fh-button-hover-bg-color);
   color: var(--fh-button-hover-font-color);
 }
