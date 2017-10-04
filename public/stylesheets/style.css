@@ -1192,10 +1192,14 @@ display: flex;
     color: #8091a5;
 }
 
-.table-of-contents__link.active {
-  position: relative;
+.table-of-contents__link:hover,
+    .table-of-contents__link.active {
   font-family: 'robotomedium', Helvetica, sans-serif;
   color: #2a3039;
+}
+
+.table-of-contents__link.active {
+  position: relative;
 }
 
 .table-of-contents__link.active:before,
@@ -1212,16 +1216,6 @@ display: flex;
   background: #536171;
 }
 
-.table-of-contents__link.active:after {
-  content: '👁';
-  left: -22px;
-}
-
-.table-of-contents__link:hover {
-  font-family: 'robotomedium', Helvetica, sans-serif;
-  color: #2a3039;
-}
-
 .table-of-contents__link.visited {
   position:relative;
 }
@@ -1233,8 +1227,16 @@ display: flex;
 }
 
 .table-of-contents__link.visited:after {
-  content: '👁';
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  top: 50%;
   left: -22px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: url('/images/icon-viewed.svg') no-repeat center center;
+  background-size: contain;
 }
 
 .sidebar-menu {}

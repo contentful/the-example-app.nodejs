@@ -20,10 +20,14 @@
     display: block;
     color: var(--color-text-grey);
 
+    &:hover,
     &.active {
-      position: relative;
       font-family: var(--font-medium);
       color: var(--color-text-default);
+    }
+
+    &.active {
+      position: relative;
 
       &:before,
       &:after {
@@ -37,27 +41,27 @@
         width: 3px;
         background: var(--color-course-active);
       }
-      &:after {
-        content: '👁';
-        left: calc(var(--toc-gap-left) * 2 * -1);
-      }
-    }
-
-    &:hover {
-      font-family: var(--font-medium);
-      color: var(--color-text-default);
     }
 
     &.visited {
       position:relative;
+
       &:before,
       &:after {
         position: absolute;
         top: 0;
       }
       &:after {
-        content: '👁';
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        top: 50%;
         left: calc(var(--toc-gap-left) * 2 * -1);
+        transform: translateY(-50%);
+
+        background: url('/images/icon-viewed.svg') no-repeat center center;
+        background-size: contain;
       }
     }
   }
