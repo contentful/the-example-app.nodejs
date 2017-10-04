@@ -21,22 +21,23 @@ exports.initClient = (options) => {
 }
 
 exports.getCourses = (locale = 'en-US', api = `cda`) => {
-  // to get all the courses we simply request from Contentful all the entries
-  // with the content_type `course`
+  // to get all the courses we request all the entries
+  // with the content_type `course` from Contentful
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({content_type: 'course', locale, include: 10})
     .then((response) => response.items)
 }
 
 exports.getLandingPage = (locale = 'en-US', api = `cda`) => {
-  // our Home page is fully configureable via contentful
+  // our Home page is fully configureable via Contentful
   const client = api === 'cda' ? cdaClient : cpaClient
+  // TODO slug should be renamed to `contentful-the-example-app` or something ....
   return client.getEntries({content_type: 'landingPage', locale, 'fields.slug': 'contentful-university', include: 10})
     .then((response) => response.items[0])
 }
 
 exports.getCourse = (slug, locale = 'en-US', api = `cda`) => {
-  // the SDK support link resolution only when you request the collection endpoint
+  // the SDK supports link resolution only when you call the collection endpoints
   // That's why we are using getEntries with a query instead of getEntry(entryId)
   // make sure to specify the content_type whenever you want to perform a query
   const client = api === 'cda' ? cdaClient : cpaClient

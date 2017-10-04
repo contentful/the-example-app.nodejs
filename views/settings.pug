@@ -3,7 +3,7 @@ extends layout
 block content
   .layout-centered
     h1= title
-    p To query and get content using the APIs, client apllications need to authenticate iwth both the Space ID and an access token.
+    p To query and get content using the APIs, client applications need to authenticate with both the Space ID and an access token.
 
     form(action=`/settings` method="POST" class="form")
       .form-item
@@ -12,12 +12,12 @@ block content
         .help-text Some help text we still need to define
 
       .form-item
-        label(for="cda") Delivery API Key
+        label(for="cda") Delivery API key
         input(type="text" name="cda" value=settings.cda)
         .help-text Some help text we still need to define
 
       .form-item
-        label(for="cpa") Preview API Key
+        label(for="cpa") Preview API key
         input(type="text" name="cpa" value=settings.cpa)
         .help-text Some help text we still need to define
 
