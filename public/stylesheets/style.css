@@ -1464,6 +1464,46 @@ display: flex;
   color: #536171;
 }
 
+.breadcrumb {
+  margin-bottom: 11px;
+}
+
+.breadcrumb ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb ul li {
+  margin: 0;
+}
+
+.breadcrumb ul li + li {
+  margin-left: 5.5px;
+}
+
+.breadcrumb ul li:after {
+  content: ' >';
+}
+
+.breadcrumb ul li:last-child:after {
+  content: '';
+}
+
+.breadcrumb ul li a {
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.breadcrumb ul li a:hover {
+  color: #3c80cf;
+}
+
 body {
   background-color: #fff;
   color: #536171;
