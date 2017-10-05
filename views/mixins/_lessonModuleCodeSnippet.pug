@@ -1,30 +1,60 @@
 mixin lessonModuleCodeSnippet(module)
   .lesson-module.lesson-module-code
-    if module.fields.curl
-      pre.lesson-module-code__curl
-        code.shell= module.fields.curl
-    if module.fields.dot-net
-      pre.lesson-module-code__dotnet
-        code.csharp= module.fields.dot-net
-    if module.fields.javascript
-      pre.lesson-module-code__javascript
-        code.javascript= module.fields.javascript
-    if module.fields.java
-      pre.lesson-module-code__java
-        code.java= module.fields.java
-    if module.fields.javaAndroid
-      pre.lesson-module-code__java-android
-        code.java= module.fields.javaAndroid
-    if module.fields.php
-      pre.lesson-module-code__php
-        code.php= module.fields.php
-    if module.fields.python
-      pre.lesson-module-code__python
-        code.python= module.fields.python
-    if module.fields.ruby
-      pre.lesson-module-code__ruby
-        code.ruby= module.fields.ruby
-    if module.fields.swift
-      pre.lesson-module-code__swift
-        code.swift= module.fields.swift
+    .lesson-module-code__header
+      if module.fields.curl
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-curl`) curl
+      if module.fields.dot-net
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-dotnet`) .NET
+      if module.fields.javascript
+        a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target=`${module.sys.id}-javascript`) Javascript
+      if module.fields.java
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-java`) Java
+      if module.fields.javaAndroid
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-android`) Android
+      if module.fields.php
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-php`) PHP
+      if module.fields.python
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-python`) Python
+      if module.fields.ruby
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-ruby`) Ruby
+      if module.fields.swift
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-swift`) Swift
+
+    .lesson-module-code__code-area
+      if module.fields.curl
+        .lesson-module-code__code(id=`${module.sys.id}-curl`)
+          pre
+            code.shell= module.fields.curl
+      if module.fields.dot-net
+        .lesson-module-code__code(id=`${module.sys.id}-dotnet`)
+          pre
+            code.csharp= module.fields.dot-net
+      if module.fields.javascript
+        .lesson-module-code__code.lesson-module-code__code--active(id=`${module.sys.id}-javascript`)
+          pre
+            code.javascript= module.fields.javascript
+      if module.fields.java
+        .lesson-module-code__code(id=`${module.sys.id}-java`)
+          pre
+            code.java= module.fields.java
+      if module.fields.javaAndroid
+        .lesson-module-code__code(id=`${module.sys.id}-android`)
+          pre
+            code.java= module.fields.javaAndroid
+      if module.fields.php
+        .lesson-module-code__code(id=`${module.sys.id}-php`)
+          pre
+            code.php= module.fields.php
+      if module.fields.python
+        .lesson-module-code__code(id=`${module.sys.id}-python`)
+          pre
+            code.python= module.fields.python
+      if module.fields.ruby
+        .lesson-module-code__code(id=`${module.sys.id}-ruby`)
+          pre
+            code.ruby= module.fields.ruby
+      if module.fields.swift
+        .lesson-module-code__code(id=`${module.sys.id}-swift`)
+          pre
+            code.swift= module.fields.swift
 

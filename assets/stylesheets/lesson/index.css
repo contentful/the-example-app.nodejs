@@ -20,3 +20,47 @@
     margin-bottom: 0;
   }
 }
+
+@block lesson-module-code {
+  @element header {}
+  @element code-area {
+    background: var(--code-bg);
+  }
+
+  @element trigger {
+    display: inline-block;
+
+    padding: 0 1em;
+    margin-right: 1em;
+
+    background: var(--code-trigger-bg);
+
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+
+    font-family: var(--font-medium);
+    font-size: 0.7em;
+    color: var(--code-trigger-color);
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @modifier active {
+      background: var(--code-trigger-bg-active);
+      color: var(--code-trigger-color-active);
+    }
+  }
+
+  @element code {
+    display: none;
+
+    @modifier active {
+      display: block;
+    }
+
+    & pre {
+      margin: 0;
+    }
+  }
+}
