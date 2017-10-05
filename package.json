@@ -42,5 +42,8 @@
     "postcss-reporter": "^5.0.0",
     "postcss-url": "^7.1.2",
     "pug-lint": "^2.5.0"
+  },
+  "engines": {
+    "node": "8"
   }
 }
