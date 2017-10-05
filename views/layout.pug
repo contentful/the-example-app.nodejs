@@ -4,8 +4,8 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    #main
-      #main__header
+    .main
+      .main__header
         header.header
           .header__upper-wrapper
             .header__upper.layout-centered
@@ -50,10 +50,10 @@ html
                   li
                     a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
 
-      #main__content
+      .main__content
         block content
 
-      #main__footer
+      .main__footer
         .layout-centered
           footer.footer
             .footer__upper

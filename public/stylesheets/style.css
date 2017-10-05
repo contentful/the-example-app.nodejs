@@ -499,7 +499,7 @@ template {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'robotomedium', 'Arial Black', sans-serif;
+  font-family: 'robotomedium', Helvetica, sans-serif;
   font-weight: normal;
   line-height: 1.31;
   color: #2a3039
@@ -1470,7 +1470,7 @@ body {
   line-height: 1.5em;
 }
 
-#main {
+.main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1481,28 +1481,28 @@ body {
   min-height: 100vh;
 }
 
-#main__header {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
+.main__header {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
 }
 
-#main__content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+.main__content {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
 }
 
-#main__footer {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
+.main__footer {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
 }
 
 /*
@@ -1632,17 +1632,22 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     display: inline-block;
     color: #8091a5;
     font-size: 0.75em;
-    letter-spacing: 2px;
+    font-family: 'robotomedium', Helvetica, sans-serif;
 }
 
 .course-card__category:after {
-  content: '/';
+  content: ' • ';
   display: inline-block;
-  padding: 0 0.3em;
+  padding: 0 0.5em;
 }
 
 .course-card__category:last-child:after {
   display: none;
+}
+
+.course-card__category-link {
+    display: inline-block;
+    letter-spacing: 2px;
 }
 
 .course-card__title {
@@ -1690,6 +1695,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     font-size: 0.75em;
     line-height: 2.17;
     letter-spacing: 2px;
+}
+
+.course-card__link:hover {
+  color: #3c80cf;
+  border-bottom-color: #3c80cf;
 }
 
 .course {

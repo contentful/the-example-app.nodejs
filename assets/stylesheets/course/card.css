@@ -16,17 +16,22 @@
     display: inline-block;
     color: var(--color-text-grey);
     font-size: 0.75em;
-    letter-spacing: 2px;
+    font-family: var(--font-medium);
 
     &:after {
-      content: '/';
+      content: ' • ';
       display: inline-block;
-      padding: 0 0.3em;
+      padding: 0 0.5em;
     }
 
     &:last-child:after {
       display: none;
     }
+  }
+
+  @element category-link {
+    display: inline-block;
+    letter-spacing: 2px;
   }
 
   @element title {
@@ -68,5 +73,10 @@
     font-size: 0.75em;
     line-height: 2.17;
     letter-spacing: 2px;
+
+    &:hover {
+      color: var(--color-link-content-hover);
+      border-bottom-color: var(--color-link-content-hover);
+    }
   }
 }
