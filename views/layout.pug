@@ -9,22 +9,30 @@ html
         header.header
           .header__upper-wrapper
             .header__upper.layout-centered
-              .header__title
-                img(src='/images/icon-info.svg')
-                span Example Application
-              div Malin is still thinking about this part
-              .header__controls
-                form(action="" method="get")
-                  .group
-                    label(for='api') API type:
-                    select(name='api' onChange='this.form.submit()')
-                      option(value='cda' selected=query.api === 'cda') Delivery API
-                      option(value='cpa' selected=query.api === 'cpa') Preview API
-                  .group
-                    label(for='locale') Locale:
-                    select(name='locale' onChange='this.form.submit()')
-                      option(value='en-US' selected=query.locale === 'en-US') English
-                      option(value='de-DE' selected=query.locale === 'de-DE') German
+              .header__upper-first
+                .header__title
+                  img(src='/images/icon-info.svg')
+                  span Example Application
+                .header__upper-copy
+                  a(href='#todo' target='_blank' rel='noopener') What is this?
+              .header__upper-second
+                .header__upper-copy
+                  a.header__upper-link(href='https://github.com/contentful/example-contentful-university-js' target='_blank' rel='noopener')
+                    img.header__upper-icon(src='/images/icon-github.svg')
+                    | View on Github
+
+                .header__controls
+                  form(action="" method="get")
+                    .group
+                      label(for='api') API type:
+                      select(name='api' onChange='this.form.submit()')
+                        option(value='cda' selected=query.api === 'cda') Delivery API
+                        option(value='cpa' selected=query.api === 'cpa') Preview API
+                    .group
+                      label(for='locale') Locale:
+                      select(name='locale' onChange='this.form.submit()')
+                        option(value='en-US' selected=query.locale === 'en-US') English
+                        option(value='de-DE' selected=query.locale === 'de-DE') German
           .header__lower-wrapper
             .header__lower.layout-centered
               .header__logo
@@ -69,13 +77,13 @@ html
                 img.footer__disclaimer-logo(src='/images/contentful-logo.svg')
                 p.footer__disclaimer-text
                   | This website and the materials found on it are for demo purposes using Contentful. You can use this to preview the content created on your Contentful account.&nbsp;
-                  a(href='#todo') View on Github
+                  a(href='https://github.com/contentful/example-contentful-university-js' target='_blank' rel='noopener') View on Github
                   | .
               .footer__social
                 p
-                  a(href='https://www.facebook.com/contentful/' target='_blank')
+                  a(href='https://www.facebook.com/contentful/' target='_blank' rel='noopener')
                     img(src='/images/icon-facebook.svg' alt='Our Facebook profile')
-                  a(href='https://twitter.com/contentful' target='_blank')
+                  a(href='https://twitter.com/contentful' target='_blank' rel='noopener')
                     img(src='/images/icon-twitter.svg' alt='Our Twitter profile')
   script(src='/scripts/highlight.pack.js')
   script hljs.initHighlightingOnLoad();

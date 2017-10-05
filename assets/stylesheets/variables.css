@@ -44,6 +44,9 @@
   --color-input-bg: #fff;
   --color-input-border: #d3dce0;
 
+  --color-header-upper-text-primary: #fff;
+  --color-header-upper-text-secondary: #abc6e5;
+
   --layout-sidebar-sidebar-width: 228px;
   --layout-sidebar-content-width: 732px;
 
