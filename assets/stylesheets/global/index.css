@@ -13,19 +13,20 @@ body {
   line-height: var(--line-height);
 }
 
-#main {
+@block main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-#main__header {
-  flex: 0 0 auto;
-}
-#main__content {
-  flex: 1 0 auto;
-  display: flex;
-  align-items: stretch;
-}
-#main__footer {
-  flex: 0 0 auto;
+
+  @element header {
+    flex: 0 0 auto;
+  }
+  @element content {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: stretch;
+  }
+  @element footer {
+    flex: 0 0 auto;
+  }
 }
