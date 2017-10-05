@@ -3,7 +3,7 @@ mixin lessonModuleCodeSnippet(module)
     .lesson-module-code__header
       if module.fields.curl
         a.lesson-module-code__trigger(data-target=`${module.sys.id}-curl`) curl
-      if module.fields.dot-net
+      if module.fields.dotNet
         a.lesson-module-code__trigger(data-target=`${module.sys.id}-dotnet`) .NET
       if module.fields.javascript
         a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target=`${module.sys.id}-javascript`) Javascript
@@ -25,10 +25,10 @@ mixin lessonModuleCodeSnippet(module)
         .lesson-module-code__code(id=`${module.sys.id}-curl`)
           pre
             code.shell= module.fields.curl
-      if module.fields.dot-net
+      if module.fields.dotNet
         .lesson-module-code__code(id=`${module.sys.id}-dotnet`)
           pre
-            code.csharp= module.fields.dot-net
+            code.csharp= module.fields.dotNet
       if module.fields.javascript
         .lesson-module-code__code.lesson-module-code__code--active(id=`${module.sys.id}-javascript`)
           pre
