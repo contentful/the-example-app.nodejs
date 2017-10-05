@@ -1,14 +1,10 @@
 @block layout-centered {
-  box-sizing: border-box;
-  width: 100%;
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 2vw;
 }
 
 @block layout-centered-small {
-  box-sizing: border-box;
-  width: 100%;
   max-width: calc(var(--content-max-width) - 360px);
   margin: 0 auto;
   padding: 0 2vw;
