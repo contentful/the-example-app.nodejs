@@ -916,6 +916,10 @@ input[type="reset"]:focus,
   }
 }
 
+.layout-sidebar__content > * {
+  max-width: 732px;
+}
+
 .grid-list {
 display: -webkit-box;
 display: -ms-flexbox;
