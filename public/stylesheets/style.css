@@ -2066,6 +2066,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     font-family: 'robotomedium', Helvetica, sans-serif;
     font-size: 0.7em;
     color: #fff;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .lesson-module-code__trigger:last-child {
@@ -2075,6 +2081,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .lesson-module-code__trigger--active {
       background: #f7f9fa;
       color: #a9b9c0;
+      cursor: default;
 }
 
 .lesson-module-code__code {

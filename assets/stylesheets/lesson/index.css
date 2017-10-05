@@ -42,6 +42,9 @@
     font-size: 0.7em;
     color: var(--code-trigger-color);
 
+    cursor: pointer;
+    user-select: none;
+
     &:last-child {
       margin-right: 0;
     }
@@ -49,6 +52,7 @@
     @modifier active {
       background: var(--code-trigger-bg-active);
       color: var(--code-trigger-color-active);
+      cursor: default;
     }
   }
 
