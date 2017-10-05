@@ -498,6 +498,13 @@ template {
     font-style: italic;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'robotomedium', 'Arial Black', sans-serif;
+  font-weight: normal;
+  line-height: 1.31;
+  color: #2a3039
+}
+
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
   margin-top: 0;
 }
@@ -821,7 +828,15 @@ input[type="reset"]:focus,
 }
 
 .layout-centered {
+  width: 100%;
   max-width: 980px;
+  margin: 0 auto;
+  padding: 0 2vw;
+}
+
+.layout-centered-small {
+  width: 100%;
+  max-width: 620px;
   margin: 0 auto;
   padding: 0 2vw;
 }
@@ -1260,7 +1275,7 @@ display: flex;
 .table-of-contents__link:hover,
     .table-of-contents__link.active {
   font-family: 'robotomedium', Helvetica, sans-serif;
-  color: #2a3039;
+  color: #536171;
 }
 
 .table-of-contents__link.active {
@@ -1326,7 +1341,7 @@ display: flex;
 
 .sidebar-menu__link.active {
   font-family: 'robotomedium', Helvetica, sans-serif;
-  color: #2a3039;
+  color: #536171;
 }
 
 .main-navigation ul {
@@ -1375,12 +1390,12 @@ display: flex;
 }
 
 .main-navigation ul li a.active {
-  color: #2a3039;
+  color: #536171;
 }
 
 body {
   background-color: #fff;
-  color: #2a3039;
+  color: #536171;
   font-family: 'roboto', Helvetica, sans-serif;
   font-size: 16px;
   font-size: 1rem;
