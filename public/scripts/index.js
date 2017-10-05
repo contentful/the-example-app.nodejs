@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // init highlight.js
+  // Init highlight.js
   hljs.initHighlightingOnLoad()
+
+  // apply textFit to module headlines
+  textFit(document.getElementsByClassName('module-higlighted-course__title'), {multiLine: false})
 
   // Lesson code switcher logic
   const modules = Array.from(document.getElementsByClassName('lesson-module-code'))
