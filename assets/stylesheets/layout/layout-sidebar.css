@@ -45,5 +45,9 @@
       width: var(--layout-sidebar-content-width);
       margin-left: var(--grid-gutter);
     }
+
+    & > * {
+      max-width: var(--layout-sidebar-content-width);
+    }
   }
 }
