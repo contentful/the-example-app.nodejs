@@ -514,6 +514,16 @@ a {
   text-decoration: none;
 }
 
+p a, label a, .form-item a {
+  color: #5c9fef;
+  text-decoration: underline;
+}
+
+p a:hover, label a:hover, .form-item a:hover {
+  color: #3c80cf;
+  text-decoration: underline;
+}
+
 /* Based on FormHack v1.2.0 (formhack.io) */
 
 /* But with some custom modifications */
@@ -734,7 +744,7 @@ option:focus {
 
 button:focus,
 .cta:focus {
-  background-color: rgb(125, 178, 242);
+  background-color: #3c80cf;
   color: #fff;
 }
 
@@ -753,7 +763,7 @@ input[type="submit"]:focus,
 input[type="reset"]:focus,
 .cta:hover,
 .cta:focus {
-  background-color: rgb(125, 178, 242);
+  background-color: #3c80cf;
   color: #fff;
 }
 

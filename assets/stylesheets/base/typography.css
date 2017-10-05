@@ -13,3 +13,15 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+p, label, .form-item {
+  & a {
+      color: var(--color-link-content);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--color-link-content-hover);
+        text-decoration: underline;
+      }
+    }
+}
