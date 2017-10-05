@@ -25,7 +25,7 @@ block content
         if 'space' in errors
           each message in errors.space
             .form-item__error-message= message
-        .form-item__help-text Some help text we still need to define
+        .form-item__help-text The Space ID is a unique identifier for your space.
 
       .form-item
         label(for="cda") Delivery API key
@@ -33,15 +33,18 @@ block content
         if 'cda' in errors
           each message in errors.cda
             .form-item__error-message= message
-        .form-item__help-text Some help text we still need to define
-
+        .form-item__help-text
+          | This key is used to connect to our&nbsp;
+          a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Delivery API.
       .form-item
         label(for="cpa") Preview API key
         input(type="text" name="cpa" value=settings.cpa)
         if 'cpa' in errors
           each message in errors.cpa
             .form-item__error-message= message
-        .form-item__help-text Some help text we still need to define
+        .form-item__help-text
+          | This key is used to connect to our&nbsp;
+          a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Preview API.
 
       .form-item
         input.cta(type="submit" value="Load settings")

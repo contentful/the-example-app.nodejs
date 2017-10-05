@@ -23,6 +23,7 @@
   --color-text-error: var(--color-palette-red);
 
   --color-link-content: var(--color-palette-blue);
+  --color-link-content-hover: var(--color-palette-blue-medium);
 
   --color-bg-default: #fff;
   --color-bg-grey: #f7f9fa;
@@ -54,5 +55,6 @@
 
   --cta-color: #fff;
   --cta-bg: var(--color-palette-blue);
+  --cta-bg-hover: var(--color-palette-blue-medium);
   --cta-radius: 3px;
 }

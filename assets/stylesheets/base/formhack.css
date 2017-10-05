@@ -34,7 +34,7 @@
   --fh-button-min-width: 200px;
   --fh-button-font-color: var(--cta-color);
   --fh-button-bg-color: var(--cta-bg);
-  --fh-button-hover-bg-color: color(var(--fh-button-bg-color) tint(20%));
+  --fh-button-hover-bg-color: var(--cta-bg-hover);
   --fh-button-hover-font-color: var(--fh-button-font-color);
 
   /* Layout */
