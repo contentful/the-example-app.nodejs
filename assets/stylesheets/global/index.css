@@ -4,6 +4,7 @@
 @import './table-of-contents';
 @import './sidebar-menu';
 @import './main-navigation';
+@import './breadcrumb';
 
 body {
   background-color: var(--color-bg-default);

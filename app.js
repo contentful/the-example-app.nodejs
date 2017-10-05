@@ -15,6 +15,7 @@ const about = require('./routes/about')
 const settings = require('./routes/settings')
 const sitemap = require('./routes/sitemap')
 const {initClient} = require('./services/contentful')
+const breadcrumb = require('./lib/breadcrumb')
 const app = express()
 
 // view engine setup
@@ -28,6 +29,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(breadcrumb())
 
 // Pass custom helpers to all our templates
 app.use(function (req, res, next) {
@@ -36,8 +38,6 @@ app.use(function (req, res, next) {
   res.locals.queryString = qs ? `?${qs}` : ''
   res.locals.query = req.query
   res.locals.currentPath = req.path
-  console.log(req.path)
-
   // Allow setting of credentials via query parameters
   const { space_id, preview_access_token, delivery_access_token } = req.query
   if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase

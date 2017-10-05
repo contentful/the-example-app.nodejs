@@ -1,0 +1,35 @@
+@block breadcrumb {
+  margin-bottom: calc(var(--grid-gutter) / 2);
+  & ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  
+    & li {
+
+      margin: 0;
+
+      & + li {
+        margin-left: calc(var(--grid-gutter) / 4);
+      }
+
+      &:after{
+        content: ' >';
+      }
+      &:last-child:after{
+        content: '';
+      }
+
+      & a {
+        display: inline-block;
+        text-transform: capitalize;
+        &:hover {
+          color: var(--color-link-content-hover);
+        }
+
+      }
+    }
+  }
+}
