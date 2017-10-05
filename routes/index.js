@@ -3,10 +3,10 @@ const { getLandingPage } = require('../services/contentful')
 const { catchErrors } = require('../handlers/errorHandlers')
 const router = express.Router()
 
-/* GET home page. */
+/* GET the home landing page. */
 router.get('/', catchErrors(async function (req, res, next) {
-  const landingPage = await getLandingPage(req.query.locale, req.query.api)
-  res.render('index', { title: 'Contentful University', landingPage })
+  const landingPage = await getLandingPage('home', req.query.locale, req.query.api)
+  res.render('landingPage', { title: 'Contentful University', landingPage })
 }))
 
 module.exports = router
