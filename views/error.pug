@@ -2,6 +2,15 @@ extends layout
 
 block content
   .layout-centered
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+    .error
+      h1 Oops Something went wrong (#{error.status})
+      h2 Try:
+      ul
+        li Check if the content model has changed
+        li Check the selection has content in draft or published state (for Preview or Delivery)
+        li Check if there's any content for this locale
+        li Verify credentials are correct and up to date
+        li Check the stack trace below
+
+      h2 Stack trace
+      pre.error__stack-trace #{error.stack}

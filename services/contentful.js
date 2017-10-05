@@ -23,13 +23,13 @@ exports.initClient = (options) => {
   })
 }
 
-exports.getCourses = (locale = 'en-US', api = `cda`) => {
+exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   // to get all the courses we request all the entries
   // with the content_type `course` from Contentful
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({content_type: 'course', locale, include: 10})
     .then((response) => response.items)
-}
+}, 'Course')
 
 exports.getLandingPage = (locale = 'en-US', api = `cda`) => {
   // our Home page is fully configureable via Contentful
@@ -39,26 +39,22 @@ exports.getLandingPage = (locale = 'en-US', api = `cda`) => {
     .then((response) => response.items[0])
 }
 
-exports.getCourse = (slug, locale = 'en-US', api = `cda`) => {
+exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
   // the SDK supports link resolution only when you call the collection endpoints
   // That's why we are using getEntries with a query instead of getEntry(entryId)
   // make sure to specify the content_type whenever you want to perform a query
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({content_type: 'course', 'fields.slug': slug, locale, include: 10})
     .then((response) => response.items[0])
-}
+}, 'Course')
 
-exports.getLessons = (courseId, locale = 'en-US', api = `cda`) => {
-  // TODO
-}
-
-exports.getCategories = (locale = 'en-US', api = `cda`) => {
+exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({content_type: 'category', locale})
     .then((response) => response.items)
-}
+}, 'Course')
 
-exports.getCoursesByCategory = (category, locale = 'en-US', api = `cda`) => {
+exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
     content_type: 'course',
@@ -67,5 +63,18 @@ exports.getCoursesByCategory = (category, locale = 'en-US', api = `cda`) => {
     include: 10
   })
     .then((response) => response.items)
-}
+}, 'Category')
 
+function assert (fn, context) {
+  return function (req, res, next) {
+    return fn(req, res, next)
+    .then((data) => {
+      if (!data) {
+        var err = new Error(`${context} Not Found`)
+        err.status = 404
+        throw err
+      }
+      return data
+    })
+  }
+}
