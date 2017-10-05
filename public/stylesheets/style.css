@@ -1289,14 +1289,6 @@ display: flex;
     line-height: 1.5;
 }
 
-.footer__disclaimer-text a {
-  text-decoration: underline;
-}
-
-.footer__disclaimer-text a:hover {
-  text-decoration: none;
-}
-
 .footer__social {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;

@@ -66,13 +66,6 @@
     color: var(--color-text-footer);
     font-size: 0.75em;
     line-height: 1.5;
-
-    & a {
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-      }
-    }
   }
 
   @element social {
