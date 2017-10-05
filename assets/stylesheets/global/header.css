@@ -8,7 +8,7 @@
   @element upper-wrapper {
     background: var(--color-palette-blue-dark);
     padding: calc(var(--grid-gutter) / 2) 0;
-    color: var(--color-text-dark-bg);
+    color: var(--color-header-upper-text-secondary);
   }
 
   @element upper {
@@ -22,6 +22,42 @@
     @media (--breakpoint-desktop) {
       justify-content: space-between;
     }
+  }
+
+  @element upper-first {
+    display: flex;
+
+    @media (--breakpoint-desktop) {
+      & div + div {
+        margin-left: var(--grid-gutter);
+      }
+    }
+  }
+
+  @element upper-second {
+    display: flex;
+
+    @media (--breakpoint-desktop) {
+      & div + div {
+        margin-left: var(--grid-gutter);
+      }
+    }
+  }
+
+  @element upper-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @element upper-copy {
+    display: inline-flex;
+  }
+
+  @element upper-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: calc(var(--grid-gutter) / 4);
   }
 
   @element lower-wrapper {
@@ -41,6 +77,7 @@
     font-family: var(--font-regular);
     letter-spacing: 3px;
     text-transform: uppercase;
+    color: var(--color-header-upper-text-primary);
 
     & img {
       display: inline-block;
@@ -71,6 +108,7 @@
     flex: 0 0 100%;
     flex-direction: column;
     justify-content: space-around;
+    color: var(--color-header-upper-text-primary);
 
     @media (--breakpoint-desktop) {
       flex: 0 0 auto;
