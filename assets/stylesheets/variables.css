@@ -57,4 +57,10 @@
   --cta-bg: var(--color-palette-blue);
   --cta-bg-hover: var(--color-palette-blue-medium);
   --cta-radius: 3px;
+
+  --code-bg: var(--color-bg-grey);
+  --code-trigger-bg: color(var(--color-bg-grey) shade(20%));
+  --code-trigger-bg-active: var(--code-bg);
+  --code-trigger-color: #fff;
+  --code-trigger-color-active: var(--color-text-dark-bg-grey);
 }

@@ -2003,3 +2003,48 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .lesson__cta {
     margin-bottom: 0;
 }
+
+.lesson-module-code {}
+
+.lesson-module-code__header {}
+
+.lesson-module-code__code-area {
+    background: #f7f9fa;
+}
+
+.lesson-module-code__trigger {
+    display: inline-block;
+
+    padding: 0 1em;
+    margin-right: 1em;
+
+    background: rgb(198, 199, 200);
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    font-family: 'robotomedium', Helvetica, sans-serif;
+    font-size: 0.7em;
+    color: #fff;
+}
+
+.lesson-module-code__trigger:last-child {
+  margin-right: 0;
+}
+
+.lesson-module-code__trigger--active {
+      background: #f7f9fa;
+      color: #a9b9c0;
+}
+
+.lesson-module-code__code {
+    display: none;
+}
+
+.lesson-module-code__code pre {
+  margin: 0;
+}
+
+.lesson-module-code__code--active {
+      display: block;
+}
