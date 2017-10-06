@@ -24,10 +24,10 @@ html
                 .header__controls
                   form(action="" method="get")
                     .group
-                      label(for='api') API type:
+                      label(for='api') API:
                       select(name='api' onChange='this.form.submit()')
-                        option(value='cda' selected=query.api === 'cda') Delivery API
-                        option(value='cpa' selected=query.api === 'cpa') Preview API
+                        option(value='cda' selected=query.api === 'cda') Content Delivery API
+                        option(value='cpa' selected=query.api === 'cpa') Content Preview API
                     .group
                       label(for='locale') Locale:
                       select(name='locale' onChange='this.form.submit()')

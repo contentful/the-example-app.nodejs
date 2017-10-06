@@ -28,23 +28,23 @@ block content
         .form-item__help-text The Space ID is a unique identifier for your space.
 
       .form-item
-        label(for="cda") Delivery API key
+        label(for="cda") Content Delivery API - access token
         input(type="text" name="cda" value=settings.cda)
         if 'cda' in errors
           each message in errors.cda
             .form-item__error-message= message
         .form-item__help-text
-          | This key is used to connect to our&nbsp;
-          a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Delivery API.
+          | View published content using this API.&nbsp;
+          a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
       .form-item
-        label(for="cpa") Preview API key
+        label(for="cpa") Content Preview API - access token
         input(type="text" name="cpa" value=settings.cpa)
         if 'cpa' in errors
           each message in errors.cpa
             .form-item__error-message= message
         .form-item__help-text
-          | This key is used to connect to our&nbsp;
-          a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Preview API.
+          | Preview unpublished content using this API (i.e. content with “Draft” status).&nbsp;
+          a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Content Preview API.
 
       .form-item
         input.cta(type="submit" value="Load settings")
