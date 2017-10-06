@@ -1,6 +1,8 @@
 @block breadcrumb {
   margin-bottom: calc(var(--grid-gutter) * 0.25);
 
+  font-size: 0.875em;
+
   & ul {
     display: flex;
     list-style: none;
@@ -9,27 +11,31 @@
     padding: 0;
 
     & li {
-
       margin: 0;
 
-      & + li {
-        margin-left: calc(var(--grid-gutter) / 4);
+      &:after{
+        content: '';
+        display: inline-block;
+        background: url('/images/icon-breadcrumb.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 4px;
+        height: 8px;
+        padding: 0 calc(var(--grid-gutter) / 4);
       }
 
-      &:after{
-        content: ' >';
-      }
       &:last-child:after{
-        content: '';
+        display: none;
       }
 
       & a {
         display: inline-block;
         text-transform: capitalize;
+
         &:hover {
           color: var(--color-link-content-hover);
         }
-
       }
     }
   }
