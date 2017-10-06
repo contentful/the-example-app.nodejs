@@ -14,7 +14,7 @@ const categories = require('./routes/categories')
 const about = require('./routes/about')
 const settings = require('./routes/settings')
 const sitemap = require('./routes/sitemap')
-const {initClient} = require('./services/contentful')
+const { initClient, getSpace } = require('./services/contentful')
 const breadcrumb = require('./lib/breadcrumb')
 const app = express()
 
@@ -31,21 +31,58 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(breadcrumb())
 
-// Pass custom helpers to all our templates
-app.use(function (req, res, next) {
+// Pass our application state and custom helpers to all our templates
+app.use(async function (req, res, next) {
+  // Inject ucstom helpers
   res.locals.helpers = helpers
+
+  // Express query string
   const qs = url.parse(req.url).query
   res.locals.queryString = qs ? `?${qs}` : ''
   res.locals.query = req.query
   res.locals.currentPath = req.path
-  // Allow setting of credentials via query parameters
+
+  // Allow setting of API credentials via query parameters
+  let settings = req.cookies.theExampleAppSettings
+
   const { space_id, preview_access_token, delivery_access_token } = req.query
   if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
-    const settings = {space: space_id, cda: delivery_access_token, cpa: preview_access_token}
+    settings = {space: space_id, cda: delivery_access_token, cpa: preview_access_token}
     res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
-    initClient(settings)
-  } else {
-    initClient(req.cookies.theExampleAppSettings)
+  }
+
+  initClient(settings)
+  res.locals.settings = settings
+
+  // Manage language and API type state and make it globally available
+  const apis = [
+    {
+      id: 'cda',
+      label: 'Delivery (published content)'
+    },
+    {
+      id: 'cpa',
+      label: 'Preview (draft content)'
+    }
+  ]
+
+  res.locals.currentApi = apis
+    .find((api) => api.id === (req.query.api || 'cda'))
+
+  // Get enabled locales from Contentful
+  const space = await getSpace()
+  res.locals.locales = space.locales
+
+  const defaultLocale = res.locals.locales
+    .find((locale) => locale.default)
+
+  if (req.query.locale) {
+    res.locals.currentLocale = space.locales
+      .find((locale) => locale.code === req.query.locale)
+  }
+
+  if (!res.locals.currentLocale) {
+    res.locals.currentLocale = defaultLocale
   }
 
   next()

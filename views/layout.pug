@@ -30,17 +30,34 @@ html
                     | View on Github
 
                 .header__controls
-                  form(action='' method='get')
-                    .group
-                      label(for='api') API:
-                      select(name='api' onChange='this.form.submit()')
-                        option(value='cda' selected=query.api === 'cda') Content Delivery API
-                        option(value='cpa' selected=query.api === 'cpa') Content Preview API
-                    .group
-                      label(for='locale') Locale:
-                      select(name='locale' onChange='this.form.submit()')
-                        option(value='en-US' selected=query.locale === 'en-US') English
-                        option(value='de-DE' selected=query.locale === 'de-DE') German
+                    .header__controls_group
+                      form(action='' method='get')
+                        .header__controls_label API: #{currentApi.label}
+                        .header__controls_dropdown
+                          .header__controls_help_text View the published or draft content by simply switching between the Deliver and Preview APIs.
+                          button.header__controls_button(
+                            type='submit'
+                            name='api'
+                            value='cda'
+                            class=`${currentApi.id === 'cda' ? 'header__controls_button--active' : ''}`
+                          ) Delivery (published content)
+                          button.header__controls_button(
+                            type='submit'
+                            name='api'
+                            value='cpa'
+                            class=`${currentApi.id === 'cpa' ? 'header__controls_button--active' : ''}`
+                          ) Preview (draft content)
+                        input(type='hidden' name='locale' value=currentLocale.code)
+
+                    .header__controls_group
+                      form(action='' method='get')
+                        input(type='hidden' name='api' value=currentApi.id)
+                        .header__controls_label Locale: #{currentLocale.name}
+                        .header__controls_dropdown
+                          .header__controls_help_text Working with multiple languages? You can query the Content Delivery API for a specific locale.
+                          each locale in locales
+                            button.header__controls_button(type='submit' name='locale' value=locale.code class=`${locale.code === currentLocale.code ? 'header__controls_button--active' : ''}`)= `${locale.name} (${locale.code})`
+
           .header__lower-wrapper
             .header__lower.layout-centered
               .header__logo
@@ -93,4 +110,6 @@ html
                     img(src='/images/icon-twitter.svg' alt='Our Twitter profile')
   script(src='/scripts/highlight.pack.js')
   script(src='/scripts/textFit.min.js')
+  script(src='/scripts/popper.min.js')
+  script(src='/scripts/hoverintent.min.js')
   script(src='/scripts/index.js')

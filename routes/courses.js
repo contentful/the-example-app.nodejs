@@ -8,8 +8,8 @@ router.get('/', catchErrors(async function (req, res, next) {
   // we get all the entries with the content type `course`
   let courses = []
   let categories = []
-  courses = await getCourses(req.query.locale, req.query.api)
-  categories = await getCategories(req.query.locale, req.query.api)
+  courses = await getCourses(res.locals.currentLocale.code, res.locals.currentLocale.id)
+  categories = await getCategories(res.locals.currentLocale.code, res.locals.currentLocale.id)
   res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
 }))
 
@@ -22,7 +22,7 @@ router.get('/categories/:category', catchErrors(async function (req, res, next) 
   try {
     categories = await getCategories()
     activeCategory = categories.find((category) => category.fields.slug === req.params.category)
-    courses = await getCoursesByCategory(activeCategory.sys.id, req.query.locale, req.query.api)
+    courses = await getCoursesByCategory(activeCategory.sys.id, res.locals.currentLocale.code, res.locals.currentLocale.id)
   } catch (e) {
     console.log('Error ', e)
   }
@@ -31,7 +31,7 @@ router.get('/categories/:category', catchErrors(async function (req, res, next) 
 
 /* GET course detail. */
 const courseRoute = catchErrors(async function (req, res, next) {
-  let course = await getCourse(req.params.slug, req.query.locale, req.query.api)
+  let course = await getCourse(req.params.slug, res.locals.currentLocale.code, res.locals.currentLocale.id)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
@@ -47,13 +47,13 @@ router.get('/:slug/lessons', courseRoute)
 
 /* GET course lesson detail. */
 router.get('/:cslug/lessons/:lslug', catchErrors(async function (req, res, next) {
-  let course = await getCourse(req.params.cslug, req.query.locale, req.query.api)
+  let course = await getCourse(req.params.cslug, res.locals.currentLocale.code, res.locals.currentLocale.id)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
   const nextLesson = lessons[lessonIndex + 1] || null
   const cookie = req.cookies.visitedLessons
-  let visitedLessons = cookie ||  []
+  let visitedLessons = cookie || []
   visitedLessons.push(lesson.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })

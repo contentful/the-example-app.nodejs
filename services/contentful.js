@@ -23,6 +23,11 @@ exports.initClient = (options) => {
   })
 }
 
+exports.getSpace = assert((api = `cda`) => {
+  const client = api === 'cda' ? cdaClient : cpaClient
+  return client.getSpace()
+}, 'Space')
+
 exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   // to get all the courses we request all the entries
   // with the content_type `course` from Contentful
