@@ -21,20 +21,17 @@ block content
         +lesson(lesson, course, nextLesson)
       else
         .course
-          .course__content
-            h1.course__title= course.fields.title
-            .course__overview
-              h3.course__overview-title Overview
-              if course.fields.duration
-                .course__overview-item
-                  img.course__overview-icon(src='/images/icon-duration.svg')
-                  .course__overview-value Duration: #{course.fields.duration} min
-              if course.fields.skillLevel
-                .course__overview-item
-                  img.course__overview-icon(src='/images/icon-skill-level.svg')
-                  .course__overview-value Skill level: #{course.fields.skillLevel}
-              .course__overview-cta-wrapper
-                a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
-            .course__description !{helpers.markdown(course.fields.description)}
-          .course__footer
-            a.course__cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+          h1.course__title= course.fields.title
+          .course__overview
+            h3.course__overview-title Overview
+            if course.fields.duration
+              .course__overview-item
+                img.course__overview-icon(src='/images/icon-duration.svg')
+                .course__overview-value Duration: #{course.fields.duration} min
+            if course.fields.skillLevel
+              .course__overview-item
+                img.course__overview-icon(src='/images/icon-skill-level.svg')
+                .course__overview-value Skill level: #{course.fields.skillLevel}
+            .course__overview-cta-wrapper
+              a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+          .course__description !{helpers.markdown(course.fields.description)}

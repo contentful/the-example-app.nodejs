@@ -6,7 +6,11 @@ const router = express.Router()
 /* GET settings page. */
 router.get('/', catchErrors(async function (req, res, next) {
   const cookie = req.cookies.theExampleAppSettings
-  const settings = cookie || { cpa: '', cda: '', space: '' }
+  const settings = cookie || {
+    space: process.env.CF_SPACE,
+    cda: process.env.CF_ACCESS_TOKEN,
+    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
+  }
   res.render('settings', {
     title: 'Settings',
     settings,

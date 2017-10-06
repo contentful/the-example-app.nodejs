@@ -1,10 +1,6 @@
 @import './card';
 
 @block course {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   @element title {
     margin-bottom: calc(var(--grid-gutter));
   }

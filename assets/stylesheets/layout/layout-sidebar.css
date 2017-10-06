@@ -48,6 +48,7 @@
 
     & > * {
       max-width: var(--layout-sidebar-content-width);
+      width: 100%;
     }
   }
 }

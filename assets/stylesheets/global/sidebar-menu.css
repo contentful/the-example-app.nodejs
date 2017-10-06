@@ -16,9 +16,13 @@
     display: block;
     color: var(--color-text-grey);
 
+    &:hover,
+    &.active {
+      color: var(--color-text-default);
+    }
+
     &.active {
       font-family: var(--font-medium);
-      color: var(--color-text-default);
     }
   }
 }

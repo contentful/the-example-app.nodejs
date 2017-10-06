@@ -922,6 +922,7 @@ input[type="reset"]:focus,
 
 .layout-sidebar__content > * {
   max-width: 732px;
+  width: 100%;
 }
 
 .grid-list {
@@ -1345,12 +1346,12 @@ display: flex;
 
 .table-of-contents__link:hover,
     .table-of-contents__link.active {
-  font-family: 'robotomedium', Helvetica, sans-serif;
   color: #536171;
 }
 
 .table-of-contents__link.active {
   position: relative;
+  font-family: 'robotomedium', Helvetica, sans-serif;
 }
 
 .table-of-contents__link.active:before,
@@ -1410,9 +1411,13 @@ display: flex;
     color: #8091a5;
 }
 
+.sidebar-menu__link:hover,
+    .sidebar-menu__link.active {
+  color: #536171;
+}
+
 .sidebar-menu__link.active {
   font-family: 'robotomedium', Helvetica, sans-serif;
-  color: #536171;
 }
 
 .main-navigation ul {
@@ -1745,18 +1750,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   border-bottom-color: #3c80cf;
 }
 
-.course {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
+.course {}
 
 .course__title {
     margin-bottom: 22px;
@@ -2025,18 +2019,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   height: auto;
 }
 
-.lesson {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
+.lesson {}
 
 .lesson__title {
     margin-bottom: 22px;

@@ -22,12 +22,12 @@
 
     &:hover,
     &.active {
-      font-family: var(--font-medium);
       color: var(--color-text-default);
     }
 
     &.active {
       position: relative;
+      font-family: var(--font-medium);
 
       &:before,
       &:after {

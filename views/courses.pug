@@ -11,10 +11,10 @@ block content
         .sidebar-menu
           ul.sidebar-menu__list
             li.sidebar-menu__item
-              a.sidebar-menu__link.active(href=`/courses${queryString}`) All courses
+              a.sidebar-menu__link(href=`/courses${queryString}` class=(currentPath.endsWith('/courses') ? 'active' : '')) All courses
             each category in categories
               li.sidebar-menu__item
-                a.sidebar-menu__link(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
+                a.sidebar-menu__link(href=`/courses/categories/${category.fields.slug}${queryString}` class=(currentPath.endsWith(category.fields.slug) ? 'active' : '')) #{category.fields.title}
     section.layout-sidebar__content
       .courses
         h1= title
