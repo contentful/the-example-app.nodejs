@@ -10,6 +10,9 @@
     "styles": "postcss  -c ./postcss.config.js ./assets/stylesheets/style.css -d ./public/stylesheets",
     "styles:watch": "npm run styles -- -w"
   },
+  "engines": {
+    "node": "8.4.0"
+  },
   "dependencies": {
     "body-parser": "~1.15.2",
     "contentful": "^4.6.1",
