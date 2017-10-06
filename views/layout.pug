@@ -48,14 +48,6 @@ html
                     a(href=`/about${queryString}` class=(currentPath.startsWith('/about') ? 'active' : '')) About
                   li
                     a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
-      if currentPath !== '/'
-        .main__breadcrumb
-          .layout-centered
-            nav.breadcrumb
-              ul
-                each item in breadcrumb
-                  li
-                    a(href=`${item.url}${queryString}`) #{item.label}
       .main__content
         block content
 

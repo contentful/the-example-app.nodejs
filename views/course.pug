@@ -1,8 +1,11 @@
 extends layout
 
+include mixins/_breadcrumb
 include mixins/_lesson
 
 block content
+  .layout-no-sidebar
+    +breadcrumb
   .layout-sidebar
     section.layout-sidebar__sidebar
       .layout-sidebar__sidebar-header

@@ -1,12 +1,13 @@
 @block breadcrumb {
-  margin-bottom: calc(var(--grid-gutter) / 2);
+  margin-bottom: calc(var(--grid-gutter) * 0.25);
+
   & ul {
     display: flex;
     list-style: none;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
-  
+
     & li {
 
       margin: 0;
