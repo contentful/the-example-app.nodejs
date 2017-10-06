@@ -1,0 +1,64 @@
+@block module-copy {
+  @modifier emphasized {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: calc(var(--grid-gutter) * 0.75) 0;
+    background-color: var(--module-copy-emphasized-bg);
+    border-radius: var(--border-radius);
+    color: var(--module-copy-emphasized-color);
+
+    @media (--breakpoint-desktop) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  @element first {
+    @modifier emphasized {
+      flex: 1 1 auto;
+      width: 50vw;
+      padding: 0 var(--grid-gutter);
+
+      @media (--breakpoint-desktop) {
+        padding-left: var(--grid-gutter);
+      }
+    }
+  }
+
+  @element second {
+    @modifier emphasized {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (--breakpoint-desktop) {
+        flex: 1 1 auto;
+        padding: 0 var(--grid-gutter);
+        width: 20vw;
+      }
+    }
+  }
+
+
+  @element headline {
+    @modifier emphasized {
+      color: var(--module-copy-emphasized-headlines-color);
+      font-size: 1.25em;
+    }
+  }
+
+  @element copy {
+    @modifier emphasized {
+      font-size: 0.875em;
+    }
+  }
+
+  @element cta {
+    @modifier emphasized {
+      background-color: var(--module-copy-emphasized-cta-bg);
+      color: var(--module-copy-emphasized-cta-color);
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1824,6 +1824,97 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     margin-bottom: 0;
 }
 
+.module-copy {}
+
+.module-copy--emphasized {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 16.5px 0;
+    background-color: #8091a5;
+    border-radius: 4px;
+    color: #c3cfd5;
+}
+
+@media (min-width: 700px) {
+
+  .module-copy--emphasized {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
+.module-copy__first {}
+
+.module-copy__first--emphasized {
+      -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      width: 50vw;
+      padding: 0 22px;
+}
+
+@media (min-width: 700px) {
+
+  .module-copy__first--emphasized {
+    padding-left: 22px;
+  }
+}
+
+.module-copy__second {}
+
+.module-copy__second--emphasized {
+      -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+}
+
+@media (min-width: 700px) {
+
+  .module-copy__second--emphasized {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    padding: 0 22px;
+    width: 20vw;
+  }
+}
+
+.module-copy__headline {}
+
+.module-copy__headline--emphasized {
+      color: #fff;
+      font-size: 1.25em;
+}
+
+.module-copy__copy {}
+
+.module-copy__copy--emphasized {
+      font-size: 0.875em;
+}
+
+.module-copy__cta {}
+
+.module-copy__cta--emphasized {
+      background-color: #536171;
+      color: #fff;
+      margin-bottom: 0;
+}
+
 .module-hero-image {}
 
 .module-hero-image__wrapper {
