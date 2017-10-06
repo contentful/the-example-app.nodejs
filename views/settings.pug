@@ -1,7 +1,10 @@
 extends layout
 
+include mixins/_breadcrumb
+
 block content
   .layout-centered-small
+    +breadcrumb
     h1= title
     p To query and get content using the APIs, client applications need to authenticate with both the Space ID and an access token.
 

@@ -1,5 +1,5 @@
 @block layout-sidebar {
-  padding: 0 2vw;
+  padding: 0 calc(var(--grid-gutter) / 2);
   max-width: var(--content-max-width);
   margin: 0 auto;
 
@@ -36,9 +36,8 @@
 
   @element content {
     display: flex;
-    align-self: stretch;
-    align-items: stretch;
-    padding-top: calc(var(--grid-gutter) / 2);
+    flex-direction: column;
+    padding-top: calc(var(--grid-gutter) / 4);
 
     @media (--breakpoint-desktop) {
       flex: 0 1 auto;

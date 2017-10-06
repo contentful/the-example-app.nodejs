@@ -1,7 +1,10 @@
 extends layout
 
+include mixins/_breadcrumb
+
 block content
   .layout-centered
+    +breadcrumb
     .error
       h1 Oops Something went wrong (#{error.status})
       h2 Try:

@@ -26,6 +26,7 @@ body {
     flex: 1 0 auto;
     display: flex;
     align-items: stretch;
+    flex-direction: column;
   }
   @element footer {
     flex: 0 0 auto;
