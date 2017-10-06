@@ -22,7 +22,7 @@ router.get('/categories/:category', catchErrors(async function (req, res, next) 
   try {
     categories = await getCategories()
     activeCategory = categories.find((category) => category.fields.slug === req.params.category)
-    courses = await getCoursesByCategory(activeCategory.sys.id, req.query.locale, req.query.api)    
+    courses = await getCoursesByCategory(activeCategory.sys.id, req.query.locale, req.query.api)
   } catch (e) {
     console.log('Error ', e)
   }
@@ -30,7 +30,7 @@ router.get('/categories/:category', catchErrors(async function (req, res, next) 
 }))
 
 /* GET course detail. */
-router.get('/:slug', catchErrors(async function (req, res, next) {
+const courseRoute = catchErrors(async function (req, res, next) {
   let course = await getCourse(req.params.slug, req.query.locale, req.query.api)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
@@ -41,7 +41,9 @@ router.get('/:slug', catchErrors(async function (req, res, next) {
   visitedLessons = [...new Set(visitedLessons)]
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
   res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
-}))
+})
+router.get('/:slug', courseRoute)
+router.get('/:slug/lessons', courseRoute)
 
 /* GET course lesson detail. */
 router.get('/:cslug/lessons/:lslug', catchErrors(async function (req, res, next) {
