@@ -524,6 +524,10 @@ p a:hover, label a:hover, .form-item a:hover {
   text-decoration: underline;
 }
 
+p:last-child {
+  margin-bottom: 0;
+}
+
 /* Based on FormHack v1.2.0 (formhack.io) */
 
 /* But with some custom modifications */
@@ -1866,6 +1870,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     color: #c3cfd5;
 }
 
+.module-copy--emphasized a {
+  color: inherit;
+}
+
+.module-copy--emphasized a:hover {
+  color: #fff;
+}
+
 @media (min-width: 700px) {
 
   .module-copy--emphasized {
@@ -1988,6 +2000,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     position: relative;
     overflow: hidden;
     height: 50vh;
+    min-height: 250px;
     max-height: 500px;
     border-radius: 4px;
     background-size: cover;

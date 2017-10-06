@@ -8,6 +8,13 @@
     border-radius: var(--border-radius);
     color: var(--module-copy-emphasized-color);
 
+    & a {
+      color: inherit;
+      &:hover {
+        color: #fff;
+      }
+    }
+
     @media (--breakpoint-desktop) {
       flex-wrap: nowrap;
     }
