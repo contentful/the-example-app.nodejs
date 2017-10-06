@@ -31,11 +31,10 @@ exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
     .then((response) => response.items)
 }, 'Course')
 
-exports.getLandingPage = (locale = 'en-US', api = `cda`) => {
-  // our Home page is fully configureable via Contentful
+exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
+  // Landing pages like the home or about page are fully controlable via Contentful.
   const client = api === 'cda' ? cdaClient : cpaClient
-  // TODO slug should be renamed to `contentful-the-example-app` or something ....
-  return client.getEntries({content_type: 'landingPage', locale, 'fields.slug': 'contentful-university', include: 10})
+  return client.getEntries({content_type: 'landingPage', locale, 'fields.slug': slug, include: 10})
     .then((response) => response.items[0])
 }
 

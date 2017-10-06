@@ -1,0 +1,18 @@
+extends layout
+
+include mixins/_moduleCopy
+include mixins/_moduleHeroImage
+include mixins/_moduleHighlightedCourse
+
+block content
+  .modules-container
+      each module in landingPage.fields.contentModules
+        case module.sys.contentType.sys.id
+          when 'landingPageModuleCopy'
+            +moduleCopy(module)
+
+          when 'landingPageModuleHeroImage'
+            +moduleHeroImage(module)
+
+          when 'landingPageModuleHighlightedCourse'
+            +moduleHighlightedCourse(module, module.fields.course)
