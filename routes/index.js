@@ -6,7 +6,14 @@ const router = express.Router()
 /* GET the home landing page. */
 router.get('/', catchErrors(async function (req, res, next) {
   const landingPage = await getLandingPage('home', req.query.locale, req.query.api)
-  res.render('landingPage', { title: 'Contentful University', landingPage })
+  let title = landingPage.fields.title
+  if (!title || landingPage.fields.slug === 'home') {
+    title = 'The Example App'
+  }
+  res.render('landingPage', {
+    title,
+    landingPage
+  })
 }))
 
 module.exports = router
