@@ -25,3 +25,9 @@ p, label, .form-item {
       }
     }
 }
+
+p {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

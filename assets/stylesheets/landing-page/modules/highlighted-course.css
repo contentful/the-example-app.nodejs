@@ -3,6 +3,7 @@
     position: relative;
     overflow: hidden;
     height: 50vh;
+    min-height: 250px;
     max-height: 500px;
     border-radius: var(--border-radius);
     background-size: cover;
