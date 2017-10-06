@@ -5,12 +5,9 @@
     height: 50vh;
     max-height: 500px;
     border-radius: var(--border-radius);
-  }
-
-  @element image {
-    display: block;
-    width: 100%;
-    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 
   @element overlay {

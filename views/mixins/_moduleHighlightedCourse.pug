@@ -2,10 +2,7 @@ include ./_courseCard
 
 mixin moduleHighlightedCourse(module, course)
   .module.module-higlighted-course
-    .module-higlighted-course__wrapper
-      .module-higlighted-course__image-wrapper
-        if course.fields.image
-          img.module-hero-image__image(src=`${course.fields.image.fields.file.url}` alt=`${course.fields.image.fields.title}`)
+    .module-higlighted-course__wrapper(style=`background-image: url(${course.fields.image.fields.file.url});`)
       .module-higlighted-course__overlay
       .module-higlighted-course__content
         if(course.fields.categories)

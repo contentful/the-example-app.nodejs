@@ -1874,12 +1874,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     height: 50vh;
     max-height: 500px;
     border-radius: 4px;
-}
-
-.module-higlighted-course__image {
-    display: block;
-    width: 100%;
-    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .module-higlighted-course__overlay {
