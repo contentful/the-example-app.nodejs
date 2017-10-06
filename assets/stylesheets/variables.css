@@ -58,6 +58,12 @@
   --cta-bg-hover: var(--color-palette-blue-medium);
   --cta-radius: 3px;
 
+  --module-copy-emphasized-bg: #8091a5;
+  --module-copy-emphasized-color: #c3cfd5;
+  --module-copy-emphasized-headlines-color: #fff;
+  --module-copy-emphasized-cta-bg: #536171;
+  --module-copy-emphasized-cta-color: #fff;
+
   --code-bg: var(--color-bg-grey);
   --code-trigger-bg: color(var(--color-bg-grey) shade(20%));
   --code-trigger-bg-active: var(--code-bg);

@@ -1,7 +1,10 @@
 mixin moduleCopy(module)
-  .module.module-copy
-    h1.module-copy__headline #{module.fields.headline}
-    div.module-copy__copy !{helpers.markdown(module.fields.copy)}
-
-    if module.fields.ctaTitle && module.fields.ctaLink
-      a.cta(href=module.fields.ctaLink)= module.fields.ctaTitle
+  - const style = module.fields.visualStyle === 'Emphasized' ? `--emphasized` : ''
+  .module
+    div(class=`module-copy${style}`)
+      div(class=`module-copy__first${style}`)
+        h1(class=`module-copy__headline${style}`) #{module.fields.headline}
+        div(class=`module-copy__copy${style}`) !{helpers.markdown(module.fields.copy)}
+      div(class=`module-copy__second${style}`)
+        if module.fields.ctaTitle && module.fields.ctaLink
+          a.cta(class=`module-copy__cta${style}` href=module.fields.ctaLink)= module.fields.ctaTitle
