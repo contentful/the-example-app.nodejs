@@ -27,14 +27,24 @@ exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   // to get all the courses we request all the entries
   // with the content_type `course` from Contentful
   const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({content_type: 'course', locale, include: 10})
+  return client.getEntries({
+    content_type: 'course',
+    locale,
+    order: 'sys.createdAt',
+    include: 10
+  })
     .then((response) => response.items)
 }, 'Course')
 
 exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
   // Landing pages like the home or about page are fully controlable via Contentful.
   const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({content_type: 'landingPage', locale, 'fields.slug': slug, include: 10})
+  return client.getEntries({
+    content_type: 'landingPage',
+    locale,
+    'fields.slug': slug,
+    include: 10
+  })
     .then((response) => response.items[0])
 }
 
@@ -43,7 +53,12 @@ exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
   // That's why we are using getEntries with a query instead of getEntry(entryId)
   // make sure to specify the content_type whenever you want to perform a query
   const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({content_type: 'course', 'fields.slug': slug, locale, include: 10})
+  return client.getEntries({
+    content_type: 'course',
+    'fields.slug': slug,
+    locale,
+    include: 10
+  })
     .then((response) => response.items[0])
 }, 'Course')
 
@@ -59,6 +74,7 @@ exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) 
     content_type: 'course',
     'fields.categories.sys.id': category,
     locale,
+    order: '-sys.createdAt',
     include: 10
   })
     .then((response) => response.items)
