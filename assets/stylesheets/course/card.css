@@ -35,7 +35,7 @@
   }
 
   @element title {
-    flex: 0 1 12vh;
+    flex: 0 1 15vh;
     max-height: 120px;
     margin: 0;
     overflow: hidden;
@@ -51,8 +51,8 @@
   }
 
   @element description {
-    flex: 0 1 20vh;
-    max-height: 180px;
+    flex: 0 1 15vh;
+    max-height: 120px;
     overflow: hidden;
     margin: 0 0 var(--grid-gutter);
 
