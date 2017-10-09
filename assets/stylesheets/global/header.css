@@ -23,14 +23,24 @@
   @element upper-first {
     flex: 1 1 auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+
     margin-bottom: calc(var(--grid-gutter) / 2);
 
     @media (--breakpoint-desktop) {
       flex: 0 1 auto;
+      flex-direction: row;
       margin-bottom: 0;
-      & div + div {
-        margin-left: var(--grid-gutter);
+    }
+
+    & div + div {
+      margin: calc(var(--grid-gutter) / 2) 0 0;
+
+
+      @media (--breakpoint-desktop) {
+        margin: 0 0 0 calc(var(--grid-gutter) / 2);
       }
     }
   }
@@ -38,13 +48,20 @@
   @element upper-second {
     flex: 1 1 auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-
+    align-items: center;
 
     @media (--breakpoint-desktop) {
       flex: 0 1 auto;
-      & div + div {
-        margin-left: var(--grid-gutter);
+      flex-direction: row;
+    }
+
+    & div + div {
+      margin: calc(var(--grid-gutter) / 2) 0 0;
+
+      @media (--breakpoint-desktop) {
+        margin: 0 0 0 calc(var(--grid-gutter) / 2);
       }
     }
   }

@@ -1,6 +1,6 @@
 @block footer {
   margin-top: var(--grid-gutter) 0;
-  padding-top: var(--grid-gutter);
+  padding: var(--grid-gutter) 0;
 
   @element upper {
     display: flex;
