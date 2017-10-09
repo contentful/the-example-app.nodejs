@@ -2137,7 +2137,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .lesson-module {
-  margin-top: 22px
+  margin-top: 22px;
 }
 
 .lesson-module img {
@@ -2166,17 +2166,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .lesson-module-code__trigger {
     display: inline-block;
 
+    height: 30px;
     padding: 0 1em;
     margin-right: 1em;
 
-    background: rgb(198, 199, 200);
+    background: #fff;
 
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-top: 3px solid transparent;
 
+    line-height: 30px;
     font-family: 'robotomedium', Helvetica, sans-serif;
-    font-size: 0.7em;
-    color: #fff;
+    font-size: 0.875em;
+    color: #8091a5;
 
     cursor: pointer;
     -webkit-user-select: none;
@@ -2189,10 +2190,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   margin-right: 0;
 }
 
+.lesson-module-code__trigger:hover {
+  color: #3c80cf;
+}
+
 .lesson-module-code__trigger--active {
       background: #f7f9fa;
-      color: #a9b9c0;
+      color: #536171 !important;
       cursor: default;
+      border-color: #c3cfd5;
 }
 
 .lesson-module-code__code {

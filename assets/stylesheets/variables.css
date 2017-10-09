@@ -65,8 +65,9 @@
   --module-copy-emphasized-cta-color: #fff;
 
   --code-bg: var(--color-bg-grey);
-  --code-trigger-bg: color(var(--color-bg-grey) shade(20%));
+  --code-trigger-bg: #fff;
   --code-trigger-bg-active: var(--code-bg);
-  --code-trigger-color: #fff;
-  --code-trigger-color-active: var(--color-text-dark-bg-grey);
+  --code-trigger-color: var(--color-text-grey);
+  --code-trigger-color-active: var(--color-text-default);
+  --code-trigger-border-active: #c3cfd5;
 }

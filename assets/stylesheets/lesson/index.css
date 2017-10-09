@@ -1,4 +1,4 @@
-.lesson-module {
+@block lesson-module {
   margin-top: var(--grid-gutter);
 
   & img {
@@ -26,16 +26,17 @@
   @element trigger {
     display: inline-block;
 
+    height: 30px;
     padding: 0 1em;
     margin-right: 1em;
 
     background: var(--code-trigger-bg);
 
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border-top: 3px solid transparent;
 
+    line-height: 30px;
     font-family: var(--font-medium);
-    font-size: 0.7em;
+    font-size: 0.875em;
     color: var(--code-trigger-color);
 
     cursor: pointer;
@@ -45,10 +46,15 @@
       margin-right: 0;
     }
 
+    &:hover {
+      color: var(--color-link-content-hover);
+    }
+
     @modifier active {
       background: var(--code-trigger-bg-active);
-      color: var(--code-trigger-color-active);
+      color: var(--code-trigger-color-active) !important;
       cursor: default;
+      border-color: var(--code-trigger-border-active);
     }
   }
 
