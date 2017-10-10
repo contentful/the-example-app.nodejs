@@ -1,6 +1,6 @@
 dist: trusty
 addons:
-  chrome: stable
+  chrome: beta
 install:
   - npm install
 language: node_js
