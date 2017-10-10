@@ -44,9 +44,9 @@
   "report": ["CI"],
   "engine": "chrome",
   "engineFlags": [],
-  "asyncCaptureLimit": 5,
-  "asyncCompareLimit": 50,
-  "debug": false,
+  "asyncCaptureLimit": 1,
+  "asyncCompareLimit": 1,
+  "debug": true,
   "debugWindow": false,
   "delay": 500,
   "misMatchThreshold": 0.3
