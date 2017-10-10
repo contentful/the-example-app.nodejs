@@ -7,8 +7,16 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
+<<<<<<< HEAD
 const routes = require('./routes/index')
 
+=======
+const index = require('./routes/index')
+const courses = require('./routes/courses')
+const about = require('./routes/about')
+const settings = require('./routes/settings')
+const sitemap = require('./routes/sitemap')
+>>>>>>> Upgrade reference images and remove categories route
 const { initClient, getSpace } = require('./services/contentful')
 const breadcrumb = require('./lib/breadcrumb')
 const app = express()
@@ -103,7 +111,15 @@ app.use(async function (req, res, next) {
   next()
 })
 
+<<<<<<< HEAD
 app.use('/', routes)
+=======
+app.use('/', index)
+app.use('/courses', courses)
+app.use('/about', about)
+app.use('/settings', settings)
+app.use('/sitemap', sitemap)
+>>>>>>> Upgrade reference images and remove categories route
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

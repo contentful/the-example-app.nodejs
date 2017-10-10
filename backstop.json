@@ -22,12 +22,16 @@
       "url": "http://localhost:3007/courses"
     },
     {
-      "label": "Categories",
-      "url": "http://localhost:3007/categories"
+      "label": "Course: How this application is built",
+      "url": "http://localhost:3007/courses/example-application"
     },
     {
-      "label": "About",
-      "url": "http://localhost:3007/categories"
+      "label": "Lesson: SDK Basics",
+      "url": "http://localhost:3000/courses/example-application/lessons/sdk-basics"
+    },
+    {
+      "label": "Settings",
+      "url": "http://localhost:3007/settings"
     }
   ],
   "paths": {
