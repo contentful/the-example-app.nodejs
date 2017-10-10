@@ -40,8 +40,9 @@
     padding-top: calc(var(--grid-gutter) / 4);
 
     @media (--breakpoint-desktop) {
-      flex: 0 1 auto;
-      width: var(--layout-sidebar-content-width);
+      flex: 0 1 var(--layout-sidebar-content-width);
+      width: 100%;
+      box-sizing: border-box;
       margin-left: var(--grid-gutter);
     }
 
