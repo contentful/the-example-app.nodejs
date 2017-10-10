@@ -1,6 +1,4 @@
 dist: trusty
-addons:
-  chrome: beta
 env:
   - CHROME_PATH=/usr/bin/google-chrome-beta
 install:
@@ -14,6 +12,7 @@ after_script:
   - mkdir reports
   - mv ./backstop_data/html_report ./reports/html_report_`date +%Y-%m-%d_%H-%M-%S`
 addons:
+  chrome: beta
   artifacts: true
   s3_region: "us-east-1"
   debug: true
