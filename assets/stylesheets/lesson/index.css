@@ -1,5 +1,5 @@
 @block lesson-module {
-  margin-top: var(--grid-gutter);
+  margin-top: var(--spacing);
 
   & img {
     width: 100%;
@@ -9,7 +9,7 @@
 
 @block lesson {
   @element title {
-    margin-bottom: calc(var(--grid-gutter));
+    margin-bottom: var(--spacing);
   }
 
   @element cta {

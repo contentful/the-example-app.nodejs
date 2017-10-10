@@ -2,7 +2,7 @@
 
 :root {
   --content-max-width: 980px;
-  --grid-gutter: 22px;
+  --spacing: 32px;
   --border-radius: 4px;
 
   --line-height: 1.5em;

@@ -39,7 +39,7 @@
 
   /* Layout */
   --fh-layout-display: block;
-  --fh-layout-margin: var(--grid-gutter) 0; /* change to "10px auto" to center */
+  --fh-layout-margin: calc(var(--spacing) * 1) 0; /* change to "10px auto" to center */
   --fh-layout-text-align: left;
 }
 
@@ -83,7 +83,7 @@ label {
   font-size: 0.875em;
 
   & + input {
-    margin-top: calc(var(--grid-gutter) * 0.25)
+    margin-top: calc(var(--spacing) * 0.25)
   }
 }
 
@@ -136,6 +136,7 @@ input[type="url"],
 input[type="week"],
 input[list] {
   height: var(--fh-input-height);
+  line-height: var(--fh-input-height);
   -webkit-appearance: none;
 }
 

@@ -13,6 +13,6 @@
   }
 
   & + .module {
-    margin-top: var(--grid-gutter);
+    margin-top: var(--spacing);
   }
 }

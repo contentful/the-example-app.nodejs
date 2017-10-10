@@ -1,5 +1,5 @@
 @block layout-sidebar {
-  padding: 0 calc(var(--grid-gutter) / 2);
+  padding: 0 calc(var(--spacing) / 2);
   max-width: var(--content-max-width);
   margin: 0 auto;
 
@@ -18,7 +18,7 @@
   }
 
   @element sidebar-header {
-    padding: calc(var(--grid-gutter) / 2) var(--grid-gutter);
+    padding: calc(var(--spacing) / 2) var(--spacing);
     border-bottom: 1px solid var(--color-sidebar-seperator);
   }
 
@@ -31,19 +31,18 @@
 
   @element sidebar-content {
     background: var(--color-sidebar-bg);
-    padding: var(--grid-gutter);
+    padding: calc(var(--spacing) * 0.5);
   }
 
   @element content {
     display: flex;
     flex-direction: column;
-    padding-top: calc(var(--grid-gutter) / 4);
 
     @media (--breakpoint-desktop) {
       flex: 0 1 var(--layout-sidebar-content-width);
       width: 100%;
       box-sizing: border-box;
-      margin-left: var(--grid-gutter);
+      margin-left: var(--spacing);
     }
 
     & > * {
