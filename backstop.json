@@ -14,24 +14,47 @@
   ],
   "scenarios": [
     {
+      "label": "Global elements",
+      "url": "http://localhost:3007/",
+      "selectors": [
+        ".main__header",
+        ".main__footer"
+      ]
+    },
+    {
       "label": "Homepage",
-      "url": "http://localhost:3007/"
+      "url": "http://localhost:3007/",
+      "selectors": [
+        ".main__content"
+      ]
     },
     {
       "label": "Courses",
-      "url": "http://localhost:3007/courses"
+      "url": "http://localhost:3007/courses",
+      "selectors": [
+        ".main__content"
+      ]
     },
     {
       "label": "Course: How this application is built",
-      "url": "http://localhost:3007/courses/example-application"
+      "url": "http://localhost:3007/courses/example-application",
+      "selectors": [
+        ".main__content"
+      ]
     },
     {
       "label": "Lesson: SDK Basics",
-      "url": "http://localhost:3000/courses/example-application/lessons/sdk-basics"
+      "url": "http://localhost:3000/courses/example-application/lessons/sdk-basics",
+      "selectors": [
+        ".main__content"
+      ]
     },
     {
       "label": "Settings",
-      "url": "http://localhost:3007/settings"
+      "url": "http://localhost:3007/settings",
+      "selectors": [
+        ".main__content"
+      ]
     }
   ],
   "paths": {
@@ -41,12 +64,12 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "report": ["CI"],
+  "report": ["CI", "browser"],
   "engine": "chrome",
   "engineFlags": [],
   "asyncCaptureLimit": 1,
   "asyncCompareLimit": 1,
-  "debug": true,
+  "debug": false,
   "debugWindow": false,
   "delay": 500,
   "misMatchThreshold": 0.3
