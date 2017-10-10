@@ -1,6 +1,8 @@
 dist: trusty
 addons:
   chrome: beta
+env:
+  - CHROME_PATH=/usr/bin/google-chrome-beta
 install:
   - npm install
 language: node_js
