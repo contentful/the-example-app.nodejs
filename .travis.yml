@@ -10,10 +10,12 @@ after_script:
   - mkdir reports
   - mv ./backstop_data/html_report ./reports/html_report_`date +%Y-%m-%d_%H-%M-%S`
   - mv ./backstop_data/ci_report ./reports/ci_report_`date +%Y-%m-%d_%H-%M-%S`
+
 addons:
   chrome: stable
-  artifacts: true
-  s3_region: "us-east-1"
-  debug: true
-  paths:
-    - "./reports/"
+  artifacts:
+    s3_region: "us-east-1"
+    paths:
+      - "./reports/"
+    debug: true
+
