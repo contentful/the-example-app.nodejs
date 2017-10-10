@@ -7,10 +7,8 @@ node_js:
 script:
   - npm run test
 after_script:
-  - mkdir reports
-  - mv ./backstop_data/html_report ./reports/html_report_`date +%Y-%m-%d_%H-%M-%S`
-  - mv ./backstop_data/ci_report ./reports/ci_report_`date +%Y-%m-%d_%H-%M-%S`
-
+  - mkdir artifacts
+  - tar -czf ./artifacts/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
 addons:
   chrome: stable
   artifacts:
