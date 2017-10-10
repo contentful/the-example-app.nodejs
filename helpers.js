@@ -15,4 +15,3 @@ function removeIvalidDataURL (content) {
   let regex = /data:\S+;base64\S*/gm
   return content.replace(regex, '#')
 }
-

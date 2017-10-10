@@ -27,21 +27,10 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: calc(var(--grid-gutter) / 2);
-
     @media (--breakpoint-desktop) {
       flex: 0 1 auto;
       flex-direction: row;
       margin-bottom: 0;
-    }
-
-    & div + div {
-      margin: calc(var(--grid-gutter) / 2) 0 0;
-
-
-      @media (--breakpoint-desktop) {
-        margin: 0 0 0 calc(var(--grid-gutter) / 2);
-      }
     }
   }
 
@@ -56,14 +45,6 @@
       flex: 0 1 auto;
       flex-direction: row;
     }
-
-    & div + div {
-      margin: calc(var(--grid-gutter) / 2) 0 0;
-
-      @media (--breakpoint-desktop) {
-        margin: 0 0 0 calc(var(--grid-gutter) / 2);
-      }
-    }
   }
 
   @element upper-link {
@@ -73,6 +54,11 @@
 
   @element upper-copy {
     display: inline-flex;
+    margin: 0 0 calc(var(--grid-gutter) / 2);
+
+    @media (--breakpoint-desktop) {
+      margin: 0 calc(var(--grid-gutter) / 2) 0 0;
+    }
   }
 
   @element upper-icon {
@@ -107,6 +93,10 @@
       height: auto;
       margin-right: calc(var(--grid-gutter) / 2);
     }
+
+    @media (--breakpoint-desktop) {
+      margin: 0 calc(var(--grid-gutter) / 2) 0 0;
+    }
   }
 
   @element logo {
@@ -134,52 +124,98 @@
 
     @media (--breakpoint-desktop) {
       flex: 0 0 auto;
+      flex-direction: row;
+    }
+  }
+
+  @element controls_group {
+    flex: 0 0 auto;
+    position: relative;
+
+    display: flex;
+    margin: 0 0 calc(var(--grid-gutter) / 2);
+    padding: 0 calc(var(--grid-gutter) / 2);
+
+    border: none;
+    background: var(--color-palette-blue-medium);
+    border-radius: var(--border-radius);
+    color: inherit;
+
+    &:last-child {
+      margin: 0;
     }
 
-    & form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    @media (--breakpoint-desktop) {
+      margin: 0 calc(var(--grid-gutter) / 2) 0 0;
+    }
+  }
 
-      @media (--breakpoint-desktop) {
-        justify-content: flex-end;
+  @element controls_label {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-medium);
+    cursor: pointer;
+  }
+
+  @element controls_dropdown {
+    position: absolute;
+    z-index: 2;
+    box-sizing: border-box;
+
+    width: 260px;
+    max-width: 90vw;
+    margin: calc(var(--grid-gutter) / 2 - 4px) 0 0;
+
+    opacity: 0;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s opacity ease;
+    pointer-events: none;
+
+    @modifier active {
+      opacity: 1;
+      pointer-events: all;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+
+        background-color: inherit;
+        transform: translateX(-50%) rotate(45deg);
       }
+    }
+  }
 
-      & .group {
-        flex: 0 0 auto;
-        display: flex;
-        padding: 0 calc(var(--grid-gutter) / 2);
-        margin: 0;
+  @element controls_help_text {
+    padding: calc(var(--grid-gutter) / 2);
+    color: var(--color-text-grey);
+  }
 
-        border: none;
-        background: var(--color-palette-blue-medium);
-        border-radius: var(--border-radius);
-        color: inherit;
+  @element controls_button {
+    box-sizing: border-box;
+    height: auto;
+    width: 100%;
+    margin: 0;
 
-        & + .group {
-          margin-left: var(--grid-gutter)
-        }
+    border-radius: 0;
+    background: var(--header-dropdown-bg);
 
-        & select,
-        & label {
-          flex: 0 0 auto;
-          display: inline-block;
-          margin-top: 0;
-          margin-bottom: 0;
+    color: var(--header-dropdown-btn-color);
+    font-size: 1em;
 
-          color: inherit;
-          font-weight: normal;
-          font-family: var(--font-medium);
-          font-size: 0.8em;
+    &:hover {
+      background: var(--header-dropdown-bg-hover);
+      color: var(--header-dropdown-btn-color);
+    }
 
-          background: transparent;
-          border: none;
-        }
-
-        & select {
-          margin-top: 2px;
-        }
-      }
+    @modifier active {
+      background: var(--header-dropdown-bg-active);
     }
   }
 }

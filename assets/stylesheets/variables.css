@@ -58,6 +58,11 @@
   --cta-bg-hover: var(--color-palette-blue-medium);
   --cta-radius: 3px;
 
+  --header-dropdown-btn-color: #263545;
+  --header-dropdown-bg: #fff;
+  --header-dropdown-bg-active: #d3dce0;
+  --header-dropdown-bg-hover: #e5ebed;
+
   --module-copy-emphasized-bg: #8091a5;
   --module-copy-emphasized-color: #c3cfd5;
   --module-copy-emphasized-headlines-color: #fff;
