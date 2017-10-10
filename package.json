@@ -11,11 +11,11 @@
     "styles:watch": "npm run styles -- -w"
   },
   "engines": {
-    "node": "8.4.0"
+    "node": ">=8.4.0"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
-    "contentful": "^4.6.1",
+    "contentful": "^5.0.0-rc3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "dotenv": "^4.0.0",
@@ -42,8 +42,5 @@
     "postcss-reporter": "^5.0.0",
     "postcss-url": "^7.1.2",
     "pug-lint": "^2.5.0"
-  },
-  "engines": {
-    "node": "8"
   }
 }
