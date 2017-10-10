@@ -6,7 +6,7 @@
   }
 
   @element item {
-    margin: 0 0 calc(var(--grid-gutter) / 4);
+    margin: 0 0 calc(var(--spacing) * 0.5);
     padding: 0;
     font-size: 0.9em;
     line-height: 1.8;

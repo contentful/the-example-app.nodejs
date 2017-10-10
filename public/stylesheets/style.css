@@ -524,6 +524,10 @@ p a:hover, label a:hover, .form-item a:hover {
   text-decoration: underline;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -571,7 +575,7 @@ fieldset,
   vertical-align: top;
 
   display: block;
-  margin: 22px 0;
+  margin: 32px 0;
   text-align: left;
 }
 
@@ -582,14 +586,14 @@ datalist {
 
 label {
   display: block;
-  margin: 22px 0 0 0;
+  margin: 32px 0 0 0;
   text-align: left;
   font-weight: bold;
   font-size: 0.875em
 }
 
 label + input {
-  margin-top: 5.5px;
+  margin-top: 8px;
 }
 
 /* Input & Textarea ------------------ */
@@ -641,6 +645,7 @@ input[type="url"],
 input[type="week"],
 input[list] {
   height: 40px;
+  line-height: 40px;
   -webkit-appearance: none;
 }
 
@@ -772,11 +777,11 @@ input[type="reset"]:focus,
 }
 
 .form-item + .form-item {
-  margin-top: 22px;
+  margin-top: 32px;
 }
 
 .form-item input {
-  margin-bottom: 5.5px;
+  margin: 0 0 8px;
 }
 
 .form-item__help-text {
@@ -803,8 +808,8 @@ input[type="reset"]:focus,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 22px 0;
-  padding: 22px;
+  margin: 32px 0;
+  padding: 16px;
   border-radius: 4px;
 
   font-size: 0.875em;
@@ -824,7 +829,7 @@ input[type="reset"]:focus,
             flex: 0 0 auto;
     width: 24px;
     height: 24px;
-    margin-right: 11px;
+    margin-right: 8px;
 }
 
 .status-block__content {
@@ -854,7 +859,7 @@ input[type="reset"]:focus,
 }
 
 .layout-no-sidebar {
-  padding: 0 11px;
+  padding: 0 16px;
   max-width: 980px;
   margin: 0 auto;
   width: 100%;
@@ -865,12 +870,12 @@ input[type="reset"]:focus,
 @media (min-width: 700px) {
 
   .layout-no-sidebar {
-    padding-left: 250px;
+    padding-left: 260px;
   }
 }
 
 .layout-sidebar {
-  padding: 0 11px;
+  padding: 0 16px;
   max-width: 980px;
   margin: 0 auto;
 }
@@ -901,7 +906,7 @@ input[type="reset"]:focus,
 }
 
 .layout-sidebar__sidebar-header {
-    padding: 11px 22px;
+    padding: 16px 32px;
     border-bottom: 1px solid #eeeeee;
 }
 
@@ -914,7 +919,7 @@ input[type="reset"]:focus,
 
 .layout-sidebar__sidebar-content {
     background: #f7f9fa;
-    padding: 22px;
+    padding: 16px;
 }
 
 .layout-sidebar__content {
@@ -925,7 +930,6 @@ input[type="reset"]:focus,
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    padding-top: 5.5px;
 }
 
 @media (min-width: 700px) {
@@ -937,7 +941,7 @@ input[type="reset"]:focus,
     width: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    margin-left: 22px;
+    margin-left: 32px;
   }
 }
 
@@ -961,9 +965,9 @@ input[type="reset"]:focus,
 
   .grid-list {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc(50% - 22px);
-            flex: 0 0 calc(50% - 22px);
-    margin: 0 -11px;
+        -ms-flex: 0 0 calc(50% - 32px);
+            flex: 0 0 calc(50% - 32px);
+    margin: 0 -16px;
   }
 }
 
@@ -971,7 +975,7 @@ input[type="reset"]:focus,
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
-    margin-bottom: 22px;
+    margin-bottom: 32px;
 }
 
 @media (min-width: 700px) {
@@ -980,14 +984,14 @@ input[type="reset"]:focus,
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc(50% - 22px);
-            flex: 0 0 calc(50% - 22px);
-    margin: 0 11px 22px;
+        -ms-flex: 0 0 calc(50% - 32px);
+            flex: 0 0 calc(50% - 32px);
+    margin: 0 16px 32px;
   }
 }
 
 .header {
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 @media (min-width: 700px) {
@@ -1000,7 +1004,7 @@ input[type="reset"]:focus,
 
 .header__upper-wrapper {
     background: #3072be;
-    padding: 11px 0;
+    padding: 8px 0;
     color: #abc6e5;
 }
 
@@ -1098,13 +1102,13 @@ input[type="reset"]:focus,
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    margin: 0 0 11px;
+    margin: 0 0 8px;
 }
 
 @media (min-width: 700px) {
 
   .header__upper-copy {
-    margin: 0 11px 0 0;
+    margin: 0 16px 0 0;
   }
 }
 
@@ -1112,7 +1116,7 @@ input[type="reset"]:focus,
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin-right: 5.5px;
+    margin-right: 8px;
 }
 
 .header__lower-wrapper {}
@@ -1126,7 +1130,7 @@ input[type="reset"]:focus,
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    padding: 22px 0 5.5px;
+    padding: 16px 0 8px;
     border-bottom: 1px solid #e5ebed;
 }
 
@@ -1147,13 +1151,13 @@ input[type="reset"]:focus,
   display: inline-block;
   width: 24px;
   height: auto;
-  margin-right: 11px;
+  margin-right: 8px;
 }
 
 @media (min-width: 700px) {
 
   .header__title {
-    margin: 0 11px 0 0;
+    margin: 0 16px 0 0;
   }
 }
 
@@ -1175,6 +1179,9 @@ input[type="reset"]:focus,
     -webkit-box-flex: 0;
         -ms-flex: 0 0 200px;
             flex: 0 0 200px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
   }
 }
 
@@ -1224,8 +1231,8 @@ input[type="reset"]:focus,
     display: -ms-flexbox;
 
     display: flex;
-    margin: 0 0 11px;
-    padding: 0 11px;
+    margin: 0 0 16px;
+    padding: 2px 16px;
 
     border: none;
     background: #3c80cf;
@@ -1240,14 +1247,13 @@ input[type="reset"]:focus,
 @media (min-width: 700px) {
 
   .header__controls_group {
-    margin: 0 11px 0 0;
+    margin: 0 24px 0 0;
   }
 }
 
 .header__controls_label {
     position: relative;
     z-index: 1;
-    font-family: 'robotomedium', Helvetica, sans-serif;
     cursor: pointer;
 }
 
@@ -1259,7 +1265,7 @@ input[type="reset"]:focus,
 
     width: 260px;
     max-width: 90vw;
-    margin: 7px 0 0;
+    margin: 12px 0 0;
 
     opacity: 0;
     background: #fff;
@@ -1291,7 +1297,7 @@ input[type="reset"]:focus,
 }
 
 .header__controls_help_text {
-    padding: 11px;
+    padding: 16px;
     color: #8091a5;
 }
 
@@ -1319,8 +1325,11 @@ input[type="reset"]:focus,
 }
 
 .footer {
-  margin-top: 22px 0;
-  padding: 22px 0;
+  padding: 32px 0;
+}
+
+.footer p {
+  margin: 0;
 }
 
 .footer__upper {
@@ -1373,7 +1382,7 @@ input[type="reset"]:focus,
 }
 
 .footer__apps a + a {
-  margin-left: 22px;
+  margin-left: 8px;
 }
 
 .footer__apps a img {
@@ -1406,7 +1415,7 @@ input[type="reset"]:focus,
             flex: 0 0 auto;
     width: 24px;
     height: 27px;
-    margin-right: 22px;
+    margin-right: 16px;
 }
 
 .footer__disclaimer-text {
@@ -1429,11 +1438,11 @@ input[type="reset"]:focus,
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 0 22px;
+    padding: 0 0 0 32px;
 }
 
 .footer__social a + a {
-  margin-left: 22px;
+  margin-left: 16px;
 }
 
 .footer__social img {
@@ -1447,11 +1456,11 @@ input[type="reset"]:focus,
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-left: 11px;
+    padding-left: 32px;
 }
 
 .table-of-contents__item {
-    margin: 0 0 5.5px;
+    margin: 0 0 8px;
     padding: 0;
     font-size: 0.9em;
     line-height: 1.8;
@@ -1480,7 +1489,7 @@ input[type="reset"]:focus,
 
 .table-of-contents__link.active:before {
   content: '';
-  left: -33px;
+  left: -44px;
   bottom: 0;
   width: 3px;
   background: #536171;
@@ -1502,7 +1511,7 @@ input[type="reset"]:focus,
   width: 16px;
   height: 16px;
   top: 50%;
-  left: -22px;
+  left: -32px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   background: url('/images/icon-viewed.svg') no-repeat center center;
@@ -1518,7 +1527,7 @@ input[type="reset"]:focus,
 }
 
 .sidebar-menu__item {
-    margin: 0 0 5.5px;
+    margin: 0 0 16px;
     padding: 0;
     font-size: 0.9em;
     line-height: 1.8;
@@ -1566,7 +1575,7 @@ input[type="reset"]:focus,
 }
 
 .main-navigation ul li + li {
-  margin-left: 5.5px;
+  margin-left: 8px;
 }
 
 .main-navigation ul li a {
@@ -1579,7 +1588,7 @@ input[type="reset"]:focus,
 }
 
 .main-navigation ul li a.active,
-          .main-navigation ul li a:hover {
+        .main-navigation ul li a:hover {
   background: #f7f9fa;
 }
 
@@ -1588,7 +1597,7 @@ input[type="reset"]:focus,
 }
 
 .breadcrumb {
-  margin-bottom: 5.5px;
+  margin-bottom: 8px;
 
   font-size: 0.875em;
 }
@@ -1617,7 +1626,7 @@ input[type="reset"]:focus,
   background-repeat: no-repeat;
   width: 4px;
   height: 8px;
-  padding: 0 5.5px;
+  padding: 0 8px;
 }
 
 .breadcrumb ul li:last-child:after {
@@ -1789,7 +1798,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 22px;
+  padding: 32px;
 
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
@@ -1800,7 +1809,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 0;
         -ms-flex: 0 0 1.5em;
             flex: 0 0 1.5em;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
     height: 1.5em;
 }
 
@@ -1834,8 +1843,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     margin: 0;
     overflow: hidden;
 
-    padding-bottom: 22px;
-    margin-bottom: 22px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
     border-bottom: 1px solid #e5ebed;
 
     font-family: 'robotomedium', Helvetica, sans-serif;
@@ -1850,7 +1859,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             flex: 0 1 15vh;
     max-height: 120px;
     overflow: hidden;
-    margin: 0 0 22px;
+    margin: 0 0 32px;
 
     line-height: 1.63;
     color: #536171;
@@ -1881,7 +1890,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .course {}
 
 .course__title {
-    margin-bottom: 22px;
+    margin-bottom: 32px;
 }
 
 .course__overview {
@@ -1896,13 +1905,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
             box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
     width: 228px;
-    margin: 0 0 22px 22px;
+    margin: 0 0 32px 32px;
   }
 }
 
 .course__overview-title {
     border-bottom: 1px solid #eeeeee;
-    padding: 11px 0;
+    padding: 16px 0;
     margin: 0;
     line-height: 1.31;
     font-weight: normal;
@@ -1917,7 +1926,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 11px;
+    padding: 16px;
     border-bottom: 1px solid #eeeeee;
 
     line-height: 1.54;
@@ -1930,7 +1939,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             flex: 0 0 auto;
     width: 24px;
     height: 24px;
-    padding-right: 11px;
+    padding-right: 16px;
 }
 
 .course__overview-value {
@@ -1940,7 +1949,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .course__overview-cta-wrapper {
-    padding: 11px 0;
+    padding: 16px 0;
     text-align: center;
 }
 
@@ -1963,7 +1972,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             justify-content: space-between;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 16.5px 0;
+    padding: 24px 0;
     background-color: #8091a5;
     border-radius: 4px;
     color: #c3cfd5;
@@ -1992,13 +2001,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           -ms-flex: 1 1 auto;
               flex: 1 1 auto;
       width: 50vw;
-      padding: 0 22px;
+      padding: 0 32px;
 }
 
 @media (min-width: 700px) {
 
   .module-copy__first--emphasized {
-    padding-left: 22px;
+    padding-left: 32px;
   }
 }
 
@@ -2025,7 +2034,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
-    padding: 0 22px;
+    padding: 0 32px;
     width: 20vw;
   }
 }
@@ -2138,7 +2147,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         -ms-flex-direction: column;
             flex-direction: column;
 
-    padding: 22px 44px;
+    padding: 32px 64px;
 
     color: #a9b9c0;
 }
@@ -2151,7 +2160,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .module-higlighted-course__category {
     display: inline-block;
-    margin-right: 22px;
+    margin-right: 32px;
 
     font-size: 0.75em;
     letter-spacing: 2px;
@@ -2161,7 +2170,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
-    margin: 0;
+    margin: 0 0 8px;
 
     color: #fff;
     font-size: 4vw;
@@ -2199,7 +2208,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
-    margin-top: 22px;
+    margin-top: 32px;
 }
 
 .module-higlighted-course__link {
@@ -2226,7 +2235,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .module + .module {
-  margin-top: 22px;
+  margin-top: 32px;
 }
 
 .modules-container {
@@ -2236,7 +2245,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 
 .lesson-module {
-  margin-top: 22px;
+  margin-top: 32px;
 }
 
 .lesson-module img {
@@ -2247,7 +2256,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .lesson {}
 
 .lesson__title {
-    margin-bottom: 22px;
+    margin-bottom: 32px;
 }
 
 .lesson__cta {

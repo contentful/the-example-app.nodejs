@@ -1,5 +1,5 @@
 @block breadcrumb {
-  margin-bottom: calc(var(--grid-gutter) * 0.25);
+  margin-bottom: calc(var(--spacing) * 0.25);
 
   font-size: 0.875em;
 
@@ -22,7 +22,7 @@
         background-repeat: no-repeat;
         width: 4px;
         height: 8px;
-        padding: 0 calc(var(--grid-gutter) / 4);
+        padding: 0 calc(var(--spacing) * 0.25);
       }
 
       &:last-child:after{

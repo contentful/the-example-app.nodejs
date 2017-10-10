@@ -1,10 +1,10 @@
 @block form-item {
   & + .form-item {
-    margin-top: var(--grid-gutter);
+    margin-top: var(--spacing);
   }
 
   & input {
-    margin-bottom: calc(var(--grid-gutter) * 0.25);
+    margin: 0 0 calc(var(--spacing) * 0.25);
   }
 
   @element help-text {
@@ -30,8 +30,8 @@
 
 @block status-block {
   display: flex;
-  margin: var(--grid-gutter) 0;
-  padding: calc(var(--grid-gutter) * 1);
+  margin: var(--spacing) 0;
+  padding: calc(var(--spacing) * 0.5);
   border-radius: var(--border-radius);
 
   font-size: 0.875em;
@@ -48,7 +48,7 @@
     flex: 0 0 auto;
     width: 24px;
     height: 24px;
-    margin-right: calc(var(--grid-gutter) * 0.5);
+    margin-right: calc(var(--spacing) * 0.25);
   }
 
   @element content {
