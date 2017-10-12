@@ -1,5 +1,0 @@
-@import './modules';
-
-@block modules-container {
-  flex: 1 1 auto;
-}
