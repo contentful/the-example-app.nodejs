@@ -6,9 +6,7 @@
     "start:watch": "nodemon ./bin/www --ignore public/",
     "start": "node ./bin/www",
     "lint": "eslint ./app.js routes",
-    "format": "eslint --fix . bin --ignore public node_modules",
-    "styles": "postcss  -c ./postcss.config.js ./assets/stylesheets/style.css -d ./public/stylesheets",
-    "styles:watch": "npm run styles -- -w"
+    "format": "eslint --fix . bin --ignore public node_modules"
   },
   "engines": {
     "node": ">=8.4.0"
@@ -23,7 +21,6 @@
     "jstransformer-markdown-it": "^2.0.0",
     "marked": "^0.3.6",
     "morgan": "~1.7.0",
-    "normalize.css": "^7.0.0",
     "pug": "~2.0.0-beta6",
     "serve-favicon": "~2.3.0"
   },
@@ -33,14 +30,6 @@
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
     "nodemon": "^1.12.1",
-    "postcss": "^6.0.12",
-    "postcss-atrule-bem": "^3.0.1",
-    "postcss-browser-reporter": "^0.5.0",
-    "postcss-cli": "^4.1.1",
-    "postcss-cssnext": "^3.0.2",
-    "postcss-import": "^11.0.0",
-    "postcss-reporter": "^5.0.0",
-    "postcss-url": "^7.1.2",
     "pug-lint": "^2.5.0"
   }
 }

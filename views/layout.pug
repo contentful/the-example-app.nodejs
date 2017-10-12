@@ -19,14 +19,16 @@ html
             .header__upper.layout-centered
               .header__upper-first
                 .header__title
-                  img(src='/images/icon-info.svg')
+                  svg.course__overview-icon
+                    use(xlink:href='/icons/icons.svg#info')
                   span Example Application
                 .header__upper-copy
                   a(href=`/about${queryString}`) What is this?
               .header__upper-second
                 .header__upper-copy
                   a.header__upper-link(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener')
-                    img.header__upper-icon(src='/images/icon-github.svg')
+                    svg.header__upper-icon
+                      use(xlink:href='/icons/icons.svg#github')
                     | View on Github
 
                 .header__controls
@@ -105,11 +107,9 @@ html
               .footer__social
                 p
                   a(href='https://www.facebook.com/contentful/' target='_blank' rel='noopener')
-                    img(src='/images/icon-facebook.svg' alt='Our Facebook profile')
+                    svg
+                      use(xlink:href='/icons/icons.svg#facebook')
                   a(href='https://twitter.com/contentful' target='_blank' rel='noopener')
-                    img(src='/images/icon-twitter.svg' alt='Our Twitter profile')
-  script(src='/scripts/highlight.pack.js')
-  script(src='/scripts/textFit.min.js')
-  script(src='/scripts/popper.min.js')
-  script(src='/scripts/hoverintent.min.js')
+                    svg
+                      use(xlink:href='/icons/icons.svg#twitter')
   script(src='/scripts/index.js')

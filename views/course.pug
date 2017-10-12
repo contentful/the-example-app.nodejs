@@ -29,11 +29,13 @@ block content
             h3.course__overview-title Overview
             if course.fields.duration
               .course__overview-item
-                img.course__overview-icon(src='/images/icon-duration.svg')
+                svg.course__overview-icon
+                  use(xlink:href='/icons/icons.svg#duration')
                 .course__overview-value Duration: #{course.fields.duration} min
             if course.fields.skillLevel
               .course__overview-item
-                img.course__overview-icon(src='/images/icon-skill-level.svg')
+                svg.course__overview-icon
+                  use(xlink:href='/icons/icons.svg#skill-level')
                 .course__overview-value Skill level: #{course.fields.skillLevel}
             .course__overview-cta-wrapper
               a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
