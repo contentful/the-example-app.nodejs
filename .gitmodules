@@ -1,4 +1,4 @@
 [submodule "public"]
 	path = public
-	url = git@github.com:contentful/the-example-app-assets.git
+	url = https://github.com/contentful-labs/assets.git
 	branch = master
