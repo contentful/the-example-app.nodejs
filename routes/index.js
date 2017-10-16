@@ -5,7 +5,7 @@ const router = express.Router()
 
 /* GET the home landing page. */
 router.get('/', catchErrors(async function (req, res, next) {
-  const landingPage = await getLandingPage('home', res.locals.currentLocale.code, res.locals.currentLocale.id)
+  const landingPage = await getLandingPage('home', res.locals.currentLocale.code, res.locals.currentApi.id)
   let title = landingPage.fields.title
   if (!title || landingPage.fields.slug === 'home') {
     title = 'The Example App'

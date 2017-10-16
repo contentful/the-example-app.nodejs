@@ -14,6 +14,8 @@ const categories = require('./routes/categories')
 const about = require('./routes/about')
 const settings = require('./routes/settings')
 const sitemap = require('./routes/sitemap')
+const lessons = require('./routes/lessons')
+
 const { initClient, getSpace } = require('./services/contentful')
 const breadcrumb = require('./lib/breadcrumb')
 const app = express()
@@ -90,6 +92,7 @@ app.use(async function (req, res, next) {
 
 app.use('/', index)
 app.use('/courses', courses)
+app.use('/lessons', lessons)
 app.use('/categories', categories)
 app.use('/about', about)
 app.use('/settings', settings)
