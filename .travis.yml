@@ -10,10 +10,9 @@ after_script:
   - mkdir artifacts
   - tar -czf ./artifacts/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
 addons:
-  chrome: stable
+  chrome: beta
   artifacts:
     s3_region: "us-east-1"
     paths:
       - "./artifacts/"
     debug: true
-
