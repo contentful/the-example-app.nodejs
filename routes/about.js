@@ -5,7 +5,7 @@ const router = express.Router()
 
 /* GET the about landing page. */
 router.get('/', catchErrors(async function (req, res, next) {
-  const landingPage = await getLandingPage('about', res.locals.currentLocale.code, res.locals.currentLocale.id)
+  const landingPage = await getLandingPage('about', res.locals.currentLocale.code, res.locals.currentApi.id)
   res.render('landingPage', { title: 'About', landingPage })
 }))
 
