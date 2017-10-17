@@ -18,12 +18,10 @@ html
           .header__upper-wrapper
             .header__upper.layout-centered
               .header__upper-first
-                .header__title
+                a(href=`/about${queryString}`).header__title
                   svg.course__overview-icon
                     use(xlink:href='/icons/icons.svg#info')
-                  span Example Application
-                .header__upper-copy
-                  a(href=`/about${queryString}`) What is this?
+                  span What is this example app?
               .header__upper-second
                 .header__upper-copy
                   a.header__upper-link(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener')
@@ -59,22 +57,19 @@ html
                           .header__controls_help_text Working with multiple languages? You can query the Content Delivery API for a specific locale.
                           each locale in locales
                             button.header__controls_button(type='submit' name='locale' value=locale.code class=`${locale.code === currentLocale.code ? 'header__controls_button--active' : ''}`)= `${locale.name} (${locale.code})`
-
+                .header__upper-menu
+                  a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
           .header__lower-wrapper
             .header__lower.layout-centered
               .header__logo
                 a.header__logo-link(href=`/${queryString}`)
-                  img(src='/images/logo.svg' alt='Contentful Example App')
+                  img(src='/images/logo-node.svg' alt='Contentful Example App')
               nav.header__navigation.main-navigation
                 ul
                   li
                     a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
                   li
                     a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
-                  li
-                    a(href=`/about${queryString}` class=(currentPath.startsWith('/about') ? 'active' : '')) About
-                  li
-                    a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
       .main__content
         block content
 
@@ -90,8 +85,6 @@ html
                     a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
                   li
                     a(href=`/about${queryString}` class=(currentPath.startsWith('/about') ? 'active' : '')) About
-                  li
-                    a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
               .footer__apps
                 //- a(href='#')
                 //-   img(src='/images/badge-app-store.svg')
@@ -101,7 +94,7 @@ html
               .footer__disclaimer
                 img.footer__disclaimer-logo(src='/images/contentful-logo.svg')
                 p.footer__disclaimer-text
-                  | This website and the materials found on it are for demo purposes using Contentful. You can use this to preview the content created on your Contentful account.&nbsp;
+                  | Powered by Contentful. This website and the materials found on it are for demo purposes. You can use this to preview the content created on your Contentful account.&nbsp;
                   a(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener') View on Github
                   | .
               .footer__social
