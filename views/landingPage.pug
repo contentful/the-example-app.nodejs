@@ -12,11 +12,11 @@ block content
         +breadcrumb
     each module in landingPage.fields.contentModules
       case module.sys.contentType.sys.id
-        when 'landingPageModuleCopy'
+        when 'layoutCopy'
           +moduleCopy(module)
 
-        when 'landingPageModuleHeroImage'
+        when 'layoutHeroImage'
           +moduleHeroImage(module)
 
-        when 'landingPageModuleHighlightedCourse'
+        when 'layoutHighlightedCourse'
           +moduleHighlightedCourse(module, module.fields.course)
