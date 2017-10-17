@@ -101,7 +101,7 @@ router.post('/', catchErrors(async function (req, res, next) {
   }
 
   if (!errorList.length) {
-    res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
+    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
   }
 
   // Generate error dictionary
