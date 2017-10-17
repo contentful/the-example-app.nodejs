@@ -48,12 +48,15 @@ exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
 exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
-    content_type: 'landingPage',
+    content_type: 'layout',
     locale,
     'fields.slug': slug,
     include: 10
   })
-    .then((response) => response.items[0])
+    .then((response) => {
+      console.log(response.items[0])
+      return response.items[0]
+    })
 }
 
 // the SDK supports link resolution only when you call the collection endpoints
