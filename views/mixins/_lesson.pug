@@ -11,12 +11,12 @@ mixin lesson(lesson, course, nextLesson)
     each module in lesson.fields.modules
       if module.sys.contentType
         case module.sys.contentType.sys.id
-          when 'lessonModuleCodeSnippets'
+          when 'lessonCodeSnippets'
             +lessonModuleCodeSnippet(module)
-          when 'lessonModuleCopy'
+          when 'lessonCopy'
             +lessonModuleCopy(module)
           when 'lessonModuleImage'
-            +lessonModuleImage(module)
+            +lessonImage(module)
       else
         h2 ️️⚠️ Invalid lesson module
         p

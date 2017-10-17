@@ -14,7 +14,10 @@ block content
         li Check if there's any content for this locale
         li Verify credentials are correct and up to date
         li Check the stack trace below
-
+      if error.response
+        h2 Error
+          pre.error__stack-trace
+            code.shell #{helpers.dump(error.response.data)}
       h2 Stack trace
       pre.error__stack-trace
         code.shell #{error.stack}
