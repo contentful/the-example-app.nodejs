@@ -34,7 +34,7 @@ app.use(breadcrumb())
 
 // Pass our application state and custom helpers to all our templates
 app.use(async function (req, res, next) {
-  // Inject ucstom helpers
+  // Inject custom helpers
   res.locals.helpers = helpers
 
   // Express query string
