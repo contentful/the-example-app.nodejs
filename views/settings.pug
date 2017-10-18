@@ -2,6 +2,13 @@ extends layout
 
 include mixins/_breadcrumb
 
+mixin renderErrors (errors)
+  each message in errors
+    .form-item__error-wrapper
+      svg.form-item__error-icon
+          use(xlink:href='/icons/icons.svg#error')
+      .form-item__error-message= message
+
 block content
   .layout-centered-small
     +breadcrumb
@@ -10,32 +17,39 @@ block content
 
     if success
       .status-block.status-block--success
-        img.status-block__icon(src='/images/success.svg')
+        svg.status-block__icon.status-block__icon--success
+          use(xlink:href='/icons/icons.svg#success')
         .status-block__content
           .status-block__title Changes saved successfully!
 
     if hasErrors
       .status-block.status-block--error
-        img.status-block__icon(src='/images/error.svg')
+        svg.status-block__icon.status-block__icon--error
+          use(xlink:href='/icons/icons.svg#error')
         .status-block__content
           .status-block__title Error occurred
           .status-block__message Some errors occurred. Please check the error messages next to the fields.
+
+    if space && !hasErrors
+      .status-block.status-block--info
+        svg.status-block__icon.status-block__icon--info
+          use(xlink:href='/icons/icons.svg#info')
+        .status-block__content
+          .status-block__message Connected to space “#{space.name}”
 
     form(action=`/settings` method="POST" class="form")
       .form-item
         label(for="space") Space ID
         input(type="text" name="space" value=settings.space)
         if 'space' in errors
-          each message in errors.space
-            .form-item__error-message= message
+          +renderErrors(errors.space)
         .form-item__help-text The Space ID is a unique identifier for your space.
 
       .form-item
         label(for="cda") Content Delivery API - access token
         input(type="text" name="cda" value=settings.cda)
         if 'cda' in errors
-          each message in errors.cda
-            .form-item__error-message= message
+          +renderErrors(errors.cda)
         .form-item__help-text
           | View published content using this API.&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
@@ -43,8 +57,7 @@ block content
         label(for="cpa") Content Preview API - access token
         input(type="text" name="cpa" value=settings.cpa)
         if 'cpa' in errors
-          each message in errors.cpa
-            .form-item__error-message= message
+          +renderErrors(errors.cpa)
         .form-item__help-text
           | Preview unpublished content using this API (i.e. content with “Draft” status).&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Content Preview API.

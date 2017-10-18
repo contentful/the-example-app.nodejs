@@ -1,7 +1,27 @@
 const express = require('express')
 const { createClient } = require('contentful')
+const { getSpace } = require('./../services/contentful')
 const { catchErrors } = require('../handlers/errorHandlers')
 const router = express.Router()
+
+async function renderSettings (res, opts) {
+  // Get connectred space to display the space name on top of the settings
+  let space = false
+  try {
+    space = await getSpace()
+  } catch (error) {
+    console.error(error)
+  }
+
+  res.render('settings', {
+    title: 'Settings',
+    errors: {},
+    hasErrors: false,
+    success: false,
+    space,
+    ...opts
+  })
+}
 
 /* GET settings page. */
 router.get('/', catchErrors(async function (req, res, next) {
@@ -11,12 +31,9 @@ router.get('/', catchErrors(async function (req, res, next) {
     cda: process.env.CF_ACCESS_TOKEN,
     cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
   }
-  res.render('settings', {
-    title: 'Settings',
-    settings,
-    errors: {},
-    hasErrors: false,
-    success: false
+
+  await renderSettings(res, {
+    settings
   })
 }))
 
@@ -105,6 +122,7 @@ router.post('/', catchErrors(async function (req, res, next) {
   }
 
   // Generate error dictionary
+  // Format: { FIELD_NAME: [array, of, error, messages] }
   const errors = errorList.reduce((errors, error) => {
     return {
       ...errors,
@@ -115,8 +133,7 @@ router.post('/', catchErrors(async function (req, res, next) {
     }
   }, {})
 
-  res.render('settings', {
-    title: 'Settings',
+  await renderSettings(res, {
     settings,
     errors,
     hasErrors: errorList.length > 0,
