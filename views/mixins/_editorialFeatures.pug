@@ -1,0 +1,13 @@
+mixin editorialFeatures(entry)
+  if settings.editorialFeatures
+    .editorial-features
+      .editorial-features__item
+        a.editorial-features__text(
+          href=`https://app.contentful.com/spaces/${settings.space}/entries/${entry.sys.id}`
+          target='_blank'
+          rel='noopener'
+        ) Edit in the web app
+        .editorial-features__hint-wrapper
+          svg.editorial-features__hint-icon
+            use(xlink:href='/icons/icons.svg#info')
+          .editorial-features__hint-message Edit this entry in our web app. You have to be logged in and have access to the connected space to use this feature.

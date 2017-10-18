@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_breadcrumb
+include mixins/_editorialFeatures
 include mixins/_lesson
 
 block content
@@ -25,6 +26,7 @@ block content
       else
         .course
           h1.course__title= course.fields.title
+          +editorialFeatures(course)
           .course__overview
             h3.course__overview-title Overview
             if course.fields.duration

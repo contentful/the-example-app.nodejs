@@ -25,13 +25,7 @@ async function renderSettings (res, opts) {
 
 /* GET settings page. */
 router.get('/', catchErrors(async function (req, res, next) {
-  const cookie = req.cookies.theExampleAppSettings
-  const settings = cookie || {
-    space: process.env.CF_SPACE,
-    cda: process.env.CF_ACCESS_TOKEN,
-    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
-  }
-
+  const { settings } = res.locals
   await renderSettings(res, {
     settings
   })
@@ -40,8 +34,13 @@ router.get('/', catchErrors(async function (req, res, next) {
 /* POST settings page. */
 router.post('/', catchErrors(async function (req, res, next) {
   const errorList = []
-  const { space, cda, cpa } = req.body
-  const settings = {space, cda, cpa}
+  const { space, cda, cpa, editorialFeatures } = req.body
+  const settings = {
+    space,
+    cda,
+    cpa,
+    editorialFeatures: !!editorialFeatures
+  }
 
   // Validate required fields.
   if (!space) {

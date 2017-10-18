@@ -1,3 +1,4 @@
+include _editorialFeatures
 include _lessonModuleCodeSnippet
 include _lessonModuleCopy
 include _lessonModuleImage
@@ -5,23 +6,24 @@ include _lessonModuleImage
 mixin lesson(lesson, course, nextLesson)
   .lesson
     h1.lesson__title #{lesson.fields.title}
-    div.lesson__short-description !{helpers.markdown(lesson.fields.description)}
+    +editorialFeatures(lesson)
     if lesson.fields.image
       img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
-    each module in lesson.fields.modules
-      if module.sys.contentType
-        case module.sys.contentType.sys.id
-          when 'lessonCodeSnippets'
-            +lessonModuleCodeSnippet(module)
-          when 'lessonCopy'
-            +lessonModuleCopy(module)
-          when 'lessonModuleImage'
-            +lessonImage(module)
-      else
-        h2 ️️⚠️ Invalid lesson module
-        p
-          span Could not determine type of
-          strong  #{module.sys.id}
+    .lesson__modules
+      each module in lesson.fields.modules
+        if module.sys.contentType
+          case module.sys.contentType.sys.id
+            when 'lessonCodeSnippets'
+              +lessonModuleCodeSnippet(module)
+            when 'lessonCopy'
+              +lessonModuleCopy(module)
+            when 'lessonModuleImage'
+              +lessonImage(module)
+        else
+          h2 ️️⚠️ Invalid lesson module
+          p
+            span Could not determine type of
+            strong  #{module.sys.id}
     if nextLesson
       a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) View next lesson
 
