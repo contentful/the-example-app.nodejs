@@ -53,10 +53,7 @@ exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
     'fields.slug': slug,
     include: 10
   })
-    .then((response) => {
-      console.log(response.items[0])
-      return response.items[0]
-    })
+    .then((response) => response.items[0])
 }
 
 // the SDK supports link resolution only when you call the collection endpoints
