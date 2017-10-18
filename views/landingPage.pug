@@ -1,15 +1,18 @@
 extends layout
 
 include mixins/_breadcrumb
+include mixins/_editorialFeatures
 include mixins/_moduleCopy
 include mixins/_moduleHeroImage
 include mixins/_moduleHighlightedCourse
 
 block content
+  if currentPath !== '/'
+    .layout-centered
+      +breadcrumb
+  .layout-centered
+    +editorialFeatures(landingPage)
   .modules-container
-    if currentPath !== '/'
-      .layout-centered
-        +breadcrumb
     each module in landingPage.fields.contentModules
       case module.sys.contentType.sys.id
         when 'layoutCopy'

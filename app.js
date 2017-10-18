@@ -1,6 +1,6 @@
 require('dotenv').config({ path: 'variables.env' })
 const express = require('express')
-const url = require('url')
+const querystring = require('querystring')
 const path = require('path')
 const helpers = require('./helpers')
 // const favicon = require('serve-favicon')
@@ -34,21 +34,34 @@ app.use(breadcrumb())
 
 // Pass our application state and custom helpers to all our templates
 app.use(async function (req, res, next) {
-  // Inject custom helpers
-  res.locals.helpers = helpers
-
-  // Express query string
-  const qs = url.parse(req.url).query
-  res.locals.queryString = qs ? `?${qs}` : ''
-  res.locals.query = req.query
-  res.locals.currentPath = req.path
-
   // Allow setting of API credentials via query parameters
-  let settings = req.cookies.theExampleAppSettings
+  let settings = {
+    space: process.env.CF_SPACE,
+    cda: process.env.CF_ACCESS_TOKEN,
+    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN,
+    editorialFeatures: false,
+    ...req.cookies.theExampleAppSettings
+  }
 
   const { space_id, preview_access_token, delivery_access_token } = req.query
   if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
-    settings = {space: space_id, cda: delivery_access_token, cpa: preview_access_token}
+    settings = {
+      ...settings,
+      space: space_id,
+      cda: delivery_access_token,
+      cpa: preview_access_token
+    }
+    res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
+  }
+
+  // Allow enabling of editorial features via query parameters
+  const { enable_editorial_features } = req.query
+  if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
+    delete req.query.enable_editorial_features
+    settings = {
+      ...settings,
+      editorialFeatures: true
+    }
     res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
   }
 
@@ -85,6 +98,15 @@ app.use(async function (req, res, next) {
   if (!res.locals.currentLocale) {
     res.locals.currentLocale = defaultLocale
   }
+
+  // Inject custom helpers
+  res.locals.helpers = helpers
+
+  // Make query string available in templates
+  const qs = querystring.stringify(req.query)
+  res.locals.queryString = qs ? `?${qs}` : ''
+  res.locals.query = req.query
+  res.locals.currentPath = req.path
 
   next()
 })
