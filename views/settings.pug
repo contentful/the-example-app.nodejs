@@ -39,23 +39,24 @@ block content
 
     form(action=`/settings` method="POST" class="form")
       .form-item
-        label(for="space") Space ID
-        input(type="text" name="space" value=settings.space)
+        label(for="input-space") Space ID
+        input(type="text" name="space" id="input-space" value=settings.space)
         if 'space' in errors
           +renderErrors(errors.space)
         .form-item__help-text The Space ID is a unique identifier for your space.
 
       .form-item
-        label(for="cda") Content Delivery API - access token
-        input(type="text" name="cda" value=settings.cda)
+        label(for="input-cda") Content Delivery API - access token
+        input(type="text" name="cda" id="input-cda" value=settings.cda)
         if 'cda' in errors
           +renderErrors(errors.cda)
         .form-item__help-text
           | View published content using this API.&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
+
       .form-item
-        label(for="cpa") Content Preview API - access token
-        input(type="text" name="cpa" value=settings.cpa)
+        label(for="input-cpa") Content Preview API - access token
+        input(type="text" name="cpa" id="input-cpa" value=settings.cpa)
         if 'cpa' in errors
           +renderErrors(errors.cpa)
         .form-item__help-text
@@ -63,4 +64,11 @@ block content
           a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Content Preview API.
 
       .form-item
-        input.cta(type="submit" value="Load settings")
+        input(type="checkbox" name="editorialFeatures" id="input-editorial-features" checked=settings.editorialFeatures)
+        label(for="input-editorial-features") Enable editorial features
+        if 'cpa' in errors
+          +renderErrors(errors.cpa)
+        .form-item__help-text Enable to display an edit link and other contextual helpers for authors. You need to have access to the connected space to make this work.
+
+      .form-item
+        input.cta(type="submit" value="Save settings")
