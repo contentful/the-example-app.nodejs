@@ -51,7 +51,7 @@ app.use(async function (req, res, next) {
       cda: delivery_access_token,
       cpa: preview_access_token
     }
-    res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
+    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
   }
 
   // Allow enabling of editorial features via query parameters
@@ -62,7 +62,7 @@ app.use(async function (req, res, next) {
       ...settings,
       editorialFeatures: true
     }
-    res.cookie('theExampleAppSettings', settings, { maxAge: 900000, httpOnly: true })
+    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
   }
 
   initClient(settings)
