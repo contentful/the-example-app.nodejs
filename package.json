@@ -24,8 +24,7 @@
     "marked": "^0.3.6",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
-    "safe-json-stringify": "^1.0.4",
-    "serve-favicon": "~2.3.0"
+    "safe-json-stringify": "^1.0.4"
   },
   "devDependencies": {
     "eslint": "^3.16.0",
