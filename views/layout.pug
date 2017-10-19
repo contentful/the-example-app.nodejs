@@ -24,7 +24,7 @@ html
           .header__upper-wrapper
             .header__upper.layout-centered
               .header__upper-first
-                a(href=`/about${queryString}`).header__title
+                a#about-this-modal-trigger(href='#').header__title
                   svg.course__overview-icon
                     use(xlink:href='/icons/icons.svg#info')
                   span What is this example app?
@@ -111,4 +111,21 @@ html
                   a(href='https://twitter.com/contentful' target='_blank' rel='noopener')
                     svg
                       use(xlink:href='/icons/icons.svg#twitter')
+  section.modal#about-this-modal
+    .modal__overlay.close
+    .modal__wrapper
+      h1.modal__title A referenceable example for developers using Contentful
+      .modal__content
+        p This is The Example App, an application built to serve you as a reference while building your own applications using Contentful. This app is an online learning platform which teaches you how Contentful was used to build this app (so meta)!
+        p
+        | If you prefer to start by getting your hands dirty with code, check out this app on&nbsp;
+        a(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener') Github
+        | .
+      .modal__cta-wrapper
+        a(href='#').modal__cta.close Ok, got it.
+      .modal__close-wrapper
+        a(href='#').modal__close-button.close
+          svg
+            use(xlink:href='/icons/icons.svg#cross')
+
   script(src='/scripts/index.js')
