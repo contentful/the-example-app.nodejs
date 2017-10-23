@@ -11,13 +11,18 @@ exports.getCourses = async (req, res, next) => {
 
 exports.getCourse = async (req, res, next) => {
   let course = await getCourse(req.params.slug, res.locals.currentLocale.code, res.locals.currentApi.id)
+
+  // Get lessons
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
+
+  // save visited lessons
   const cookie = req.cookies.visitedLessons
   let visitedLessons = cookie || []
   visitedLessons.push(course.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
+
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
   res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
