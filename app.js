@@ -31,7 +31,7 @@ app.use(async function (req, res, next) {
     space: process.env.CF_SPACE,
     cda: process.env.CF_ACCESS_TOKEN,
     cpa: process.env.CF_PREVIEW_ACCESS_TOKEN,
-    editorialFeatures: true,
+    editorialFeatures: false,
     ...req.cookies.theExampleAppSettings
   }
 
