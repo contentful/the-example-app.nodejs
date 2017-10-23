@@ -1,25 +1,14 @@
 const express = require('express')
-const { getLandingPage } = require('../services/contentful')
 const { catchErrors } = require('../handlers/errorHandlers')
 const { getCourses, getCourse, getLesson, getCourseByCategory } = require('./courses')
 const { getSettings, postSettings } = require('./settings')
 const { getCategories } = require('./categories')
 const { getSitemap } = require('./sitemap')
-const { getAbout } = require('./about')
+const { getLandingPage } = require('./landingPage')
 const router = express.Router()
 
 /* GET the home landing page. */
-router.get('/', catchErrors(async function (req, res, next) {
-  const landingPage = await getLandingPage('home', res.locals.currentLocale.code, res.locals.currentApi.id)
-  let title = landingPage.fields.title
-  if (!title || landingPage.fields.slug === 'home') {
-    title = 'The Example App'
-  }
-  res.render('landingPage', {
-    title,
-    landingPage
-  })
-}))
+router.get('/', catchErrors(getLandingPage))
 
 /* Courses Routes */
 router.get('/courses', catchErrors(getCourses))
@@ -39,6 +28,6 @@ router.get('/categories', catchErrors(getCategories))
 router.get('/sitemap', catchErrors(getSitemap))
 
 /* About Route */
-router.get('/about', catchErrors(getAbout))
+router.get('/about', catchErrors(getLandingPage))
 
 module.exports = router
