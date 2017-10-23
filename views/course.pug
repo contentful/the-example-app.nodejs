@@ -26,7 +26,7 @@ block content
       else
         .course
           h1.course__title= course.fields.title
-          +editorialFeatures(course)
+          +editorialFeatures(course, entryDelivery, entryPreview)
           .course__overview
             h3.course__overview-title Overview
             if course.fields.duration

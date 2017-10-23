@@ -22,8 +22,39 @@ exports.getCourse = async (req, res, next) => {
   let visitedLessons = cookie || []
   visitedLessons.push(course.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
-
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+
+  if (res.locals.settings.editorialFeatures) {
+    let entryDelivery, entryPreview
+
+    if (res.locals.currentApi.id === 'cda') {
+      entryDelivery = course
+      try {
+        entryPreview = await getCourse(req.params.slug, res.locals.currentLocale.code, 'cpa')
+      } catch (err) {
+        entryPreview = null
+      }
+    } else {
+      entryPreview = course
+      try {
+        entryDelivery = await getCourse(req.params.slug, res.locals.currentLocale.code, 'cda')
+      } catch (err) {
+        entryDelivery = null
+      }
+    }
+
+    return res.render('course', {
+      title: course.fields.title,
+      course,
+      lesson,
+      lessons,
+      lessonIndex,
+      visitedLessons,
+      entryDelivery,
+      entryPreview
+    })
+  }
+
   res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
 
