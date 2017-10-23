@@ -1,20 +1,28 @@
-const express = require('express')
 const {getCourses, getCourse, getCategories, getCoursesByCategory} = require('./../services/contentful')
-const { catchErrors } = require('../handlers/errorHandlers')
-const router = express.Router()
 
-/* GET courses listing. */
-router.get('/', catchErrors(async function (req, res, next) {
+exports.getCourses = async (req, res, next) => {
   // we get all the entries with the content type `course`
   let courses = []
   let categories = []
   courses = await getCourses(res.locals.currentLocale.code, res.locals.currentApi.id)
   categories = await getCategories(res.locals.currentLocale.code, res.locals.currentApi.id)
   res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
-}))
+}
 
-/* GET courses listing by category. */
-router.get('/categories/:category', catchErrors(async function (req, res, next) {
+exports.getCourse = async (req, res, next) => {
+  let course = await getCourse(req.params.slug, res.locals.currentLocale.code, res.locals.currentApi.id)
+  const lessons = course.fields.lessons
+  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
+  const lesson = lessons[lessonIndex]
+  const cookie = req.cookies.visitedLessons
+  let visitedLessons = cookie || []
+  visitedLessons.push(course.sys.id)
+  visitedLessons = [...new Set(visitedLessons)]
+  res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+  res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
+}
+
+exports.getCoursesByCategory = async (req, res, next) => {
   // we get all the entries with the content type `course` filtered by a category
   let courses = []
   let categories = []
@@ -27,26 +35,10 @@ router.get('/categories/:category', catchErrors(async function (req, res, next) 
     console.log('Error ', e)
   }
   res.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
-}))
-
-/* GET course detail. */
-const courseRoute = catchErrors(async function (req, res, next) {
-  let course = await getCourse(req.params.slug, res.locals.currentLocale.code, res.locals.currentApi.id)
-  const lessons = course.fields.lessons
-  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
-  const lesson = lessons[lessonIndex]
-  const cookie = req.cookies.visitedLessons
-  let visitedLessons = cookie || []
-  visitedLessons.push(course.sys.id)
-  visitedLessons = [...new Set(visitedLessons)]
-  res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
-  res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
-})
-router.get('/:slug', courseRoute)
-router.get('/:slug/lessons', courseRoute)
+}
 
 /* GET course lesson detail. */
-router.get('/:cslug/lessons/:lslug', catchErrors(async function (req, res, next) {
+exports.getLesson = async (req, res, next) => {
   let course = await getCourse(req.params.cslug, res.locals.currentLocale.code, res.locals.currentApi.id)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
@@ -65,6 +57,5 @@ router.get('/:cslug/lessons/:lslug', catchErrors(async function (req, res, next)
     nextLesson,
     visitedLessons
   })
-}))
+}
 
-module.exports = router
