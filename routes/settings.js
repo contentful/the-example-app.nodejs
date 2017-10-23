@@ -1,8 +1,5 @@
-const express = require('express')
 const { createClient } = require('contentful')
 const { getSpace } = require('./../services/contentful')
-const { catchErrors } = require('../handlers/errorHandlers')
-const router = express.Router()
 
 async function renderSettings (res, opts) {
   // Get connectred space to display the space name on top of the settings
@@ -24,15 +21,15 @@ async function renderSettings (res, opts) {
 }
 
 /* GET settings page. */
-router.get('/', catchErrors(async function (req, res, next) {
+exports.getSettings = async (req, res, next) => {
   const { settings } = res.locals
   await renderSettings(res, {
     settings
   })
-}))
+}
 
 /* POST settings page. */
-router.post('/', catchErrors(async function (req, res, next) {
+exports.postSettings = async (req, res, next) => {
   const errorList = []
   const { space, cda, cpa, editorialFeatures } = req.body
   const settings = {
@@ -138,6 +135,5 @@ router.post('/', catchErrors(async function (req, res, next) {
     hasErrors: errorList.length > 0,
     success: errorList.length === 0
   })
-}))
+}
 
-module.exports = router

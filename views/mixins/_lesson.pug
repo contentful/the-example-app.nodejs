@@ -17,8 +17,8 @@ mixin lesson(lesson, course, nextLesson)
               +lessonModuleCodeSnippet(module)
             when 'lessonCopy'
               +lessonModuleCopy(module)
-            when 'lessonModuleImage'
-              +lessonImage(module)
+            when 'lessonImage'
+              +lessonModuleImage(module)
         else
           h2 ️️⚠️ Invalid lesson module
           p

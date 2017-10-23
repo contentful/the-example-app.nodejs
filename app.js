@@ -7,12 +7,7 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
-const index = require('./routes/index')
-const courses = require('./routes/courses')
-const categories = require('./routes/categories')
-const about = require('./routes/about')
-const settings = require('./routes/settings')
-const sitemap = require('./routes/sitemap')
+const routes = require('./routes/index')
 
 const { initClient, getSpace } = require('./services/contentful')
 const breadcrumb = require('./lib/breadcrumb')
@@ -108,12 +103,7 @@ app.use(async function (req, res, next) {
   next()
 })
 
-app.use('/', index)
-app.use('/courses', courses)
-app.use('/categories', categories)
-app.use('/about', about)
-app.use('/settings', settings)
-app.use('/sitemap', sitemap)
+app.use('/', routes)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
