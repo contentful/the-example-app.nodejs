@@ -1,10 +1,17 @@
 const {getCourses, getCourse, getCategories, getCoursesByCategory} = require('./../services/contentful')
+const attachEntryState = require('./../lib/entry-state')
 
 exports.getCourses = async (req, res, next) => {
   // we get all the entries with the content type `course`
   let courses = []
   let categories = []
   courses = await getCourses(res.locals.currentLocale.code, res.locals.currentApi.id)
+
+  // Attach entry state flags when using preview API
+  if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
+    courses = await Promise.all(courses.map(attachEntryState))
+  }
+
   categories = await getCategories(res.locals.currentLocale.code, res.locals.currentApi.id)
   res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
 }
@@ -22,8 +29,13 @@ exports.getCourse = async (req, res, next) => {
   let visitedLessons = cookie || []
   visitedLessons.push(course.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
-
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+
+  // Attach entry state flags when using preview API
+  if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
+    course = await attachEntryState(course)
+  }
+
   res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
 
@@ -47,13 +59,21 @@ exports.getLesson = async (req, res, next) => {
   let course = await getCourse(req.params.cslug, res.locals.currentLocale.code, res.locals.currentApi.id)
   const lessons = course.fields.lessons
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
-  const lesson = lessons[lessonIndex]
+  let lesson = lessons[lessonIndex]
   const nextLesson = lessons[lessonIndex + 1] || null
+
+  // save visited lessons
   const cookie = req.cookies.visitedLessons
   let visitedLessons = cookie || []
   visitedLessons.push(lesson.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+
+  // Attach entry state flags when using preview API
+  if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
+    lesson = await attachEntryState(lesson)
+  }
+
   res.render('course', {
     title: `${course.fields.title} | ${lesson.fields.title}`,
     course,

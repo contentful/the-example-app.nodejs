@@ -1,6 +1,11 @@
+include _entryState
+
 mixin editorialFeatures(entry)
   if settings.editorialFeatures
     .editorial-features
+      if currentApi.id === 'cpa' && (entry.draft || entry.pendingChanges)
+        .editorial-features__item
+          +entryState(entry)
       .editorial-features__item
         a.editorial-features__text(
           href=`https://app.contentful.com/spaces/${settings.space}/entries/${entry.sys.id}`
