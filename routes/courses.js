@@ -31,7 +31,7 @@ exports.getCourse = async (req, res, next) => {
   visitedLessons = [...new Set(visitedLessons)]
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
 
-  // Get the published version of this course when using preview API for entry state detection
+  // Attach entry state flags when using preview API
   if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
     course = await attachEntryState(course)
   }
@@ -69,7 +69,7 @@ exports.getLesson = async (req, res, next) => {
   visitedLessons = [...new Set(visitedLessons)]
   res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
 
-  // Get the published version of this lesson when using preview API for entry state detection
+  // Attach entry state flags when using preview API
   if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
     lesson = await attachEntryState(lesson)
   }
