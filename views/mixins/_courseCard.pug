@@ -9,7 +9,7 @@ mixin courseCard(course = {fields: {title: '', description: '', categories: [], 
             a.course-card__category-link(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
     h2.course-card__title
       a(href=`/courses/${course.fields.slug}${queryString}`)= course.fields.title
-      if currentApi.id === 'cpa' && (entry.draft || entry.pendingChanges)
+      if currentApi.id === 'cpa' && (course.draft || course.pendingChanges)
         +entryState(course)
     p.course-card__description= course.fields.shortDescription
     .course-card__link-wrapper
