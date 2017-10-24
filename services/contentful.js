@@ -32,7 +32,7 @@ exports.getSpace = assert((api = `cda`) => {
   return client.getSpace()
 }, 'Space')
 
-// Get a single entry. Used to detect the `Draft` or `Unpublished Changes` state.
+// Get a single entry. Used to detect the `Draft` or `Pending Changes` state.
 exports.getEntry = assert((entryId, api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntry(entryId)
