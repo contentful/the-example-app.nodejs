@@ -26,10 +26,17 @@ exports.initClient = (options) => {
   })
 }
 
+// Get the Space the app is connected to. Used for the settings form and to get all available locales.
 exports.getSpace = assert((api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getSpace()
 }, 'Space')
+
+// Get a single entry. Used to detect the `Draft` or `Pending Changes` state.
+exports.getEntry = assert((entryId, api = `cda`) => {
+  const client = api === 'cda' ? cdaClient : cpaClient
+  return client.getEntry(entryId)
+}, 'Entry')
 
 // to get all the courses we request all the entries
 // with the content_type `course` from Contentful
