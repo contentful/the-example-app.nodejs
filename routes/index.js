@@ -4,6 +4,7 @@ const { getCourses, getCourse, getLesson, getCoursesByCategory } = require('./co
 const { getSettings, postSettings } = require('./settings')
 const { getSitemap } = require('./sitemap')
 const { getLandingPage } = require('./landingPage')
+const { getImprint } = require('./imprint')
 const router = express.Router()
 
 /* GET the home landing page. */
@@ -23,7 +24,7 @@ router.post('/settings', catchErrors(postSettings))
 /* Sitemap Route */
 router.get('/sitemap', catchErrors(getSitemap))
 
-/* About Route */
-router.get('/about', catchErrors(getLandingPage))
+/* Imprint Route */
+router.get('/imprint', catchErrors(getImprint))
 
 module.exports = router

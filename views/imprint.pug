@@ -1,0 +1,34 @@
+extends layout
+
+include mixins/_breadcrumb
+include mixins/_editorialFeatures
+include mixins/_moduleCopy
+include mixins/_moduleHeroImage
+include mixins/_moduleHighlightedCourse
+
+block content
+  .layout-centered
+    +breadcrumb
+    h1= title
+    table
+      tbody
+        tr
+          th Company:
+          td Contentful GmbH
+        tr
+          th Office Berlin:
+          td
+            | Ritterstr. 12-14
+            br
+            |  10969 Berlin
+            br
+            |  Germany
+        tr
+          th Registration Court:
+          td Berlin-Charlottenburg HRB 155607 B
+        tr
+          th Managing Director:
+          td Sascha Konietzke
+        tr
+          th VAT Number:
+          td DE275148225
