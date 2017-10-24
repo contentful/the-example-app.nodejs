@@ -1,0 +1,5 @@
+mixin entryState(entry)
+  if entry.draft
+    .pill.pill--draft draft
+  if entry.pendingChanges
+    .pill.pill--pending-changes pending changes

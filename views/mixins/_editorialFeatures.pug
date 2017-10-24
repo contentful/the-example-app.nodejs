@@ -1,13 +1,11 @@
-mixin editorialFeatures(entry, entryDelivery, entryPreview)
+include _entryState
+
+mixin editorialFeatures(entry)
   if settings.editorialFeatures
     .editorial-features
-      if currentApi.id === 'cpa'
-        if !entryDelivery && entryPreview
-          .editorial-features__item
-            .pill.pill--draft draft
-        if entryDelivery && entryPreview && (entryDelivery.sys.updatedAt !== entryPreview.sys.updatedAt)
-          .editorial-features__item
-            .pill.pill--updated updated
+      if currentApi.id === 'cpa' && (entry.draft || entry.pendingChanges)
+        .editorial-features__item
+          +entryState(entry)
       .editorial-features__item
         a.editorial-features__text(
           href=`https://app.contentful.com/spaces/${settings.space}/entries/${entry.sys.id}`
