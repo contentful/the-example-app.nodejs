@@ -14,3 +14,10 @@ function removeIvalidDataURL (content) {
   let regex = /data:\S+;base64\S*/gm
   return content.replace(regex, '#')
 }
+
+exports.formatMetaTitle = (title) => {
+  if (!title) {
+    return 'The Example App'
+  }
+  return `${title.charAt(0).toUpperCase()}${title.slice(1)} — The Example App`
+}
