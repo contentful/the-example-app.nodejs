@@ -2,7 +2,7 @@ const { getLandingPage } = require('../services/contentful')
 const attachEntryState = require('./../lib/entry-state')
 const url = require('url')
 
-exports.getLandingPage = async (req, res, next) => {
+module.exports.getLandingPage = async (req, res, next) => {
   let pathname = url.parse(req.url).pathname.split('/').filter(Boolean)[0]
   pathname = pathname || 'home'
   let landingPage = await getLandingPage(
