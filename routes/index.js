@@ -2,7 +2,6 @@ const express = require('express')
 const { catchErrors } = require('../handlers/errorHandlers')
 const { getCourses, getCourse, getLesson, getCoursesByCategory } = require('./courses')
 const { getSettings, postSettings } = require('./settings')
-const { getSitemap } = require('./sitemap')
 const { getLandingPage } = require('./landingPage')
 const { getImprint } = require('./imprint')
 const router = express.Router()
@@ -20,9 +19,6 @@ router.get('/courses/:cslug/lessons/:lslug', catchErrors(getLesson))
 /* Settings Routes */
 router.get('/settings', catchErrors(getSettings))
 router.post('/settings', catchErrors(postSettings))
-
-/* Sitemap Route */
-router.get('/sitemap', catchErrors(getSitemap))
 
 /* Imprint Route */
 router.get('/imprint', catchErrors(getImprint))
