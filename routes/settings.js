@@ -1,5 +1,5 @@
 const { createClient } = require('contentful')
-const { getSpace } = require('./../services/contentful')
+const { initClient, getSpace } = require('./../services/contentful')
 
 async function renderSettings (res, opts) {
   // Get connectred space to display the space name on top of the settings
@@ -77,7 +77,7 @@ exports.postSettings = async (req, res, next) => {
       } else if (err.response.status === 404) {
         errorList.push({
           field: 'space',
-          message: 'This space does not exist.'
+          message: 'This space does not exist or your access token is not associated with your space.'
         })
       } else {
         errorList.push({
@@ -113,8 +113,14 @@ exports.postSettings = async (req, res, next) => {
     }
   }
 
+  // When no errors occurred
   if (!errorList.length) {
+    // Store new settings
     res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    res.locals.settings = settings
+
+    // Reinit clients
+    initClient(settings)
   }
 
   // Generate error dictionary

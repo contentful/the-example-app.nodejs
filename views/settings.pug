@@ -66,8 +66,6 @@ block content
       .form-item
         input(type="checkbox" name="editorialFeatures" id="input-editorial-features" checked=settings.editorialFeatures)
         label(for="input-editorial-features") Enable editorial features
-        if 'cpa' in errors
-          +renderErrors(errors.cpa)
         .form-item__help-text Enable to display an edit link and other contextual helpers for authors. You need to have access to the connected space to make this work.
 
       .form-item
