@@ -1,4 +1,3 @@
-/* global describe, test */
 const app = require('../../app')
 const request = require('supertest')
 

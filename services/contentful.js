@@ -26,20 +26,20 @@ exports.initClient = (options) => {
   })
 }
 
-// Get the Space the app is connected to. Used for the settings form and to get all available locales.
+// Get the Space the app is connected to. Used for the settings form and to get all available locales
 exports.getSpace = assert((api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getSpace()
 }, 'Space')
 
-// Get a single entry. Used to detect the `Draft` or `Pending Changes` state.
+// Get a single entry. Used to detect the `Draft` or `Pending Changes` state
 exports.getEntry = assert((entryId, api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntry(entryId)
 }, 'Entry')
 
-// to get all the courses we request all the entries
-// with the content_type `course` from Contentful
+// To get all the courses we request all the entries
+// With the content_type `course` from Contentful
 exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
@@ -51,7 +51,7 @@ exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
     .then((response) => response.items)
 }, 'Course')
 
-// Landing pages like the home or about page are fully controlable via Contentful.
+// Landing pages like the home or about page are fully controlable via Contentful
 exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
@@ -63,9 +63,9 @@ exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
     .then((response) => response.items[0])
 }
 
-// the SDK supports link resolution only when you call the collection endpoints
+// The SDK supports link resolution only when you call the collection endpoints
 // That's why we are using getEntries with a query instead of getEntry(entryId)
-// make sure to specify the content_type whenever you want to perform a query
+// Make sure to specify the content_type whenever you want to perform a query
 exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient
   return client.getEntries({
@@ -84,7 +84,7 @@ exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
 }, 'Course')
 
 // Getting a course by Category is simply querying all entries
-// with a query params `fields.categories.sys.id` equal to the desired category id
+// With a query params `fields.categories.sys.id` equal to the desired category id
 // Note that you need to send the `content_type` param to be able to query the entry
 exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? cdaClient : cpaClient

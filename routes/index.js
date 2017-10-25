@@ -6,21 +6,21 @@ const { getLandingPage } = require('./landingPage')
 const { getImprint } = require('./imprint')
 const router = express.Router()
 
-/* GET the home landing page. */
+// GET the home landing page
 router.get('/', catchErrors(getLandingPage))
 
-/* Courses Routes */
+// Courses Routes
 router.get('/courses', catchErrors(getCourses))
 router.get('/courses/categories/:category', catchErrors(getCoursesByCategory))
 router.get('/courses/:slug', catchErrors(getCourse))
 router.get('/courses/:slug/lessons', catchErrors(getCourse))
 router.get('/courses/:cslug/lessons/:lslug', catchErrors(getLesson))
 
-/* Settings Routes */
+// Settings Routes
 router.get('/settings', catchErrors(getSettings))
 router.post('/settings', catchErrors(postSettings))
 
-/* Imprint Route */
+// Imprint Route
 router.get('/imprint', catchErrors(getImprint))
 
 module.exports = router

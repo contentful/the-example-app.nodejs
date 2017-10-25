@@ -20,7 +20,7 @@ async function renderSettings (res, opts) {
   })
 }
 
-/* GET settings page. */
+// GET settings page
 exports.getSettings = async (req, res, next) => {
   const { settings } = res.locals
   await renderSettings(res, {
@@ -28,7 +28,7 @@ exports.getSettings = async (req, res, next) => {
   })
 }
 
-/* POST settings page. */
+// POST settings page
 exports.postSettings = async (req, res, next) => {
   const errorList = []
   const { space, cda, cpa, editorialFeatures } = req.body
