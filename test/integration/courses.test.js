@@ -11,7 +11,7 @@ describe('courses', () => {
       })
   })
   test('it should render a course', () => {
-    return request(app).get('/courses/headless-content-management-using-contentful')
+    return request(app).get('/courses/hello-world')
       .expect(200)
       .then((response) => {
         expect(response.text.match(/class="course__title"/)).toBeTruthy()
@@ -22,7 +22,7 @@ describe('courses', () => {
   })
 
   test('it should render a lesson', () => {
-    return request(app).get('/courses/headless-content-management-using-contentful/lessons/content-from-your-idea-to-any-display')
+    return request(app).get('/courses/hello-world/lessons/architecture-basics')
       .expect(200)
       .then((response) => {
         expect(response.text.match(/class="lesson__title"/)).toBeTruthy()
