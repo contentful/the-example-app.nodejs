@@ -1,5 +1,5 @@
 /* global describe, test, beforeAll, afterEach, jest, expect */
-const { getCourses, getCourse, getCoursesByCategory } = require('../../routes/courses')
+const { getCourses, getCourse, getCoursesByCategory, getLesson } = require('../../routes/courses')
 
 jest.mock('../../services/contentful')
 const contentful = require('../../services/contentful')
@@ -18,8 +18,22 @@ const res = {
 
 beforeAll(() => {
   contentful.getCourses.mockImplementation(() => [])
-  contentful.getCourse.mockImplementation(() => ({ sys: { id: 'id' }, fields: { lessons: [{ fields: { slug: 'slug' } }] } }))
-  contentful.getCategories.mockImplementation(() => [{ sys: { id: 'categoryId' }, fields: { slug: 'categorySlug', title: 'categoryTitle' } }])
+  contentful.getCourse.mockImplementation(() => ({
+    sys: { id: 'id' },
+    fields: {
+      lessons: [
+        { sys: {id: 'lessonId'}, fields: { slug: 'lessonSlug' } }
+      ]
+    }
+  }))
+
+  contentful.getCategories.mockImplementation(() => [
+    {
+      sys: { id: 'categoryId' },
+      fields: { slug: 'categorySlug', title: 'categoryTitle' }
+    }
+  ])
+
   contentful.getCoursesByCategory.mockImplementation(() => [])
   res.render = jest.fn()
   res.cookie = jest.fn()
@@ -48,6 +62,15 @@ describe('Courses', () => {
     req.params = {slug: 'slug', lslug: 'lslug', category: 'categorySlug'}
     await getCoursesByCategory(req, res)
     expect(res.render.mock.calls[0][0]).toBe('courses')
+    expect(res.render.mock.calls.length).toBe(1)
+  })
+})
+
+describe('Lessons', () => {
+  test('it should render a lesson', async () => {
+    req.params = { cslug: 'courseSlug', lslug: 'lessonSlug' }
+    await getLesson(req, res)
+    expect(res.render.mock.calls[0][0]).toBe('course')
     expect(res.render.mock.calls.length).toBe(1)
   })
 })
