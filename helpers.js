@@ -9,7 +9,7 @@ exports.markdown = (content) => {
 exports.dump = (obj) => JSON.stringify(obj, null, 2)
 
 // Evil users might try to add base64 url data to execute js
-// so we should take care of that
+// So we should take care of that
 function removeIvalidDataURL (content) {
   let regex = /data:\S+;base64\S*/gm
   return content.replace(regex, '#')

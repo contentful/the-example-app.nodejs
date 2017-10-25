@@ -54,7 +54,7 @@ exports.getCoursesByCategory = async (req, res, next) => {
   res.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 }
 
-/* GET course lesson detail. */
+// GET course lesson detail
 exports.getLesson = async (req, res, next) => {
   let course = await getCourse(req.params.cslug, res.locals.currentLocale.code, res.locals.currentApi.id)
   const lessons = course.fields.lessons
