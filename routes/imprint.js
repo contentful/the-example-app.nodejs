@@ -1,4 +1,4 @@
-exports.getImprint = (req, res, next) => {
+module.exports.getImprint = (req, res, next) => {
   res.render('imprint', { title: 'Imprint' })
 }
 

@@ -1,5 +1,5 @@
 // GET category listing
-exports.getCategories = async (req, res, next) => {
+module.exports.getCategories = async (req, res, next) => {
   res.render('categories', { title: 'Categories' })
 }
 
