@@ -69,8 +69,8 @@
   "engineFlags": [],
   "asyncCaptureLimit": 1,
   "asyncCompareLimit": 1,
-  "debug": false,
-  "debugWindow": false,
+  "debug": true,
+  "debugWindow": true,
   "delay": 500,
   "misMatchThreshold": 0.3
 }
