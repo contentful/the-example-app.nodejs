@@ -9,6 +9,6 @@ dependencies:
     - rm google-chrome.deb
 test:
   override:
-    - npm test:ci
+    - npm run test:ci
   post:
     - tar -czf $CIRCLE_ARTIFACTS/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
