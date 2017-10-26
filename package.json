@@ -8,6 +8,7 @@
     "lint": "eslint ./app.js routes",
     "format": "eslint --fix . bin --ignore public node_modules",
     "test": "npm run test:integration",
+    "test:ci": "npm run test:integration && npm run test:visual:test",
     "test:integration": "jest test/integration",
     "test:integration:watch": "jest test/integration --watch",
     "test:visual:test": "./bin/visual-regression-test test",

@@ -4,20 +4,16 @@ install:
 language: node_js
 node_js:
   - "8"
+install:
+  - npm i
+  - brew install s3cmd
 script:
-  - npm run test
+  - npm run test:ci
 after_script:
   - mkdir artifacts
   - tar -czf ./artifacts/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
+  - s3cmd put -vvv --region=us-east-1 --acl-public --guess-mime-type ./artifacts/*  s3://cf-example-apps-test-results/
 addons:
   chrome: beta
 env:
   - CHROME_PATH=/usr/bin/google-chrome-beta
-deploy:
-  provider: s3
-  # access_key_id: "YOUR AWS ACCESS KEY"
-  # secret_access_key: "YOUR AWS SECRET KEY"
-  # bucket: "S3 Bucket"
-  skip_cleanup: true
-  acl: public_read
-  local_dir: artifacts
