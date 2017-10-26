@@ -2,7 +2,7 @@ const marked = require('marked')
 // Parse markdown text
 module.exports.markdown = (content) => {
   content = content || ''
-  return marked(removeIvalidDataURL(content), {sanitize: true})
+  return marked(removeInvalidDataURL(content), {sanitize: true})
 }
 
 // Dump is a handy debugging function we can use to sort of "console.log" our data
@@ -10,7 +10,7 @@ module.exports.dump = (obj) => JSON.stringify(obj, null, 2)
 
 // Evil users might try to add base64 url data to execute js
 // So we should take care of that
-function removeIvalidDataURL (content) {
+function removeInvalidDataURL (content) {
   let regex = /data:\S+;base64\S*/gm
   return content.replace(regex, '#')
 }
