@@ -26,7 +26,7 @@ app.use(breadcrumb())
 
 // Pass our application state and custom helpers to all our templates
 app.use(async function (req, res, next) {
-  // Allow setting of API credentials via query parameters
+  // Set default settings based on environment variables
   let settings = {
     space: process.env.CF_SPACE,
     cda: process.env.CF_ACCESS_TOKEN,
@@ -35,6 +35,7 @@ app.use(async function (req, res, next) {
     ...req.cookies.theExampleAppSettings
   }
 
+  // Allow setting of API credentials via query parameters
   const { space_id, preview_access_token, delivery_access_token } = req.query
   if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
     settings = {
@@ -103,6 +104,8 @@ app.use(async function (req, res, next) {
   next()
 })
 
+// Initialize the route handling
+// Check ./routes/index.js to get a list of all implemented routes
 app.use('/', routes)
 
 // Catch 404 and forward to error handler
