@@ -44,7 +44,7 @@
     },
     {
       "label": "Lesson: SDK Basics",
-      "url": "http://localhost:3000/courses/example-application/lessons/sdk-basics",
+      "url": "http://localhost:3007/courses/example-application/lessons/sdk-basics",
       "selectors": [
         ".main__content"
       ]
