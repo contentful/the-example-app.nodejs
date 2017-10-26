@@ -5,8 +5,8 @@ language: node_js
 node_js:
   - "8"
 install:
+  - sudo apt-get install s3cmd
   - npm i
-  - brew install s3cmd
 script:
   - npm run test:ci
 after_script:
