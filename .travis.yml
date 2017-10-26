@@ -16,3 +16,4 @@ addons:
     paths:
       - "./artifacts/"
     debug: true
+    acl: public_read
