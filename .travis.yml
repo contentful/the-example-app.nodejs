@@ -16,6 +16,7 @@ addons:
     paths:
       - "./artifacts/"
     debug: true
-    acl: public_read
 env:
   - CHROME_PATH=/usr/bin/google-chrome-beta
+  global:
+  - AWS_S3_ACL_DEFAULT=public_read
