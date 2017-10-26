@@ -11,12 +11,13 @@ after_script:
   - tar -czf ./artifacts/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
 addons:
   chrome: beta
-  artifacts:
-    s3_region: "us-east-1"
-    paths:
-      - "./artifacts/"
-    debug: true
 env:
   - CHROME_PATH=/usr/bin/google-chrome-beta
-  global:
-  - AWS_S3_ACL_DEFAULT=public_read
+deploy:
+  provider: s3
+  # access_key_id: "YOUR AWS ACCESS KEY"
+  # secret_access_key: "YOUR AWS SECRET KEY"
+  # bucket: "S3 Bucket"
+  skip_cleanup: true
+  acl: public_read
+  local_dir: artifacts
