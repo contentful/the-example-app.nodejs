@@ -11,4 +11,4 @@ test:
   override:
     - npm run test:ci
   post:
-    - tar -czf $CIRCLE_ARTIFACTS/report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data/html_report ./backstop_data/ci_report
+    - tar -czf $CIRCLE_ARTIFACTS/backstop-report_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./backstop_data
