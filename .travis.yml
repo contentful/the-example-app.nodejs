@@ -17,3 +17,5 @@ addons:
       - "./artifacts/"
     debug: true
     acl: public_read
+env:
+  - CHROME_PATH=/usr/bin/google-chrome-beta
