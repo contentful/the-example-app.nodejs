@@ -70,7 +70,7 @@
   "asyncCaptureLimit": 1,
   "asyncCompareLimit": 1,
   "debug": true,
-  "debugWindow": true,
+  "debugWindow": false,
   "delay": 500,
   "misMatchThreshold": 0.3
 }
