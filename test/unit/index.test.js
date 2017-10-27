@@ -19,7 +19,7 @@ const res = {
 }
 
 beforeAll(() => {
-  contentful.getCourses.mockImplementation(() => [])
+  contentful.getCourses.mockImplementation(() => [mockCourse])
   contentful.getCourse.mockImplementation(() => mockCourse)
 
   contentful.getCategories.mockImplementation(() => [mockCategory])
@@ -43,9 +43,12 @@ describe('Courses', () => {
   })
 
   test('it should render single course once', async () => {
-    req.params = {slug: 'slug', lslug: 'lslug'}
+    req.params = {slug: 'slug', lslug: 'lessonSlug'}
     await getCourse(req, res)
     expect(res.render.mock.calls[0][0]).toBe('course')
+    expect(res.render.mock.calls[0][1].title).toBe(mockCourse.fields.title)
+    expect(res.render.mock.calls[0][1].course.sys.id).toBe(mockCourse.sys.id)
+    expect(res.render.mock.calls[0][1].lesson.sys.id).toBe(mockCourse.fields.lessons[0].sys.id)
     expect(res.render.mock.calls.length).toBe(1)
   })
   test('it should render list of courses by categories', async () => {
