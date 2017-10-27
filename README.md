@@ -10,7 +10,7 @@ The Contentful example app, written in JS
 ## Installation
 
 ```bash
-git clone --recursive https://github.com/contentful/example-contentful-university-js.git
+git clone https://github.com/contentful/example-contentful-university-js.git
 ```
 
 ```bash

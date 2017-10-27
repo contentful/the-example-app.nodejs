@@ -1,4 +1,0 @@
-[submodule "public"]
-	path = public
-	url = https://github.com/contentful-labs/assets.git
-	branch = master
