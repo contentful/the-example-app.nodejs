@@ -24,7 +24,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(breadcrumb())
 
-// Pass our application state and custom helpers to all our templates
+// Set our application state based on environment variables or query parameters.
 app.use(async function (req, res, next) {
   // Set default settings based on environment variables
   let settings = {
@@ -32,6 +32,7 @@ app.use(async function (req, res, next) {
     cda: process.env.CF_ACCESS_TOKEN,
     cpa: process.env.CF_PREVIEW_ACCESS_TOKEN,
     editorialFeatures: false,
+    // Overwrite settings via settings stored to cookie
     ...req.cookies.theExampleAppSettings
   }
 
@@ -51,17 +52,17 @@ app.use(async function (req, res, next) {
   const { enable_editorial_features } = req.query
   if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
     delete req.query.enable_editorial_features
-    settings = {
-      ...settings,
-      editorialFeatures: true
-    }
+    settings.editorialFeatures = true
     res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
   }
 
   initClient(settings)
   res.locals.settings = settings
+})
 
-  // Manage language and API type state and make it globally available
+// Extend template locals with all information needed to render our app properly.
+app.use(async function (req, res, next) {
+  // Set active api based on query parameter
   const apis = [
     {
       id: 'cda',
@@ -95,7 +96,7 @@ app.use(async function (req, res, next) {
   // Inject custom helpers
   res.locals.helpers = helpers
 
-  // Make query string available in templates
+  // Make query string available in templates to render links properly
   const qs = querystring.stringify(req.query)
   res.locals.queryString = qs ? `?${qs}` : ''
   res.locals.query = req.query
