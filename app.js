@@ -13,6 +13,8 @@ const { initClient, getSpace } = require('./services/contentful')
 const breadcrumb = require('./lib/breadcrumb')
 const app = express()
 
+const ONE_YEAR = 31536000
+
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -45,7 +47,7 @@ app.use(async function (req, res, next) {
       cda: delivery_access_token,
       cpa: preview_access_token
     }
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    res.cookie('theExampleAppSettings', settings, { maxAge: ONE_YEAR, httpOnly: true })
   }
 
   // Allow enabling of editorial features via query parameters
@@ -53,7 +55,7 @@ app.use(async function (req, res, next) {
   if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
     delete req.query.enable_editorial_features
     settings.editorialFeatures = true
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    res.cookie('theExampleAppSettings', settings, { maxAge: ONE_YEAR, httpOnly: true })
   }
 
   initClient(settings)
