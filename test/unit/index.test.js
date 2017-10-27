@@ -39,6 +39,8 @@ describe('Courses', () => {
   test('it should courses list once', async () => {
     await getCourses(req, res)
     expect(res.render.mock.calls[0][0]).toBe('courses')
+    expect(res.render.mock.calls[0][1].title).toBe('All Courses (1)')
+    expect(res.render.mock.calls[0][1].courses.length).toBe(1)
     expect(res.render.mock.calls.length).toBe(1)
   })
 
