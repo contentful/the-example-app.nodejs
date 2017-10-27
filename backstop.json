@@ -1,0 +1,76 @@
+{
+  "id": "backstop_default",
+  "viewports": [
+    {
+      "label": "phone",
+      "width": 320,
+      "height": 480
+    },
+    {
+      "label": "tablet",
+      "width": 1024,
+      "height": 768
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Global elements",
+      "url": "http://localhost:3007/",
+      "selectors": [
+        ".main__header",
+        ".main__footer"
+      ]
+    },
+    {
+      "label": "Homepage",
+      "url": "http://localhost:3007/",
+      "selectors": [
+        ".main__content"
+      ]
+    },
+    {
+      "label": "Courses",
+      "url": "http://localhost:3007/courses",
+      "selectors": [
+        ".main__content"
+      ]
+    },
+    {
+      "label": "Course: How this application is built",
+      "url": "http://localhost:3007/courses/example-application",
+      "selectors": [
+        ".main__content"
+      ]
+    },
+    {
+      "label": "Lesson: SDK Basics",
+      "url": "http://localhost:3007/courses/example-application/lessons/sdk-basics",
+      "selectors": [
+        ".main__content"
+      ]
+    },
+    {
+      "label": "Settings",
+      "url": "http://localhost:3007/settings",
+      "selectors": [
+        ".main__content"
+      ]
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["CI"],
+  "engine": "chrome",
+  "engineFlags": [],
+  "asyncCaptureLimit": 4,
+  "asyncCompareLimit": 4,
+  "debug": true,
+  "debugWindow": false,
+  "delay": 500,
+  "misMatchThreshold": 2
+}

@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+const backstop = require('backstopjs')
+const app = require('../app')
+const http = require('http')
+
+const TEST_PORT = 3007
+
+const mode = process.argv[2]
+
+if (!mode) {
+  throw new Error(`Please pass either 'test' or 'reference' as mode`)
+}
+
+app.set('port', TEST_PORT)
+
+const server = http.createServer(app)
+server.on('error', onError)
+server.listen(TEST_PORT, function () {
+  console.log('Server running. Starting tests...')
+
+  backstop(mode)
+    .then(() => {
+      console.log(`Success to ${mode} the visual regression tests.`)
+      server.close()
+      process.exit(0)
+    }).catch(() => {
+      console.log(`Failed to ${mode} the visual regression tests.`)
+      server.close()
+      process.exit(1)
+    })
+})
+
+function onError (error) {
+  throw error
+}
