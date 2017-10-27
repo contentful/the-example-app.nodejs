@@ -7,6 +7,7 @@
     "start": "node ./bin/www",
     "lint": "eslint ./app.js routes",
     "format": "eslint --fix . bin --ignore public node_modules",
+    "test": "echo 'test'",
     "test:integration": "jest test/integration",
     "test:integration:watch": "jest test/integration --watch",
     "test:unit": "jest test/unit",
