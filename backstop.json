@@ -67,10 +67,10 @@
   "report": ["CI"],
   "engine": "chrome",
   "engineFlags": [],
-  "asyncCaptureLimit": 1,
-  "asyncCompareLimit": 1,
+  "asyncCaptureLimit": 4,
+  "asyncCompareLimit": 4,
   "debug": true,
   "debugWindow": false,
   "delay": 500,
-  "misMatchThreshold": 0.3
+  "misMatchThreshold": 2
 }
