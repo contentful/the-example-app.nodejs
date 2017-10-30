@@ -31,57 +31,57 @@ module.exports.getSettings = async (req, res, next) => {
 // POST settings page
 module.exports.postSettings = async (req, res, next) => {
   const errorList = []
-  const { space, cda, cpa, editorialFeatures } = req.body
+  const { spaceId, deliveryToken, previewToken, editorialFeatures } = req.body
   const settings = {
-    space,
-    cda,
-    cpa,
+    spaceId,
+    deliveryToken,
+    previewToken,
     editorialFeatures: !!editorialFeatures
   }
 
   // Validate required fields.
-  if (!space) {
+  if (!spaceId) {
     errorList.push({
-      field: 'space',
+      field: 'spaceId',
       message: 'This field is required'
     })
   }
 
-  if (!cda) {
+  if (!deliveryToken) {
     errorList.push({
-      field: 'cda',
+      field: 'deliveryToken',
       message: 'This field is required'
     })
   }
 
-  if (!cpa) {
+  if (!previewToken) {
     errorList.push({
-      field: 'cpa',
+      field: 'previewToken',
       message: 'This field is required'
     })
   }
 
   // Validate space and CDA access token.
-  if (space && cda) {
+  if (spaceId && deliveryToken) {
     try {
       await createClient({
-        space,
-        accessToken: cda
+        space: spaceId,
+        accessToken: deliveryToken
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
-          field: 'cda',
+          field: 'deliveryToken',
           message: 'Your Delivery API key is invalid.'
         })
       } else if (err.response.status === 404) {
         errorList.push({
-          field: 'space',
+          field: 'spaceId',
           message: 'This space does not exist or your access token is not associated with your space.'
         })
       } else {
         errorList.push({
-          field: 'cda',
+          field: 'deliveryToken',
           message: `Something went wrong: ${err.response.data.message}`
         })
       }
@@ -89,24 +89,24 @@ module.exports.postSettings = async (req, res, next) => {
   }
 
   // Validate space and CPA access token.
-  if (space && cpa) {
+  if (spaceId && previewToken) {
     try {
       await createClient({
-        space,
-        accessToken: cpa,
+        space: spaceId,
+        accessToken: previewToken,
         host: 'preview.contentful.com'
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
-          field: 'cpa',
+          field: 'previewToken',
           message: 'Your Preview API key is invalid.'
         })
       } else if (err.response.status === 404) {
         // Already validated via CDA
       } else {
         errorList.push({
-          field: 'cpa',
+          field: 'previewToken',
           message: `Something went wrong: ${err.response.data.message}`
         })
       }

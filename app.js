@@ -30,22 +30,22 @@ app.use(breadcrumb())
 app.use(async function (req, res, next) {
   // Set default settings based on environment variables
   let settings = {
-    space: process.env.CF_SPACE,
-    cda: process.env.CF_ACCESS_TOKEN,
-    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN,
+    spaceId: process.env.CF_SPACE_ID,
+    deliveryToken: process.env.CF_DELIVERY_TOKEN,
+    previewToken: process.env.CF_PREVIEW_TOKEN,
     editorialFeatures: false,
     // Overwrite settings via settings stored to cookie
     ...req.cookies.theExampleAppSettings
   }
 
   // Allow setting of API credentials via query parameters
-  const { space_id, preview_access_token, delivery_access_token } = req.query
-  if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
+  const { space_id, preview_token, delivery_token } = req.query
+  if (space_id && preview_token && delivery_token) { // eslint-disable-line camelcase
     settings = {
       ...settings,
-      space: space_id,
-      cda: delivery_access_token,
-      cpa: preview_access_token
+      spaceId: space_id,
+      deliveryToken: delivery_token,
+      previewToken: preview_token
     }
     res.cookie('theExampleAppSettings', settings, { maxAge: ONE_YEAR, httpOnly: true })
   }
@@ -60,6 +60,7 @@ app.use(async function (req, res, next) {
 
   initClient(settings)
   res.locals.settings = settings
+  next()
 })
 
 // Extend template locals with all information needed to render our app properly.
