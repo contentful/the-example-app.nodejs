@@ -18,6 +18,7 @@ const app = express()
 
 const ONE_YEAR = 31536000
 const SETTINGS_NAME = 'theExampleAppSettings'
+
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
