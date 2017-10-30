@@ -105,7 +105,10 @@ module.exports.postSettings = async (req, res, next) => {
           message: 'Your Preview API key is invalid.'
         })
       } else if (err.response.status === 404) {
-        // Already validated via CDA
+        errorList.push({
+          field: 'spaceId',
+          message: 'This space does not exist or your delivery token is not associated with your space.'
+        })
       } else {
         errorList.push({
           field: 'previewToken',
