@@ -2,7 +2,7 @@ const {getCourses, getCourse, getCategories, getCoursesByCategory} = require('./
 const attachEntryState = require('./../lib/entry-state')
 
 exports.getCourses = async (req, res, next) => {
-  // we get all the entries with the content type `course`
+  // We get all the entries with the content type `course`
   let courses = []
   let categories = []
   courses = await getCourses(res.locals.currentLocale.code, res.locals.currentApi.id)
@@ -24,7 +24,7 @@ exports.getCourse = async (req, res, next) => {
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === req.params.lslug)
   const lesson = lessons[lessonIndex]
 
-  // save visited lessons
+  // Save visited lessons
   const cookie = req.cookies.visitedLessons
   let visitedLessons = cookie || []
   visitedLessons.push(course.sys.id)
@@ -40,7 +40,7 @@ exports.getCourse = async (req, res, next) => {
 }
 
 exports.getCoursesByCategory = async (req, res, next) => {
-  // we get all the entries with the content type `course` filtered by a category
+  // We get all the entries with the content type `course` filtered by a category
   let courses = []
   let categories = []
   let activeCategory = ''
@@ -62,7 +62,7 @@ exports.getLesson = async (req, res, next) => {
   let lesson = lessons[lessonIndex]
   const nextLesson = lessons[lessonIndex + 1] || null
 
-  // save visited lessons
+  // Save visited lessons
   const cookie = req.cookies.visitedLessons
   let visitedLessons = cookie || []
   visitedLessons.push(lesson.sys.id)
