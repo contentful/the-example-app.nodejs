@@ -11,9 +11,9 @@ async function renderSettings (res, opts) {
   try {
     space = await getSpace()
   } catch (error) {
-    // Log the error here for the console when something went wrong.
+    // We throw the error here, it will handled byt the error middleware
     // We keep space false to ensure the "Connected to" box is not shown.
-    console.error(error)
+    throw (error)
   }
 
   res.render('settings', {
