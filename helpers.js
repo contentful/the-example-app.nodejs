@@ -2,6 +2,9 @@ const marked = require('marked')
 // Parse markdown text
 module.exports.markdown = (content) => {
   content = content || ''
+  if (!content.trim()) {
+    return ''
+  }
   return marked(removeInvalidDataURL(content), {sanitize: true})
 }
 
