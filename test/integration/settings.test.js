@@ -1,8 +1,9 @@
-const app = require('../../app')
-const request = require('supertest')
 const cheerio = require('cheerio')
 const cookie = require('cookie')
 const cookieParser = require('cookie-parser')
+const request = require('supertest')
+
+const app = require('../../app')
 
 function getSettingsCookie (res) {
   try {

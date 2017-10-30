@@ -1,16 +1,19 @@
-require('dotenv').config({ path: 'variables.env' })
-const express = require('express')
-const querystring = require('querystring')
 const path = require('path')
-const helpers = require('./helpers')
-const logger = require('morgan')
-const cookieParser = require('cookie-parser')
+
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const express = require('express')
+const logger = require('morgan')
+const querystring = require('querystring')
 
-const routes = require('./routes/index')
+// Load environment variables from the variables.env file.
+require('dotenv').config({ path: 'variables.env' })
 
-const { initClient, getSpace } = require('./services/contentful')
+const helpers = require('./helpers')
 const breadcrumb = require('./lib/breadcrumb')
+const routes = require('./routes/index')
+const { initClient, getSpace } = require('./services/contentful')
+
 const app = express()
 
 const ONE_YEAR = 31536000

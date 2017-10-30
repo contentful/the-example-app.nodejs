@@ -1,6 +1,7 @@
+const url = require('url')
+
 const { getLandingPage } = require('../services/contentful')
 const attachEntryState = require('./../lib/entry-state')
-const url = require('url')
 
 module.exports.getLandingPage = async (req, res, next) => {
   let pathname = url.parse(req.url).pathname.split('/').filter(Boolean)[0]
