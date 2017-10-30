@@ -13,10 +13,10 @@ const helpers = require('./helpers')
 const breadcrumb = require('./lib/breadcrumb')
 const routes = require('./routes/index')
 const { initClient, getSpace } = require('./services/contentful')
+const { updateCookie } = require('./lib/cookies')
 
 const app = express()
 
-const ONE_YEAR = 31536000
 const SETTINGS_NAME = 'theExampleAppSettings'
 
 // View engine setup
@@ -51,7 +51,7 @@ app.use(async function (req, res, next) {
       deliveryToken: delivery_token,
       previewToken: preview_token
     }
-    res.cookie(SETTINGS_NAME, settings, { maxAge: ONE_YEAR, httpOnly: true })
+    updateCookie(res, SETTINGS_NAME, settings)
   }
 
   // Allow enabling of editorial features via query parameters
@@ -59,7 +59,7 @@ app.use(async function (req, res, next) {
   if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
     delete req.query.enable_editorial_features
     settings.editorialFeatures = true
-    res.cookie(SETTINGS_NAME, settings, { maxAge: ONE_YEAR, httpOnly: true })
+    updateCookie(res, SETTINGS_NAME, settings)
   }
 
   initClient(settings)

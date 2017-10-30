@@ -9,8 +9,8 @@ const {
   getCoursesByCategory
 } = require('./../services/contentful')
 
-const attachEntryState = require('./../lib/entry-state')
-
+const attachEntryState = require('../lib/entry-state')
+const { updateCookie } = require('../lib/cookies')
 /**
  * Renders courses list when `/courses` route is requested
  *
@@ -21,7 +21,6 @@ const attachEntryState = require('./../lib/entry-state')
  * @returns {undefined}
  */
 module.exports.getCourses = async (req, res, next) => {
-
   // We get all the entries with the content type `course`
   let courses = []
   let categories = []
@@ -78,7 +77,6 @@ module.exports.getCourse = async (req, res, next) => {
  * @returns {undefined}
  */
 module.exports.getCoursesByCategory = async (req, res, next) => {
-
   // We get all the entries with the content type `course` filtered by a category
   let courses = []
   let categories = []
@@ -114,7 +112,7 @@ module.exports.getLesson = async (req, res, next) => {
   let visitedLessons = cookie || []
   visitedLessons.push(lesson.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
-  res.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+  updateCookie(res, 'visitedLessons', visitedLessons)
 
   // Attach entry state flags when using preview API
   if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
