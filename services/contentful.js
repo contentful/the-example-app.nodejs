@@ -69,7 +69,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   return client.getEntries({
     content_type: 'course',
     locale,
-    order: 'sys.createdAt', // Ordering the entries by creation Date
+    order: 'sys.createdAt', // Ordering the entries by creation date
     include: 10 // We use include param to increase the link level, the include value goes from 1 to 10
   })
     .then((response) => response.items)
@@ -143,7 +143,7 @@ module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = 
     .then((response) => response.items)
 }, 'Category')
 
-// Utility functions
+// Utility function
 function assert (fn, context) {
   return function (req, res, next) {
     return fn(req, res, next)
