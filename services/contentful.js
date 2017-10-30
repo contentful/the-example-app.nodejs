@@ -104,8 +104,8 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
  */
 module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
   const client = api === 'cda' ? deliveryClient : previewClient
-  // Event though we need a single entry, we request it using the collection endpoint
-  // To get all the linked refs in one go, the SDK will use the data and resolve the links automaticaly
+  // Even though we need a single entry, we request it using the collection endpoint
+  // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
   return client.getEntries({
     content_type: 'course',
     'fields.slug': slug,
