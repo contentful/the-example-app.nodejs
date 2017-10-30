@@ -1,7 +1,7 @@
 const { createClient } = require('contentful')
 
-let cdaClient = null
-let cpaClient = null
+let deliveryClient = null
+let previewClient = null
 
 // Initialize our client
 
@@ -16,19 +16,19 @@ module.exports.initClient = (options) => {
   const { version } = require('../package.json')
 
   const config = options || {
-    space: process.env.CF_SPACE,
-    cda: process.env.CF_ACCESS_TOKEN,
-    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
+    spaceId: process.env.CF_SPACE_ID,
+    deliveryToken: process.env.CF_DELIVERY_TOKEN,
+    previewToken: process.env.CF_PREVIEW_TOKEN
   }
-  cdaClient = createClient({
+  deliveryClient = createClient({
     application: `contentful.the-example-app.node/${version}`,
-    space: config.space,
-    accessToken: config.cda
+    space: config.spaceId,
+    accessToken: config.deliveryToken
   })
-  cpaClient = createClient({
+  previewClient = createClient({
     application: `contentful.the-example-app.node/${version}`,
-    space: config.space,
-    accessToken: config.cpa,
+    space: config.spaceId,
+    accessToken: config.previewToken,
     host: 'preview.contentful.com'
   })
 }
@@ -39,7 +39,7 @@ module.exports.initClient = (options) => {
  * @returns {undefined}
  */
 module.exports.getSpace = assert((api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   return client.getSpace()
 }, 'Space')
 
@@ -52,7 +52,7 @@ module.exports.getSpace = assert((api = `cda`) => {
  */
 
 module.exports.getEntry = assert((entryId, api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   return client.getEntry(entryId)
 }, 'Entry')
 
@@ -63,7 +63,7 @@ module.exports.getEntry = assert((entryId, api = `cda`) => {
  * @returns {Array<Object>}
  */
 module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
 
   return client.getEntries({
     content_type: 'course',
@@ -82,7 +82,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   // Event though we need a single entry, we request it using the collection endpoint
   // To get all the linked refs in one go, the SDK will use the data and resolve the links automaticaly
   return client.getEntries({
@@ -102,7 +102,7 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   // Event though we need a single entry, we request it using the collection endpoint
   // To get all the linked refs in one go, the SDK will use the data and resolve the links automaticaly
   return client.getEntries({
@@ -115,7 +115,7 @@ module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
 }, 'Course')
 
 module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   return client.getEntries({content_type: 'category', locale})
     .then((response) => response.items)
 }, 'Course')
@@ -131,7 +131,7 @@ module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
+  const client = api === 'cda' ? deliveryClient : previewClient
   return client.getEntries({
     content_type: 'course',
     'fields.categories.sys.id': category,
