@@ -1,5 +1,5 @@
 /**
- * This module renders landing pages when its route is request
+ * This module renders landing pages when its route is requested
  * It is used for pages like about and home page
  */
 const url = require('url')
