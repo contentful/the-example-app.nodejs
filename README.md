@@ -1,5 +1,5 @@
-# the-example-app.js
-The Contentful example app, written in JS
+# The Node.js Example App
+The Contentful example app, written in node.js.
 
 ## Requirements
 
