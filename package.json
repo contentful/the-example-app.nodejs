@@ -20,14 +20,11 @@
     "body-parser": "~1.15.2",
     "contentful": "^5.0.0-rc3",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
     "dotenv": "^4.0.0",
     "express": "~4.14.0",
-    "jstransformer-markdown-it": "^2.0.0",
     "marked": "^0.3.6",
     "morgan": "~1.7.0",
-    "pug": "~2.0.0-beta6",
-    "safe-json-stringify": "^1.0.4"
+    "pug": "~2.0.0-beta6"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -38,8 +35,6 @@
     "eslint-plugin-standard": "^2.0.1",
     "jest": "^21.2.1",
     "nodemon": "^1.12.1",
-    "pug-lint": "^2.5.0",
-    "superagent": "^3.6.3",
     "supertest": "^3.0.0"
   }
 }
