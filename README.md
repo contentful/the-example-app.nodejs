@@ -1,4 +1,4 @@
-# The Node.js Example App
+# The Node.js example app
 The Contentful example app, written in node.js.
 
 ## Requirements
