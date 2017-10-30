@@ -1,4 +1,5 @@
 const marked = require('marked')
+
 // Parse markdown text
 module.exports.markdown = (content) => {
   content = content || ''

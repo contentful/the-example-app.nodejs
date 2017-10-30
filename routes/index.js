@@ -1,9 +1,11 @@
 const express = require('express')
+
 const { catchErrors } = require('../handlers/errorHandlers')
 const { getCourses, getCourse, getLesson, getCoursesByCategory } = require('./courses')
 const { getSettings, postSettings } = require('./settings')
 const { getLandingPage } = require('./landingPage')
 const { getImprint } = require('./imprint')
+
 const router = express.Router()
 
 // GET the home landing page
