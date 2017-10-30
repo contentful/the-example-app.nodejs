@@ -21,6 +21,7 @@ const attachEntryState = require('./../lib/entry-state')
  * @returns {undefined}
  */
 module.exports.getCourses = async (req, res, next) => {
+
   // We get all the entries with the content type `course`
   let courses = []
   let categories = []
@@ -77,6 +78,7 @@ module.exports.getCourse = async (req, res, next) => {
  * @returns {undefined}
  */
 module.exports.getCoursesByCategory = async (req, res, next) => {
+
   // We get all the entries with the content type `course` filtered by a category
   let courses = []
   let categories = []
