@@ -2,7 +2,7 @@ const { createClient } = require('contentful')
 const { initClient, getSpace } = require('./../services/contentful')
 
 async function renderSettings (res, opts) {
-  // Get connectred space to display the space name on top of the settings
+  // Get connected space to display the space name on top of the settings
   let space = false
   try {
     space = await getSpace()

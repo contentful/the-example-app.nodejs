@@ -142,7 +142,7 @@ module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = 
     .then((response) => response.items)
 }, 'Category')
 
-// Utitlities functions
+// Utility functions
 function assert (fn, context) {
   return function (req, res, next) {
     return fn(req, res, next)
