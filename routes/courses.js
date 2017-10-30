@@ -1,6 +1,25 @@
-const {getCourses, getCourse, getCategories, getCoursesByCategory} = require('./../services/contentful')
+/*
+ * The purpose of this module is to render the category page when the route is requested
+ */
+
+const {
+  getCourses,
+  getCourse,
+  getCategories,
+  getCoursesByCategory
+} = require('./../services/contentful')
+
 const attachEntryState = require('./../lib/entry-state')
 
+/**
+ * Renders courses list when `/courses` route is requested
+ *
+ * @param req - Object - Express request object
+ * @param res - Object - Express response object
+ * @param next - Function - express callback
+ *
+ * @returns {undefined}
+ */
 module.exports.getCourses = async (req, res, next) => {
   // We get all the entries with the content type `course`
   let courses = []
@@ -16,6 +35,15 @@ module.exports.getCourses = async (req, res, next) => {
   res.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
 }
 
+/**
+ * Renders a course when `/courses/:slug` route is requested
+ *
+ * @param req - Object - Express request object
+ * @param res - Object - Express response object
+ * @param next - Function - express callback
+ *
+ * @returns {undefined}
+ */
 module.exports.getCourse = async (req, res, next) => {
   let course = await getCourse(req.params.slug, res.locals.currentLocale.code, res.locals.currentApi.id)
 
@@ -39,6 +67,15 @@ module.exports.getCourse = async (req, res, next) => {
   res.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
 
+/**
+ * Renders a courses list by a category when `/courses/category/:category` route is requested
+ *
+ * @param req - Object - Express request object
+ * @param res - Object - Express response object
+ * @param next - Function - express callback
+ *
+ * @returns {undefined}
+ */
 module.exports.getCoursesByCategory = async (req, res, next) => {
   // We get all the entries with the content type `course` filtered by a category
   let courses = []
@@ -54,7 +91,15 @@ module.exports.getCoursesByCategory = async (req, res, next) => {
   res.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 }
 
-// GET course lesson detail
+/**
+ * Renders a leson details when `/courses/:courseSlug/lessons/:lessonSlug` route is requested
+ *
+ * @param req - Object - Express request object
+ * @param res - Object - Express response object
+ * @param next - Function - express callback
+ *
+ * @returns {undefined}
+ */
 module.exports.getLesson = async (req, res, next) => {
   let course = await getCourse(req.params.cslug, res.locals.currentLocale.code, res.locals.currentApi.id)
   const lessons = course.fields.lessons
