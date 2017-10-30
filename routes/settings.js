@@ -7,6 +7,8 @@ async function renderSettings (res, opts) {
   try {
     space = await getSpace()
   } catch (error) {
+    // Log the error here for the console when something went wrong.
+    // We keep space false to ensure the "Connected to" box is not shown.
     console.error(error)
   }
 
