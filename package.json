@@ -9,7 +9,9 @@
     "start:production": "NODE_ENV=production node ./bin/www",
     "lint": "eslint ./app.js routes",
     "format": "eslint --fix . bin --ignore public node_modules",
-    "test": "echo 'test'",
+    "pretest": "npm run lint",
+    "test": "npm run test:e2e",
+    "test:e2e": "node test/e2e/run-e2e-test.js",
     "test:integration": "jest test/integration",
     "test:integration:watch": "jest test/integration --watch",
     "test:unit": "jest test/unit",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
     "cookie": "^0.3.1",
+    "cypress": "^1.0.3",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.2",
