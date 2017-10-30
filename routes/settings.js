@@ -1,7 +1,7 @@
 /**
  * This module renders the settings page when `settings` route is requested
  * Also save the settings to the cookies
- * */
+ */
 const { createClient } = require('contentful')
 const { initClient, getSpace } = require('./../services/contentful')
 
