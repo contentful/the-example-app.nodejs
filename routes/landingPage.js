@@ -10,7 +10,7 @@ const attachEntryState = require('./../lib/entry-state')
 /**
  * Renders a landing page when `/` or `/about` route is requested
  * based on the pathname an entry is queried from contentful
- * an a view is rendered from the pulled data
+ * and a view is rendered from the pulled data
  *
  * @param req - Object - Express request
  * @param res - Object - Express response
@@ -26,7 +26,7 @@ module.exports.getLandingPage = async (req, res, next) => {
     res.locals.currentApi.id
   )
 
-  // Attach entry state flags when using preview APIgs
+  // Attach entry state flags when using preview APIs
   if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
     landingPage = await attachEntryState(landingPage)
   }
