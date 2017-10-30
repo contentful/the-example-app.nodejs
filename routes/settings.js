@@ -11,7 +11,7 @@ async function renderSettings (res, opts) {
   try {
     space = await getSpace()
   } catch (error) {
-    // We throw the error here, it will handled byt the error middleware
+    // We throw the error here, it will handled by the error middleware
     // We keep space false to ensure the "Connected to" box is not shown.
     throw (error)
   }
