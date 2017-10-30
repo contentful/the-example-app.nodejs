@@ -1,3 +1,7 @@
+/**
+ * This module renders the settings page when `settings` route is requested
+ * Also save the settings to the cookies
+ * */
 const { createClient } = require('contentful')
 const { initClient, getSpace } = require('./../services/contentful')
 
@@ -22,7 +26,16 @@ async function renderSettings (res, opts) {
   })
 }
 
-// GET settings page
+/**
+ * Renders the settings page when `/settings` route is requested
+ *
+ * @param req - Object - Express request
+ * @param res - Object - Express response
+ * @param next - Function - Express callback
+ *
+ * @returns {undefined}
+ */
+
 module.exports.getSettings = async (req, res, next) => {
   const { settings } = res.locals
   await renderSettings(res, {
@@ -30,7 +43,16 @@ module.exports.getSettings = async (req, res, next) => {
   })
 }
 
-// POST settings page
+/**
+ * Save settings when POST request is triggered to the `/settings` route
+ * and render the settings page
+ *
+ * @param req - Object - Express request
+ * @param res - Object - Express response
+ * @param next - Function - Express callback
+ *
+ * @returns {undefined}
+ */
 module.exports.postSettings = async (req, res, next) => {
   const errorList = []
   const { spaceId, deliveryToken, previewToken, editorialFeatures } = req.body

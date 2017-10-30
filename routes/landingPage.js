@@ -1,8 +1,22 @@
+/**
+ * This module renders landing pages when its route is request
+ * It is used for pages like about and home page
+ */
 const url = require('url')
 
 const { getLandingPage } = require('../services/contentful')
 const attachEntryState = require('./../lib/entry-state')
 
+/**
+ * Renders a landing page when `/` or `/about` route is requested
+ * based on the pathname an entry is queried from contentful
+ * an a view is rendered from the pulled data
+ *
+ * @param req - Object - Express request
+ * @param res - Object - Express response
+ * @param next - Function - Express callback
+ * @returns {undefined}
+ */
 module.exports.getLandingPage = async (req, res, next) => {
   let pathname = url.parse(req.url).pathname.split('/').filter(Boolean)[0]
   pathname = pathname || 'home'
