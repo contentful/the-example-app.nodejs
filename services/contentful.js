@@ -13,7 +13,7 @@ let previewClient = null
  * @returns {undefined}
  */
 module.exports.initClient = (options) => {
-  // Getting the version the app version
+  // Getting the app version
   const { version } = require('../package.json')
 
   const config = options || {
