@@ -6,8 +6,8 @@
  */
 
 module.exports.catchErrors = (fn) => {
-  return function (req, res, next) {
-    return fn(req, res, next).catch((e) => {
+  return function (request, response, next) {
+    return fn(request, response, next).catch((e) => {
       next(e)
     })
   }

@@ -12,25 +12,25 @@ const attachEntryState = require('./../lib/entry-state')
  * based on the pathname an entry is queried from contentful
  * and a view is rendered from the pulled data
  *
- * @param req - Object - Express request
- * @param res - Object - Express response
+ * @param request - Object - Express request
+ * @param response - Object - Express response
  * @param next - Function - Express callback
  * @returns {undefined}
  */
-module.exports.getLandingPage = async (req, res, next) => {
-  let pathname = url.parse(req.url).pathname.split('/').filter(Boolean)[0]
+module.exports.getLandingPage = async (request, response, next) => {
+  let pathname = url.parse(request.url).pathname.split('/').filter(Boolean)[0]
   pathname = pathname || 'home'
   let landingPage = await getLandingPage(
     pathname,
-    res.locals.currentLocale.code,
-    res.locals.currentApi.id
+    response.locals.currentLocale.code,
+    response.locals.currentApi.id
   )
 
   // Attach entry state flags when using preview APIs
-  if (res.locals.settings.editorialFeatures && res.locals.currentApi.id === 'cpa') {
+  if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
     landingPage = await attachEntryState(landingPage)
   }
 
-  res.render('landingPage', { title: pathname, landingPage })
+  response.render('landingPage', { title: pathname, landingPage })
 }
 

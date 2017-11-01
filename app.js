@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(breadcrumb())
 
 // Set our application state based on environment variables or query parameters.
-app.use(async function (req, res, next) {
+app.use(async function (request, response, next) {
   // Set default settings based on environment variables
   let settings = {
     spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -39,11 +39,11 @@ app.use(async function (req, res, next) {
     previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
     editorialFeatures: false,
   // Overwrite default settings using those stored in a cookie
-    ...req.cookies.theExampleAppSettings
+    ...request.cookies.theExampleAppSettings
   }
 
   // Allow setting of API credentials via query parameters
-  const { space_id, preview_token, delivery_token } = req.query
+  const { space_id, preview_token, delivery_token } = request.query
   if (space_id && preview_token && delivery_token) { // eslint-disable-line camelcase
     settings = {
       ...settings,
@@ -51,24 +51,24 @@ app.use(async function (req, res, next) {
       deliveryToken: delivery_token,
       previewToken: preview_token
     }
-    updateCookie(res, SETTINGS_NAME, settings)
+    updateCookie(response, SETTINGS_NAME, settings)
   }
 
   // Allow enabling of editorial features via query parameters
-  const { enable_editorial_features } = req.query
+  const { enable_editorial_features } = request.query
   if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
-    delete req.query.enable_editorial_features
+    delete request.query.enable_editorial_features
     settings.editorialFeatures = true
-    updateCookie(res, SETTINGS_NAME, settings)
+    updateCookie(response, SETTINGS_NAME, settings)
   }
 
   initClient(settings)
-  res.locals.settings = settings
+  response.locals.settings = settings
   next()
 })
 
 // Extend template locals with all information needed to render our app properly.
-app.use(async function (req, res, next) {
+app.use(async function (request, response, next) {
   // Set active api based on query parameter
   const apis = [
     {
@@ -81,33 +81,33 @@ app.use(async function (req, res, next) {
     }
   ]
 
-  res.locals.currentApi = apis
-    .find((api) => api.id === (req.query.api || 'cda'))
+  response.locals.currentApi = apis
+    .find((api) => api.id === (request.query.api || 'cda'))
 
   // Get enabled locales from Contentful
   const space = await getSpace()
-  res.locals.locales = space.locales
+  response.locals.locales = space.locales
 
-  const defaultLocale = res.locals.locales
+  const defaultLocale = response.locals.locales
     .find((locale) => locale.default)
 
-  if (req.query.locale) {
-    res.locals.currentLocale = space.locales
-      .find((locale) => locale.code === req.query.locale)
+  if (request.query.locale) {
+    response.locals.currentLocale = space.locales
+      .find((locale) => locale.code === request.query.locale)
   }
 
-  if (!res.locals.currentLocale) {
-    res.locals.currentLocale = defaultLocale
+  if (!response.locals.currentLocale) {
+    response.locals.currentLocale = defaultLocale
   }
 
   // Inject custom helpers
-  res.locals.helpers = helpers
+  response.locals.helpers = helpers
 
   // Make query string available in templates to render links properly
-  const qs = querystring.stringify(req.query)
-  res.locals.queryString = qs ? `?${qs}` : ''
-  res.locals.query = req.query
-  res.locals.currentPath = req.path
+  const qs = querystring.stringify(request.query)
+  response.locals.queryString = qs ? `?${qs}` : ''
+  response.locals.query = request.query
+  response.locals.currentPath = request.path
 
   next()
 })
@@ -117,20 +117,20 @@ app.use(async function (req, res, next) {
 app.use('/', routes)
 
 // Catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (request, response, next) {
   var err = new Error('Not Found')
   err.status = 404
   next(err)
 })
 
 // Error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, request, response, next) {
   // Set locals, only providing error in development
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+  response.locals.error = request.app.get('env') === 'development' ? err : {}
 
   // Render the error page
-  res.status(err.status || 500)
-  res.render('error')
+  response.status(err.status || 500)
+  response.render('error')
 })
 
 module.exports = app
