@@ -6,7 +6,7 @@ const express = require('express')
 const logger = require('morgan')
 const querystring = require('querystring')
 
-// Load environment variables from the variablaaaaaaautomatically
+// Load environment variables using dotenv
 require('dotenv').config({ path: 'variables.env' })
 
 const helpers = require('./helpers')
@@ -30,7 +30,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(breadcrumb())
 
-// Set our application state based on environment variables or query parameters.
+// Set our application state based on environment variables or query parameters
 app.use(async function (request, response, next) {
   // Set default settings based on environment variables
   let settings = {
@@ -67,7 +67,7 @@ app.use(async function (request, response, next) {
   next()
 })
 
-// Extend template locals with all information needed to render our app properly.
+// Make data available for our views to consume
 app.use(async function (request, response, next) {
   // Set active api based on query parameter
   const apis = [
