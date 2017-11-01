@@ -11,8 +11,10 @@ module.exports.markdown = (content = '') => {
 // Dump is a handy debugging function we can use to sort of "console.log" our data
 module.exports.dump = (obj) => JSON.stringify(obj, null, 2)
 
-// Evil users might try to add base64 url data to execute js
-// So we should take care of that
+/**
+ * Evil users might try to add base64 url data to execute js code
+ * so we should purge any potentially harmful data to mitigate risk
+ */
 function removeInvalidDataURL (content) {
   let regex = /data:\S+;base64\S*/gm
   return content.replace(regex, '#')
