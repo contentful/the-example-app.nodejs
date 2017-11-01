@@ -1,4 +1,5 @@
 const marked = require('marked')
+const { translate } = require('./i18n/i18n')
 
 // Parse markdown text
 module.exports.markdown = (content = '') => {
@@ -11,11 +12,11 @@ module.exports.markdown = (content = '') => {
 // A handy debugging function we can use to sort of "console.log" our data
 module.exports.dump = (obj) => JSON.stringify(obj, null, 2)
 
-module.exports.formatMetaTitle = (title) => {
+module.exports.formatMetaTitle = (title, localeCode = 'en-US') => {
   if (!title) {
-    return 'The Example App'
+    return translate('defaultTitle', localeCode)
   }
-  return `${title.charAt(0).toUpperCase()}${title.slice(1)} — The Example App`
+  return `${title.charAt(0).toUpperCase()}${title.slice(1)} — ${translate('defaultTitle', localeCode)}`
 }
 
 /**

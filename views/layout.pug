@@ -1,20 +1,20 @@
 doctype html
 html
   head
-    title= helpers.formatMetaTitle(title)
+    title= helpers.formatMetaTitle(title, currentLocale.code)
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1')
-    meta(name='description' content='This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
-    meta(name='twitter:card' content='This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
-    meta(property='og:title' content=helpers.formatMetaTitle(title))
+    meta(name='description' content=translate('metaDescription', currentLocale.code))
+    meta(name='twitter:card' content=translate('metaTwitterCard', currentLocale.code))
+    meta(property='og:title' content=helpers.formatMetaTitle(title, currentLocale.code))
     meta(property='og:type' content='article')
     meta(property='og:url' content=`http://contentful-example-app.herokuapp.com${currentPath}`)
     meta(property='og:image' content='http://contentful-example-app.herokuapp.com/og-image.jpg')
     meta(property='og:image:type' content='image/jpeg')
     meta(property='og:image:width' content='1200')
     meta(property='og:image:height' content='1200')
-    meta(property='og:image:alt' content='This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
-    meta(property='og:description' content='This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+    meta(property='og:image:alt' content=translate('metaImageAlt', currentLocale.code))
+    meta(property='og:description' content=translate('metaImageDescription', currentLocale.code))
     link(rel='apple-touch-icon' sizes='120x120' href='/apple-touch-icon.png')
     link(rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png')
     link(rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png')
@@ -31,55 +31,55 @@ html
                 a#about-this-modal-trigger(href='#').header__title
                   svg.course__overview-icon
                     use(xlink:href='/icons/icons.svg#info')
-                  span What is this example app?
+                span #{translate('whatIsThisApp', currentLocale.code)}
               .header__upper-second
                 .header__upper-copy
                   a.header__upper-link(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener')
                     svg.header__upper-icon
                       use(xlink:href='/icons/icons.svg#github')
-                    | View on Github
+                    | #{translate('viewOnGithub', currentLocale.code)}
 
                 .header__controls
                     .header__controls_group
                       form(action='' method='get')
-                        .header__controls_label API: #{currentApi.label}
+                        .header__controls_label API: #{currentApi.label} #{translate(`apiLabelHelp${currentApi.id}`, currentLocale.code)}
                         .header__controls_dropdown
-                          .header__controls_help_text View the published or draft content by simply switching between the Deliver and Preview APIs.
+                          .header__controls_help_text #{translate('apiSwitcherHelp', currentLocale.code)}
                           button.header__controls_button(
                             type='submit'
                             name='api'
                             value='cda'
                             class=`${currentApi.id === 'cda' ? 'header__controls_button--active' : ''}`
-                          ) Delivery (published content)
+                          ) Delivery #{translate('apiLabelHelpcda', currentLocale.code)}
                           button.header__controls_button(
                             type='submit'
                             name='api'
                             value='cpa'
                             class=`${currentApi.id === 'cpa' ? 'header__controls_button--active' : ''}`
-                          ) Preview (draft content)
+                          ) Preview #{translate('apiLabelHelpcpa', currentLocale.code)}
                         input(type='hidden' name='locale' value=currentLocale.code)
 
                     .header__controls_group
                       form(action='' method='get')
                         input(type='hidden' name='api' value=currentApi.id)
-                        .header__controls_label Locale: #{currentLocale.name}
+                        .header__controls_label #{translate('locale', currentLocale.code)}: #{currentLocale.name}
                         .header__controls_dropdown
-                          .header__controls_help_text Working with multiple languages? You can query the Content Delivery API for a specific locale.
+                          .header__controls_help_text #{translate('localeQuestion', currentLocale.code)}
                           each locale in locales
                             button.header__controls_button(type='submit' name='locale' value=locale.code class=`${locale.code === currentLocale.code ? 'header__controls_button--active' : ''}`)= `${locale.name} (${locale.code})`
                 .header__upper-menu
-                  a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) Settings
+                  a(href=`/settings${queryString}` class=(currentPath.startsWith('/settings') ? 'active' : '')) #{translate('settingsLabel', currentLocale.code)}
           .header__lower-wrapper
             .header__lower.layout-centered
               .header__logo
                 a.header__logo-link(href=`/${queryString}`)
-                  img(src='/images/logo-node.svg' alt='Contentful Example App')
+                  img(src='/images/logo-node.svg' alt=translate('logoAlt', currentLocale.code))
               nav.header__navigation.main-navigation
                 ul
                   li
-                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
+                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) #{translate('homeLabel', currentLocale.code)}
                   li
-                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
+                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) #{translate('coursesLabel', currentLocale.code)}
       .main__content
         block content
 
@@ -90,9 +90,9 @@ html
               nav.footer__navigation.main-navigation
                 ul
                   li
-                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) Home
+                    a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) #{translate('homeLabel', currentLocale.code)}
                   li
-                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) Courses
+                    a(href=`/courses${queryString}` class=(currentPath.startsWith('/courses') ? 'active' : '') ) #{translate('coursesLabel', currentLocale.code)}
               .footer__apps
                 //- a(href='#')
                 //-   img(src='/images/badge-app-store.svg')
@@ -103,12 +103,12 @@ html
                 a(href='https://www.contentful.com/' target='_blank' rel='noopener')
                   img.footer__disclaimer-logo(src='/images/contentful-logo.svg')
                 p.footer__disclaimer-text
-                  | Powered by Contentful. This website and the materials found on it are for demo purposes. You can use this to preview the content created on your Contentful account.&nbsp;
-                  a(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener') View on Github
+                  | #{translate('footerDisclaimer', currentLocale.code)}&nbsp;
+                  a(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener') #{translate('viewOnGithub', currentLocale.code)}
                   | .&nbsp;
-                  a(href=`/imprint${queryString}` ) Imprint
+                  a(href=`/imprint${queryString}` ) #{translate('imprintLabel', currentLocale.code)}
                   | .&nbsp;
-                  a(href=`https://www.contentful.com/contact/` ) Contact us
+                  a(href=`https://www.contentful.com/contact/` ) #{translate('contactUsLabel', currentLocale.code)}
                   | .
               .footer__social
                 p
@@ -124,15 +124,15 @@ html
     section.modal#about-this-modal
       .modal__overlay.close
       .modal__wrapper
-        h1.modal__title A referenceable example for developers using Contentful
+        h1.modal__title #{translate('modalTitle', currentLocale.code)}
         .modal__content
-          p This is The Example App, an application built to serve you as a reference while building your own applications using Contentful. This app is an online learning platform which teaches you how Contentful was used to build this app (so meta)!
+          p #{translate('modalIntro', currentLocale.code)}
           p
-          | If you prefer to start by getting your hands dirty with code, check out this app on&nbsp;
+          | #{translate('modalCodeIntro', currentLocale.code)}&nbsp;
           a(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener') Github
           | .
         .modal__cta-wrapper
-          a(href='#').modal__cta.close Ok, got it.
+          a(href='#').modal__cta.close #{translate('modalCTALabel', currentLocale.code)}
         .modal__close-wrapper
           a(href='#').modal__close-button.close
             svg

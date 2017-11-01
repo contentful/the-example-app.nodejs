@@ -3,4 +3,4 @@ mixin lessonModuleImage(module)
     if module.fields.image && module.fields.image.fields.file && module.fields.image.fields.file.url
       img.lesson-module-image__image(src=module.fields.image.fields.file.url alt=module.fields.image.fields.title)
     else
-      h3 ⚠️ Image missing
+      h3 #{translate('imageErrorTitle', currentLocale.code)}
