@@ -40,8 +40,7 @@ module.exports.initClient = (options) => {
  * @returns {undefined}
  */
 module.exports.getSpace = assert((api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-  return client.getSpace()
+  return getClient(api).getSpace()
 }, 'Space')
 
 /**
@@ -53,8 +52,7 @@ module.exports.getSpace = assert((api = `cda`) => {
  */
 
 module.exports.getEntry = assert((entryId, api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-  return client.getEntry(entryId)
+  return getClient(api).getEntry(entryId)
 }, 'Entry')
 
 /**
@@ -64,9 +62,7 @@ module.exports.getEntry = assert((entryId, api = `cda`) => {
  * @returns {Array<Object>}
  */
 module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-
-  return client.getEntries({
+  return getClient(api).getEntries({
     content_type: 'course',
     locale,
     order: 'sys.createdAt', // Ordering the entries by creation date
@@ -83,10 +79,9 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-  // Event though we need a single entry, we request it using the collection endpoint
-  // To get all the linked refs in one go, the SDK will use the data and resolve the links automaticaly
-  return client.getEntries({
+  // Even though we need a single entry, we request it using the collection endpoint
+  // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
+  return getClient(api).getEntries({
     content_type: 'layout',
     locale,
     'fields.slug': slug,
@@ -103,10 +98,9 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
   // Even though we need a single entry, we request it using the collection endpoint
   // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
-  return client.getEntries({
+  return getClient(api).getEntries({
     content_type: 'course',
     'fields.slug': slug,
     locale,
@@ -116,8 +110,7 @@ module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
 }, 'Course')
 
 module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-  return client.getEntries({content_type: 'category', locale})
+  return getClient(api).getEntries({content_type: 'category', locale})
     .then((response) => response.items)
 }, 'Course')
 
@@ -132,8 +125,7 @@ module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
  * @returns {Object}
  */
 module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? deliveryClient : previewClient
-  return client.getEntries({
+  return getClient(api).getEntries({
     content_type: 'course',
     'fields.categories.sys.id': category,
     locale,
@@ -144,6 +136,10 @@ module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = 
 }, 'Category')
 
 // Utility function
+function getClient (api = 'cda') {
+  return api === 'cda' ? deliveryClient : previewClient
+}
+
 function assert (fn, context) {
   return function (req, res, next) {
     return fn(req, res, next)

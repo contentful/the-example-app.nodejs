@@ -1,5 +1,5 @@
 /**
- * This module link all the rendering modules to the routes
+ * This module links all the rendering modules to the routes
  */
 
 const express = require('express')
@@ -15,18 +15,18 @@ const { getImprint } = require('./imprint')
 // GET the home landing page
 router.get('/', catchErrors(getLandingPage))
 
-// Courses Routes
+// Courses routes
 router.get('/courses', catchErrors(getCourses))
 router.get('/courses/categories/:category', catchErrors(getCoursesByCategory))
 router.get('/courses/:slug', catchErrors(getCourse))
 router.get('/courses/:slug/lessons', catchErrors(getCourse))
 router.get('/courses/:cslug/lessons/:lslug', catchErrors(getLesson))
 
-// Settings Routes
+// Settings routes
 router.get('/settings', catchErrors(getSettings))
 router.post('/settings', catchErrors(postSettings))
 
-// Imprint Route
+// Imprint route
 router.get('/imprint', catchErrors(getImprint))
 
 module.exports = router
