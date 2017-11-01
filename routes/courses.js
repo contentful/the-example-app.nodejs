@@ -27,7 +27,7 @@ module.exports.getCourses = async (request, response, next) => {
   let categories = []
   courses = await getCourses(response.locals.currentLocale.code, response.locals.currentApi.id)
 
-  // Attach entry state flags when using preview API
+  // Attach entry state flags when using preview API.
   if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
     courses = await Promise.all(courses.map(attachEntryState))
   }
