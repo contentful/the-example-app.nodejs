@@ -9,12 +9,12 @@ block content
   .layout-sidebar
     section.layout-sidebar__sidebar
       .layout-sidebar__sidebar-header
-        h2.layout-sidebar__sidebar-title Categories
+        h2.layout-sidebar__sidebar-title #{translate('categoriesLabel', currentLocale.code)}
       .layout-sidebar__sidebar-content
         .sidebar-menu
           ul.sidebar-menu__list
             li.sidebar-menu__item
-              a.sidebar-menu__link(href=`/courses${queryString}` class=(currentPath.endsWith('/courses') ? 'active' : '')) All courses
+              a.sidebar-menu__link(href=`/courses${queryString}` class=(currentPath.endsWith('/courses') ? 'active' : '')) #{translate('allCoursesLabel', currentLocale.code)}
             each category in categories
               li.sidebar-menu__item
                 a.sidebar-menu__link(href=`/courses/categories/${category.fields.slug}${queryString}` class=(currentPath.endsWith(category.fields.slug) ? 'active' : '')) #{category.fields.title}

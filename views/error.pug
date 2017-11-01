@@ -6,18 +6,18 @@ block content
   .layout-centered
     +breadcrumb
     .error
-      h1 Oops Something went wrong (#{error.status})
-      h2 Try:
+      h1 #{translate('somethingWentWrongLabel', currentLocale.code)} (#{error.status})
+      h2 #{translate('tryLabel', currentLocale.code)}:
       ul
-        li Check if the content model has changed
-        li Check the selection has content in draft or published state (for Preview or Delivery)
-        li Check if there's any content for this locale
-        li Verify credentials are correct and up to date
-        li Check the stack trace below
+        li #{translate('contentModelChangedErrorLabel', currentLocale.code)}
+        li #{translate('draftOrPublishedErrorLabel', currentLocale.code)}
+        li #{translate('localeContentErrorLabel', currentLocale.code)}
+        li #{translate('verifyCredentialsErrorLabel', currentLocale.code)}
+        li #{translate('stackTraceErrorLabel', currentLocale.code)}
       if error.response
-        h2 Error
+        h2 #{translate('errorLabel', currentLocale.code)}
           pre.error__stack-trace
             code.shell #{helpers.dump(error.response.data)}
-      h2 Stack trace
+      h2 #{translate('stackTraceLabel', currentLocale.code)}
       pre.error__stack-trace
         code.shell #{error.stack}

@@ -10,12 +10,12 @@ block content
   .layout-sidebar
     section.layout-sidebar__sidebar
       .layout-sidebar__sidebar-header
-        h2.layout-sidebar__sidebar-title Table of contents
+        h2.layout-sidebar__sidebar-title #{translate('tableOfContentsLabel', currentLocale.code)}
       .layout-sidebar__sidebar-content
         .table-of-contents
           .table-of-contents__list
             .table-of-contents__item
-              a.table-of-contents__link(href=`/courses/${course.fields.slug}${queryString}` class=(currentPath.endsWith(course.fields.slug) ? 'active' : '') class=(visitedLessons.includes(course.sys.id) ? 'visited' : '')) Course overview
+              a.table-of-contents__link(href=`/courses/${course.fields.slug}${queryString}` class=(currentPath.endsWith(course.fields.slug) ? 'active' : '') class=(visitedLessons.includes(course.sys.id) ? 'visited' : '')) #{translate('courseOverviewLabel', currentLocale.code)}
             each l in course.fields.lessons
               if l.fields
                 .table-of-contents__item
@@ -28,17 +28,17 @@ block content
           h1.course__title= course.fields.title
           +editorialFeatures(course)
           .course__overview
-            h3.course__overview-title Overview
+            h3.course__overview-title #{translate('overviewLabel', currentLocale.code)}
             if course.fields.duration
               .course__overview-item
                 svg.course__overview-icon
                   use(xlink:href='/icons/icons.svg#duration')
-                .course__overview-value Duration: #{course.fields.duration} min
+                .course__overview-value #{translate('durationLabel', currentLocale.code)}: #{course.fields.duration} #{translate('minutesLabel', currentLocale.code)}
             if course.fields.skillLevel
               .course__overview-item
                 svg.course__overview-icon
                   use(xlink:href='/icons/icons.svg#skill-level')
-                .course__overview-value Skill level: #{course.fields.skillLevel}
+                .course__overview-value #{translate('skillLevelLabel', currentLocale.code)}: #{course.fields.skillLevel}
             .course__overview-cta-wrapper
-              a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) Start course
+              a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) #{translate('startCourseLabel', currentLocale.code)}
           .course__description !{helpers.markdown(course.fields.description)}

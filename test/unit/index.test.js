@@ -2,6 +2,7 @@
 const { getCourses, getCourse, getCoursesByCategory, getLesson } = require('../../routes/courses')
 const { getSettings } = require('../../routes/settings')
 const { mockCourse, mockCategory } = require('./mocks/index')
+const { translate, initializeTranslations } = require('../../i18n/i18n')
 
 jest.mock('../../services/contentful')
 const contentful = require('../../services/contentful')
@@ -25,6 +26,8 @@ const response = {
 }
 
 beforeAll(() => {
+  initializeTranslations()
+
   contentful.getCourses.mockImplementation(() => [mockCourse])
   contentful.getCourse.mockImplementation(() => mockCourse)
 
@@ -45,7 +48,7 @@ describe('Courses', () => {
   test('it should courses list once', async () => {
     await getCourses(request, response)
     expect(response.render.mock.calls[0][0]).toBe('courses')
-    expect(response.render.mock.calls[0][1].title).toBe('All Courses (1)')
+    expect(response.render.mock.calls[0][1].title).toBe('All courses (1)')
     expect(response.render.mock.calls[0][1].courses.length).toBe(1)
     expect(response.render.mock.calls.length).toBe(1)
   })
@@ -86,5 +89,19 @@ describe('Settings', () => {
     expect(response.render.mock.calls[0][0]).toBe('settings')
     expect(response.render.mock.calls[0][1].title).toBe('Settings')
     expect(response.render.mock.calls[0][1].settings).toBe(response.locals.settings)
+  })
+})
+
+describe('i18n', () => {
+  test('It returns an error when locale file is not found', () => {
+    expect(translate('foo', 'bar-locale')).toBe('Localization file for bar-locale is not available')
+  })
+
+  test('It returns an error when symbol is not found on locale file', () => {
+    expect(translate('foo', 'en-US')).toBe('Translation not found for foo in en-US')
+  })
+
+  test('It returns the translated string when symbol is found on locale file', () => {
+    expect(translate('coursesLabel', 'en-US')).toBe('Courses')
   })
 })

@@ -33,4 +33,3 @@ module.exports.getLandingPage = async (request, response, next) => {
 
   response.render('landingPage', { title: pathname, landingPage })
 }
-

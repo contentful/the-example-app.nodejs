@@ -1,3 +1,4 @@
+const { translate } = require('../i18n/i18n')
 /**
  * Renders imprint page when `/imprint` route is requested
  * @param request - Object - Express request
@@ -6,6 +7,7 @@
  * @returns {undefined}
  */
 module.exports.getImprint = (request, response, next) => {
-  response.render('imprint', { title: 'Imprint' })
+  response.render('imprint', {
+    title: translate('imprintLabel', response.locals.currentLocale.code)
+  })
 }
-

@@ -5,6 +5,7 @@
 const { createClient } = require('contentful')
 const { initClients, getSpace } = require('./../services/contentful')
 const { updateCookie } = require('../lib/cookies')
+const { translate } = require('../i18n/i18n')
 
 const SETTINGS_NAME = 'theExampleAppSettings'
 
@@ -20,7 +21,7 @@ async function renderSettings (response, opts) {
   }
 
   response.render('settings', {
-    title: 'Settings',
+    title: translate('settingsLabel', response.locals.currentLocale.code),
     errors: {},
     hasErrors: false,
     success: false,
@@ -56,6 +57,7 @@ module.exports.getSettings = async (request, response, next) => {
  * @returns {undefined}
  */
 module.exports.postSettings = async (request, response, next) => {
+  const currentLocale = response.locals.currentLocale
   const errorList = []
   const { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
   const settings = {
@@ -69,21 +71,21 @@ module.exports.postSettings = async (request, response, next) => {
   if (!spaceId) {
     errorList.push({
       field: 'spaceId',
-      message: 'This field is required'
+      message: translate('fieldIsRequiredLabel', currentLocale.code)
     })
   }
 
   if (!deliveryToken) {
     errorList.push({
       field: 'deliveryToken',
-      message: 'This field is required'
+      message: translate('fieldIsRequiredLabel', currentLocale.code)
     })
   }
 
   if (!previewToken) {
     errorList.push({
       field: 'previewToken',
-      message: 'This field is required'
+      message: translate('fieldIsRequiredLabel', currentLocale.code)
     })
   }
 
@@ -98,17 +100,17 @@ module.exports.postSettings = async (request, response, next) => {
       if (err.response.status === 401) {
         errorList.push({
           field: 'deliveryToken',
-          message: 'Your Delivery API key is invalid.'
+          message: translate('deliveryKeyInvalidLabel', currentLocale.code)
         })
       } else if (err.response.status === 404) {
         errorList.push({
           field: 'spaceId',
-          message: 'This space does not exist or your access token is not associated with your space.'
+          message: translate('spaceOrTokenInvalid', currentLocale.code)
         })
       } else {
         errorList.push({
           field: 'deliveryToken',
-          message: `Something went wrong: ${err.response.data.message}`
+          message: `${translate('somethingWentWrongLabel', currentLocale.code)}: ${err.response.data.message}`
         })
       }
     }
@@ -126,17 +128,17 @@ module.exports.postSettings = async (request, response, next) => {
       if (err.response.status === 401) {
         errorList.push({
           field: 'previewToken',
-          message: 'Your Preview API key is invalid.'
+          message: translate('previewKeyInvalidLabel', currentLocale.code)
         })
       } else if (err.response.status === 404) {
         errorList.push({
           field: 'spaceId',
-          message: 'This space does not exist or your delivery token is not associated with your space.'
+          message: translate('spaceOrTokenInvalid', currentLocale.code)
         })
       } else {
         errorList.push({
           field: 'previewToken',
-          message: `Something went wrong: ${err.response.data.message}`
+          message: `${translate('somethingWentWrongLabel', currentLocale.code)}: ${err.response.data.message}`
         })
       }
     }
@@ -171,4 +173,3 @@ module.exports.postSettings = async (request, response, next) => {
     success: errorList.length === 0
   })
 }
-

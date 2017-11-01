@@ -14,4 +14,4 @@ mixin moduleHighlightedCourse(module, course)
         .module-higlighted-course__description-wrapper
           p !{helpers.markdown(course.fields.shortDescription)}
         .module-higlighted-course__link-wrapper
-          a.module-higlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) view course
+          a.module-higlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate('viewCourseLabel', currentLocale.code)}
