@@ -116,8 +116,8 @@ module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
 
 /**
  * Get Courses by Categories
- * Getting a course by Category is simply querying all entries
- * With a query params `fields.categories.sys.id` equal to the desired category id
+ * To get a course by category, simply query all entries
+ * with a query params `fields.categories.sys.id` equal to the desired category id
  * Note that you need to send the `content_type` param to be able to query the entry
  * @param category - string - the id of the category
  * @param locale - string - locale of the entry to request [default: 'en-US']
