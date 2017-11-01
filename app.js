@@ -6,7 +6,7 @@ const express = require('express')
 const logger = require('morgan')
 const querystring = require('querystring')
 
-// Load environment variables from the variables.env file.
+// Load environment variables from the variablaaaaaaautomatically
 require('dotenv').config({ path: 'variables.env' })
 
 const helpers = require('./helpers')
@@ -34,11 +34,11 @@ app.use(breadcrumb())
 app.use(async function (req, res, next) {
   // Set default settings based on environment variables
   let settings = {
-    spaceId: process.env.CF_SPACE_ID,
-    deliveryToken: process.env.CF_DELIVERY_TOKEN,
-    previewToken: process.env.CF_PREVIEW_TOKEN,
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
     editorialFeatures: false,
-    // Overwrite settings via settings stored to cookie
+  // Overwrite default settings using those stored in a cookie
     ...req.cookies.theExampleAppSettings
   }
 
