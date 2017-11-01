@@ -140,9 +140,8 @@ module.exports.postSettings = async (request, response, next) => {
     }
   }
 
-  // When no errors occurred
+  // If no errors, then cache the new settings in the cookie
   if (!errorList.length) {
-    // Store new settings
     response.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
     response.locals.settings = settings
 
@@ -150,7 +149,7 @@ module.exports.postSettings = async (request, response, next) => {
     initClient(settings)
   }
 
-  // Generate error dictionary
+  // Generate errors dictionary
   // Format: { FIELD_NAME: [array, of, error, messages] }
   const errors = errorList.reduce((errors, error) => {
     return {
