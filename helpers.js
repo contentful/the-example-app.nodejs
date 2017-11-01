@@ -1,8 +1,7 @@
 const marked = require('marked')
 
 // Parse markdown text
-module.exports.markdown = (content) => {
-  content = content || ''
+module.exports.markdown = (content = '') => {
   if (!content.trim()) {
     return ''
   }

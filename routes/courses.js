@@ -11,6 +11,7 @@ const {
 
 const attachEntryState = require('../lib/entry-state')
 const { updateCookie } = require('../lib/cookies')
+
 /**
  * Renders courses list when `/courses` route is requested
  *
