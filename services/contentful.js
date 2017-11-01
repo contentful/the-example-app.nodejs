@@ -141,8 +141,8 @@ function getClient (api = 'cda') {
 }
 
 function assert (fn, context) {
-  return function (req, res, next) {
-    return fn(req, res, next)
+  return function (request, response, next) {
+    return fn(request, response, next)
     .then((data) => {
       if (!data) {
         var err = new Error(`${context} Not Found`)

@@ -3,7 +3,7 @@
  */
 
 // GET category listing
-module.exports.getCategories = async (req, res, next) => {
-  res.render('categories', { title: 'Categories' })
+module.exports.getCategories = async (request, response, next) => {
+  response.render('categories', { title: 'Categories' })
 }
 

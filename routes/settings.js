@@ -5,7 +5,7 @@
 const { createClient } = require('contentful')
 const { initClient, getSpace } = require('./../services/contentful')
 
-async function renderSettings (res, opts) {
+async function renderSettings (response, opts) {
   // Get connected space to display the space name on top of the settings
   let space = false
   try {
@@ -16,7 +16,7 @@ async function renderSettings (res, opts) {
     throw (error)
   }
 
-  res.render('settings', {
+  response.render('settings', {
     title: 'Settings',
     errors: {},
     hasErrors: false,
@@ -29,16 +29,16 @@ async function renderSettings (res, opts) {
 /**
  * Renders the settings page when `/settings` route is requested
  *
- * @param req - Object - Express request
- * @param res - Object - Express response
+ * @param request - Object - Express request
+ * @param response - Object - Express response
  * @param next - Function - Express callback
  *
  * @returns {undefined}
  */
 
-module.exports.getSettings = async (req, res, next) => {
-  const { settings } = res.locals
-  await renderSettings(res, {
+module.exports.getSettings = async (request, response, next) => {
+  const { settings } = response.locals
+  await renderSettings(response, {
     settings
   })
 }
@@ -47,15 +47,15 @@ module.exports.getSettings = async (req, res, next) => {
  * Save settings when POST request is triggered to the `/settings` route
  * and render the settings page
  *
- * @param req - Object - Express request
- * @param res - Object - Express response
+ * @param request - Object - Express request
+ * @param response - Object - Express response
  * @param next - Function - Express callback
  *
  * @returns {undefined}
  */
-module.exports.postSettings = async (req, res, next) => {
+module.exports.postSettings = async (request, response, next) => {
   const errorList = []
-  const { spaceId, deliveryToken, previewToken, editorialFeatures } = req.body
+  const { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
   const settings = {
     spaceId,
     deliveryToken,
@@ -143,8 +143,8 @@ module.exports.postSettings = async (req, res, next) => {
   // When no errors occurred
   if (!errorList.length) {
     // Store new settings
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
-    res.locals.settings = settings
+    response.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    response.locals.settings = settings
 
     // Reinit clients
     initClient(settings)
@@ -162,7 +162,7 @@ module.exports.postSettings = async (req, res, next) => {
     }
   }, {})
 
-  await renderSettings(res, {
+  await renderSettings(response, {
     settings,
     errors,
     hasErrors: errorList.length > 0,
