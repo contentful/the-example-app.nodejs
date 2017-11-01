@@ -66,7 +66,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
     content_type: 'course',
     locale,
     order: 'sys.createdAt', // Ordering the entries by creation date
-    include: 10 // We use include param to increase the link level, the include value goes from 1 to 10
+    include: 6 // We use include param to increase the link level, the include value goes from 1 to 6
   })
     .then((response) => response.items)
 }, 'Course')
@@ -85,7 +85,7 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
     content_type: 'layout',
     locale,
     'fields.slug': slug,
-    include: 10
+    include: 6
   })
     .then((response) => response.items[0])
 }
@@ -104,7 +104,7 @@ module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
     content_type: 'course',
     'fields.slug': slug,
     locale,
-    include: 10
+    include: 6
   })
     .then((response) => response.items[0])
 }, 'Course')
@@ -130,7 +130,7 @@ module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = 
     'fields.categories.sys.id': category,
     locale,
     order: '-sys.createdAt',
-    include: 10
+    include: 6
   })
     .then((response) => response.items)
 }, 'Category')
