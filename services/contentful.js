@@ -36,7 +36,7 @@ module.exports.initClient = (options) => {
 
 /**
  * Get the Space the app is connected to. Used for the settings form and to get all available locales
- * @param api - string, the api to use, cda or cap. Default: 'cda'
+ * @param api - string - the api to use, cda or cap. Default: 'cda'
  * @returns {undefined}
  */
 module.exports.getSpace = assert((api = `cda`) => {
@@ -45,8 +45,8 @@ module.exports.getSpace = assert((api = `cda`) => {
 
 /**
  * Get a single entry. Used to detect the `Draft` or `Pending Changes` state
- * @param entryId - string the entry id
- * @param api - string the api to use fetching the entry
+ * @param entryId - string - the entry id
+ * @param api - string - the api to use fetching the entry
  *
  * @returns {Object}
  */
@@ -57,7 +57,7 @@ module.exports.getEntry = assert((entryId, api = `cda`) => {
 
 /**
  * Get all entries with content_type `course`
- * @param locale - string the locale of the entry [default: 'en-US']
+ * @param locale - string - the locale of the entry [default: 'en-US']
  * @param api - string the api enpoint to use when fetching the data
  * @returns {Array<Object>}
  */
@@ -75,7 +75,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
  * Get the an entry with `layout` content_type e.g. Landing page or About page
  * @param slug - string - the slug of the entry to use in the query
  * @param locale - string - locale of the entry to request [default: 'en-US']
- * @param api - string the api enpoint to use when fetching the data
+ * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
 module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
@@ -94,7 +94,7 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
  * Get an entry with content_type `course`
  * @param slug - string - the slug of the entry to use in the query
  * @param locale - string - locale of the entry to request [default: 'en-US']
- * @param api - string the api enpoint to use when fetching the data
+ * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
 module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
@@ -121,7 +121,7 @@ module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
  * Note that you need to send the `content_type` param to be able to query the entry
  * @param category - string - the id of the category
  * @param locale - string - locale of the entry to request [default: 'en-US']
- * @param api - string the api enpoint to use when fetching the data
+ * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
 module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
