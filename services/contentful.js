@@ -44,7 +44,7 @@ module.exports.getSpace = assert((api = `cda`) => {
 }, 'Space')
 
 /**
- * Get a single entry. Used to detect the `Draft` or `Pending Changes` state
+ * Gets an entry. Used to detect the `Draft` or `Pending Changes` state
  * @param entryId - string - the entry id
  * @param api - string - the api to use fetching the entry
  *
@@ -72,7 +72,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
 }, 'Course')
 
 /**
- * Get the an entry with `layout` content_type e.g. Landing page or About page
+ * Get entries of content_type `layout` e.g. Landing page
  * @param slug - string - the slug of the entry to use in the query
  * @param locale - string - locale of the entry to request [default: 'en-US']
  * @param api - string - the api enpoint to use when fetching the data
