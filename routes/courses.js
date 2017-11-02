@@ -50,8 +50,7 @@ module.exports.getCourse = async (request, response, next) => {
 
   // Get lessons
   const lessons = course.fields.lessons
-  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === request.params.lslug)
-  const lesson = lessons[lessonIndex]
+  let {lesson, lessonIndex} = getNextLesson(lessons, request.params.lslug)
 
   // Manage state of viewed lessons
   const cookie = request.cookies.visitedLessons
@@ -73,7 +72,7 @@ module.exports.getCourse = async (request, response, next) => {
  *
  * @param request - Object - Express request object
  * @param response - Object - Express response object
- * @param next - Function - express callback
+ * @param next - Function - Express callback
  *
  * @returns {undefined}
  */
@@ -93,7 +92,7 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
 }
 
 /**
- * Renders a leson details when `/courses/:courseSlug/lessons/:lessonSlug` route is requested
+ * Renders a lesson details when `/courses/:courseSlug/lessons/:lessonSlug` route is requested
  *
  * @param request - Object - Express request object
  * @param response - Object - Express response object
@@ -103,10 +102,9 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
  */
 module.exports.getLesson = async (request, response, next) => {
   let course = await getCourse(request.params.cslug, response.locals.currentLocale.code, response.locals.currentApi.id)
+
   const lessons = course.fields.lessons
-  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === request.params.lslug)
-  let lesson = lessons[lessonIndex]
-  const nextLesson = lessons[lessonIndex + 1] || null
+  let {lesson, nextLesson} = getNextLesson(lessons, request.params.lslug)
 
   // Save visited lessons
   const cookie = request.cookies.visitedLessons
@@ -130,3 +128,14 @@ module.exports.getLesson = async (request, response, next) => {
   })
 }
 
+function getNextLesson (lessons, lslug) {
+  const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === lslug)
+  let lesson = lessons[lessonIndex]
+  const nextLesson = lessons[lessonIndex + 1] || null
+
+  return {
+    lessonIndex,
+    lesson,
+    nextLesson
+  }
+}
