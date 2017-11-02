@@ -53,12 +53,12 @@ module.exports.getCourse = async (request, response, next) => {
   const lessonIndex = lessons.findIndex((lesson) => lesson.fields.slug === request.params.lslug)
   const lesson = lessons[lessonIndex]
 
-  // Save visited lessons
+  // Manage state of viewed lessons
   const cookie = request.cookies.visitedLessons
   let visitedLessons = cookie || []
   visitedLessons.push(course.sys.id)
   visitedLessons = [...new Set(visitedLessons)]
-  response.cookie('visitedLessons', visitedLessons, { maxAge: 900000, httpOnly: true })
+  updateCookie(response, 'visitedLessons', visitedLessons)
 
   // Attach entry state flags when using preview API
   if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
