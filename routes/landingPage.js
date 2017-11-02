@@ -1,6 +1,6 @@
 /**
  * This module renders a layout when its route is requested
- * It is used for pages like about and home page
+ * It is used for pages like home page
  */
 const url = require('url')
 
@@ -26,7 +26,7 @@ module.exports.getLandingPage = async (request, response, next) => {
     response.locals.currentApi.id
   )
 
-  // Attach entry state flags when using preview APIs
+  // Attach entry state flags when using preview API
   if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
     landingPage = await attachEntryState(landingPage)
   }

@@ -1,10 +1,10 @@
 /**
  * This module renders the settings page when `settings` route is requested
- * it also saves the settings to the cookies
+ * it also saves the settings to a cookie
  */
 const { createClient } = require('contentful')
 const { initClients, getSpace } = require('./../services/contentful')
-const { updateCookie } =  require('../lib/cookies')
+const { updateCookie } = require('../lib/cookies')
 
 const SETTINGS_NAME = 'theExampleAppSettings'
 
@@ -14,7 +14,7 @@ async function renderSettings (response, opts) {
   try {
     space = await getSpace()
   } catch (error) {
-    // We throw the error here, it will handled by the error middleware
+    // We throw the error here, it will be handled by the error middleware
     // We keep space false to ensure the "Connected to" box is not shown.
     throw (error)
   }
@@ -38,7 +38,6 @@ async function renderSettings (response, opts) {
  *
  * @returns {undefined}
  */
-
 module.exports.getSettings = async (request, response, next) => {
   const { settings } = response.locals
   await renderSettings(response, {
@@ -88,7 +87,7 @@ module.exports.postSettings = async (request, response, next) => {
     })
   }
 
-  // Validate space and CDA access token.
+  // Validate space and delivery access token.
   if (spaceId && deliveryToken) {
     try {
       await createClient({

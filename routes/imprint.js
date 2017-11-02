@@ -1,5 +1,5 @@
 /**
- * Renders imprint page when `/imprint` is route is requested
+ * Renders imprint page when `/imprint` route is requested
  * @param request - Object - Express request
  * @param response - Object - Express response
  * @param next - Function - Express callback

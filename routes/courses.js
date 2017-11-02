@@ -22,7 +22,7 @@ const { updateCookie } = require('../lib/cookies')
  * @returns {undefined}
  */
 module.exports.getCourses = async (request, response, next) => {
-  // We get all the entries with the content type `course`
+  // Get all the entries of content type course
   let courses = []
   let categories = []
   courses = await getCourses(response.locals.currentLocale.code, response.locals.currentApi.id)

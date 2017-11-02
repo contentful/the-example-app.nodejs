@@ -1,5 +1,5 @@
 /**
- * This module links all the rendering modules to the routes
+ * This module connects rendering modules to routes
  */
 
 const express = require('express')
