@@ -3,7 +3,10 @@
  * it also saves the settings to the cookies
  */
 const { createClient } = require('contentful')
-const { initClient, getSpace } = require('./../services/contentful')
+const { initClients, getSpace } = require('./../services/contentful')
+const { updateCookie } =  require('../lib/cookies')
+
+const SETTINGS_NAME = 'theExampleAppSettings'
 
 async function renderSettings (response, opts) {
   // Get connected space to display the space name on top of the settings
@@ -143,11 +146,11 @@ module.exports.postSettings = async (request, response, next) => {
   // When no errors occurred
   if (!errorList.length) {
     // Store new settings
-    response.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    updateCookie(response, SETTINGS_NAME, settings)
     response.locals.settings = settings
 
     // Reinit clients
-    initClient(settings)
+    initClients(settings)
   }
 
   // Generate error dictionary

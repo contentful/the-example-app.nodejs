@@ -12,7 +12,7 @@ require('dotenv').config({ path: 'variables.env' })
 const helpers = require('./helpers')
 const breadcrumb = require('./lib/breadcrumb')
 const routes = require('./routes/index')
-const { initClient, getSpace } = require('./services/contentful')
+const { initClients, getSpace } = require('./services/contentful')
 const { updateCookie } = require('./lib/cookies')
 
 const app = express()
@@ -62,7 +62,7 @@ app.use(async function (request, response, next) {
     updateCookie(response, SETTINGS_NAME, settings)
   }
 
-  initClient(settings)
+  initClients(settings)
   response.locals.settings = settings
   next()
 })
