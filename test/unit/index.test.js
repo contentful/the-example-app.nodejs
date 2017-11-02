@@ -6,8 +6,8 @@ const { mockCourse, mockCategory } = require('./mocks/index')
 jest.mock('../../services/contentful')
 const contentful = require('../../services/contentful')
 
-const req = {}
-const res = {
+const request = {}
+const response = {
   locals: {
     currentLocale: {
       code: 'en-US'
@@ -25,58 +25,58 @@ beforeAll(() => {
   contentful.getCategories.mockImplementation(() => [mockCategory])
 
   contentful.getCoursesByCategory.mockImplementation(() => [])
-  res.render = jest.fn()
-  res.cookie = jest.fn()
-  req.cookies = { visitedLessons: [] }
+  response.render = jest.fn()
+  response.cookie = jest.fn()
+  request.cookies = { visitedLessons: [] }
 })
 
 afterEach(() => {
-  res.render.mockClear()
-  res.render.mockReset()
+  response.render.mockClear()
+  response.render.mockReset()
 })
 
 describe('Courses', () => {
   test('it should courses list once', async () => {
-    await getCourses(req, res)
-    expect(res.render.mock.calls[0][0]).toBe('courses')
-    expect(res.render.mock.calls[0][1].title).toBe('All Courses (1)')
-    expect(res.render.mock.calls[0][1].courses.length).toBe(1)
-    expect(res.render.mock.calls.length).toBe(1)
+    await getCourses(request, response)
+    expect(response.render.mock.calls[0][0]).toBe('courses')
+    expect(response.render.mock.calls[0][1].title).toBe('All Courses (1)')
+    expect(response.render.mock.calls[0][1].courses.length).toBe(1)
+    expect(response.render.mock.calls.length).toBe(1)
   })
 
   test('it should render single course once', async () => {
-    req.params = {slug: 'slug', lslug: 'lessonSlug'}
-    await getCourse(req, res)
-    expect(res.render.mock.calls[0][0]).toBe('course')
-    expect(res.render.mock.calls[0][1].title).toBe(mockCourse.fields.title)
-    expect(res.render.mock.calls[0][1].course.sys.id).toBe(mockCourse.sys.id)
-    expect(res.render.mock.calls[0][1].lesson.sys.id).toBe(mockCourse.fields.lessons[0].sys.id)
-    expect(res.render.mock.calls.length).toBe(1)
+    request.params = {slug: 'slug', lslug: 'lessonSlug'}
+    await getCourse(request, response)
+    expect(response.render.mock.calls[0][0]).toBe('course')
+    expect(response.render.mock.calls[0][1].title).toBe(mockCourse.fields.title)
+    expect(response.render.mock.calls[0][1].course.sys.id).toBe(mockCourse.sys.id)
+    expect(response.render.mock.calls[0][1].lesson.sys.id).toBe(mockCourse.fields.lessons[0].sys.id)
+    expect(response.render.mock.calls.length).toBe(1)
   })
   test('it should render list of courses by categories', async () => {
-    req.params = {slug: 'slug', lslug: 'lslug', category: 'categorySlug'}
-    await getCoursesByCategory(req, res)
-    expect(res.render.mock.calls[0][0]).toBe('courses')
-    expect(res.render.mock.calls[0][1].title).toBe(`${mockCategory.fields.title} (0)`)
-    expect(res.render.mock.calls.length).toBe(1)
+    request.params = {slug: 'slug', lslug: 'lslug', category: 'categorySlug'}
+    await getCoursesByCategory(request, response)
+    expect(response.render.mock.calls[0][0]).toBe('courses')
+    expect(response.render.mock.calls[0][1].title).toBe(`${mockCategory.fields.title} (0)`)
+    expect(response.render.mock.calls.length).toBe(1)
   })
 })
 
 describe('Lessons', () => {
   test('it should render a lesson', async () => {
-    req.params = { cslug: 'courseSlug', lslug: 'lessonSlug' }
-    await getLesson(req, res)
-    expect(res.render.mock.calls[0][0]).toBe('course')
-    expect(res.render.mock.calls[0][1].title).toBe('Course title | Lesson title')
-    expect(res.render.mock.calls[0][1].course.sys.id).toBe(mockCourse.sys.id)
-    expect(res.render.mock.calls[0][1].lesson.sys.id).toBe(mockCourse.fields.lessons[0].sys.id)
-    expect(res.render.mock.calls.length).toBe(1)
+    request.params = { cslug: 'courseSlug', lslug: 'lessonSlug' }
+    await getLesson(request, response)
+    expect(response.render.mock.calls[0][0]).toBe('course')
+    expect(response.render.mock.calls[0][1].title).toBe('Course title | Lesson title')
+    expect(response.render.mock.calls[0][1].course.sys.id).toBe(mockCourse.sys.id)
+    expect(response.render.mock.calls[0][1].lesson.sys.id).toBe(mockCourse.fields.lessons[0].sys.id)
+    expect(response.render.mock.calls.length).toBe(1)
   })
 })
 
 describe('Settings', () => {
   test('It should render settings', async () => {
-    res.locals = {
+    response.locals = {
       settings: {
         space: 'spaceId',
         cda: 'cda',
@@ -84,9 +84,9 @@ describe('Settings', () => {
         editorialFeatures: false
       }
     }
-    await getSettings(req, res)
-    expect(res.render.mock.calls[0][0]).toBe('settings')
-    expect(res.render.mock.calls[0][1].title).toBe('Settings')
-    expect(res.render.mock.calls[0][1].settings).toBe(res.locals.settings)
+    await getSettings(request, response)
+    expect(response.render.mock.calls[0][0]).toBe('settings')
+    expect(response.render.mock.calls[0][1].title).toBe('Settings')
+    expect(response.render.mock.calls[0][1].settings).toBe(response.locals.settings)
   })
 })

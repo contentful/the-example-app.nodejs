@@ -1,12 +1,13 @@
-const app = require('../../app')
-const request = require('supertest')
 const cheerio = require('cheerio')
 const cookie = require('cookie')
 const cookieParser = require('cookie-parser')
+const request = require('supertest')
 
-function getSettingsCookie (res) {
+const app = require('../../app')
+
+function getSettingsCookie (response) {
   try {
-    const cookies = res.headers['set-cookie']
+    const cookies = response.headers['set-cookie']
     const settingsCookie = cookies.find((cookie) => cookie.startsWith('theExampleAppSettings='))
     const parsedCookie = cookie.parse(settingsCookie)
     return cookieParser.JSONCookie(parsedCookie.theExampleAppSettings)
@@ -38,15 +39,15 @@ describe('settings', () => {
         expect(inputCpa.val()).toBe(process.env.CF_PREVIEW_ACCESS_TOKEN)
 
         const inputEditorialFeatures = $('#input-editorial-features')
-        expect(inputEditorialFeatures.prop('checked')).toBeFalsy()
+        expect(inputEditorialFeaturesponse.prop('checked')).toBeFalsy()
       })
   })
 
   test('should have the editorial features enabled when query parameter is set and set cookie for it', () => {
     return request(app).get('/settings?enable_editorial_features')
       .expect(200)
-      .expect((res) => {
-        const cookie = getSettingsCookie(res)
+      .expect((response) => {
+        const cookie = getSettingsCookie(response)
         if (!cookie.editorialFeatures) {
           throw new Error('Did not set cookie value for editorial features')
         }
@@ -67,7 +68,7 @@ describe('settings', () => {
         const $ = cheerio.load(response.text)
 
         const inputEditorialFeatures = $('#input-editorial-features')
-        expect(inputEditorialFeatures.prop('checked')).toBeTruthy()
+        expect(inputEditorialFeaturesponse.prop('checked')).toBeTruthy()
       })
   })
 })
