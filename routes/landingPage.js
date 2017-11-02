@@ -8,7 +8,7 @@ const { getLandingPage } = require('../services/contentful')
 const attachEntryState = require('./../lib/entry-state')
 
 /**
- * Renders a landing page when `/` or `/about` route is requested
+ * Renders a landing page when `/` route is requested
  * based on the pathname an entry is queried from contentful
  * and a view is rendered from the pulled data
  *
