@@ -142,7 +142,7 @@ module.exports.postSettings = async (request, response, next) => {
     }
   }
 
-  // When no errors occurred
+  // If no errors, then cache the new settings in the cookie
   if (!errorList.length) {
     // Store new settings
     updateCookie(response, SETTINGS_NAME, settings)
