@@ -1,6 +1,6 @@
-/* global describe, test, expect */
-const app = require('../../app')
 const request = require('supertest')
+
+const app = require('../../app')
 
 describe('courses', () => {
   test('it should render a list of courses', () => {

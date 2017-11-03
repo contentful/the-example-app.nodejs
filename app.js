@@ -1,19 +1,25 @@
-require('dotenv').config({ path: 'variables.env' })
-const express = require('express')
-const querystring = require('querystring')
 const path = require('path')
-const helpers = require('./helpers')
-const logger = require('morgan')
-const cookieParser = require('cookie-parser')
+
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const express = require('express')
+const logger = require('morgan')
+const querystring = require('querystring')
 
-const routes = require('./routes/index')
+// Load environment variables using dotenv
+require('dotenv').config({ path: 'variables.env' })
 
-const { initClient, getSpace } = require('./services/contentful')
+const helpers = require('./helpers')
 const breadcrumb = require('./lib/breadcrumb')
+const routes = require('./routes/index')
+const { initClients, getSpace } = require('./services/contentful')
+const { updateCookie } = require('./lib/cookies')
+
 const app = express()
 
-// view engine setup
+const SETTINGS_NAME = 'theExampleAppSettings'
+
+// View engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
@@ -24,43 +30,46 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(breadcrumb())
 
-// Pass our application state and custom helpers to all our templates
-app.use(async function (req, res, next) {
-  // Allow setting of API credentials via query parameters
+// Set our application state based on environment variables or query parameters
+app.use(async function (request, response, next) {
+  // Set default settings based on environment variables
   let settings = {
-    space: process.env.CF_SPACE,
-    cda: process.env.CF_ACCESS_TOKEN,
-    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN,
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
     editorialFeatures: false,
-    ...req.cookies.theExampleAppSettings
+  // Overwrite default settings using those stored in a cookie
+    ...request.cookies.theExampleAppSettings
   }
 
-  const { space_id, preview_access_token, delivery_access_token } = req.query
-  if (space_id && preview_access_token && delivery_access_token) { // eslint-disable-line camelcase
+  // Allow setting of API credentials via query parameters
+  const { space_id, preview_token, delivery_token } = request.query
+  if (space_id && preview_token && delivery_token) { // eslint-disable-line camelcase
     settings = {
       ...settings,
-      space: space_id,
-      cda: delivery_access_token,
-      cpa: preview_access_token
+      spaceId: space_id,
+      deliveryToken: delivery_token,
+      previewToken: preview_token
     }
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    updateCookie(response, SETTINGS_NAME, settings)
   }
 
   // Allow enabling of editorial features via query parameters
-  const { enable_editorial_features } = req.query
+  const { enable_editorial_features } = request.query
   if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
-    delete req.query.enable_editorial_features
-    settings = {
-      ...settings,
-      editorialFeatures: true
-    }
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
+    delete request.query.enable_editorial_features
+    settings.editorialFeatures = true
+    updateCookie(response, SETTINGS_NAME, settings)
   }
 
-  initClient(settings)
-  res.locals.settings = settings
+  initClients(settings)
+  response.locals.settings = settings
+  next()
+})
 
-  // Manage language and API type state and make it globally available
+// Make data available for our views to consume
+app.use(async function (request, response, next) {
+  // Set active api based on query parameter
   const apis = [
     {
       id: 'cda',
@@ -72,54 +81,56 @@ app.use(async function (req, res, next) {
     }
   ]
 
-  res.locals.currentApi = apis
-    .find((api) => api.id === (req.query.api || 'cda'))
+  response.locals.currentApi = apis
+    .find((api) => api.id === (request.query.api || 'cda'))
 
   // Get enabled locales from Contentful
   const space = await getSpace()
-  res.locals.locales = space.locales
+  response.locals.locales = space.locales
 
-  const defaultLocale = res.locals.locales
+  const defaultLocale = response.locals.locales
     .find((locale) => locale.default)
 
-  if (req.query.locale) {
-    res.locals.currentLocale = space.locales
-      .find((locale) => locale.code === req.query.locale)
+  if (request.query.locale) {
+    response.locals.currentLocale = space.locales
+      .find((locale) => locale.code === request.query.locale)
   }
 
-  if (!res.locals.currentLocale) {
-    res.locals.currentLocale = defaultLocale
+  if (!response.locals.currentLocale) {
+    response.locals.currentLocale = defaultLocale
   }
 
   // Inject custom helpers
-  res.locals.helpers = helpers
+  response.locals.helpers = helpers
 
-  // Make query string available in templates
-  const qs = querystring.stringify(req.query)
-  res.locals.queryString = qs ? `?${qs}` : ''
-  res.locals.query = req.query
-  res.locals.currentPath = req.path
+  // Make query string available in templates to render links properly
+  const qs = querystring.stringify(request.query)
+  response.locals.queryString = qs ? `?${qs}` : ''
+  response.locals.query = request.query
+  response.locals.currentPath = request.path
 
   next()
 })
 
+// Initialize the route handling
+// Check ./routes/index.js to get a list of all implemented routes
 app.use('/', routes)
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
+// Catch 404 and forward to error handler
+app.use(function (request, response, next) {
   var err = new Error('Not Found')
   err.status = 404
   next(err)
 })
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+// Error handler
+app.use(function (err, request, response, next) {
+  // Set locals, only providing error in development
+  response.locals.error = request.app.get('env') === 'development' ? err : {}
 
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
+  // Render the error page
+  response.status(err.status || 500)
+  response.render('error')
 })
 
 module.exports = app
