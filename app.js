@@ -38,7 +38,7 @@ app.use(async function (request, response, next) {
     deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
     previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
     editorialFeatures: false,
-  // Overwrite default settings using those stored in a cookie
+    // Overwrite default settings using those stored in cookie, if present
     ...request.cookies.theExampleAppSettings
   }
 
