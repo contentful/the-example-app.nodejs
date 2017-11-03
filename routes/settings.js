@@ -1,16 +1,25 @@
+/**
+ * This module renders the settings page when `settings` route is requested
+ * it also saves the settings to a cookie
+ */
 const { createClient } = require('contentful')
-const { initClient, getSpace } = require('./../services/contentful')
+const { initClients, getSpace } = require('./../services/contentful')
+const { updateCookie } = require('../lib/cookies')
 
-async function renderSettings (res, opts) {
-  // Get connectred space to display the space name on top of the settings
+const SETTINGS_NAME = 'theExampleAppSettings'
+
+async function renderSettings (response, opts) {
+  // Get connected space to display the space name on top of the settings
   let space = false
   try {
     space = await getSpace()
   } catch (error) {
-    console.error(error)
+    // We throw the error here, it will be handled by the error middleware
+    // We keep space false to ensure the "Connected to" box is not shown.
+    throw (error)
   }
 
-  res.render('settings', {
+  response.render('settings', {
     title: 'Settings',
     errors: {},
     hasErrors: false,
@@ -20,68 +29,85 @@ async function renderSettings (res, opts) {
   })
 }
 
-/* GET settings page. */
-exports.getSettings = async (req, res, next) => {
-  const { settings } = res.locals
-  await renderSettings(res, {
+/**
+ * Renders the settings page when `/settings` route is requested
+ *
+ * @param request - Object - Express request
+ * @param response - Object - Express response
+ * @param next - Function - Express callback
+ *
+ * @returns {undefined}
+ */
+module.exports.getSettings = async (request, response, next) => {
+  const { settings } = response.locals
+  await renderSettings(response, {
     settings
   })
 }
 
-/* POST settings page. */
-exports.postSettings = async (req, res, next) => {
+/**
+ * Save settings when POST request is triggered to the `/settings` route
+ * and render the settings page
+ *
+ * @param request - Object - Express request
+ * @param response - Object - Express response
+ * @param next - Function - Express callback
+ *
+ * @returns {undefined}
+ */
+module.exports.postSettings = async (request, response, next) => {
   const errorList = []
-  const { space, cda, cpa, editorialFeatures } = req.body
+  const { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
   const settings = {
-    space,
-    cda,
-    cpa,
+    spaceId,
+    deliveryToken,
+    previewToken,
     editorialFeatures: !!editorialFeatures
   }
 
   // Validate required fields.
-  if (!space) {
+  if (!spaceId) {
     errorList.push({
-      field: 'space',
+      field: 'spaceId',
       message: 'This field is required'
     })
   }
 
-  if (!cda) {
+  if (!deliveryToken) {
     errorList.push({
-      field: 'cda',
+      field: 'deliveryToken',
       message: 'This field is required'
     })
   }
 
-  if (!cpa) {
+  if (!previewToken) {
     errorList.push({
-      field: 'cpa',
+      field: 'previewToken',
       message: 'This field is required'
     })
   }
 
-  // Validate space and CDA access token.
-  if (space && cda) {
+  // Validate space and delivery access token.
+  if (spaceId && deliveryToken) {
     try {
       await createClient({
-        space,
-        accessToken: cda
+        space: spaceId,
+        accessToken: deliveryToken
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
-          field: 'cda',
+          field: 'deliveryToken',
           message: 'Your Delivery API key is invalid.'
         })
       } else if (err.response.status === 404) {
         errorList.push({
-          field: 'space',
+          field: 'spaceId',
           message: 'This space does not exist or your access token is not associated with your space.'
         })
       } else {
         errorList.push({
-          field: 'cda',
+          field: 'deliveryToken',
           message: `Something went wrong: ${err.response.data.message}`
         })
       }
@@ -89,24 +115,27 @@ exports.postSettings = async (req, res, next) => {
   }
 
   // Validate space and CPA access token.
-  if (space && cpa) {
+  if (spaceId && previewToken) {
     try {
       await createClient({
-        space,
-        accessToken: cpa,
+        space: spaceId,
+        accessToken: previewToken,
         host: 'preview.contentful.com'
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
-          field: 'cpa',
+          field: 'previewToken',
           message: 'Your Preview API key is invalid.'
         })
       } else if (err.response.status === 404) {
-        // Already validated via CDA
+        errorList.push({
+          field: 'spaceId',
+          message: 'This space does not exist or your delivery token is not associated with your space.'
+        })
       } else {
         errorList.push({
-          field: 'cpa',
+          field: 'previewToken',
           message: `Something went wrong: ${err.response.data.message}`
         })
       }
@@ -116,11 +145,11 @@ exports.postSettings = async (req, res, next) => {
   // When no errors occurred
   if (!errorList.length) {
     // Store new settings
-    res.cookie('theExampleAppSettings', settings, { maxAge: 31536000, httpOnly: true })
-    res.locals.settings = settings
+    updateCookie(response, SETTINGS_NAME, settings)
+    response.locals.settings = settings
 
     // Reinit clients
-    initClient(settings)
+    initClients(settings)
   }
 
   // Generate error dictionary
@@ -135,7 +164,7 @@ exports.postSettings = async (req, res, next) => {
     }
   }, {})
 
-  await renderSettings(res, {
+  await renderSettings(response, {
     settings,
     errors,
     hasErrors: errorList.length > 0,

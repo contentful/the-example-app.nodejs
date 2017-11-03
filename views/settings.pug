@@ -39,26 +39,26 @@ block content
 
     form(action=`/settings` method="POST" class="form")
       .form-item
-        label(for="input-space") Space ID
-        input(type="text" name="space" id="input-space" value=settings.space)
-        if 'space' in errors
-          +renderErrors(errors.space)
+        label(for="input-space-id") Space ID
+        input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId)
+        if 'spaceId' in errors
+          +renderErrors(errors.spaceId)
         .form-item__help-text The Space ID is a unique identifier for your space.
 
       .form-item
-        label(for="input-cda") Content Delivery API - access token
-        input(type="text" name="cda" id="input-cda" value=settings.cda)
-        if 'cda' in errors
-          +renderErrors(errors.cda)
+        label(for="input-delivery-token") Content Delivery API - access token
+        input(type="text" name="deliveryToken" id="input-delivery-token" value=settings.deliveryToken)
+        if 'deliveryToken' in errors
+          +renderErrors(errors.deliveryToken)
         .form-item__help-text
           | View published content using this API.&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
 
       .form-item
-        label(for="input-cpa") Content Preview API - access token
-        input(type="text" name="cpa" id="input-cpa" value=settings.cpa)
-        if 'cpa' in errors
-          +renderErrors(errors.cpa)
+        label(for="input-preview-token") Content Preview API - access token
+        input(type="text" name="previewToken" id="input-preview-token" value=settings.previewToken)
+        if 'previewToken' in errors
+          +renderErrors(errors.previewToken)
         .form-item__help-text
           | Preview unpublished content using this API (i.e. content with “Draft” status).&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Content Preview API.

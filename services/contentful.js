@@ -1,107 +1,148 @@
+/**
+ * The purpose of this module is to get data from contentful
+ */
 const { createClient } = require('contentful')
 
-let cdaClient = null
-let cpaClient = null
+let deliveryClient = null
+let previewClient = null
 
-// Initialize our client
-exports.initClient = (options) => {
-  // Getting the version the app version
+/**
+ * Initialize the contentful Client
+ * @param options {space: string, cda: string, cpa: string}
+ *
+ * @returns {undefined}
+ */
+module.exports.initClients = (options) => {
+  // Getting the app version
   const { version } = require('../package.json')
 
   const config = options || {
-    space: process.env.CF_SPACE,
-    cda: process.env.CF_ACCESS_TOKEN,
-    cpa: process.env.CF_PREVIEW_ACCESS_TOKEN
+    spaceId: process.env.CF_SPACE_ID,
+    deliveryToken: process.env.CF_DELIVERY_TOKEN,
+    previewToken: process.env.CF_PREVIEW_TOKEN
   }
-  cdaClient = createClient({
-    application: `contentful.the-example-app.node/${version}`,
-    space: config.space,
-    accessToken: config.cda
+  deliveryClient = createClient({
+    application: `the-example-app.node/${version}`,
+    space: config.spaceId,
+    accessToken: config.deliveryToken
   })
-  cpaClient = createClient({
-    application: `contentful.the-example-app.node/${version}`,
-    space: config.space,
-    accessToken: config.cpa,
+  previewClient = createClient({
+    application: `the-example-app.node/${version}`,
+    space: config.spaceId,
+    accessToken: config.previewToken,
     host: 'preview.contentful.com'
   })
 }
 
-// Get the Space the app is connected to. Used for the settings form and to get all available locales.
-exports.getSpace = assert((api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getSpace()
+/**
+ * Get the Space the app is connected to. Used for the settings form and to get all available locales
+ * @param api - string - the api to use, cda or cap. Default: 'cda'
+ * @returns {undefined}
+ */
+module.exports.getSpace = assert((api = `cda`) => {
+  return getClient(api).getSpace()
 }, 'Space')
 
-// Get a single entry. Used to detect the `Draft` or `Pending Changes` state.
-exports.getEntry = assert((entryId, api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntry(entryId)
+/**
+ * Gets an entry. Used to detect the `Draft` or `Pending Changes` state
+ * @param entryId - string - the entry id
+ * @param api - string - the api to use fetching the entry
+ *
+ * @returns {Object}
+ */
+
+module.exports.getEntry = assert((entryId, api = `cda`) => {
+  return getClient(api).getEntry(entryId)
 }, 'Entry')
 
-// to get all the courses we request all the entries
-// with the content_type `course` from Contentful
-exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({
+/**
+ * Get all entries with content_type `course`
+ * @param locale - string - the locale of the entry [default: 'en-US']
+ * @param api - string the api enpoint to use when fetching the data
+ * @returns {Array<Object>}
+ */
+module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
+  return getClient(api).getEntries({
     content_type: 'course',
     locale,
-    order: 'sys.createdAt',
-    include: 10
+    order: 'sys.createdAt', // Ordering the entries by creation date
+    include: 6 // We use include param to increase the link level, the include value goes from 1 to 6
   })
     .then((response) => response.items)
 }, 'Course')
 
-// Landing pages like the home or about page are fully controlable via Contentful.
-exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({
+/**
+ * Get entries of content_type `layout` e.g. Landing page
+ * @param slug - string - the slug of the entry to use in the query
+ * @param locale - string - locale of the entry to request [default: 'en-US']
+ * @param api - string - the api enpoint to use when fetching the data
+ * @returns {Object}
+ */
+module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
+  // Even though we need a single entry, we request it using the collection endpoint
+  // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
+  return getClient(api).getEntries({
     content_type: 'layout',
     locale,
     'fields.slug': slug,
-    include: 10
+    include: 6
   })
     .then((response) => response.items[0])
 }
 
-// the SDK supports link resolution only when you call the collection endpoints
-// That's why we are using getEntries with a query instead of getEntry(entryId)
-// make sure to specify the content_type whenever you want to perform a query
-exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({
+/**
+ * Get an entry with content_type `course`
+ * @param slug - string - the slug of the entry to use in the query
+ * @param locale - string - locale of the entry to request [default: 'en-US']
+ * @param api - string - the api enpoint to use when fetching the data
+ * @returns {Object}
+ */
+module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
+  // Even though we need a single entry, we request it using the collection endpoint
+  // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
+  return getClient(api).getEntries({
     content_type: 'course',
     'fields.slug': slug,
     locale,
-    include: 10
+    include: 6
   })
     .then((response) => response.items[0])
 }, 'Course')
 
-exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({content_type: 'category', locale})
+module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
+  return getClient(api).getEntries({content_type: 'category', locale})
     .then((response) => response.items)
 }, 'Course')
 
-// Getting a course by Category is simply querying all entries
-// with a query params `fields.categories.sys.id` equal to the desired category id
-// Note that you need to send the `content_type` param to be able to query the entry
-exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
-  const client = api === 'cda' ? cdaClient : cpaClient
-  return client.getEntries({
+/**
+ * Get Courses by Categories
+ * To get a course by category, simply query all entries
+ * with a query params `fields.categories.sys.id` equal to the desired category id
+ * Note that you need to send the `content_type` param to be able to query the entry
+ * @param category - string - the id of the category
+ * @param locale - string - locale of the entry to request [default: 'en-US']
+ * @param api - string - the api enpoint to use when fetching the data
+ * @returns {Object}
+ */
+module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
+  return getClient(api).getEntries({
     content_type: 'course',
     'fields.categories.sys.id': category,
     locale,
     order: '-sys.createdAt',
-    include: 10
+    include: 6
   })
     .then((response) => response.items)
 }, 'Category')
 
-// Utitlities functions
+// Utility function
+function getClient (api = 'cda') {
+  return api === 'cda' ? deliveryClient : previewClient
+}
+
 function assert (fn, context) {
-  return function (req, res, next) {
-    return fn(req, res, next)
+  return function (request, response, next) {
+    return fn(request, response, next)
     .then((data) => {
       if (!data) {
         var err = new Error(`${context} Not Found`)
