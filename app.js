@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 const logger = require('morgan')
 const querystring = require('querystring')
+const helmet = require('helmet')
 
 // Load environment variables using dotenv
 require('dotenv').config({ path: 'variables.env' })
@@ -25,6 +26,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 app.use(logger('dev'))
+app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -32,10 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Force all requests on production to be served over https
 app.use(function (req, res, next) {
-  if (!req.secure && process.env.NODE_ENV === 'production') {
-    var secureUrl = 'https://' + req.headers['host'] + req.url
-    res.writeHead(301, { 'Location': secureUrl })
-    res.end()
+  if (req.headers['x-forwarded-proto'] !== 'https' && process.env.NODE_ENV === 'production') {
+    var secureUrl = 'https://' + req.hostname + req.originalUrl
+    res.redirect(302, secureUrl)
   }
   next()
 })
