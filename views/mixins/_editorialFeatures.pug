@@ -15,4 +15,4 @@ mixin editorialFeatures(entry)
         .editorial-features__hint-wrapper
           svg.editorial-features__hint-icon
             use(xlink:href='/icons/icons.svg#info')
-          .editorial-features__hint-message Edit this entry in our web app. You have to be logged in and have access to the connected space to use this feature.
+          .editorial-features__hint-message #{translate('editorialFeaturesHint', currentLocale.code)}

@@ -11,6 +11,7 @@ const helmet = require('helmet')
 require('dotenv').config({ path: 'variables.env' })
 
 const helpers = require('./helpers')
+const { translate, initializeTranslations } = require('./i18n/i18n')
 const breadcrumb = require('./lib/breadcrumb')
 const routes = require('./routes/index')
 const { initClients, getSpace } = require('./services/contentful')
@@ -30,7 +31,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(breadcrumb())
 
 // Force all requests on production to be served over https
 app.use(function (req, res, next) {
@@ -84,11 +84,11 @@ app.use(async function (request, response, next) {
   const apis = [
     {
       id: 'cda',
-      label: 'Delivery (published content)'
+      label: 'Delivery'
     },
     {
       id: 'cpa',
-      label: 'Preview (draft content)'
+      label: 'Preview'
     }
   ]
 
@@ -111,6 +111,10 @@ app.use(async function (request, response, next) {
     response.locals.currentLocale = defaultLocale
   }
 
+  // Initialize translations and include them on templates
+  initializeTranslations()
+  response.locals.translate = translate
+
   // Inject custom helpers
   response.locals.helpers = helpers
 
@@ -122,6 +126,8 @@ app.use(async function (request, response, next) {
 
   next()
 })
+
+app.use(breadcrumb())
 
 // Initialize the route handling
 // Check ./routes/index.js to get a list of all implemented routes

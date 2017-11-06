@@ -11,6 +11,7 @@ const {
 
 const attachEntryState = require('../lib/entry-state')
 const { updateCookie } = require('../lib/cookies')
+const { translate } = require('../i18n/i18n')
 
 /**
  * Renders courses list when `/courses` route is requested
@@ -33,7 +34,11 @@ module.exports.getCourses = async (request, response, next) => {
   }
 
   categories = await getCategories(response.locals.currentLocale.code, response.locals.currentApi.id)
-  response.render('courses', { title: `All Courses (${courses.length})`, categories, courses })
+  response.render('courses', {
+    title: `${translate('allCoursesLabel', response.locals.currentLocale.code)} (${courses.length})`,
+    categories,
+    courses
+  })
 }
 
 /**

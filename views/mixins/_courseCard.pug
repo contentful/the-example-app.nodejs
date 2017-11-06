@@ -13,5 +13,4 @@ mixin courseCard(course = {fields: {title: '', description: '', categories: [], 
         +entryState(course)
     p.course-card__description= course.fields.shortDescription
     .course-card__link-wrapper
-      a.course-card__link(href=`/courses/${course.fields.slug}${queryString}`) view course
-
+      a.course-card__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate("viewCourseLabel", currentLocale.code)}

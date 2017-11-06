@@ -20,10 +20,10 @@ mixin lesson(lesson, course, nextLesson)
             when 'lessonImage'
               +lessonModuleImage(module)
         else
-          h2 ️️⚠️ Invalid lesson module
+          h2 ️️#{translate('lessonModuleErrorTitle', currentLocale.code)}
           p
-            span Could not determine type of
+            span #{translate('lessonModuleErrorBody', currentLocale.code)}
             strong  #{module.sys.id}
     if nextLesson
-      a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) View next lesson
+      a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) #{translate('nextLessonLabel', currentLocale.code)}
 

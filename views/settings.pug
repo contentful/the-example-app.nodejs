@@ -13,60 +13,60 @@ block content
   .layout-centered-small
     +breadcrumb
     h1= title
-    p To query and get content using the APIs, client applications need to authenticate with both the Space ID and an access token.
+    p #{translate('settingsIntroLabel', currentLocale.code)}
 
     if success
       .status-block.status-block--success
         svg.status-block__icon.status-block__icon--success
           use(xlink:href='/icons/icons.svg#success')
         .status-block__content
-          .status-block__title Changes saved successfully!
+          .status-block__title #{translate('changesSavedLabel', currentLocale.code)}
 
     if hasErrors
       .status-block.status-block--error
         svg.status-block__icon.status-block__icon--error
           use(xlink:href='/icons/icons.svg#error')
         .status-block__content
-          .status-block__title Error occurred
-          .status-block__message Some errors occurred. Please check the error messages next to the fields.
+          .status-block__title #{translate('errorOcurredTitleLabel', currentLocale.code)}
+          .status-block__message #{translate('errorOcurredMessageLabel', currentLocale.code)}
 
     if space && !hasErrors
       .status-block.status-block--info
         svg.status-block__icon.status-block__icon--info
           use(xlink:href='/icons/icons.svg#info')
         .status-block__content
-          .status-block__message Connected to space “#{space.name}”
+          .status-block__message #{translate('connectedToSpaceLabel', currentLocale.code)} “#{space.name}”
 
     form(action=`/settings` method="POST" class="form")
       .form-item
-        label(for="input-space-id") Space ID
+        label(for="input-space-id") #{translate('spaceIdLabel', currentLocale.code)}
         input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId)
         if 'spaceId' in errors
           +renderErrors(errors.spaceId)
-        .form-item__help-text The Space ID is a unique identifier for your space.
+        .form-item__help-text #{translate('spaceIdHelpText', currentLocale.code)}
 
       .form-item
-        label(for="input-delivery-token") Content Delivery API - access token
+        label(for="input-delivery-token") Content Delivery API - #{translate('accessTokenLabel', currentLocale.code)}
         input(type="text" name="deliveryToken" id="input-delivery-token" value=settings.deliveryToken)
         if 'deliveryToken' in errors
           +renderErrors(errors.deliveryToken)
         .form-item__help-text
-          | View published content using this API.&nbsp;
+          | #{translate('contentDeliveryApiHelpText', currentLocale.code)}&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
 
       .form-item
-        label(for="input-preview-token") Content Preview API - access token
+        label(for="input-preview-token") Content Preview API - #{translate('accessTokenLabel', currentLocale.code)}
         input(type="text" name="previewToken" id="input-preview-token" value=settings.previewToken)
         if 'previewToken' in errors
           +renderErrors(errors.previewToken)
         .form-item__help-text
-          | Preview unpublished content using this API (i.e. content with “Draft” status).&nbsp;
+          | #{translate('contentPreviewApiHelpText', currentLocale.code)}&nbsp;
           a(href='https://www.contentful.com/developers/docs/references/content-preview-api/' target='_blank' rel='noopener') Content Preview API.
 
       .form-item
         input(type="checkbox" name="editorialFeatures" id="input-editorial-features" checked=settings.editorialFeatures)
-        label(for="input-editorial-features") Enable editorial features
-        .form-item__help-text Enable to display an edit link and other contextual helpers for authors. You need to have access to the connected space to make this work.
+        label(for="input-editorial-features") #{translate('enableEditorialFeaturesLabel', currentLocale.code)}
+        .form-item__help-text #{translate('enableEditorialFeaturesHelpText', currentLocale.code)}
 
       .form-item
-        input.cta(type="submit" value="Save settings")
+        input.cta(type="submit" value=translate('saveSettingsButtonLabel', currentLocale.code))

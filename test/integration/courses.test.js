@@ -7,7 +7,7 @@ describe('courses', () => {
     return request(app).get('/courses')
       .expect(200)
       .then((response) => {
-        expect(response.text.match(/<h1>All Courses /)).toBeTruthy()
+        expect(response.text.match(/<h1>All courses /)).toBeTruthy()
       })
   })
   test('it should render a course', () => {
