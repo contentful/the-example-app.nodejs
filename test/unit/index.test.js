@@ -9,6 +9,12 @@ const contentful = require('../../services/contentful')
 const request = {}
 const response = {
   locals: {
+    settings: {
+      space: 'spaceId',
+      cda: 'cda',
+      cpa: 'cpa',
+      editorialFeatures: false
+    },
     currentLocale: {
       code: 'en-US'
     },
@@ -76,14 +82,6 @@ describe('Lessons', () => {
 
 describe('Settings', () => {
   test('It should render settings', async () => {
-    response.locals = {
-      settings: {
-        space: 'spaceId',
-        cda: 'cda',
-        cpa: 'cpa',
-        editorialFeatures: false
-      }
-    }
     await getSettings(request, response)
     expect(response.render.mock.calls[0][0]).toBe('settings')
     expect(response.render.mock.calls[0][1].title).toBe('Settings')

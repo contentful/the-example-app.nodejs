@@ -10,7 +10,7 @@
     "lint": "eslint ./app.js routes",
     "format": "eslint --fix . bin --ignore public node_modules",
     "pretest": "npm run lint",
-    "test": "npm run test:e2e",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:e2e": "node test/e2e/run-e2e-test.js",
     "test:integration": "jest test/integration",
     "test:integration:watch": "jest test/integration --watch",
