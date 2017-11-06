@@ -8,7 +8,7 @@ describe('The Example App', () => {
       cy.title().should('equals', 'Home — The Example App', 'Home page should have correct meta title')
       cy.get('meta[name="description"]').should('attr', 'content', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
 
-      cy.get('meta[name="twitter:card"]').should('attr', 'value', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+      cy.get('meta[name="twitter:card"]').should('attr', 'content', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
 
       cy.get('meta[property="og:title"]').should('attr', 'content', 'Home — The Example App')
       cy.get('meta[property="og:type"]').should('attr', 'content', 'article')
