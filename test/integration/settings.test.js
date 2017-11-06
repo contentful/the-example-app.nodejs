@@ -29,17 +29,17 @@ describe('settings', () => {
         const status = $('main .status-block.status-block--info')
         expect(status.text()).toMatch(/Connected to space “.+”/)
 
-        const inputSpaceId = $('#input-space')
-        expect(inputSpaceId.val()).toBe(process.env.CF_SPACE)
+        const inputSpaceId = $('#input-space-id')
+        expect(inputSpaceId.val()).toBe(process.env.CONTENTFUL_SPACE_ID)
 
-        const inputCda = $('#input-cda')
-        expect(inputCda.val()).toBe(process.env.CF_ACCESS_TOKEN)
+        const inputCda = $('#input-delivery-token')
+        expect(inputCda.val()).toBe(process.env.CONTENTFUL_DELIVERY_TOKEN)
 
-        const inputCpa = $('#input-cpa')
-        expect(inputCpa.val()).toBe(process.env.CF_PREVIEW_ACCESS_TOKEN)
+        const inputCpa = $('#input-preview-token')
+        expect(inputCpa.val()).toBe(process.env.CONTENTFUL_PREVIEW_TOKEN)
 
         const inputEditorialFeatures = $('#input-editorial-features')
-        expect(inputEditorialFeaturesponse.prop('checked')).toBeFalsy()
+        expect(inputEditorialFeatures.prop('checked')).toBeFalsy()
       })
   })
 
@@ -52,15 +52,15 @@ describe('settings', () => {
           throw new Error('Did not set cookie value for editorial features')
         }
 
-        if (cookie.space !== process.env.CF_SPACE) {
+        if (cookie.spaceId !== process.env.CONTENTFUL_SPACE_ID) {
           throw new Error('Did not set correct cookie value for SpaceID')
         }
 
-        if (cookie.cda !== process.env.CF_ACCESS_TOKEN) {
+        if (cookie.deliveryToken !== process.env.CONTENTFUL_DELIVERY_TOKEN) {
           throw new Error('Did not set correct cookie value for CDA access token')
         }
 
-        if (cookie.cpa !== process.env.CF_PREVIEW_ACCESS_TOKEN) {
+        if (cookie.previewToken !== process.env.CONTENTFUL_PREVIEW_TOKEN) {
           throw new Error('Did not set correct cookie value for CPA access token')
         }
       })
@@ -68,7 +68,7 @@ describe('settings', () => {
         const $ = cheerio.load(response.text)
 
         const inputEditorialFeatures = $('#input-editorial-features')
-        expect(inputEditorialFeaturesponse.prop('checked')).toBeTruthy()
+        expect(inputEditorialFeatures.prop('checked')).toBeTruthy()
       })
   })
 })
