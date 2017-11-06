@@ -17,6 +17,7 @@ router.get('/', catchErrors(getLandingPage))
 
 // Courses routes
 router.get('/courses', catchErrors(getCourses))
+router.get('/courses/categories', catchErrors(getCourses))
 router.get('/courses/categories/:category', catchErrors(getCoursesByCategory))
 router.get('/courses/:slug', catchErrors(getCourse))
 router.get('/courses/:slug/lessons', catchErrors(getCourse))
