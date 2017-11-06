@@ -12,7 +12,7 @@ app.set('port', TEST_PORT)
 
 const server = http.createServer(app)
 
-const { CF_SPACE, CF_ACCESS_TOKEN, CF_PREVIEW_ACCESS_TOKEN } = process.env
+const { CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_PREVIEW_TOKEN } = process.env
 
 server.on('error', console.error)
 server.listen(TEST_PORT, function () {
@@ -20,7 +20,7 @@ server.listen(TEST_PORT, function () {
     spec: resolve(__dirname, 'specs', 'the-example-app-spec.js'),
     headed: !process.env.CI,
     env: {
-      CF_SPACE, CF_ACCESS_TOKEN, CF_PREVIEW_ACCESS_TOKEN
+      CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_PREVIEW_TOKEN
     }
   })
     .then(() => {
