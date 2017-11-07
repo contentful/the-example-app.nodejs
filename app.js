@@ -80,6 +80,12 @@ app.use(async function (request, response, next) {
   next()
 })
 
+// The space id needs to be available in the frontend for our example app
+app.use(async function (request, response, next) {
+  response.cookie('space_id', response.locals.settings.spaceId)
+  next()
+})
+
 // Make data available for our views to consume
 app.use(async function (request, response, next) {
   // Set active api based on query parameter
