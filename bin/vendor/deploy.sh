@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-analytics_file="$(dirname $0)/analytics.js"
+analytics_file="$(dirname $0)/analytics.html"
 layout_file="$(dirname $0)/../../views/layout.pug"
 
 # Fetch analytics script and wrap it
-analytics_script="<script>$(cat $analytics_file)</script>"
+analytics_script="$(cat $analytics_file)"
 
 # Replace analytics script in layout
 distro=`uname`
