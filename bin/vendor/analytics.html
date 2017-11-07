@@ -1,0 +1,44 @@
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109296848-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-40725207-13');
+</script>
+<!-- Google Analytics end -->
+<!-- Snowplow starts plowing -->
+<script async>
+  ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+  p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+  };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+  n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d1fc8wv8zag5ca.cloudfront.net/2.8.2/sp.js","snowplow"));
+
+  snowplow('newTracker', 'defaultTracker', 'col.contentful.com', {
+    appId: 'the_example_app',
+    platform: 'web',
+    respectDoNotTrack: true,
+    bufferSize: 1,
+    cookieDomain: window.location.host,
+    contexts: {
+      webPage: true,
+      gaCookies: true,
+      geolocation: false
+    }
+  });
+
+  snowplow('trackPageView');
+
+  const space_id = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent('space_id').replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+
+  snowplow('trackSelfDescribingEvent', {
+    schema: 'iglu:com.contentful/app_the_example_app_open/jsonschema/1-0-0',
+    data: {
+      space_id,
+      sdk_language_used: 'javascript',
+      app_framework: 'nodejs'
+    }
+  });
+</script>
+<!-- Snowplow stops plowing -->

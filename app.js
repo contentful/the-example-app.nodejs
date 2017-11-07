@@ -13,13 +13,11 @@ require('dotenv').config({ path: 'variables.env' })
 const helpers = require('./helpers')
 const { translate, initializeTranslations } = require('./i18n/i18n')
 const breadcrumb = require('./lib/breadcrumb')
+const settings = require('./lib/settings')
 const routes = require('./routes/index')
-const { initClients, getSpace } = require('./services/contentful')
-const { updateCookie } = require('./lib/cookies')
+const { getSpace } = require('./services/contentful')
 
 const app = express()
-
-const SETTINGS_NAME = 'theExampleAppSettings'
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -40,42 +38,9 @@ app.use(function (req, res, next) {
   }
   next()
 })
-// Set our application state based on environment variables or query parameters
-app.use(async function (request, response, next) {
-  // Set default settings based on environment variables
-  let settings = {
-    spaceId: process.env.CONTENTFUL_SPACE_ID,
-    deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
-    editorialFeatures: false,
-    // Overwrite default settings using those stored in cookie, if present
-    ...request.cookies.theExampleAppSettings
-  }
 
-  // Allow setting of API credentials via query parameters
-  const { space_id, preview_token, delivery_token } = request.query
-  if (space_id && preview_token && delivery_token) { // eslint-disable-line camelcase
-    settings = {
-      ...settings,
-      spaceId: space_id,
-      deliveryToken: delivery_token,
-      previewToken: preview_token
-    }
-    updateCookie(response, SETTINGS_NAME, settings)
-  }
-
-  // Allow enabling of editorial features via query parameters
-  const { enable_editorial_features } = request.query
-  if (enable_editorial_features !== undefined) { // eslint-disable-line camelcase
-    delete request.query.enable_editorial_features
-    settings.editorialFeatures = true
-    updateCookie(response, SETTINGS_NAME, settings)
-  }
-
-  initClients(settings)
-  response.locals.settings = settings
-  next()
-})
+// Set our application settings based on environment variables or query parameters
+app.use(settings)
 
 // Make data available for our views to consume
 app.use(async function (request, response, next) {
