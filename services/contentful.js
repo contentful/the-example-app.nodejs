@@ -15,6 +15,7 @@ let previewClient = null
 module.exports.initClients = (options) => {
   // Getting the app version
   const { version } = require('../package.json')
+  const applicationName = `the-example-app.nodejs/${version}`
 
   const config = options || {
     spaceId: process.env.CF_SPACE_ID,
@@ -22,12 +23,12 @@ module.exports.initClients = (options) => {
     previewToken: process.env.CF_PREVIEW_TOKEN
   }
   deliveryClient = createClient({
-    application: `the-example-app.node/${version}`,
+    application: applicationName,
     space: config.spaceId,
     accessToken: config.deliveryToken
   })
   previewClient = createClient({
-    application: `the-example-app.node/${version}`,
+    application: applicationName,
     space: config.spaceId,
     accessToken: config.previewToken,
     host: 'preview.contentful.com'
