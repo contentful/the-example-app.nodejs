@@ -72,6 +72,9 @@ app.use(async function (request, response, next) {
     updateCookie(response, SETTINGS_NAME, settings)
   }
 
+  // The space id needs to be available in the frontend for our example app
+  response.cookie('space_id', settings.spaceId)
+
   initClients(settings)
   response.locals.settings = settings
   next()
