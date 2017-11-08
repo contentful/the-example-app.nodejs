@@ -1,6 +1,7 @@
 const mockCourse = {
   sys: { id: 'courseId' },
   fields: {
+    slug: 'courseSlug',
     title: 'Course title',
     lessons: [
       { sys: {id: 'lessonId'}, fields: { slug: 'lessonSlug', title: 'Lesson title' } }
