@@ -45,6 +45,13 @@ module.exports.translate = (symbol, locale = 'en-US') => {
   return translatedValue
 }
 
+/**
+ * Checks if string is translatable
+ * @param symbol string Identifier for static text
+ * @param locale string Locale code
+ *
+ * @returns boolean
+ */
 module.exports.translationAvaliable = (symbol, locale = 'en-US') => {
   const localeDict = translations[locale]
   if (!localeDict) {
