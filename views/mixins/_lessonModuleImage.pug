@@ -1,6 +1,8 @@
 mixin lessonModuleImage(module)
   .lesson-module.lesson-module-image
     if module.fields.image && module.fields.image.fields.file && module.fields.image.fields.file.url
-      img.lesson-module-image__image(src=module.fields.image.fields.file.url alt=module.fields.image.fields.title)
+      figure.lesson-module-image__figure
+        img.lesson-module-image__image(src=module.fields.image.fields.file.url alt=module.fields.image.fields.title)
+        figcaption.lesson-module-image__caption= module.fields.caption
     else
       h3 #{translate('imageErrorTitle', currentLocale.code)}
