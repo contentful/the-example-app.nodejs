@@ -44,38 +44,8 @@ app.use(function (req, res, next) {
 app.use(settings)
 
 // Make data available for our views to consume
-app.use(catchErrors(async function (request, response, next) {
+app.use(async function (request, response, next) {
   // Get enabled locales from Contentful
-  response.locals.locales = [{code: 'en-US', name: 'U.S. English'}]
-  response.locals.currentLocale = response.locals.locales[0]
-  // Inject custom helpers
-  response.locals.helpers = helpers
-
-  // Make query string available in templates to render links properly
-  const qs = querystring.stringify(request.query)
-  response.locals.queryString = qs ? `?${qs}` : ''
-  response.locals.query = request.query
-  response.locals.currentPath = request.path
-
-  // Initialize translations and include them on templates
-  initializeTranslations()
-  response.locals.translate = translate
-
-  // Set active api based on query parameter
-  const apis = [
-    {
-      id: 'cda',
-      label: translate('contentDeliveryApiLabel', response.locals.currentLocale.code)
-    },
-    {
-      id: 'cpa',
-      label: translate('contentPreviewApiLabel', response.locals.currentLocale.code)
-    }
-  ]
-
-  response.locals.currentApi = apis
-    .find((api) => api.id === (request.query.api || 'cda'))
-
   const space = await getSpace()
   response.locals.locales = space.locales
 
@@ -90,6 +60,34 @@ app.use(catchErrors(async function (request, response, next) {
   if (!response.locals.currentLocale) {
     response.locals.currentLocale = defaultLocale
   }
+
+  // Initialize translations and include them on templates
+  initializeTranslations()
+  response.locals.translate = translate
+
+  // Set active api based on query parameter
+  const apis = [
+    {
+      id: 'cda',
+      label: translate('cdaApiLabel', response.locals.currentLocale.code)
+    },
+    {
+      id: 'cpa',
+      label: translate('cpaApiLabel', response.locals.currentLocale.code)
+    }
+  ]
+
+  response.locals.currentApi = apis
+    .find((api) => api.id === (request.query.api || 'cda'))
+
+  // Inject custom helpers
+  response.locals.helpers = helpers
+
+  // Make query string available in templates to render links properly
+  const qs = querystring.stringify(request.query)
+  response.locals.queryString = qs ? `?${qs}` : ''
+  response.locals.query = request.query
+  response.locals.currentPath = request.path
 
   next()
 }))
