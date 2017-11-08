@@ -3,6 +3,7 @@ mixin lessonModuleImage(module)
     if module.fields.image && module.fields.image.fields.file && module.fields.image.fields.file.url
       figure.lesson-module-image__figure
         img.lesson-module-image__image(src=module.fields.image.fields.file.url alt=module.fields.image.fields.title)
-        figcaption.lesson-module-image__caption= module.fields.caption
+        if module.fields.caption
+          figcaption.lesson-module-image__caption= module.fields.caption
     else
       h3 #{translate('imageErrorTitle', currentLocale.code)}
