@@ -44,3 +44,17 @@ module.exports.translate = (symbol, locale = 'en-US') => {
 
   return translatedValue
 }
+
+module.exports.translationAvaliable = (symbol, locale = 'en-US') => {
+  const localeDict = translations[locale]
+  if (!localeDict) {
+    return false
+  }
+
+  const translatedValue = localeDict[symbol]
+  if (!translatedValue) {
+    return false
+  }
+
+  return true
+}
