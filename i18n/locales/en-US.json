@@ -75,7 +75,7 @@
   "spaceOrTokenInvalid": "This space does not exist or your access token is not associated with your space.",
   "somethingWentWrongLabel": "Something went wrong",
   "previewKeyInvalidLabel": "Your Preview API key is invalid.",
-  "BeginnerLabel": "Beginner",
-  "IntermediateLabel": "Intermediate",
-  "AdvancedLabel": "Advanced"
+  "beginnerLabel": "Beginner",
+  "intermediateLabel": "Intermediate",
+  "advancedLabel": "Advanced"
 }
