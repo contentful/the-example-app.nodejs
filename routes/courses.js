@@ -10,6 +10,7 @@ const {
 } = require('./../services/contentful')
 
 const attachEntryState = require('../lib/entry-state')
+const enhanceBreadcrumb = require('../lib/enhance-breadcrumb')
 const { updateCookie } = require('../lib/cookies')
 const { translate } = require('../i18n/i18n')
 
@@ -69,6 +70,9 @@ module.exports.getCourse = async (request, response, next) => {
     course = await attachEntryState(course)
   }
 
+  // Enhance the breadcrumbs with the course
+  enhanceBreadcrumb(response, course)
+
   response.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
 
@@ -93,6 +97,10 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
   } catch (e) {
     console.log('Error ', e)
   }
+
+  // Enhance the breadcrumbs with the active category
+  enhanceBreadcrumb(response, activeCategory)
+
   response.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 }
 
@@ -122,6 +130,10 @@ module.exports.getLesson = async (request, response, next) => {
   if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
     lesson = await attachEntryState(lesson)
   }
+
+  // Enhance the breadcrumbs with the course and active lesson
+  enhanceBreadcrumb(response, course)
+  enhanceBreadcrumb(response, lesson)
 
   response.render('course', {
     title: `${course.fields.title} | ${lesson.fields.title}`,
