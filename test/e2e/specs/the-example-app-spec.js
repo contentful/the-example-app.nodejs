@@ -32,18 +32,19 @@ describe('The Example App', () => {
 
     it('global elements', () => {
       cy.get('.header__upper')
-        .should('contain', 'What is this example app?')
-        .should('contain', 'View on Github')
+        .should('contain', 'Help')
+        .should('contain', 'GitHub')
 
       cy.get('.main__footer .footer__lower')
         .should('contain', 'Powered by Contentful')
-        .should('contain', 'View on Github')
+        .should('contain', 'GitHub')
         .should('contain', 'Imprint')
+        .should('contain', 'Contact us')
     })
 
     it('about modal', () => {
       cy.get('section.modal .modal__wrapper').should('hidden')
-      cy.get('.header__upper .header__title').click()
+      cy.get('.header__upper-title a').click()
       cy.get('section.modal .modal__wrapper').should('visible')
       cy.get('section.modal .modal__title').should('contain', 'A referenceable example for developers using Contentful')
       cy.get('section.modal .modal__content').should('contain', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
@@ -51,13 +52,13 @@ describe('The Example App', () => {
       // Close on background
       cy.get('section.modal .modal__overlay').click({force: true})
       cy.get('section.modal .modal__wrapper').should('hidden')
-      cy.get('.header__upper .header__title').click()
+      cy.get('.header__upper-title a').click()
       cy.get('section.modal .modal__wrapper').should('visible')
 
       // Close on X
       cy.get('section.modal .modal__close-button').click()
       cy.get('section.modal .modal__wrapper').should('hidden')
-      cy.get('.header__upper .header__title').click()
+      cy.get('.header__upper-title a').click()
       cy.get('section.modal .modal__wrapper').should('visible')
 
       // Close on "Got this" button
