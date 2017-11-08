@@ -23,8 +23,12 @@ server.listen(TEST_PORT, function () {
       CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_PREVIEW_TOKEN
     }
   })
-    .then(() => {
+    .then((result) => {
       server.close()
+      if (result.failures > 0) {
+        process.exit(1)
+        return
+      }
       process.exit(0)
     }).catch(() => {
       server.close()
