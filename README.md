@@ -10,7 +10,7 @@ The Contentful example app, written in node.js.
 ## Installation
 
 ```bash
-git clone https://github.com/contentful/example-contentful-university-js.git
+git clone https://github.com/contentful/the-example-app.nodejs.git
 ```
 
 ```bash
