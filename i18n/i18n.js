@@ -10,7 +10,7 @@ module.exports.initializeTranslations = () => {
 
   translations = {}
 
-  const localesPath = path.join(__dirname, '..', 'public', 'locales')
+  const localesPath = path.join(__dirname, 'locales')
 
   try {
     const files = fs.readdirSync(localesPath)
