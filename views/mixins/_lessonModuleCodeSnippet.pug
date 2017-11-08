@@ -2,11 +2,11 @@ mixin lessonModuleCodeSnippet(module)
   .lesson-module.lesson-module-code
     .lesson-module-code__header
       if module.fields.curl
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-curl`) curl
+        a.lesson-module-code__trigger(data-target=`${module.sys.id}-curl`) cURL
       if module.fields.dotNet
         a.lesson-module-code__trigger(data-target=`${module.sys.id}-dotnet`) .NET
       if module.fields.javascript
-        a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target=`${module.sys.id}-javascript`) Javascript
+        a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target=`${module.sys.id}-javascript`) JavaScript
       if module.fields.java
         a.lesson-module-code__trigger(data-target=`${module.sys.id}-java`) Java
       if module.fields.javaAndroid
