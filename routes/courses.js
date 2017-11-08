@@ -71,7 +71,7 @@ module.exports.getCourse = async (request, response, next) => {
   }
 
   // Enhance the breadcrumbs with the course
-  enhanceBreadcrumb(response, course)
+  enhanceBreadcrumb(request, course)
 
   response.render('course', {title: course.fields.title, course, lesson, lessons, lessonIndex, visitedLessons})
 }
@@ -99,7 +99,7 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
   }
 
   // Enhance the breadcrumbs with the active category
-  enhanceBreadcrumb(response, activeCategory)
+  enhanceBreadcrumb(request, activeCategory)
 
   response.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 }
@@ -132,8 +132,8 @@ module.exports.getLesson = async (request, response, next) => {
   }
 
   // Enhance the breadcrumbs with the course and active lesson
-  enhanceBreadcrumb(response, course)
-  enhanceBreadcrumb(response, lesson)
+  enhanceBreadcrumb(request, course)
+  enhanceBreadcrumb(request, lesson)
 
   response.render('course', {
     title: `${course.fields.title} | ${lesson.fields.title}`,

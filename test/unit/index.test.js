@@ -7,7 +7,13 @@ const { translate, translationAvaliable, initializeTranslations } = require('../
 jest.mock('../../services/contentful')
 const contentful = require('../../services/contentful')
 
-const request = {}
+const request = {
+  app: {
+    locals: {
+      breadcrumb: []
+    }
+  }
+}
 const response = {
   locals: {
     settings: {
