@@ -2,7 +2,7 @@
 const { getCourses, getCourse, getCoursesByCategory, getLesson } = require('../../routes/courses')
 const { getSettings } = require('../../routes/settings')
 const { mockCourse, mockCategory } = require('./mocks/index')
-const { translate, initializeTranslations } = require('../../i18n/i18n')
+const { translate, translationAvaliable, initializeTranslations } = require('../../i18n/i18n')
 
 jest.mock('../../services/contentful')
 const contentful = require('../../services/contentful')
@@ -103,5 +103,14 @@ describe('i18n', () => {
 
   test('It returns the translated string when symbol is found on locale file', () => {
     expect(translate('coursesLabel', 'en-US')).toBe('Courses')
+  })
+  test('It returns true if string is found for locale', () => {
+    expect(translationAvaliable('coursesLabel', 'en-US')).toBe(true)
+  })
+  test('It returns false if string is not found for locale', () => {
+    expect(translationAvaliable('foo-symbol', 'en-US')).toBe(false)
+  })
+  test('It returns false if locale is not found', () => {
+    expect(translationAvaliable('coursesLabel', 'foo-locale')).toBe(false)
   })
 })
