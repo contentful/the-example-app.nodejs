@@ -29,9 +29,9 @@ html
             .header__upper.layout-centered
               .header__upper-first
                 a#about-this-modal-trigger(href='#').header__title
-                  svg.course__overview-icon
+                  svg.header__upper-icon
                     use(xlink:href='/icons/icons.svg#info')
-                span #{translate('whatIsThisApp', currentLocale.code)}
+                  span #{translate('whatIsThisApp', currentLocale.code)}
               .header__upper-second
                 .header__upper-copy
                   a.header__upper-link(href='https://images.contentful.com/82t39nctsu20/1JOkYZnY8YG0w88ImweME2/c8aef71dfe1ea633e16e17d99379416c/Github-repo_2x__1_.png' target='_blank' rel='noopener')
@@ -42,7 +42,7 @@ html
                 .header__controls
                     .header__controls_group
                       form(action='' method='get')
-                        .header__controls_label API: #{currentApi.label} #{translate(`apiLabelHelp${currentApi.id}`, currentLocale.code)}
+                        .header__controls_label API: #{currentApi.label}
                         .header__controls_dropdown
                           .header__controls_help_text #{translate('apiSwitcherHelp', currentLocale.code)}
                           button.header__controls_button(
@@ -50,13 +50,19 @@ html
                             name='api'
                             value='cda'
                             class=`${currentApi.id === 'cda' ? 'header__controls_button--active' : ''}`
-                          ) Delivery #{translate('apiLabelHelpcda', currentLocale.code)}
+                          )
+                            | #{translate('cdaApiLabel', currentLocale.code)}:
+                            br
+                            span.header__controls_button_help= translate('cdaApiHelp', currentLocale.code)
                           button.header__controls_button(
                             type='submit'
                             name='api'
                             value='cpa'
                             class=`${currentApi.id === 'cpa' ? 'header__controls_button--active' : ''}`
-                          ) Preview #{translate('apiLabelHelpcpa', currentLocale.code)}
+                          )
+                            | #{translate('cpaApiLabel', currentLocale.code)}:
+                            br
+                            span.header__controls_button_help= translate('cpaApiHelp', currentLocale.code)
                         input(type='hidden' name='locale' value=currentLocale.code)
 
                     .header__controls_group
