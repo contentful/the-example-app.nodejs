@@ -15,6 +15,7 @@
   "logoAlt": "Contentful Example App",
   "homeLabel": "Home",
   "coursesLabel": "Courses",
+  "lessonsLabel": "Lessons",
   "footerDisclaimer": "Powered by Contentful. This website and the materials found on it are for demo purposes. You can use this to preview the content created on your Contentful account.",
   "imprintLabel": "Imprint",
   "contactUsLabel": "Contact us",
@@ -27,7 +28,7 @@
   "pendingChangesLabel": "pending changes",
   "lessonModuleErrorTitle": "⚠️ Invalid lesson module",
   "lessonModuleErrorBody": "Could not determine type of",
-  "nextLessonLabel": "View next lesson",
+  "nextLessonLabel": "Go to next lesson",
   "imageErrorTitle": "⚠️ Image missing",
   "viewCourseLabel": "view course",
   "categoriesWelcomeLabel": "Welcome to",
@@ -73,5 +74,8 @@
   "deliveryKeyInvalidLabel": "Your Delivery API key is invalid.",
   "spaceOrTokenInvalid": "This space does not exist or your access token is not associated with your space.",
   "somethingWentWrongLabel": "Something went wrong",
-  "previewKeyInvalidLabel": "Your Preview API key is invalid."
+  "previewKeyInvalidLabel": "Your Preview API key is invalid.",
+  "beginnerLabel": "Beginner",
+  "intermediateLabel": "Intermediate",
+  "advancedLabel": "Advanced"
 }

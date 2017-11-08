@@ -73,5 +73,8 @@
   "deliveryKeyInvalidLabel": "Ihr Delivery API Zugangsschlüssel ist ungültig.",
   "spaceOrTokenInvalid": "Dieser Space existiert nicht, oder Ihr Access Token kommt nicht von diesem Space.",
   "somethingWentWrongLabel": "Irgendetwas lief falsch.",
-  "previewKeyInvalidLabel": "Ihr Preview API Zugangsschlüssel ist ungültig."
+  "previewKeyInvalidLabel": "Ihr Preview API Zugangsschlüssel ist ungültig.",
+  "beginnerLabel": "Anfänger",
+  "intermediateLabel": "Fortgeschrittener",
+  "advancedLabel": "Profi"
 }

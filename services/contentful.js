@@ -66,7 +66,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
   return getClient(api).getEntries({
     content_type: 'course',
     locale,
-    order: 'sys.createdAt', // Ordering the entries by creation date
+    order: '-sys.createdAt', // Ordering the entries by creation date
     include: 6 // We use include param to increase the link level, the include value goes from 1 to 6
   })
     .then((response) => response.items)
