@@ -38,7 +38,7 @@ block content
               .course__overview-item
                 svg.course__overview-icon
                   use(xlink:href='/icons/icons.svg#skill-level')
-                .course__overview-value #{translate('skillLevelLabel', currentLocale.code)}: #{course.fields.skillLevel}
+                .course__overview-value #{translate('skillLevelLabel', currentLocale.code)}: #{translate(`${course.fields.skillLevel}Label`, currentLocale.code)}
             .course__overview-cta-wrapper
               a.course__overview-cta.cta(href=`/courses/${course.fields.slug}/lessons/${course.fields.lessons[0].fields.slug}${queryString}`) #{translate('startCourseLabel', currentLocale.code)}
           .course__description !{helpers.markdown(course.fields.description)}
