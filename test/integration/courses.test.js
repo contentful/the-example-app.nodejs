@@ -22,7 +22,7 @@ describe('courses', () => {
   })
 
   test('it should render a lesson', () => {
-    return request(app).get('/courses/hello-world/lessons/architecture-basics')
+    return request(app).get('/courses/hello-world/lessons/architecture')
       .expect(200)
       .then((response) => {
         expect(response.text.match(/class="lesson__title"/)).toBeTruthy()
