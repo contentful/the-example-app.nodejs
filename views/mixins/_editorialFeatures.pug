@@ -8,7 +8,7 @@ mixin editorialFeatures(entry)
           +entryState(entry)
       .editorial-features__item
         a.editorial-features__text(
-          href=`https://app.contentful.com/spaces/${settings.space}/entries/${entry.sys.id}`
+          href=`https://app.contentful.com/spaces/${settings.spaceId}/entries/${entry.sys.id}`
           target='_blank'
           rel='noopener'
         ) Edit in the web app
