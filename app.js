@@ -44,21 +44,6 @@ app.use(settings)
 
 // Make data available for our views to consume
 app.use(async function (request, response, next) {
-  // Set active api based on query parameter
-  const apis = [
-    {
-      id: 'cda',
-      label: 'Delivery'
-    },
-    {
-      id: 'cpa',
-      label: 'Preview'
-    }
-  ]
-
-  response.locals.currentApi = apis
-    .find((api) => api.id === (request.query.api || 'cda'))
-
   // Get enabled locales from Contentful
   const space = await getSpace()
   response.locals.locales = space.locales
@@ -78,6 +63,21 @@ app.use(async function (request, response, next) {
   // Initialize translations and include them on templates
   initializeTranslations()
   response.locals.translate = translate
+
+  // Set active api based on query parameter
+  const apis = [
+    {
+      id: 'cda',
+      label: translate('cdaApiLabel', response.locals.currentLocale.code)
+    },
+    {
+      id: 'cpa',
+      label: translate('cpaApiLabel', response.locals.currentLocale.code)
+    }
+  ]
+
+  response.locals.currentApi = apis
+    .find((api) => api.id === (request.query.api || 'cda'))
 
   // Inject custom helpers
   response.locals.helpers = helpers
