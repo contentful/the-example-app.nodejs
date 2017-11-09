@@ -75,7 +75,6 @@
   "fieldIsRequiredLabel": "This field is required",
   "deliveryKeyInvalidLabel": "Your Delivery API key is invalid.",
   "spaceOrTokenInvalid": "This space does not exist or your access token is not associated with your space.",
-  "somethingWentWrongLabel": "Something went wrong",
   "previewKeyInvalidLabel": "Your Preview API key is invalid.",
   "beginnerLabel": "Beginner",
   "intermediateLabel": "Intermediate",
