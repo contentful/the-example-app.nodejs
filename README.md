@@ -3,8 +3,8 @@
 The node.js example app teaches the very basics of how to work with Contentful:
 
 - consume content from the Contentful Delivery and Preview APIs
-- modelling content
-- editing content through the Contentful web app
+- model content
+- edit content through the Contentful web app
 
 The app demonstrates how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
 
