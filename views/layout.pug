@@ -131,11 +131,13 @@ html
       .modal__wrapper
         h1.modal__title #{translate('modalTitle', currentLocale.code)}
         .modal__content
-          p #{translate('modalIntro', currentLocale.code)}
+          p #{translate('modalIntro', currentLocale.code)}&nbsp;
+            a(href='https://github.com/contentful/the-example-app.nodejs' target='_blank' rel='noopener') GitHub
+            | .
           p
-          | #{translate('modalCodeIntro', currentLocale.code)}&nbsp;
-          a(href='https://github.com/contentful/the-example-app.nodejs' target='_blank' rel='noopener') Github
-          | .
+            | #{translate('modalSpaceIntro', currentLocale.code)}&nbsp;
+            a(href='https://github.com/contentful/content-models/tree/master/the-example-app' target='_blank' rel='noopener')=translate('modalSpaceLinkLabel', currentLocale.code)
+            | .
         .modal__cta-wrapper
           a(href='#').modal__cta.close #{translate('modalCTALabel', currentLocale.code)}
         .modal__close-wrapper
