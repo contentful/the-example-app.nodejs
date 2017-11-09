@@ -1,21 +1,31 @@
-## The node.js Example App
+## The node.js example app
 
-The node.js Example App aims at getting across the very basics of how to work with our headless content management system and how to build apps using our officially supported JavaScript SDK. You’ll learn best practices for using the SDK to deliver content to your app and additionally learn some techniques for modelling your content in Contentful. 
+The node.js example app teaches the very basics of how to work with Contentful:
 
-We hope this app will give you a better understanding of how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
+- consuming Contentful's APIs
+- modelling data
+- editing content through Contentful's web app
 
-Contentful is a content management platform for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful API. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
+The app demonstrates how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
 
 <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank"><img src="https://images.contentful.com/qz0n5cdakyl9/4GZmvrdodGM6CksMCkkAEq/700a527b8203d4d3ccd3c303c5b3e2aa/the-example-app.png" alt="Screenshot of the example app"/></a>
+
+You can see a hosted version of `The node.js example app` on <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank">Heroku</a>.
+
+## What is Contentful?
+Contentful is content infrastructure for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful APIs. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
 
 ## Requirements
 
 * Node 8
 * Git
+* [Contentful CLI](https://www.npmjs.com/package/contentful-cli)
 
-Without any changes, this app is connected to a Contentful space that is not publicly accessible. The full end-to-end Contentful experience requires you to clone this space to your own Contentful account, and enables you to see how content editing in the Contentful web app and see those changes propagate to this running application. Signing up and getting started with our free plan is... free! 
+Without any changes, this app is connected to a Contentful space with read-only access. To experience the full end-to-end Contentful experience, you need to connect the app to a Contentful space where you have read and write access. This enables you to see how content editing in the Contentful web app works and how content changes propagate to this app.
 
-You can clone the space for this example app to your own Contentful account by using our CLI tool.
+[Signing up](https://www.contentful.com/sign-up/) to Contentful is free. 
+
+You can clone the space for this example app to your own Contentful account by using our [CLI](https://www.npmjs.com/package/contentful-cli) tool.
 
 ```
 contentful space seed -s '<SPACE_ID>' -t the-example-app
