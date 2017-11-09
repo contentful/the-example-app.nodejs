@@ -14,6 +14,7 @@ module.exports.initializeTranslations = () => {
 
   try {
     const files = fs.readdirSync(localesPath)
+      .filter((filename) => filename.endsWith('.json'))
 
     files.forEach((file) => {
       const localeDict = require(path.join(localesPath, file))

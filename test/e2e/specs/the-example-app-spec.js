@@ -6,9 +6,9 @@ describe('The Example App', () => {
 
     it('meta tags', () => {
       cy.title().should('equals', 'Home — The Example App', 'Home page should have correct meta title')
-      cy.get('meta[name="description"]').should('attr', 'content', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+      cy.get('meta[name="description"]').should('attr', 'content', 'This is "The Example App", a reference for building your own applications using Contentful.')
 
-      cy.get('meta[name="twitter:card"]').should('attr', 'content', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+      cy.get('meta[name="twitter:card"]').should('attr', 'content', 'This is "The Example App", a reference for building your own applications using Contentful.')
 
       cy.get('meta[property="og:title"]').should('attr', 'content', 'Home — The Example App')
       cy.get('meta[property="og:type"]').should('attr', 'content', 'article')
@@ -17,7 +17,7 @@ describe('The Example App', () => {
       cy.get('meta[property="og:image:type"]').should('attr', 'content', 'image/jpeg')
       cy.get('meta[property="og:image:width"]').should('attr', 'content', '1200')
       cy.get('meta[property="og:image:height"]').should('attr', 'content', '1200')
-      cy.get('meta[property="og:description"]').should('attr', 'content', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+      cy.get('meta[property="og:description"]').should('attr', 'content', 'This is "The Example App", a reference for building your own applications using Contentful.')
 
       cy.get('link[rel="apple-touch-icon"]')
         .should('attr', 'sizes', '120x120')
@@ -46,8 +46,8 @@ describe('The Example App', () => {
       cy.get('section.modal .modal__wrapper').should('hidden')
       cy.get('.header__upper-title a').click()
       cy.get('section.modal .modal__wrapper').should('visible')
-      cy.get('section.modal .modal__title').should('contain', 'A referenceable example for developers using Contentful')
-      cy.get('section.modal .modal__content').should('contain', 'This is The Example App, an application built to serve you as a reference while building your own applications using Contentful.')
+      cy.get('section.modal .modal__title').should('contain', 'A reference for developers using Contentful')
+      cy.get('section.modal .modal__content').should('contain', 'This is "The Example App" in node.js. While building your own apps with Contentful,')
 
       // Close on background
       cy.get('section.modal .modal__overlay').click({force: true})

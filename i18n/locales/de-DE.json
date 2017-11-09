@@ -5,7 +5,7 @@
   "metaTwitterCard": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
   "metaImageAlt": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
   "metaImageDescription": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
-  "viewOnGithub": "GitHub",
+  "viewOnGithub": "Auf GitHub ansehen",
   "apiSwitcherHelp": "Ansehen des veröffentlichten und unveröffentlichten Inhalts durch Wechsel von Delivery und Preview APIs.",
   "contentDeliveryApiLabel": "Content Delivery API",
   "contentDeliveryApiHelp": "Diese API zeigt veröffentlichte Inhalte",
@@ -21,9 +21,10 @@
   "footerDisclaimer": "Powered by Contentful. Diese Website und deren Materialien existieren nur für Demonstrationszwecken. Sie können diese benutzen, um den Inhalt ihres Contentful Kontos anzusehen.",
   "imprintLabel": "Impressum",
   "contactUsLabel": "Kontakt",
-  "modalTitle": "Ein referenzierbares Beispiel für Entwickler, die Contentful benutzen.",
-  "modalIntro": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen. Sie stellt eine Plattform fürs online Lernen dar, die mithilfe von Contentful gebaut wurde. (sehr meta!)",
-  "modalCodeIntro": "Wenn Sie es bevorzugen, sich die Hände schmutzig zu machen, sehen sie sich die Anwendung hier an",
+  "modalTitle": "Ein Beispiel für Entwickler, die Contentful benutzen.",
+  "modalIntro": "Dies ist \"The Example App\" in node.js. Während Sie Ihre eigenen Anwendungen mit Contentful bauen, können Sie dieses Beispiel als Referenz verwenden. Den Quellcode finden Sie auf",
+  "modalSpaceIntro": "Den Inhalt dieser Anwendung können Sie selbst bearbeiten. Dafür müssen Sie den \"The Example App\" space in Ihren Contentful Account importieren. Anleitung hierzu gibt es",
+  "modalSpaceLinkLabel": "hier",
   "modalCTALabel": "Gut, verstanden.",
   "editorialFeaturesHint": "Bearbeiten Sie diesen Eintrag in unserer Web App. Sie müssen sich eingelogged haben und Zugang zum Space haben, um diese Funktion nutzen zu können.",
   "draftLabel": "Entwurf",
@@ -78,5 +79,5 @@
   "previewKeyInvalidLabel": "Ihr Preview API Zugangsschlüssel ist ungültig.",
   "beginnerLabel": "Anfänger",
   "intermediateLabel": "Fortgeschrittener",
-  "advancedLabel": "Profi"
+  "advancedLabel": "Experte"
 }
