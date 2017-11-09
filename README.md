@@ -18,7 +18,7 @@ Without any changes, this app is connected to a Contentful space that is not pub
 You can clone the space for this example app to your own Contentful account by following the instructions [here](https://github.com/contentful/content-models/tree/master/the-example-app/README.md). Once you’ve created a space, you can change the credentials in the variables.env. If you don’t feel like changing code immediately, you can also inject credentials via url parameters like so:
 
 ```
-https://localhost:3000?space_id=<YOUR_CLONED_SPACE_ID>&delivery_token=<YOUR_DELIVERY_TOKEN>&preview_token=<YOUR_PREVIEW_TOKEN>
+http://localhost:3000?space_id=<YOUR_CLONED_SPACE_ID>&delivery_token=<YOUR_DELIVERY_TOKEN>&preview_token=<YOUR_PREVIEW_TOKEN>
 ```
 
 ## Installing the Node.js app
