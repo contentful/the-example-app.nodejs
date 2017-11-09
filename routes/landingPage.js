@@ -5,7 +5,8 @@
 const url = require('url')
 
 const { getLandingPage } = require('../services/contentful')
-const attachEntryState = require('./../lib/entry-state')
+const attachEntryState = require('../lib/entry-state')
+const shouldAttachEntryState = require('../lib/should-attach-entry-state')
 
 /**
  * Renders a landing page when `/` route is requested
@@ -27,7 +28,7 @@ module.exports.getLandingPage = async (request, response, next) => {
   )
 
   // Attach entry state flags when using preview API
-  if (response.locals.settings.editorialFeatures && response.locals.currentApi.id === 'cpa') {
+  if (shouldAttachEntryState(response)) {
     landingPage = await attachEntryState(landingPage)
   }
 
