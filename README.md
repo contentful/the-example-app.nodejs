@@ -48,7 +48,7 @@ Open [http://localhost:3000](http://localhost:3000) and take a look around.
 
 ## Steps for read and write access (recommended)
 
-Step 1: Install the [Contentful CLI](https://www.npmjs.com/package/contentful-cli))
+Step 1: Install the [Contentful CLI](https://www.npmjs.com/package/contentful-cli)
 
 Step 2: Login to Contentful through the CLI. It will help you to create a [free account](https://www.contentful.com/sign-up/) if you don't have one already.
 ```
@@ -68,9 +68,9 @@ Step 6: Open `variables.env` and inject your credentials so it looks like this
 
 ```
 NODE_ENV=development
-CONTENTFUL_SPACE_ID={{SPACE_ID}}
-CONTENTFUL_DELIVERY_TOKEN={{DELIVERY_ACCESS_TOKEN}}
-CONTENTFUL_PREVIEW_TOKEN={{PREVIEW_ACCESS_TOKEN}}
+CONTENTFUL_SPACE_ID=<SPACE_ID>
+CONTENTFUL_DELIVERY_TOKEN=<DELIVERY_ACCESS_TOKEN>
+CONTENTFUL_PREVIEW_TOKEN=<PREVIEW_ACCESS_TOKEN>
 PORT=3000
 ```
 
