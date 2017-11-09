@@ -2,9 +2,9 @@
 
 The node.js example app teaches the very basics of how to work with Contentful:
 
-- consuming Contentful's Delivery and Preview API
-- modelling data
-- editing content through Contentful's web app
+- consume content from the Contentful Delivery and Preview APIs
+- modelling content
+- editing content through the Contentful web app
 
 The app demonstrates how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
 
@@ -13,15 +13,15 @@ The app demonstrates how decoupling content from its presentation enables greate
 You can see a hosted version of `The node.js example app` on <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank">Heroku</a>.
 
 ## What is Contentful?
-Contentful is content infrastructure for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful APIs. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
+Contentful is content infrastructure for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful APIs. Contentful offers tools for editorial teams and enabling cooperation between organizations.
 
 ## Requirements
 
 * Node 8
 * Git
-* Contentful CLI (for read and write access)
+* Contentful CLI (only for write access)
 
-Without any changes, this app is connected to a Contentful space with read-only access. To experience the full end-to-end Contentful experience, you need to connect the app to a Contentful space with read and write access. This enables you to see how content editing in the Contentful web app works and how content changes propagate to this app.
+Without any changes, this app is connected to a Contentful space with read-only access. To experience the full end-to-end Contentful experience, you need to connect the app to a Contentful space with read _and_ write access. This enables you to see how content editing in the Contentful web app works and how content changes propagate to this app.
 
 ## Common setup
 
