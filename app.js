@@ -68,11 +68,11 @@ app.use(async function (request, response, next) {
   const apis = [
     {
       id: 'cda',
-      label: translate('cdaApiLabel', response.locals.currentLocale.code)
+      label: translate('contentDeliveryApiLabel', response.locals.currentLocale.code)
     },
     {
       id: 'cpa',
-      label: translate('cpaApiLabel', response.locals.currentLocale.code)
+      label: translate('contentPreviewApiLabel', response.locals.currentLocale.code)
     }
   ]
 
