@@ -5,7 +5,7 @@
   "metaTwitterCard": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
   "metaImageAlt": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
   "metaImageDescription": "Dies ist die Beispielanwendung, eine Anwendung die Ihnen hilft Ihre eigene Anwendung mit Contentful zu bauen.",
-  "viewOnGithub": "GitHub",
+  "viewOnGithub": "Auf GitHub ansehen",
   "apiSwitcherHelp": "Ansehen des veröffentlichten und unveröffentlichten Inhalts durch Wechsel von Delivery und Preview APIs.",
   "contentDeliveryApiLabel": "Content Delivery API",
   "contentDeliveryApiHelp": "Diese API zeigt veröffentlichte Inhalte",
