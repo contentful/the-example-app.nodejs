@@ -1,6 +1,9 @@
 ## The node.js Example App
 
-The node.js Example App aims at getting across the very basics of how to work with our headless content management system and how to build apps using our officially supported JavaScript SDK. You’ll learn best practices for using the SDK to deliver content to your app and additionally learn some techniques for modelling your content in Contentful. We hope this app will give you a better understanding of how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
+The node.js Example App aims at getting across the very basics of how to work with our headless content management system and how to build apps using our officially supported JavaScript SDK. You’ll learn best practices for using the SDK to deliver content to your app and additionally learn some techniques for modelling your content in Contentful. 
+
+We hope this app will give you a better understanding of how decoupling content from its presentation enables greater flexibility and facilitates shipping higher quality software more quickly.
+
 Contentful is a content management platform for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful API. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
 
 <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank"><img src="https://images.contentful.com/ft4tkuv7nwl0/31mTpJSgBigeueQyoSGKSg/be3b56dca256d20f5ee530d58bb6d90e/Screen_Shot_2017-11-08_at_15.32.36.png" alt="Screenshot of the example app"/></a>
