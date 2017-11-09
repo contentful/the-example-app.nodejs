@@ -11,7 +11,7 @@ const {
 
 const attachEntryState = require('../lib/entry-state')
 const enhanceBreadcrumb = require('../lib/enhance-breadcrumb')
-const shouldEnableEditorialFeatures = require('../lib/should-enable-editorial-features')
+const shouldAttachEntryState = require('../lib/should-attach-entry-state')
 const { updateCookie } = require('../lib/cookies')
 const { translate } = require('../i18n/i18n')
 
@@ -31,7 +31,7 @@ module.exports.getCourses = async (request, response, next) => {
   courses = await getCourses(response.locals.currentLocale.code, response.locals.currentApi.id)
 
   // Attach entry state flags when using preview API
-  if (shouldEnableEditorialFeatures(response)) {
+  if (shouldAttachEntryState(response)) {
     courses = await Promise.all(courses.map(attachEntryState))
   }
 
@@ -67,7 +67,7 @@ module.exports.getCourse = async (request, response, next) => {
   updateCookie(response, 'visitedLessons', visitedLessons)
 
   // Attach entry state flags when using preview API
-  if (shouldEnableEditorialFeatures(response)) {
+  if (shouldAttachEntryState(response)) {
     course = await attachEntryState(course)
   }
 
@@ -128,7 +128,7 @@ module.exports.getLesson = async (request, response, next) => {
   updateCookie(response, 'visitedLessons', visitedLessons)
 
   // Attach entry state flags when using preview API
-  if (shouldEnableEditorialFeatures(response)) {
+  if (shouldAttachEntryState(response)) {
     lesson = await attachEntryState(lesson)
   }
 
