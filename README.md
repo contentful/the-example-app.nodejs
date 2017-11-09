@@ -43,7 +43,7 @@ To start the express server, run the following
 npm run start:dev
 ```
 
-Open [https://localhost:3000](https://localhost:3000) and take a look around. 
+Open [http://localhost:3000](http://localhost:3000) and take a look around. 
 
 
 ## Steps for read and write access (recommended)
@@ -80,4 +80,9 @@ npm run start:dev
 ```
 Final Step:
 
-Open [https://localhost:3000?enable_editorial_features](https://localhost:3000?enable_editorial_features) and take a look around. This URL flag adds an “Edit” button in the app on every editable piece of content which will take you back to Contentful web app where you can make changes. It also adds “Draft” and “Pending Changes” status indicators to all content if relevant.
+Open [http://localhost:3000?enable_editorial_features](http://localhost:3000?enable_editorial_features) and take a look around. This URL flag adds an “Edit” button in the app on every editable piece of content which will take you back to Contentful web app where you can make changes. It also adds “Draft” and “Pending Changes” status indicators to all content if relevant.
+
+## Deploy to Heroku
+You can also deploy this app to Heroku.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
