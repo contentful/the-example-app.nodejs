@@ -19,7 +19,7 @@ Without any changes, this app is connected to a Contentful space with read-only 
 You can clone the space for this example app to your own Contentful account by using our CLI tool.
 
 ```
-contentful space seed -s '<SPACE_ID>' -t the-example-app
+http://localhost:3000?space_id=<YOUR_CLONED_SPACE_ID>&delivery_token=<YOUR_DELIVERY_TOKEN>&preview_token=<YOUR_PREVIEW_TOKEN>
 ```
 
 If you do not have the Contentful CLI installed you can find instructions on installation and usage [here](https://www.npmjs.com/package/contentful-cli). For more information on the content model check out [this repo](https://github.com/contentful/content-models/tree/master/the-example-app/README.md). 
