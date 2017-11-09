@@ -15,8 +15,15 @@ Contentful is a content management platform for web applications, mobile apps an
 
 Without any changes, this app is connected to a Contentful space with read-only access. To experience the full end-to-end Contentful experience, you need to connect the app to a Contentful space with read _and_ write access. This enables you to see how content editing in the Contentful web app works and how content changes propagate to this app.
 
-## Common setup
 You can clone the space for this example app to your own Contentful account by using our CLI tool.
+
+```
+contentful space seed -s '<SPACE_ID>' -t the-example-app
+```
+
+If you do not have the Contentful CLI installed you can find instructions on installation and usage [here](https://github.com/contentful/contentful-cli). For more information on the content model check out [this repo](https://github.com/contentful/content-models/tree/master/the-example-app/README.md). 
+
+Once you’ve created a space, you can change the credentials in the variables.env. If you don’t feel like changing code immediately, you can also inject credentials via url parameters like so:
 
 ```
 http://localhost:3000?space_id=<YOUR_CLONED_SPACE_ID>&delivery_token=<YOUR_DELIVERY_TOKEN>&preview_token=<YOUR_PREVIEW_TOKEN>
