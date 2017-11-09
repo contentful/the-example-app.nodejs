@@ -109,7 +109,7 @@ describe('The Example App', () => {
 
     it('renders course overview', () => {
       cy.visit('/courses')
-      cy.get('.course-card').should('have.length.gte', 3, 'renders at least 3 courses')
+      cy.get('.course-card').should('have.length.gte', 2, 'renders at least 2 courses')
       cy.get('.layout-sidebar__sidebar-header > h2').should('contain', 'Categories', 'Shows category title in sidebar')
       cy.get('.sidebar-menu__list > .sidebar-menu__item:first-child').should('contain', 'All courses', 'Shows all courses link')
       cy.get('.sidebar-menu__list > .sidebar-menu__item').should('have.length.gte', 2, 'renders at least one category selector')
