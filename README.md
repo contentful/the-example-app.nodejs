@@ -6,7 +6,7 @@ We hope this app will give you a better understanding of how decoupling content 
 
 Contentful is a content management platform for web applications, mobile apps and connected devices. It allows you to create, edit and manage content in the cloud and publish it anywhere via powerful API. Contentful offers tools for managing editorial teams and enabling cooperation between organizations.
 
-<a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank"><img src="https://images.contentful.com/ft4tkuv7nwl0/31mTpJSgBigeueQyoSGKSg/be3b56dca256d20f5ee530d58bb6d90e/Screen_Shot_2017-11-08_at_15.32.36.png" alt="Screenshot of the example app"/></a>
+<a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank"><img src="https://images.contentful.com/qz0n5cdakyl9/4GZmvrdodGM6CksMCkkAEq/700a527b8203d4d3ccd3c303c5b3e2aa/the-example-app.png" alt="Screenshot of the example app"/></a>
 
 ## Requirements
 
