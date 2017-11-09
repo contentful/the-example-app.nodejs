@@ -49,18 +49,18 @@ html
                         value='cda'
                         class=`${currentApi.id === 'cda' ? 'header__controls_button--active' : ''}`
                       )
-                        | #{translate('cdaApiLabel', currentLocale.code)}:
+                        | #{translate('contentDeliveryApiLabel', currentLocale.code)}:
                         br
-                        span.header__controls_button_help= translate('cdaApiHelp', currentLocale.code)
+                        span.header__controls_button_help= translate('contentDeliveryApiHelp', currentLocale.code)
                       button.header__controls_button(
                         type='submit'
                         name='api'
                         value='cpa'
                         class=`${currentApi.id === 'cpa' ? 'header__controls_button--active' : ''}`
                       )
-                        | #{translate('cpaApiLabel', currentLocale.code)}:
+                        | #{translate('contentPreviewApiLabel', currentLocale.code)}:
                         br
-                        span.header__controls_button_help= translate('cpaApiHelp', currentLocale.code)
+                        span.header__controls_button_help= translate('contentPreviewApiHelp', currentLocale.code)
                     input(type='hidden' name='locale' value=currentLocale.code)
 
                 .header__controls_group
