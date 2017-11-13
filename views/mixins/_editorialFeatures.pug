@@ -11,7 +11,7 @@ mixin editorialFeatures(entry)
           href=`https://app.contentful.com/spaces/${settings.spaceId}/entries/${entry.sys.id}`
           target='_blank'
           rel='noopener'
-        ) Edit in the web app
+        ) #{translate('editInTheWebAppLabel', currentLocale.code)}
         .editorial-features__hint-wrapper
           svg.editorial-features__hint-icon
             use(xlink:href='/icons/icons.svg#info')
