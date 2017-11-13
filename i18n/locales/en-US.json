@@ -79,5 +79,6 @@
   "previewKeyInvalidLabel": "Your Preview API key is invalid.",
   "beginnerLabel": "Beginner",
   "intermediateLabel": "Intermediate",
-  "advancedLabel": "Advanced"
+  "advancedLabel": "Advanced",
+  "editInTheWebAppLabel": "Edit in the web app"
 }
