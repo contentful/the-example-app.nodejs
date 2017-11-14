@@ -80,5 +80,6 @@
   "beginnerLabel": "Beginner",
   "intermediateLabel": "Intermediate",
   "advancedLabel": "Advanced",
-  "editInTheWebAppLabel": "Edit in the web app"
+  "editInTheWebAppLabel": "Edit in the web app",
+  "error404Route": "a non supported route"
 }
