@@ -16,6 +16,7 @@ const breadcrumb = require('./lib/breadcrumb')
 const settings = require('./lib/settings')
 const routes = require('./routes/index')
 const { getSpace } = require('./services/contentful')
+const { catchErrors } = require('./handlers/errorHandlers')
 
 const app = express()
 
@@ -43,22 +44,18 @@ app.use(function (req, res, next) {
 app.use(settings)
 
 // Make data available for our views to consume
-app.use(async function (request, response, next) {
+app.use(catchErrors(async function (request, response, next) {
   // Get enabled locales from Contentful
-  const space = await getSpace()
-  response.locals.locales = space.locales
+  response.locals.locales = [{code: 'en-US', name: 'U.S. English'}]
+  response.locals.currentLocale = response.locals.locales[0]
+  // Inject custom helpers
+  response.locals.helpers = helpers
 
-  const defaultLocale = response.locals.locales
-    .find((locale) => locale.default)
-
-  if (request.query.locale) {
-    response.locals.currentLocale = space.locales
-      .find((locale) => locale.code === request.query.locale)
-  }
-
-  if (!response.locals.currentLocale) {
-    response.locals.currentLocale = defaultLocale
-  }
+  // Make query string available in templates to render links properly
+  const qs = querystring.stringify(request.query)
+  response.locals.queryString = qs ? `?${qs}` : ''
+  response.locals.query = request.query
+  response.locals.currentPath = request.path
 
   // Initialize translations and include them on templates
   initializeTranslations()
@@ -79,17 +76,23 @@ app.use(async function (request, response, next) {
   response.locals.currentApi = apis
     .find((api) => api.id === (request.query.api || 'cda'))
 
-  // Inject custom helpers
-  response.locals.helpers = helpers
+  const space = await getSpace()
+  response.locals.locales = space.locales
 
-  // Make query string available in templates to render links properly
-  const qs = querystring.stringify(request.query)
-  response.locals.queryString = qs ? `?${qs}` : ''
-  response.locals.query = request.query
-  response.locals.currentPath = request.path
+  const defaultLocale = response.locals.locales
+    .find((locale) => locale.default)
+
+  if (request.query.locale) {
+    response.locals.currentLocale = space.locales
+      .find((locale) => locale.code === request.query.locale)
+  }
+
+  if (!response.locals.currentLocale) {
+    response.locals.currentLocale = defaultLocale
+  }
 
   next()
-})
+}))
 
 app.use(breadcrumb())
 
@@ -107,8 +110,9 @@ app.use(function (request, response, next) {
 // Error handler
 app.use(function (err, request, response, next) {
   // Set locals, only providing error in development
+  console.log(err.response.status)
   response.locals.error = request.app.get('env') === 'development' ? err : {}
-
+  response.locals.error.status = err.status || 500
   // Render the error page
   response.status(err.status || 500)
   response.render('error')
