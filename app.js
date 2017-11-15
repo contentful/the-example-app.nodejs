@@ -44,22 +44,18 @@ app.use(function (req, res, next) {
 app.use(settings)
 
 // Make data available for our views to consume
-app.use(async function (request, response, next) {
+app.use(catchErrors(async function (request, response, next) {
   // Get enabled locales from Contentful
-  const space = await getSpace()
-  response.locals.locales = space.locales
+  response.locals.locales = [{code: 'en-US', name: 'U.S. English'}]
+  response.locals.currentLocale = response.locals.locales[0]
+  // Inject custom helpers
+  response.locals.helpers = helpers
 
-  const defaultLocale = response.locals.locales
-    .find((locale) => locale.default)
-
-  if (request.query.locale) {
-    response.locals.currentLocale = space.locales
-      .find((locale) => locale.code === request.query.locale)
-  }
-
-  if (!response.locals.currentLocale) {
-    response.locals.currentLocale = defaultLocale
-  }
+  // Make query string available in templates to render links properly
+  const qs = querystring.stringify(request.query)
+  response.locals.queryString = qs ? `?${qs}` : ''
+  response.locals.query = request.query
+  response.locals.currentPath = request.path
 
   // Initialize translations and include them on templates
   initializeTranslations()
@@ -80,14 +76,20 @@ app.use(async function (request, response, next) {
   response.locals.currentApi = apis
     .find((api) => api.id === (request.query.api || 'cda'))
 
-  // Inject custom helpers
-  response.locals.helpers = helpers
+  const space = await getSpace()
+  response.locals.locales = space.locales
 
-  // Make query string available in templates to render links properly
-  const qs = querystring.stringify(request.query)
-  response.locals.queryString = qs ? `?${qs}` : ''
-  response.locals.query = request.query
-  response.locals.currentPath = request.path
+  const defaultLocale = response.locals.locales
+    .find((locale) => locale.default)
+
+  if (request.query.locale) {
+    response.locals.currentLocale = space.locales
+      .find((locale) => locale.code === request.query.locale)
+  }
+
+  if (!response.locals.currentLocale) {
+    response.locals.currentLocale = defaultLocale
+  }
 
   next()
 }))
