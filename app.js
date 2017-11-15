@@ -110,6 +110,7 @@ app.use(function (request, response, next) {
 // Error handler
 app.use(function (err, request, response, next) {
   // Set locals, only providing error in development
+  console.log(err.response.status)
   response.locals.error = request.app.get('env') === 'development' ? err : {}
   response.locals.error.status = err.status || 500
   // Render the error page
