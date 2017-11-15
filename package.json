@@ -29,6 +29,7 @@
     "dotenv": "^4.0.0",
     "express": "~4.14.0",
     "helmet": "^3.9.0",
+    "loadash": "^1.0.0",
     "marked": "^0.3.6",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6"

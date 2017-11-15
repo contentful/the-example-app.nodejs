@@ -6,7 +6,7 @@ const { createClient } = require('contentful')
 const { initClients, getSpace } = require('./../services/contentful')
 const { updateCookie } = require('../lib/cookies')
 const { translate } = require('../i18n/i18n')
-
+const { uniqWith, isEqual } = require('lodash')
 const SETTINGS_NAME = 'theExampleAppSettings'
 
 async function renderSettings (response, opts) {
@@ -58,7 +58,7 @@ module.exports.getSettings = async (request, response, next) => {
  */
 module.exports.postSettings = async (request, response, next) => {
   const currentLocale = response.locals.currentLocale
-  const errorList = []
+  let errorList = []
   const { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
   const settings = {
     spaceId,
@@ -143,7 +143,7 @@ module.exports.postSettings = async (request, response, next) => {
       }
     }
   }
-
+  errorList = uniqWith(errorList, isEqual)
   // If no errors, then cache the new settings in the cookie
   if (!errorList.length) {
     // Store new settings
