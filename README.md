@@ -31,7 +31,7 @@ You can clone the space for this example app to your own Contentful account by u
 contentful space seed -s '<SPACE_ID>' -t the-example-app
 ```
 
-If you do not have the Contentful CLI installed you can find instructions on installation and usage [here](https://github.com/contentful/contentful-cli). For more information on the content model check out [this repo](https://github.com/contentful/content-models/tree/master/the-example-app/README.md). 
+If you do not have the Contentful CLI installed you can find instructions on installation and usage [here](https://www.npmjs.com/package/contentful-cli). For more information on the content model check out [this repo](https://github.com/contentful/content-models/tree/master/the-example-app/README.md). 
 
 Once you’ve created a space, you can change the credentials in the variables.env. If you don’t feel like changing code immediately, you can also inject credentials via url parameters like so:
 
