@@ -7,8 +7,6 @@ mixin lesson(lesson, course, nextLesson)
   .lesson
     h1.lesson__title #{lesson.fields.title}
     +editorialFeatures(lesson)
-    if lesson.fields.image
-      img.lesson__image(src=`${lesson.fields.image.fields.file.url}` alt=`${lesson.fields.image.fields.title}`)
     .lesson__modules
       each module in lesson.fields.modules
         if module.sys.contentType

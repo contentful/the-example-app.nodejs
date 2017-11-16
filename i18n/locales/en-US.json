@@ -45,7 +45,7 @@
   "startCourseLabel": "Start course",
   "categoriesLabel": "Categories",
   "allCoursesLabel": "All courses",
-  "somethingWentWrongLabel": "Oops Something went wrong",
+  "somethingWentWrongLabel": "Oops, something went wrong",
   "tryLabel": "Try",
   "contentModelChangedErrorLabel": "Check if the content model has changed",
   "draftOrPublishedErrorLabel": "Check the selection has content in draft or published state (for Preview or Delivery)",
@@ -79,5 +79,7 @@
   "previewKeyInvalidLabel": "Your Preview API key is invalid.",
   "beginnerLabel": "Beginner",
   "intermediateLabel": "Intermediate",
-  "advancedLabel": "Advanced"
+  "advancedLabel": "Advanced",
+  "editInTheWebAppLabel": "Edit in the web app",
+  "error404Route": "a non supported route"
 }

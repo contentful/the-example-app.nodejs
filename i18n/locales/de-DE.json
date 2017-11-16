@@ -79,5 +79,7 @@
   "previewKeyInvalidLabel": "Ihr Preview API Zugangsschlüssel ist ungültig.",
   "beginnerLabel": "Anfänger",
   "intermediateLabel": "Fortgeschrittener",
-  "advancedLabel": "Experte"
+  "advancedLabel": "Experte",
+  "editInTheWebAppLabel": "In der web app bearbeiten",
+  "error404Route": "Ein nicht unterstützter HTTP Route"
 }

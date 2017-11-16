@@ -29,7 +29,9 @@
   });
 
   snowplow('trackPageView');
-
+  
+  snowplow('enableLinkClickTracking')
+  
   const space_id = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent('space_id').replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 
   snowplow('trackSelfDescribingEvent', {

@@ -9,15 +9,23 @@ block content
       h1 #{translate('somethingWentWrongLabel', currentLocale.code)} (#{error.status})
       h2 #{translate('tryLabel', currentLocale.code)}:
       ul
-        li #{translate('contentModelChangedErrorLabel', currentLocale.code)}
-        li #{translate('draftOrPublishedErrorLabel', currentLocale.code)}
-        li #{translate('localeContentErrorLabel', currentLocale.code)}
-        li #{translate('verifyCredentialsErrorLabel', currentLocale.code)}
+        case error.status
+          when 404
+            li #{translate('error404Route', currentLocale.code)}
+            li #{translate('draftOrPublishedErrorLabel', currentLocale.code)}
+          when 400
+            li #{translate('contentModelChangedErrorLabel', currentLocale.code)}
+          when 401
+            li #{translate('verifyCredentialsErrorLabel', currentLocale.code)}
+            li #{translate('localeContentErrorLabel', currentLocale.code)}
+
+        if error.stack
         li #{translate('stackTraceErrorLabel', currentLocale.code)}
       if error.response
         h2 #{translate('errorLabel', currentLocale.code)}
           pre.error__stack-trace
             code.shell #{helpers.dump(error.response.data)}
-      h2 #{translate('stackTraceLabel', currentLocale.code)}
-      pre.error__stack-trace
-        code.shell #{error.stack}
+      if error.stack
+        h2 #{translate('stackTraceLabel', currentLocale.code)}
+        pre.error__stack-trace
+          code.shell #{error.stack}
