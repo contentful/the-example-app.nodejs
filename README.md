@@ -53,7 +53,7 @@ To start the express server, run the following
 npm run start:dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and take a look around. 
+Open [http://localhost:3000](http://localhost:3000) and take a look around.
 
 
 ## Steps for read and write access (recommended)
@@ -72,7 +72,7 @@ Step 4: Seed the new space with the content model. Replace the `SPACE_ID` with t
 ```
 contentful space seed -s '<SPACE_ID>' -t the-example-app
 ```
-Step 5: Head to the Contentful web app's API section and grab `SPACE_ID`, `DELIVERY_ACCESS_TOKEN`, `PREVIEW_ACCESS_TOKEN`. 
+Step 5: Head to the Contentful web app's API section and grab `SPACE_ID`, `DELIVERY_ACCESS_TOKEN`, `PREVIEW_ACCESS_TOKEN`.
 
 Step 6: Open `variables.env` and inject your credentials so it looks like this
 
@@ -97,3 +97,34 @@ You can also deploy this app to Heroku:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+
+## Use Docker
+You can also run this app as a Docker container:
+
+Step 1: Clone the repo
+
+```bash
+git clone https://github.com/contentful/the-example-app.nodejs.git
+```
+
+Step 2: Build the Docker image
+
+```bash
+docker build -t the-example-app.nodejs .
+```
+
+Step 3: Run the Docker container locally:
+
+```bash
+docker run -p 3000:3000 -d the-example-app.nodejs
+```
+
+If you created your own Contentful space, you can use it by overriding the following environment variables:
+
+```bash
+docker run -p 3000:3000 \
+  -e CONTENTFUL_SPACE_ID=<SPACE_ID> \
+  -e CONTENTFUL_DELIVERY_TOKEN=<DELIVERY_ACCESS_TOKEN> \
+  -e CONTENTFUL_PREVIEW_TOKEN=<PREVIEW_ACCESS_TOKEN> \
+  -d the-example-app.nodejs
+```
