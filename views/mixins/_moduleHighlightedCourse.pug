@@ -1,17 +1,17 @@
 include ./_courseCard
 
 mixin moduleHighlightedCourse(module, course)
-  .module.module-higlighted-course
-    .module-higlighted-course__wrapper(style=`background-image: url(${course.fields.image.fields.file.url});`)
-      .module-higlighted-course__overlay
-      .module-higlighted-course__content
+  .module.module-highlighted-course
+    .module-highlighted-course__wrapper(style=`background-image: url(${course.fields.image.fields.file.url});`)
+      .module-highlighted-course__overlay
+      .module-highlighted-course__content
         if(course.fields.categories)
-          .module-higlighted-course__categories
+          .module-highlighted-course__categories
             each category in course.fields.categories
-              a.module-higlighted-course__category(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
-        h2.module-higlighted-course__title
+              a.module-highlighted-course__category(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
+        h2.module-highlighted-course__title
           a(href=`/courses/${course.fields.slug}${queryString}`)= course.fields.title
-        .module-higlighted-course__description-wrapper
+        .module-highlighted-course__description-wrapper
           p !{helpers.markdown(course.fields.shortDescription)}
-        .module-higlighted-course__link-wrapper
-          a.module-higlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate('viewCourseLabel', currentLocale.code)}
+        .module-highlighted-course__link-wrapper
+          a.module-highlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate('viewCourseLabel', currentLocale.code)}
