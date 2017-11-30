@@ -165,16 +165,11 @@ module.exports.postSettings = async (request, response, next) => {
       ]
     }
   }, {})
-  const success = errorList.length === 0
-  if (!success) {
-    await renderSettings(response, {
-      settings,
-      errors,
-      hasErrors: errorList.length > 0,
-      success,
-      queryString: qs
-    })
-  } else {
-    response.redirect(`/settings/${qs}`)
-  }
+  await renderSettings(response, {
+    settings,
+    errors,
+    hasErrors: errorList.length > 0,
+    success: errorList.length === 0,
+    queryString: qs
+  })
 }
