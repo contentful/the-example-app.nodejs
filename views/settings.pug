@@ -39,6 +39,7 @@ block content
 
     form(action=`/settings` method="POST" class="form")
       .form-item
+        input(type="hidden" name="qs" value=queryString)
         label(for="input-space-id") #{translate('spaceIdLabel', currentLocale.code)}
         input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId)
         if 'spaceId' in errors
