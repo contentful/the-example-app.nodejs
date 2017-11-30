@@ -19,7 +19,7 @@ block content
             li #{translate('verifyCredentialsErrorLabel', currentLocale.code)}
             li #{translate('localeContentErrorLabel', currentLocale.code)}
 
-        if error.stack
+      if error.stack
         li #{translate('stackTraceErrorLabel', currentLocale.code)}
       if error.response
         h2 #{translate('errorLabel', currentLocale.code)}
