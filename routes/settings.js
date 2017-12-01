@@ -59,7 +59,7 @@ module.exports.getSettings = async (request, response, next) => {
 module.exports.postSettings = async (request, response, next) => {
   const currentLocale = response.locals.currentLocale
   let errorList = []
-  const { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
+  const { spaceId, deliveryToken, previewToken, editorialFeatures, qs } = request.body
   const settings = {
     spaceId,
     deliveryToken,
@@ -165,11 +165,11 @@ module.exports.postSettings = async (request, response, next) => {
       ]
     }
   }, {})
-
   await renderSettings(response, {
     settings,
     errors,
     hasErrors: errorList.length > 0,
-    success: errorList.length === 0
+    success: errorList.length === 0,
+    queryString: qs
   })
 }
