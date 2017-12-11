@@ -62,3 +62,6 @@ package-lock.json
 
 # cypress test result files
 cypress
+
+# e2e test directory
+test/e2e
