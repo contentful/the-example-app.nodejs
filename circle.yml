@@ -3,10 +3,8 @@ machine:
     version: "8"
 dependencies:
   pre:
-    - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - sudo dpkg -i google-chrome.deb
-    - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
-    - rm google-chrome.deb
+    - git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
+    - cd ./test/e2e && npm install
 test:
   post:
     - tar -czf $CIRCLE_ARTIFACTS/cypress-result_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./cypress
