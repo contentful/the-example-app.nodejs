@@ -17,11 +17,8 @@ const { CONTENTFUL_SPACE_ID, CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_PREVIEW_TOKEN
 server.on('error', console.error)
 server.listen(TEST_PORT, function () {
   const cypressBin = resolve(__dirname, 'e2e', 'node_modules', '.bin', 'cypress')
-  const spec = resolve(__dirname, 'e2e', 'specs', 'the-example-app-spec.js')
   execa(cypressBin, [
     'run',
-    '--spec',
-    spec,
     !process.env.CI ? '--headed' : null,
     '--env',
     `CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID},CONTENTFUL_DELIVERY_TOKEN=${CONTENTFUL_DELIVERY_TOKEN},CONTENTFUL_PREVIEW_TOKEN=${CONTENTFUL_PREVIEW_TOKEN}`
