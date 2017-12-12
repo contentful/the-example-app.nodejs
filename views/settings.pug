@@ -58,17 +58,18 @@ block content
                 br
                 span #{space.name} (#{settings.spaceId})
 
-              form(action='/settings' method='POST')
-              p 
-                strong #{translate('applicationCredentialsLabel', currentLocale.code)}:
-                br
-                button(type="submit") #{translate('resetCredentialsLabel', currentLocale.code)}
+              form(action='/settings?reset=true' method='POST')
+                p 
+                  strong #{translate('applicationCredentialsLabel', currentLocale.code)}:
+                  br
+                  button(type="submit") #{translate('resetCredentialsLabel', currentLocale.code)}
+                  br
+                  a(href=`${baseUrl}/?space_id=${settings.spaceId}&preview_token=${settings.previewToken}&delivery_token=${settings.deliveryToken}&api=${currentApi.id}${settings.editorialFeatures ? '&enable_editorial_features' : ''}` class="status-block__sharelink") #{translate('copyLinkLabel', currentLocale.code)}
               p
                 em #{translate('overrideConfigLabel', currentLocale.code)}
 
-    form(action=`/settings` method="POST" class="form")
+    form(action=`/settings${queryString}` method="POST" class="form")
       .form-item
-        input(type="hidden" name="qs" value=queryString)
         label(for="input-space-id") #{translate('spaceIdLabel', currentLocale.code)}
         input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId)
         if 'spaceId' in errors

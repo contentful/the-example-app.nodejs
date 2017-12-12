@@ -59,7 +59,14 @@ module.exports.getSettings = async (request, response, next) => {
 module.exports.postSettings = async (request, response, next) => {
   const currentLocale = response.locals.currentLocale
   let errorList = []
-  const { spaceId, deliveryToken, previewToken, editorialFeatures, qs } = request.body
+  let { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
+
+  if (request.query.reset) {
+    spaceId = process.env.CONTENTFUL_SPACE_ID
+    deliveryToken = process.env.CONTENTFUL_DELIVERY_TOKEN
+    previewToken = process.env.CONTENTFUL_PREVIEW_TOKEN
+  }
+
   const settings = {
     spaceId,
     deliveryToken,
@@ -169,7 +176,6 @@ module.exports.postSettings = async (request, response, next) => {
     settings,
     errors,
     hasErrors: errorList.length > 0,
-    success: errorList.length === 0,
-    queryString: qs
+    success: errorList.length === 0
   })
 }
