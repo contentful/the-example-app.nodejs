@@ -77,7 +77,7 @@ html
             .header__lower.layout-centered
               .header__logo
                 a.header__logo-link(href=`/${queryString}`)
-                  img(src='/images/logo-the-example-app-nodejs.svg' alt=translate('logoAlt', currentLocale.code))
+                  img(src='/images/the-example-app-logo-nodejs.svg' alt=translate('logoAlt', currentLocale.code))
               nav.header__navigation.main-navigation
                 ul
                   li
@@ -129,7 +129,7 @@ html
 section.modal#about-this-modal
   .modal__overlay.close
   .modal__wrapper
-    h1.modal__title= translate("modalTitleDotnet", currentLocale.code)
+    h1.modal__title= translate("modalTitle", currentLocale.code)
     .modal__content
       p
         | #{translate("modalIntro", currentLocale.code)}&nbsp;
@@ -142,45 +142,45 @@ section.modal#about-this-modal
       p= translate("modalPlatforms", currentLocale.code)
       ul
         li
-          img(src='/images/nodejs-icon.svg')
+          img(src='/images/icon-nodejs.svg')
           br
           a(href="https://the-example-app-nodejs.herokuapp.com/" rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
           br
           a(href="https://github.com/contentful/the-example-app.nodejs" rel="noopener" target="_blank") GitHub
         li
-          img(src='/images/dotnet.svg')
+          img(src='/images/icon-dotnet.svg')
           br
           a(href="https://the-example-app-csharp.herokuapp.com/" rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
           br
           a(href="https://github.com/contentful/the-example-app.csharp" rel="noopener" target="_blank") GitHub
         li
-          img(src='/images/ruby.svg')
+          img(src='/images/icon-ruby.svg')
           br
           a(href="https://the-example-app-rb.herokuapp.com/" rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
           br
           a(href="https://github.com/contentful/the-example-app.rb" rel="noopener" target="_blank") GitHub
         li
-          img(src='/images/php.svg')
+          img(src='/images/icon-php.svg')
           br
           a(href="https://the-example-app-php.herokuapp.com/" rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
           br
           a(href="https://github.com/contentful/the-example-app.php" rel="noopener" target="_blank") GitHub
         li
-          img(src='/images/python.svg')
+          img(src='/images/icon-python.svg')
           br
           a(href="https://the-example-app-py.herokuapp.com/" rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
           br
           a(href="https://github.com/contentful/the-example-app.py" rel="noopener" target="_blank") GitHub
         li
-          img.inactive(src='/images/swift.svg')
+          img.inactive(src='/images/icon-swift.svg')
           br
           = translate("comingSoonLabel", currentLocale.code)
         li
-          img.inactive(src='/images/java.svg')
+          img.inactive(src='/images/icon-java.svg')
           br
           = translate("comingSoonLabel", currentLocale.code)
         li
-          img.inactive(src='/images/android-icon.svg')
+          img.inactive(src='/images/icon-android.svg')
           br
           = translate("comingSoonLabel", currentLocale.code)
     .modal__cta-wrapper

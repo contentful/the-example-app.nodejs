@@ -97,7 +97,7 @@
   "beginnerLabel": "Beginner",
   "intermediateLabel": "Intermediate",
   "advancedLabel": "Advanced",
-  "editInTheWebAppLabel": "Edit in the Contentful Web App",
+  "editInTheWebAppLabel": "Edit in the Contentful web app",
   "error404Route": "Verify that you are trying to reach a supported route",
   "currentLocaleLabel": "English (United States)",
   "hostedLabel": "Hosted",
