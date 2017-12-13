@@ -31,6 +31,5 @@ module.exports.getLandingPage = async (request, response, next) => {
   if (shouldAttachEntryState(response)) {
     landingPage = await attachEntryState(landingPage)
   }
-  console.log(landingPage.fields.contentModules[0].fields.course.fields.image)
   response.render('landingPage', { title: pathname, landingPage })
 }

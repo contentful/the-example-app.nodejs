@@ -19,6 +19,16 @@ module.exports.formatMetaTitle = (title, localeCode = 'en-US') => {
   return `${title.charAt(0).toUpperCase()}${title.slice(1)} — ${translate('defaultTitle', localeCode)}`
 }
 
+module.exports.isCustomCredentials = (settings) => {
+  const spaceId = process.env.CONTENTFUL_SPACE_ID
+  const deliveryToken = process.env.CONTENTFUL_DELIVERY_TOKEN
+  const previewToken = process.env.CONTENTFUL_PREVIEW_TOKEN
+
+  return settings.spaceId !== spaceId ||
+    settings.deliveryToken !== deliveryToken ||
+    settings.previewToken !== previewToken
+}
+
 /**
  * Evil users might try to add base64 url data to execute js code
  * so we should purge any potentially harmful data to mitigate risk

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="43" viewBox="0 0 168 43">
+  <g fill="none" fill-rule="evenodd">
+    <g transform="translate(0 2)">
+      <path fill="#D9453F" d="M3.75 37v-7.1H28V37z"/>
+      <circle cx="9.3" cy="14.3" r="9.3" fill="#F5A623"/>
+      <path fill="#3C80CF" d="M35 27.6L19 .4h16z"/>
+    </g>
+    <g font-size="20">
+      <text fill="#2A3039" font-family="AvenirNext-Bold, Avenir Next" font-weight="bold" letter-spacing="-.3" transform="translate(45 18)">
+        <tspan x="0" y="20">example app</tspan>
+      </text>
+      <text fill="#8091A5" font-family="PTSerif-Italic, PT Serif" font-style="italic" transform="translate(45 -27)">
+        <tspan x="0" y="43">The .NET</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

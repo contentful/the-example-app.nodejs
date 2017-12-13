@@ -45,6 +45,7 @@ app.use(settings)
 
 // Make data available for our views to consume
 app.use(catchErrors(async function (request, response, next) {
+  response.locals.baseUrl = `${request.protocol}://${request.headers.host}`
   // Get enabled locales from Contentful
   response.locals.locales = [{code: 'en-US', name: 'U.S. English'}]
   response.locals.currentLocale = response.locals.locales[0]
@@ -90,7 +91,6 @@ app.use(catchErrors(async function (request, response, next) {
   if (!response.locals.currentLocale) {
     response.locals.currentLocale = defaultLocale
   }
-
   next()
 }))
 
