@@ -65,3 +65,4 @@ cypress
 
 # e2e test directory
 test/e2e
+.vscode
