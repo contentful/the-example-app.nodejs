@@ -52,8 +52,9 @@ module.exports.getSpace = assert((api = `cda`) => {
  * @returns {Object}
  */
 
-module.exports.getEntry = assert((entryId, api = `cda`) => {
-  return getClient(api).getEntry(entryId)
+module.exports.getEntry = assert((entryId, contentType, api = `cda`) => {
+  return getClient(api).getEntries({content_type: contentType, 'sys.id': entryId})
+    .then((response) => response.items[0])
 }, 'Entry')
 
 /**
