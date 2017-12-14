@@ -21,6 +21,19 @@ block content
     section.layout-sidebar__content
       .courses
         h1= title
+        if settings.editorialFeatures
+          .editorial-features
+            .editorial-features__item
+              a.editorial-features__text(
+                href=`https://app.contentful.com/spaces/${settings.spaceId}/entries/?contentTypeId=course`
+                target='_blank'
+                rel='noopener'
+              ) #{translate('editInTheWebAppLabel', currentLocale.code)}
+              .editorial-features__hint-wrapper
+                svg.editorial-features__hint-icon
+                  use(xlink:href='/icons/icons.svg#info')
+                .editorial-features__hint-message #{translate('editorialFeaturesHint', currentLocale.code)}
+
         .grid-list
           each course in courses
             .grid-list__item
