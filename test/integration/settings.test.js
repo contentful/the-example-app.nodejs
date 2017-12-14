@@ -27,7 +27,7 @@ describe('settings', () => {
         expect(title.text()).toBe('Settings')
 
         const status = $('main .status-block.status-block--info')
-        expect(status.text()).toMatch(/Connected to space “.+”/)
+        expect(status.text()).toMatch(/Connected space:/)
 
         const inputSpaceId = $('#input-space-id')
         expect(inputSpaceId.val()).toBe(process.env.CONTENTFUL_SPACE_ID)
