@@ -5,7 +5,18 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-40725207-13');
+  gtag('config', 'UA-40725207-13', {
+    'linker': {
+        'domains': [
+            'the-example-app-nodejs.herokuapp.com',
+            'the-example-app-csharp.herokuapp.com',
+            'the-example-app-rb.herokuapp.com',
+            'the-example-app-py.herokuapp.com',
+            'the-example-app-php.herokuapp.com',
+            'the-example-app-java.herokuapp.com'
+        ]
+    }
+});
 </script>
 <!-- Google Analytics end -->
 <!-- Snowplow starts plowing -->
