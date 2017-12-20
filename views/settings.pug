@@ -77,7 +77,7 @@ block content
         .form-item__help-text #{translate('spaceIdHelpText', currentLocale.code)}
 
       .form-item
-        label(for="input-delivery-token") Content Delivery API - #{translate('accessTokenLabel', currentLocale.code)}
+        label(for="input-delivery-token") #{translate('cdaAccessTokenLabel', currentLocale.code)}
         input(type="text" name="deliveryToken" id="input-delivery-token" value=settings.deliveryToken required)
         if 'deliveryToken' in errors
           +renderErrors(errors.deliveryToken)
@@ -86,7 +86,7 @@ block content
           a(href='https://www.contentful.com/developers/docs/references/content-delivery-api/' target='_blank' rel='noopener') Content Delivery API.
 
       .form-item
-        label(for="input-preview-token") Content Preview API - #{translate('accessTokenLabel', currentLocale.code)}
+        label(for="input-preview-token") #{translate('cpaAccessTokenLabel', currentLocale.code)}
         input(type="text" name="previewToken" id="input-preview-token" value=settings.previewToken required)
         if 'previewToken' in errors
           +renderErrors(errors.previewToken)
