@@ -35,23 +35,23 @@ block content
         svg.status-block__icon.status-block__icon--info
           use(xlink:href='/icons/icons.svg#info')
         .status-block__content
-          .status-block__message 
+          .status-block__message
             if !helpers.isCustomCredentials(settings)
-              p 
+              p
                 em #{translate('usingServerCredentialsLabel', currentLocale.code)}
-              p 
+              p
                 strong #{translate('connectedToSpaceLabel', currentLocale.code)}:
                 br
                 span #{space.name} (#{settings.spaceId})
-              p 
+              p
                 strong #{translate('credentialSourceLabel', currentLocale.code)}:
                 br
-                span #{translate('loadedFromLocalFileLabel', currentLocale.code)} 
+                span #{translate('loadedFromLocalFileLabel', currentLocale.code)}
                  a(href="https://github.com/contentful/the-example-app.nodejs/blob/master/variables.env" target="_blank" rel="noopener") variable.env
               p
                 em #{translate('overrideConfigLabel', currentLocale.code)}
             else
-              p 
+              p
                 em #{translate('usingSessionCredentialsLabel', currentLocale.code)}
               p
                 strong #{translate('connectedToSpaceLabel', currentLocale.code)}:
@@ -59,7 +59,7 @@ block content
                 span #{space.name} (#{settings.spaceId})
 
               form(action='/settings?reset=true' method='POST')
-                p 
+                p
                   strong #{translate('applicationCredentialsLabel', currentLocale.code)}:
                   br
                   button(type="submit") #{translate('resetCredentialsLabel', currentLocale.code)}
@@ -71,14 +71,14 @@ block content
     form(action=`/settings${queryString}` method="POST" class="form")
       .form-item
         label(for="input-space-id") #{translate('spaceIdLabel', currentLocale.code)}
-        input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId)
+        input(type="text" name="spaceId" id="input-space-id" value=settings.spaceId required)
         if 'spaceId' in errors
           +renderErrors(errors.spaceId)
         .form-item__help-text #{translate('spaceIdHelpText', currentLocale.code)}
 
       .form-item
         label(for="input-delivery-token") Content Delivery API - #{translate('accessTokenLabel', currentLocale.code)}
-        input(type="text" name="deliveryToken" id="input-delivery-token" value=settings.deliveryToken)
+        input(type="text" name="deliveryToken" id="input-delivery-token" value=settings.deliveryToken required)
         if 'deliveryToken' in errors
           +renderErrors(errors.deliveryToken)
         .form-item__help-text
@@ -87,7 +87,7 @@ block content
 
       .form-item
         label(for="input-preview-token") Content Preview API - #{translate('accessTokenLabel', currentLocale.code)}
-        input(type="text" name="previewToken" id="input-preview-token" value=settings.previewToken)
+        input(type="text" name="previewToken" id="input-preview-token" value=settings.previewToken required)
         if 'previewToken' in errors
           +renderErrors(errors.previewToken)
         .form-item__help-text
