@@ -1,7 +1,7 @@
 mixin moduleCopy(module)
   - const style = module.fields.visualStyle === 'Emphasized' ? `--emphasized` : ''
-  .module
-    div(class=`module-copy${style}`)
+  div(class=`module module-copy${style}`)
+    div(class=`module-copy__wrapper${style}`)
       div(class=`module-copy__first${style}`)
         if module.fields.headline
           h1(class=`module-copy__headline${style}`) #{module.fields.headline}
