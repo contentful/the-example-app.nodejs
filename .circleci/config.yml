@@ -6,8 +6,14 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
-      - run: cd ./test/e2e && npm install
+      - run:
+        - name: Setup e2e tests
+        - command: |
+          git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
+          cd ./test/e2e
+          npm install
+          apt-get update
+          apt-get install -y xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "test/e2e/package.json" }}
