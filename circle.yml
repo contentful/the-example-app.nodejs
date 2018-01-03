@@ -1,10 +1,35 @@
-machine:
-  node:
-    version: "8"
-dependencies:
-  pre:
-    - git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
-    - cd ./test/e2e && npm install
-test:
-  post:
-    - tar -czf $CIRCLE_ARTIFACTS/cypress-result_`date +%Y-%m-%d_%H-%M-%S`.tar.gz ./cypress
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
+      - run: cd ./test/e2e && npm install
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "test/e2e/package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+            - test/e2e/node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum "test/e2e/package.json" }}
+      - run: npm test
+      - store_artifacts:
+          path: cypress
+workflows:
+   version: 2
+   nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+     jobs:
+       - build
