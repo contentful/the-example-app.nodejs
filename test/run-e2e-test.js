@@ -45,7 +45,7 @@ server.listen(TEST_PORT, function () {
   execa(cypressBin, [
     ...command,
     '--env',
-    env.join()
+    env.join(',')
   ].filter(Boolean))
   .then((result) => {
     console.log('✔ e2e test succeeded:')
