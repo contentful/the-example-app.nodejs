@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-        - name: Setup e2e tests
-        - command: |
+        name: Setup e2e tests
+        command: |
           git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
           cd ./test/e2e
           npm install
