@@ -91,7 +91,7 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
   let categories = []
   let activeCategory = ''
   try {
-    categories = await getCategories()
+    categories = await getCategories(response.locals.currentLocale.code, response.locals.currentApi.id)
     activeCategory = categories.find((category) => category.fields.slug === request.params.category)
     courses = await getCoursesByCategory(activeCategory.sys.id, response.locals.currentLocale.code, response.locals.currentApi.id)
   } catch (e) {
