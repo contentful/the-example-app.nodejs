@@ -54,11 +54,20 @@ app.use(catchErrors(async function (request, response, next) {
 
   // Make query string available in templates to render links properly
   const qs = querystring.stringify(request.query)
-  const settingsQs = querystring.stringify(Object.assign({}, request.query, {
-    space_id: response.locals.settings.spaceId,
-    preview_token: response.locals.settings.previewToken,
-    delivery_token: response.locals.settings.deliveryToken
-  }))
+  // Creates a query string which adds the current credentials to links
+  // To other implementations of this app in the about modal
+  let settingsQs = null
+  if (
+    response.locals.settings.spaceId !== process.env.CONTENTFUL_SPACE_ID ||
+    response.locals.settings.deliveryToken !== process.env.CONTENTFUL_DELIVERY_TOKEN ||
+    response.locals.settings.previewToken !== process.env.CONTENTFUL_PREVIEW_TOKEN
+  ) {
+    settingsQs = querystring.stringify(Object.assign({}, request.query, {
+      space_id: response.locals.settings.spaceId,
+      delivery_token: response.locals.settings.deliveryToken,
+      preview_token: response.locals.settings.previewToken
+    }))
+  }
   response.locals.queryString = qs ? `?${qs}` : ''
   response.locals.queryStringSettings = settingsQs ? `?${settingsQs}` : ''
   response.locals.query = request.query
