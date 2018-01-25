@@ -101,7 +101,10 @@ module.exports.postSettings = async (request, response, next) => {
     try {
       await createClient({
         space: spaceId,
-        accessToken: deliveryToken
+        accessToken: deliveryToken,
+        // Environment variable is used here to enable testing this app internally at Contentful.
+        // You can just omit the host since it defaults to 'cdn.contentful.com'
+        host: process.env.CONTENTFUL_DELIVERY_API_HOST
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {
@@ -129,7 +132,9 @@ module.exports.postSettings = async (request, response, next) => {
       await createClient({
         space: spaceId,
         accessToken: previewToken,
-        host: 'preview.contentful.com'
+        // Environment variable is used here to enable testing this app internally at Contentful.
+        // You should use 'preview.contentful.com' as host to use the preview api
+        host: process.env.CONTENTFUL_PREVIEW_API_HOST
       }).getSpace()
     } catch (err) {
       if (err.response.status === 401) {

@@ -18,20 +18,25 @@ module.exports.initClients = (options) => {
   const applicationName = `the-example-app.nodejs/${version}`
 
   const config = options || {
-    spaceId: process.env.CF_SPACE_ID,
-    deliveryToken: process.env.CF_DELIVERY_TOKEN,
-    previewToken: process.env.CF_PREVIEW_TOKEN
+    spaceId: process.env.CONTENTFUL_SPACE_ID,
+    deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
+    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN
   }
   deliveryClient = createClient({
     application: applicationName,
     space: config.spaceId,
-    accessToken: config.deliveryToken
+    accessToken: config.deliveryToken,
+    // Environment variable is used here to enable testing this app internally at Contentful.
+    // You can just omit the host since it defaults to 'cdn.contentful.com'
+    host: process.env.CONTENTFUL_DELIVERY_API_HOST
   })
   previewClient = createClient({
     application: applicationName,
     space: config.spaceId,
     accessToken: config.previewToken,
-    host: 'preview.contentful.com'
+    // Environment variable is used here to enable testing this app internally at Contentful.
+    // You should use 'preview.contentful.com' as host to use the preview api
+    host: process.env.CONTENTFUL_PREVIEW_API_HOST
   })
 }
 
