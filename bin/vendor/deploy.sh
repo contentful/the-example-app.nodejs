@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$BRANCH" != "production" ]]; then
+  echo 'Aborting post deployment script';
+  exit 0;
+fi
+
 analytics_file="../bin/vendor/analytics.html"
 layout_file="$(dirname $0)/../../views/layout.pug"
 
