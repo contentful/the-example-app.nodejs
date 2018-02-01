@@ -126,72 +126,73 @@ html
                   a(href='https://github.com/contentful' target='_blank' rel='noopener')
                     svg
                       use(xlink:href='/icons/icons.svg#github')
-section.modal#about-this-modal
-  .modal__overlay.close
-  .modal__wrapper
-    h1.modal__title= translate("modalTitle", currentLocale.code)
-    .modal__content
-      p
-        | #{translate("modalIntro", currentLocale.code)}&nbsp;
-        a(href="https://github.com/contentful/the-example-app.nodejs" target="_blank" rel="noopener") Github
-        | .
-      p
-        | #{translate("modalSpaceIntro", currentLocale.code)}&nbsp;
-        a(href="https://github.com/contentful/content-models/blob/master/the-example-app/README.md " target="_blank" rel="noopener") #{translate("modalSpaceLinkLabel", currentLocale.code)}
-        | .
-      p= translate("modalPlatforms", currentLocale.code)
-      ul
-        li
-          img(src='/images/icon-nodejs.svg')
-          br
-          a(href=`https://the-example-app-nodejs.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.nodejs" rel="noopener" target="_blank") GitHub
-        li
-          img(src='/images/icon-dotnet.svg')
-          br
-          a(href=`https://the-example-app-csharp.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.csharp" rel="noopener" target="_blank") GitHub
-        li
-          img(src='/images/icon-ruby.svg')
-          br
-          a(href=`https://the-example-app-rb.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.rb" rel="noopener" target="_blank") GitHub
-        li
-          img(src='/images/icon-php.svg')
-          br
-          a(href=`https://the-example-app-php.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.php" rel="noopener" target="_blank") GitHub
-        li
-          img(src='/images/icon-python.svg')
-          br
-          a(href=`https://the-example-app-py.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.py" rel="noopener" target="_blank") GitHub
-        li
-          img.inactive(src='/images/icon-swift.svg')
-          br
-          = translate("comingSoonLabel", currentLocale.code)
-        li
-          img(src='/images/icon-java.svg')
-          br
-          a(href=`https://the-example-app-java.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
-          br
-          a(href="https://github.com/contentful/the-example-app.java" rel="noopener" target="_blank") GitHub
-        li
-          img.inactive(src='/images/icon-android.svg')
-          br
-          = translate("comingSoonLabel", currentLocale.code)
-    .modal__cta-wrapper
-      a.modal__cta.close(href="#")= translate("modalCTALabel", currentLocale.code)
-    .modal__close-wrapper
-      a.modal__close-button.close(href="#")
-        svg
-          use(xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/icons/icons.svg#cross")
+  section.modal#about-this-modal
+    .modal__overlay.close
+    .modal__wrapper
+      h1.modal__title= translate("modalTitle", currentLocale.code)
+      .modal__content
+        p
+          | #{translate("modalIntro", currentLocale.code)}&nbsp;
+          a(href="https://github.com/contentful/the-example-app.nodejs" target="_blank" rel="noopener") Github
+          | .
+        p
+          | #{translate("modalSpaceIntro", currentLocale.code)}&nbsp;
+          a(href="https://github.com/contentful/content-models/blob/master/the-example-app/README.md " target="_blank" rel="noopener") #{translate("modalSpaceLinkLabel", currentLocale.code)}
+          | .
+        p= translate("modalPlatforms", currentLocale.code)
+        ul
+          li
+            img(src='/images/icon-nodejs.svg')
+            br
+            a(href=`https://the-example-app-nodejs.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.nodejs" rel="noopener" target="_blank") GitHub
+          li
+            img(src='/images/icon-dotnet.svg')
+            br
+            a(href=`https://the-example-app-csharp.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.csharp" rel="noopener" target="_blank") GitHub
+          li
+            img(src='/images/icon-ruby.svg')
+            br
+            a(href=`https://the-example-app-rb.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.rb" rel="noopener" target="_blank") GitHub
+          li
+            img(src='/images/icon-php.svg')
+            br
+            a(href=`https://the-example-app-php.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.php" rel="noopener" target="_blank") GitHub
+          li
+            img(src='/images/icon-python.svg')
+            br
+            a(href=`https://the-example-app-py.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.py" rel="noopener" target="_blank") GitHub
+          li
+            img.inactive(src='/images/icon-swift.svg')
+            br
+            = translate("comingSoonLabel", currentLocale.code)
+          li
+            img(src='/images/icon-java.svg')
+            br
+            a(href=`https://the-example-app-java.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+            br
+            a(href="https://github.com/contentful/the-example-app.java" rel="noopener" target="_blank") GitHub
+          li
+            img.inactive(src='/images/icon-android.svg')
+            br
+            = translate("comingSoonLabel", currentLocale.code)
+      .modal__cta-wrapper
+        a.modal__cta.close(href="#")= translate("modalCTALabel", currentLocale.code)
+      .modal__close-wrapper
+        a.modal__close-button.close(href="#")
+          svg
+            use(xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/icons/icons.svg#cross")
 
-    script(src='/scripts/index.js')
+  script(src='/scripts/index.js')
 
-    <!--ANALYTICS-->
+  if process.env.TRACKING
+    include ./tracking.pug

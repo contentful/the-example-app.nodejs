@@ -1,15 +1,11 @@
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109296848-1"></script>
-<script>
+script(async src="https://www.googletagmanager.com/gtag/js?id=UA-109296848-1")
+script.
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-40725207-13');
-</script>
-<!-- Google Analytics end -->
-<!-- Snowplow starts plowing -->
-<script async>
+script(async).
   ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
   p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
   };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
@@ -29,9 +25,9 @@
   });
 
   snowplow('trackPageView');
-  
+
   snowplow('enableLinkClickTracking')
-  
+
   const space_id = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent('space_id').replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
 
   snowplow('trackSelfDescribingEvent', {
@@ -42,5 +38,3 @@
       app_framework: 'nodejs'
     }
   });
-</script>
-<!-- Snowplow stops plowing -->
