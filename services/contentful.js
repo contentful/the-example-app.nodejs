@@ -8,7 +8,7 @@ let previewClient = null
 
 /**
  * Initialize the contentful Client
- * @param options {space: string, cda: string, cpa: string}
+ * @param options {spaceId: string, deliveryToken: string, previewToken: string}
  *
  * @returns {undefined}
  */
@@ -45,9 +45,9 @@ module.exports.initClients = (options) => {
  * @param api - string - the api to use, cda or cap. Default: 'cda'
  * @returns {undefined}
  */
-module.exports.getSpace = assert((api = `cda`) => {
+module.exports.getSpace = throwOnEmptyResult('Space', (api = 'cda') => {
   return getClient(api).getSpace()
-}, 'Space')
+})
 
 /**
  * Gets an entry. Used to detect the `Draft` or `Pending Changes` state
@@ -57,10 +57,10 @@ module.exports.getSpace = assert((api = `cda`) => {
  * @returns {Object}
  */
 
-module.exports.getEntry = assert((entryId, contentType, api = `cda`) => {
+module.exports.getEntry = throwOnEmptyResult('Entry', (entryId, contentType, api = 'cda') => {
   return getClient(api).getEntries({content_type: contentType, 'sys.id': entryId})
     .then((response) => response.items[0])
-}, 'Entry')
+})
 
 /**
  * Get all entries with content_type `course`
@@ -68,7 +68,7 @@ module.exports.getEntry = assert((entryId, contentType, api = `cda`) => {
  * @param api - string the api enpoint to use when fetching the data
  * @returns {Array<Object>}
  */
-module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
+module.exports.getCourses = throwOnEmptyResult('Course', (locale = 'en-US', api = 'cda') => {
   return getClient(api).getEntries({
     content_type: 'course',
     locale,
@@ -76,7 +76,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
     include: 6 // We use include param to increase the link level, the include value goes from 1 to 6
   })
     .then((response) => response.items)
-}, 'Course')
+})
 
 /**
  * Get entries of content_type `layout` e.g. Landing page
@@ -85,7 +85,7 @@ module.exports.getCourses = assert((locale = 'en-US', api = `cda`) => {
  * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
-module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
+module.exports.getLandingPage = (slug, locale = 'en-US', api = 'cda') => {
   // Even though we need a single entry, we request it using the collection endpoint
   // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
   return getClient(api).getEntries({
@@ -104,7 +104,7 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = `cda`) => {
  * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
-module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
+module.exports.getCourse = throwOnEmptyResult('Course', (slug, locale = 'en-US', api = 'cda') => {
   // Even though we need a single entry, we request it using the collection endpoint
   // To get all the linked refs in one go, the SDK will use the data and resolve the links automatically
   return getClient(api).getEntries({
@@ -114,12 +114,12 @@ module.exports.getCourse = assert((slug, locale = 'en-US', api = `cda`) => {
     include: 6
   })
     .then((response) => response.items[0])
-}, 'Course')
+})
 
-module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
+module.exports.getCategories = throwOnEmptyResult('Course', (locale = 'en-US', api = 'cda') => {
   return getClient(api).getEntries({content_type: 'category', locale})
     .then((response) => response.items)
-}, 'Course')
+})
 
 /**
  * Get Courses by Categories
@@ -131,7 +131,7 @@ module.exports.getCategories = assert((locale = 'en-US', api = `cda`) => {
  * @param api - string - the api enpoint to use when fetching the data
  * @returns {Object}
  */
-module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = `cda`) => {
+module.exports.getCoursesByCategory = throwOnEmptyResult('Category', (category, locale = 'en-US', api = 'cda') => {
   return getClient(api).getEntries({
     content_type: 'course',
     'fields.categories.sys.id': category,
@@ -140,23 +140,31 @@ module.exports.getCoursesByCategory = assert((category, locale = 'en-US', api = 
     include: 6
   })
     .then((response) => response.items)
-}, 'Category')
+})
 
 // Utility function
 function getClient (api = 'cda') {
   return api === 'cda' ? deliveryClient : previewClient
 }
 
-function assert (fn, context) {
-  return function (request, response, next) {
-    return fn(request, response, next)
-    .then((data) => {
-      if (!data) {
-        var err = new Error(`${context} Not Found`)
-        err.status = 404
-        throw err
-      }
-      return data
-    })
+/**
+ * Utility function for wrapping regular API calls.
+ * This is done for easily catching 404 errors.
+ * @param  {string}   context The type of result the function is looking for
+ * @param  {Function} fn      The function to wrap
+ * @return {Object}           The result of `fn`, if not empty
+ * @throws {Error}    When `fn` returns an empty result
+ */
+function throwOnEmptyResult (context, fn) {
+  return function (...params) {
+    return fn(...params)
+      .then((data) => {
+        if (!data) {
+          var err = new Error(`${context} Not Found`)
+          err.status = 404
+          throw err
+        }
+        return data
+      })
   }
 }
