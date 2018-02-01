@@ -17,8 +17,7 @@
     "test:integration": "jest test/integration",
     "test:integration:watch": "jest test/integration --watch",
     "test:unit": "jest test/unit",
-    "test:unit:watch": "jest test/unit --watch",
-    "heroku-postbuild": "./bin/vendor/deploy.sh"
+    "test:unit:watch": "jest test/unit --watch"
   },
   "engines": {
     "node": ">=8.9.3"
