@@ -176,9 +176,11 @@ section.modal#about-this-modal
           br
           = translate("comingSoonLabel", currentLocale.code)
         li
-          img.inactive(src='/images/icon-java.svg')
+          img(src='/images/icon-java.svg')
           br
-          = translate("comingSoonLabel", currentLocale.code)
+          a(href=`https://the-example-app-java.herokuapp.com/${queryStringSettings}` rel="noopener" target="_blank")= translate("hostedLabel", currentLocale.code)
+          br
+          a(href="https://github.com/contentful/the-example-app.java" rel="noopener" target="_blank") GitHub
         li
           img.inactive(src='/images/icon-android.svg')
           br
