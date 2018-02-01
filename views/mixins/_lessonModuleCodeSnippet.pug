@@ -2,59 +2,58 @@ mixin lessonModuleCodeSnippet(module)
   .lesson-module.lesson-module-code
     .lesson-module-code__header
       if module.fields.curl
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-curl`) cURL
+        a.lesson-module-code__trigger(data-target='curl') cURL
       if module.fields.dotNet
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-dotnet`) .NET
+        a.lesson-module-code__trigger(data-target='dotnet') .NET
       if module.fields.javascript
-        a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target=`${module.sys.id}-javascript`) JavaScript
+        a.lesson-module-code__trigger.lesson-module-code__trigger--active(data-target='javascript') JavaScript
       if module.fields.java
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-java`) Java
+        a.lesson-module-code__trigger(data-target='java') Java
       if module.fields.javaAndroid
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-android`) Android
+        a.lesson-module-code__trigger(data-target='android') Android
       if module.fields.php
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-php`) PHP
+        a.lesson-module-code__trigger(data-target='php') PHP
       if module.fields.python
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-python`) Python
+        a.lesson-module-code__trigger(data-target='python') Python
       if module.fields.ruby
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-ruby`) Ruby
+        a.lesson-module-code__trigger(data-target='ruby') Ruby
       if module.fields.swift
-        a.lesson-module-code__trigger(data-target=`${module.sys.id}-swift`) Swift
+        a.lesson-module-code__trigger(data-target='swift') Swift
 
     .lesson-module-code__code-area
       if module.fields.curl
-        .lesson-module-code__code(id=`${module.sys.id}-curl`)
+        .lesson-module-code__code(id='curl')
           pre
             code.shell= module.fields.curl
       if module.fields.dotNet
-        .lesson-module-code__code(id=`${module.sys.id}-dotnet`)
+        .lesson-module-code__code(id='dotnet')
           pre
             code.csharp= module.fields.dotNet
       if module.fields.javascript
-        .lesson-module-code__code.lesson-module-code__code--active(id=`${module.sys.id}-javascript`)
+        .lesson-module-code__code.lesson-module-code__code--active(id='javascript')
           pre
             code.javascript= module.fields.javascript
       if module.fields.java
-        .lesson-module-code__code(id=`${module.sys.id}-java`)
+        .lesson-module-code__code(id='java')
           pre
             code.java= module.fields.java
       if module.fields.javaAndroid
-        .lesson-module-code__code(id=`${module.sys.id}-android`)
+        .lesson-module-code__code(id='android')
           pre
             code.java= module.fields.javaAndroid
       if module.fields.php
-        .lesson-module-code__code(id=`${module.sys.id}-php`)
+        .lesson-module-code__code(id='php')
           pre
             code.php= module.fields.php
       if module.fields.python
-        .lesson-module-code__code(id=`${module.sys.id}-python`)
+        .lesson-module-code__code(id='python')
           pre
             code.python= module.fields.python
       if module.fields.ruby
-        .lesson-module-code__code(id=`${module.sys.id}-ruby`)
+        .lesson-module-code__code(id='ruby')
           pre
             code.ruby= module.fields.ruby
       if module.fields.swift
-        .lesson-module-code__code(id=`${module.sys.id}-swift`)
+        .lesson-module-code__code(id='swift')
           pre
             code.swift= module.fields.swift
-
