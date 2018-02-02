@@ -119,6 +119,12 @@ module.exports.getLesson = async (request, response, next) => {
   const lessons = course.fields.lessons
   let {lesson, nextLesson} = getNextLesson(lessons, request.params.lslug)
 
+  if (!lesson) {
+    const error = new Error('Lesson does not exist')
+    error.status = 404
+    throw error
+  }
+
   // Save visited lessons
   const cookie = request.cookies.visitedLessons
   let visitedLessons = cookie || []
