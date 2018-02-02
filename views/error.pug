@@ -18,9 +18,11 @@ block content
           when 401
             li #{translate('verifyCredentialsErrorLabel', currentLocale.code)}
             li #{translate('localeContentErrorLabel', currentLocale.code)}
+          when 500
+            li #{translate('contentModelChangedErrorLabel', currentLocale.code)}
 
-      if error.stack
-        li #{translate('stackTraceErrorLabel', currentLocale.code)}
+        if error.stack
+          li #{translate('stackTraceErrorLabel', currentLocale.code)}
       if error.response
         h2 #{translate('errorLabel', currentLocale.code)}
           pre.error__stack-trace
