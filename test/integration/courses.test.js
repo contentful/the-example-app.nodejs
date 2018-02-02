@@ -22,7 +22,7 @@ describe('courses', () => {
   })
 
   test('it should render a lesson', () => {
-    return request(app).get('/courses/hello-contentful/lessons/architecture')
+    return request(app).get('/courses/hello-contentful/lessons/content-management')
       .expect(200)
       .then((response) => {
         expect(response.text.match(/class="lesson__title"/)).toBeTruthy()
