@@ -44,12 +44,12 @@ describe('settings', () => {
   })
 
   test('should have the editorial features enabled when query parameter is set and set cookie for it', () => {
-    return request(app).get('/settings?enable_editorial_features')
+    return request(app).get('/settings?editorial_features=enabled')
       .expect(200)
       .expect((response) => {
         const cookie = getSettingsCookie(response)
-        if (!cookie.editorialFeatures) {
-          throw new Error('Did not set cookie value for editorial features')
+        if (cookie.editorialFeatures === false) {
+          throw new Error('Editorial features value in cookie should not be false')
         }
 
         if (cookie.spaceId !== process.env.CONTENTFUL_SPACE_ID) {
@@ -69,6 +69,23 @@ describe('settings', () => {
 
         const inputEditorialFeatures = $('#input-editorial-features')
         expect(inputEditorialFeatures.prop('checked')).toBeTruthy()
+      })
+  })
+
+  test('should have the editorial features disabled when query parameter is set and set cookie for it', () => {
+    return request(app).get('/settings?editorial_features=disabled')
+      .expect(200)
+      .expect((response) => {
+        const cookie = getSettingsCookie(response)
+        if (cookie.editorialFeatures === true) {
+          throw new Error('Editorial features value in cookie should not be true')
+        }
+      })
+      .then((response) => {
+        const $ = cheerio.load(response.text)
+
+        const inputEditorialFeatures = $('#input-editorial-features')
+        expect(inputEditorialFeatures.prop('checked')).toBeFalsy()
       })
   })
 })
