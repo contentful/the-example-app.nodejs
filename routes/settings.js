@@ -2,14 +2,15 @@
  * This module renders the settings page when `settings` route is requested
  * it also saves the settings to a cookie
  */
+const { uniqWith, isEqual } = require('lodash')
 const { createClient } = require('contentful')
-const { initClients, getSpace } = require('./../services/contentful')
+
+const { isCustomCredentials, updateSettingsQuery } = require('../helpers')
 const { updateCookie } = require('../lib/cookies')
 const { translate } = require('../i18n/i18n')
-const { uniqWith, isEqual } = require('lodash')
-const SETTINGS_NAME = 'theExampleAppSettings'
+const { initClients, getSpace } = require('../services/contentful')
 
-const querystring = require('querystring')
+const SETTINGS_NAME = 'theExampleAppSettings'
 
 async function renderSettings (response, opts) {
   // Get connected space to display the space name on top of the settings
@@ -17,9 +18,8 @@ async function renderSettings (response, opts) {
   try {
     space = await getSpace()
   } catch (error) {
-    // We throw the error here, it will be handled by the error middleware
-    // We keep space false to ensure the "Connected to" box is not shown.
-    throw (error)
+    // We handle errors within the settings page.
+    // No need to throw here.
   }
 
   response.render('settings', {
@@ -42,9 +42,23 @@ async function renderSettings (response, opts) {
  * @returns {undefined}
  */
 module.exports.getSettings = async (request, response, next) => {
+  const currentLocale = response.locals.currentLocale
   const { settings } = response.locals
+
+  const errorList = await generateErrorList(settings, currentLocale)
+
+  // If no errors detected, update app to use new settings
+  if (!errorList.length) {
+    applyUpdatedSettings(request, response, settings)
+  }
+
+  const errors = generateErrorDictionary(errorList)
+
   await renderSettings(response, {
-    settings
+    settings,
+    errors,
+    hasErrors: errorList.length > 0,
+    success: isCustomCredentials(settings) && errorList.length === 0
   })
 }
 
@@ -60,7 +74,6 @@ module.exports.getSettings = async (request, response, next) => {
  */
 module.exports.postSettings = async (request, response, next) => {
   const currentLocale = response.locals.currentLocale
-  let errorList = []
   let { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
 
   if (request.query.reset) {
@@ -75,6 +88,27 @@ module.exports.postSettings = async (request, response, next) => {
     previewToken,
     editorialFeatures: !!editorialFeatures
   }
+
+  const errorList = await generateErrorList(settings, currentLocale)
+
+  // If no errors detected, update app to use new settings
+  if (!errorList.length) {
+    applyUpdatedSettings(request, response, settings)
+  }
+
+  const errors = generateErrorDictionary(errorList)
+
+  await renderSettings(response, {
+    settings,
+    errors,
+    hasErrors: errorList.length > 0,
+    success: errorList.length === 0
+  })
+}
+
+async function generateErrorList (settings, currentLocale) {
+  const { spaceId, deliveryToken, previewToken } = settings
+  let errorList = []
 
   // Validate required fields.
   if (!spaceId) {
@@ -157,29 +191,16 @@ module.exports.postSettings = async (request, response, next) => {
       }
     }
   }
+
   errorList = uniqWith(errorList, isEqual)
-  // If no errors, then cache the new settings in the cookie
-  if (!errorList.length) {
-    // Store new settings
-    updateCookie(response, SETTINGS_NAME, settings)
-    response.locals.settings = settings
 
-    const settingsQuery = Object.assign({}, request.query, {
-      space_id: response.locals.settings.spaceId,
-      delivery_token: response.locals.settings.deliveryToken,
-      preview_token: response.locals.settings.previewToken,
-      editorial_features: response.locals.settings.editorialFeatures ? 'enabled' : 'disabled'
-    })
+  return errorList
+}
 
-    const settingsQs = querystring.stringify(settingsQuery)
-    response.locals.queryStringSettings = settingsQs ? `?${settingsQs}` : ''
-    // Reinit clients
-    initClients(settings)
-  }
-
-  // Generate error dictionary
-  // Format: { FIELD_NAME: [array, of, error, messages] }
-  const errors = errorList.reduce((errors, error) => {
+// Generate error dictionary
+// Format: { FIELD_NAME: [array, of, error, messages] }
+function generateErrorDictionary (errorList) {
+  return errorList.reduce((errors, error) => {
     return {
       ...errors,
       [error.field]: [
@@ -188,10 +209,16 @@ module.exports.postSettings = async (request, response, next) => {
       ]
     }
   }, {})
-  await renderSettings(response, {
-    settings,
-    errors,
-    hasErrors: errorList.length > 0,
-    success: errorList.length === 0
-  })
+}
+
+function applyUpdatedSettings (request, response, settings) {
+  // Store new settings
+  updateCookie(response, SETTINGS_NAME, settings)
+  response.locals.settings = settings
+
+  // Update query settings string
+  updateSettingsQuery(request, response, settings)
+
+  // Reinit clients
+  initClients(settings)
 }
