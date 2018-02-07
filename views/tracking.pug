@@ -28,12 +28,10 @@ script(async).
 
   snowplow('enableLinkClickTracking')
 
-  const space_id = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent('space_id').replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
-
   snowplow('trackSelfDescribingEvent', {
     schema: 'iglu:com.contentful/app_the_example_app_open/jsonschema/1-0-0',
     data: {
-      space_id,
+      space_id: '#{settings.spaceId}',
       sdk_language_used: 'javascript',
       app_framework: 'nodejs'
     }

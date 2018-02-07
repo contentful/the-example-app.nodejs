@@ -94,7 +94,7 @@ app.use(catchErrors(async function (request, response, next) {
     const space = await getSpace()
 
     // Update credentials in cookie when space connection is successful
-    updateCookie(response, SETTINGS_NAME, settings)
+    updateCookie(response, SETTINGS_NAME, response.locals.settings)
 
     // Get available locales from space
     response.locals.locales = space.locales
