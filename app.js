@@ -13,10 +13,13 @@ require('dotenv').config({ path: 'variables.env' })
 const helpers = require('./helpers')
 const { translate, initializeTranslations } = require('./i18n/i18n')
 const breadcrumb = require('./lib/breadcrumb')
+const { updateCookie } = require('./lib/cookies')
 const settings = require('./lib/settings')
 const routes = require('./routes/index')
 const { getSpace } = require('./services/contentful')
 const { catchErrors } = require('./handlers/errorHandlers')
+
+const SETTINGS_NAME = 'theExampleAppSettings'
 
 const app = express()
 
@@ -53,27 +56,11 @@ app.use(catchErrors(async function (request, response, next) {
   response.locals.helpers = helpers
 
   // Make query string available in templates to render links properly
-  const qs = querystring.stringify(request.query)
-  // Creates a query string which adds the current credentials to links
-  // To other implementations of this app in the about modal
-  let settingsQuery = {
-    editorial_features: response.locals.settings.editorialFeatures ? 'enabled' : 'disabled'
-  }
-  if (
-    response.locals.settings.spaceId !== process.env.CONTENTFUL_SPACE_ID ||
-    response.locals.settings.deliveryToken !== process.env.CONTENTFUL_DELIVERY_TOKEN ||
-    response.locals.settings.previewToken !== process.env.CONTENTFUL_PREVIEW_TOKEN
-  ) {
-    settingsQuery = Object.assign({}, settingsQuery, request.query, {
-      space_id: response.locals.settings.spaceId,
-      delivery_token: response.locals.settings.deliveryToken,
-      preview_token: response.locals.settings.previewToken
-    })
-  }
+  const cleanQuery = helpers.cleanupQueryParameters(request.query)
+  const qs = querystring.stringify(cleanQuery)
 
-  const settingsQs = querystring.stringify(settingsQuery)
   response.locals.queryString = qs ? `?${qs}` : ''
-  response.locals.queryStringSettings = settingsQs ? `?${settingsQs}` : ''
+  response.locals.queryStringSettings = response.locals.queryString
   response.locals.query = request.query
   response.locals.currentPath = request.path
 
@@ -93,22 +80,46 @@ app.use(catchErrors(async function (request, response, next) {
     }
   ]
 
+  // Set currently used api
   response.locals.currentApi = apis
     .find((api) => api.id === (request.query.api || 'cda'))
 
-  const space = await getSpace()
-  response.locals.locales = space.locales
+  next()
+}))
 
-  const defaultLocale = response.locals.locales
-    .find((locale) => locale.default)
+// Test space connection and attach space related data for views if possible
+app.use(catchErrors(async function (request, response, next) {
+  // Catch misconfigured space credentials and display settings page
+  try {
+    const space = await getSpace()
 
-  if (request.query.locale) {
-    response.locals.currentLocale = space.locales
-      .find((locale) => locale.code === request.query.locale)
-  }
+    // Update credentials in cookie when space connection is successful
+    updateCookie(response, SETTINGS_NAME, settings)
 
-  if (!response.locals.currentLocale) {
-    response.locals.currentLocale = defaultLocale
+    // Get available locales from space
+    response.locals.locales = space.locales
+    const defaultLocale = response.locals.locales
+      .find((locale) => locale.default)
+
+    if (request.query.locale) {
+      response.locals.currentLocale = space.locales
+        .find((locale) => locale.code === request.query.locale)
+    }
+
+    if (!response.locals.currentLocale) {
+      response.locals.currentLocale = defaultLocale
+    }
+
+    // Creates a query string which adds the current credentials to links
+    // To other implementations of this app in the about modal
+    helpers.updateSettingsQuery(request, response, response.locals.settings)
+  } catch (error) {
+    if ([401, 404].includes(error.response.status)) {
+      // If we can't connect to the space, force the settings page to be shown.
+      response.locals.forceSettingsRoute = true
+    } else {
+      throw error
+    }
   }
   next()
 }))

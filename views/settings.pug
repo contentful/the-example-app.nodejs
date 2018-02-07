@@ -64,7 +64,7 @@ block content
                   br
                   button(type="submit") #{translate('resetCredentialsLabel', currentLocale.code)}
                   br
-                  a(href=`${baseUrl}/?space_id=${settings.spaceId}&preview_token=${settings.previewToken}&delivery_token=${settings.deliveryToken}&api=${currentApi.id}${settings.editorialFeatures ? '&enable_editorial_features' : ''}` class="status-block__sharelink") #{translate('copyLinkLabel', currentLocale.code)}
+                  a(href=`${baseUrl}/${queryStringSettings}` class="status-block__sharelink") #{translate('copyLinkLabel', currentLocale.code)}
               p
                 em #{translate('overrideConfigLabel', currentLocale.code)}
 
