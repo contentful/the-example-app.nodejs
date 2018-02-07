@@ -4,7 +4,6 @@ include mixins/_breadcrumb
 
 block content
   .layout-centered
-    +breadcrumb
     .error
       h1 #{translate('somethingWentWrongLabel', currentLocale.code)} (#{error.status})
       h2 #{translate('tryLabel', currentLocale.code)}:
