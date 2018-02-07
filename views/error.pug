@@ -24,8 +24,8 @@ block content
           li #{translate('stackTraceErrorLabel', currentLocale.code)}
       if error.response
         h2 #{translate('errorLabel', currentLocale.code)}
-          pre.error__stack-trace
-            code.shell #{helpers.dump(error.response.data)}
+        pre.error__stack-trace
+          code.shell #{helpers.dump(error.response.data)}
       if error.stack
         h2 #{translate('stackTraceLabel', currentLocale.code)}
         pre.error__stack-trace
