@@ -9,6 +9,8 @@ const { translate } = require('../i18n/i18n')
 const { uniqWith, isEqual } = require('lodash')
 const SETTINGS_NAME = 'theExampleAppSettings'
 
+const querystring = require('querystring')
+
 async function renderSettings (response, opts) {
   // Get connected space to display the space name on top of the settings
   let space = false
@@ -162,6 +164,11 @@ module.exports.postSettings = async (request, response, next) => {
     updateCookie(response, SETTINGS_NAME, settings)
     response.locals.settings = settings
 
+    const settingsQuery = {
+      editorial_features: response.locals.settings.editorialFeatures ? 'enabled' : 'disabled'
+    }
+    const settingsQs = querystring.stringify(settingsQuery)
+    response.locals.queryStringSettings = settingsQs ? `?${settingsQs}` : ''
     // Reinit clients
     initClients(settings)
   }
