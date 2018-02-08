@@ -164,9 +164,13 @@ module.exports.postSettings = async (request, response, next) => {
     updateCookie(response, SETTINGS_NAME, settings)
     response.locals.settings = settings
 
-    const settingsQuery = {
+    const settingsQuery = Object.assign({}, request.query, {
+      space_id: response.locals.settings.spaceId,
+      delivery_token: response.locals.settings.deliveryToken,
+      preview_token: response.locals.settings.previewToken,
       editorial_features: response.locals.settings.editorialFeatures ? 'enabled' : 'disabled'
-    }
+    })
+
     const settingsQs = querystring.stringify(settingsQuery)
     response.locals.queryStringSettings = settingsQs ? `?${settingsQs}` : ''
     // Reinit clients
