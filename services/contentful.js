@@ -28,7 +28,8 @@ module.exports.initClients = (options) => {
     accessToken: config.deliveryToken,
     // Environment variable is used here to enable testing this app internally at Contentful.
     // You can just omit the host since it defaults to 'cdn.contentful.com'
-    host: process.env.CONTENTFUL_DELIVERY_API_HOST
+    host: process.env.CONTENTFUL_DELIVERY_API_HOST,
+    removeUnresolved: true
   })
   previewClient = createClient({
     application: applicationName,
@@ -36,7 +37,8 @@ module.exports.initClients = (options) => {
     accessToken: config.previewToken,
     // Environment variable is used here to enable testing this app internally at Contentful.
     // You should use 'preview.contentful.com' as host to use the preview api
-    host: process.env.CONTENTFUL_PREVIEW_API_HOST
+    host: process.env.CONTENTFUL_PREVIEW_API_HOST,
+    removeUnresolved: true
   })
 }
 
