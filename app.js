@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Force all requests on production to be served over https
 app.use(function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https' && process.env.NODE_ENV === 'production') {
-    var secureUrl = 'https://' + req.hostname + req.originalUrl
+    const secureUrl = 'https://' + req.hostname + req.originalUrl
     res.redirect(302, secureUrl)
   }
   next()
@@ -132,7 +132,7 @@ app.use('/', routes)
 
 // Catch 404 and forward to error handler
 app.use(function (request, response, next) {
-  var err = new Error('Not Found')
+  const err = new Error(translate('error404Route', response.currentLocale))
   err.status = 404
   next(err)
 })

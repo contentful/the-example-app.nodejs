@@ -52,7 +52,15 @@ module.exports.getCourses = async (request, response, next) => {
  * @returns {undefined}
  */
 module.exports.getCourse = async (request, response, next) => {
-  let course = await getCourse(request.params.slug, response.locals.currentLocale.code, response.locals.currentApi.id)
+  let course
+  try {
+    course = await getCourse(request.params.slug, response.locals.currentLocale.code, response.locals.currentApi.id)
+  } catch (err) {
+    if (err.status === 404) {
+      err.message = translate('error404Course', response.currentLocale)
+    }
+    throw err
+  }
 
   // Get lessons
   const lessons = course.fields.lessons
@@ -86,17 +94,17 @@ module.exports.getCourse = async (request, response, next) => {
  * @returns {undefined}
  */
 module.exports.getCoursesByCategory = async (request, response, next) => {
-  // We get all the entries with the content type `course` filtered by a category
-  let courses = []
-  let categories = []
-  let activeCategory = ''
-  try {
-    categories = await getCategories(response.locals.currentLocale.code, response.locals.currentApi.id)
-    activeCategory = categories.find((category) => category.fields.slug === request.params.category)
-    courses = await getCoursesByCategory(activeCategory.sys.id, response.locals.currentLocale.code, response.locals.currentApi.id)
-  } catch (e) {
-    console.log('Error ', e)
+  const categories = await getCategories(response.locals.currentLocale.code, response.locals.currentApi.id)
+  const activeCategory = categories.find((category) => category.fields.slug === request.params.category)
+
+  if (!activeCategory) {
+    const error = new Error(translate('error404Category', response.currentLocale))
+    error.status = 404
+    throw error
   }
+
+  // We get all the entries with the content type `course` filtered by a category
+  const courses = await getCoursesByCategory(activeCategory.sys.id, response.locals.currentLocale.code, response.locals.currentApi.id)
 
   // Enhance the breadcrumbs with the active category
   enhanceBreadcrumb(request, activeCategory)
@@ -120,7 +128,7 @@ module.exports.getLesson = async (request, response, next) => {
   let {lesson, nextLesson} = getNextLesson(lessons, request.params.lslug)
 
   if (!lesson) {
-    const error = new Error('Lesson does not exist')
+    const error = new Error(translate('error404Lesson', response.currentLocale))
     error.status = 404
     throw error
   }
