@@ -11,7 +11,7 @@ const helmet = require('helmet')
 require('dotenv').config({ path: 'variables.env' })
 
 const helpers = require('./helpers')
-const { translate, initializeTranslations } = require('./i18n/i18n')
+const { translate, initializeTranslations, setFallbackLocale } = require('./i18n/i18n')
 const breadcrumb = require('./lib/breadcrumb')
 const { updateCookie } = require('./lib/cookies')
 const settings = require('./lib/settings')
@@ -108,6 +108,10 @@ app.use(catchErrors(async function (request, response, next) {
 
     if (!response.locals.currentLocale) {
       response.locals.currentLocale = defaultLocale
+    }
+
+    if (response.locals.fallbackCode) {
+      setFallbackLocale(response.locals.fallbackCode)
     }
 
     // Creates a query string which adds the current credentials to links
