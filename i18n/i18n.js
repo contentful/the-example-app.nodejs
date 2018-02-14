@@ -2,11 +2,18 @@ const fs = require('fs')
 const path = require('path')
 
 let translations = null
-// Initializes translation dictionary with contents from /public/locales
-module.exports.initializeTranslations = () => {
+let fallbackLocale = null
+
+/**
+ * Initializes translation dictionary with contents from /public/locales
+ */
+function initializeTranslations () {
   if (translations) {
     return
   }
+
+  // Default fallbock locale is english
+  setFallbackLocale('en-US')
 
   translations = {}
 
@@ -27,20 +34,34 @@ module.exports.initializeTranslations = () => {
 }
 
 /**
+ * Sets the fallback locale
+ * @param locale string Locale code
+ */
+function setFallbackLocale (locale) {
+  fallbackLocale = locale
+}
+
+/**
  * Translate a static string
  * @param symbol string Identifier for static text
  * @param locale string Locale code
  *
  * @returns string
  */
-module.exports.translate = (symbol, locale = 'en-US') => {
+function translate (symbol, locale = 'en-US') {
   const localeDict = translations[locale]
-  if (!localeDict) {
-    return `Localization file for ${locale} is not available`
+  let translatedValue
+
+  if (localeDict) {
+    translatedValue = localeDict[symbol]
   }
-  const translatedValue = localeDict[symbol]
+
   if (!translatedValue) {
-    return `Translation not found for ${symbol} in ${locale}`
+    translatedValue = translations[fallbackLocale][symbol]
+  }
+
+  if (!translatedValue) {
+    return `Translation not found for ${symbol}`
   }
 
   return translatedValue
@@ -53,6 +74,11 @@ module.exports.translate = (symbol, locale = 'en-US') => {
  *
  * @returns boolean
  */
-module.exports.translationAvaliable = (symbol, locale = 'en-US') => {
-  return !!(translations[locale] || {})[symbol]
+function translationAvaliable (symbol, locale = 'en-US') {
+  return !!(translations[locale] || translations[fallbackLocale] || {})[symbol]
 }
+
+module.exports.initializeTranslations = initializeTranslations
+module.exports.setFallbackLocale = setFallbackLocale
+module.exports.translate = translate
+module.exports.translationAvaliable = translationAvaliable

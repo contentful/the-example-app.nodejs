@@ -99,12 +99,12 @@ describe('Settings', () => {
 })
 
 describe('i18n', () => {
-  test('It returns an error when locale file is not found', () => {
-    expect(translate('foo', 'bar-locale')).toBe('Localization file for bar-locale is not available')
+  test('It returns the fallback value when locale file is not found', () => {
+    expect(translate('defaultTitle', 'not-existing-locale-file')).toBe('The Example App')
   })
 
   test('It returns an error when symbol is not found on locale file', () => {
-    expect(translate('foo', 'en-US')).toBe('Translation not found for foo in en-US')
+    expect(translate('foo', 'en-US')).toBe('Translation not found for foo')
   })
 
   test('It returns the translated string when symbol is found on locale file', () => {
@@ -113,10 +113,8 @@ describe('i18n', () => {
   test('It returns true if string is found for locale', () => {
     expect(translationAvaliable('coursesLabel', 'en-US')).toBe(true)
   })
-  test('It returns false if string is not found for locale', () => {
-    expect(translationAvaliable('foo-symbol', 'en-US')).toBe(false)
-  })
   test('It returns false if locale is not found', () => {
-    expect(translationAvaliable('coursesLabel', 'foo-locale')).toBe(false)
+    expect(translationAvaliable('foo-symbol', 'en-US')).toBe(false)
+    expect(translationAvaliable('foo-symbol', 'not-existing-locale')).toBe(false)
   })
 })
