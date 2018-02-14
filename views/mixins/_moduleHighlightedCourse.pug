@@ -2,16 +2,21 @@ include ./_courseCard
 
 mixin moduleHighlightedCourse(module, course)
   .module.module-highlighted-course
-    .module-highlighted-course__wrapper(style=`background-image: url(${course.fields.image.fields.file.url});`)
-      .module-highlighted-course__overlay
-      .module-highlighted-course__content
-        if(course.fields.categories)
-          .module-highlighted-course__categories
-            each category in course.fields.categories
-              a.module-highlighted-course__category(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
-        h2.module-highlighted-course__title
-          a(href=`/courses/${course.fields.slug}${queryString}`)= course.fields.title
-        .module-highlighted-course__description-wrapper
-          p !{helpers.markdown(course.fields.shortDescription)}
-        .module-highlighted-course__link-wrapper
-          a.module-highlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate('viewCourseLabel', currentLocale.code)}
+    if(!course)
+      .module-highlighted-course__wrapper
+        .module-highlighted-course__content
+          h2.module-highlighted-course__title #{translate('errorHighlightedCourse', currentLocale.code)}
+    else
+      .module-highlighted-course__wrapper(style=`background-image: url(${course.fields.image.fields.file.url});`)
+        .module-highlighted-course__overlay
+        .module-highlighted-course__content
+          if(course.fields.categories)
+            .module-highlighted-course__categories
+              each category in course.fields.categories
+                a.module-highlighted-course__category(href=`/courses/categories/${category.fields.slug}${queryString}`) #{category.fields.title}
+          h2.module-highlighted-course__title
+            a(href=`/courses/${course.fields.slug}${queryString}`)= course.fields.title
+          .module-highlighted-course__description-wrapper
+            p !{helpers.markdown(course.fields.shortDescription)}
+          .module-highlighted-course__link-wrapper
+            a.module-highlighted-course__link(href=`/courses/${course.fields.slug}${queryString}`) #{translate('viewCourseLabel', currentLocale.code)}
