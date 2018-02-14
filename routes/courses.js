@@ -57,7 +57,7 @@ module.exports.getCourse = async (request, response, next) => {
     course = await getCourse(request.params.slug, response.locals.currentLocale.code, response.locals.currentApi.id)
   } catch (err) {
     if (err.status === 404) {
-      err.message = translate('error404Course', response.currentLocale)
+      err.message = translate('errorMessage404Course', response.currentLocale)
     }
     throw err
   }
@@ -98,7 +98,7 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
   const activeCategory = categories.find((category) => category.fields.slug === request.params.category)
 
   if (!activeCategory) {
-    const error = new Error(translate('error404Category', response.currentLocale))
+    const error = new Error(translate('errorMessage404Category', response.currentLocale))
     error.status = 404
     throw error
   }
@@ -128,7 +128,7 @@ module.exports.getLesson = async (request, response, next) => {
   let {lesson, nextLesson} = getNextLesson(lessons, request.params.lslug)
 
   if (!lesson) {
-    const error = new Error(translate('error404Lesson', response.currentLocale))
+    const error = new Error(translate('errorMessage404Lesson', response.currentLocale))
     error.status = 404
     throw error
   }
