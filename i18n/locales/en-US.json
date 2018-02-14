@@ -98,7 +98,6 @@
   "intermediateLabel": "Intermediate",
   "advancedLabel": "Advanced",
   "editInTheWebAppLabel": "Edit in the Contentful web app",
-  "error404Route": "Verify that you are trying to reach a supported route",
   "currentLocaleLabel": "English (United States)",
   "hostedLabel": "Hosted",
   "comingSoonLabel": "Coming soon",
@@ -110,9 +109,15 @@
   "resetCredentialsLabel": "Reset credentials to default",
   "resetAboveLabel": "You can reset to the default credentials above.",
   "closeLabel": "Close",
-  "overrideConfigLabel": "This configuration can be overriden through the form below or by using query string parameters.",
+  "overrideConfigLabel": "This configuration can be overridden through the form below or by using query string parameters.",
   "loadedFromLocalFileLabel": "Loaded from local file",
   "usingServerCredentialsLabel": "The example app is currently using server side stored credentials to connect to a Contentful space.",
   "usingSessionCredentialsLabel": "The example app is currently using application session stored credentials to connect to a Contentful space.",
-  "applicationCredentialsLabel": "Application session credentials"
+  "applicationCredentialsLabel": "Application session credentials",
+  "notFoundErrorLabel": "The page you are trying to access could not be found. Make sure it is existing and published.",
+  "error404Route": "Make sure that you are trying to reach a supported address.",
+  "error404Lesson": "Make sure that the lesson has not been deleted or unpublished.",
+  "error404Course": "Make sure that the course has not been deleted or unpublished.",
+  "error404Category": "Make sure that the category has not been deleted or unpublished.",
+  "errorHighlightedCourse": "⚠️ The course is not published or does not exist"
 }
