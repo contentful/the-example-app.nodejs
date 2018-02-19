@@ -84,6 +84,11 @@ app.use(catchErrors(async function (request, response, next) {
   response.locals.currentApi = apis
     .find((api) => api.id === (request.query.api || 'cda'))
 
+  // Fall back to delivery api if an invalid API is passed
+  if (!response.locals.currentApi) {
+    response.locals.currentApi = apis.find((api) => api.id === 'cda')
+  }
+
   next()
 }))
 
