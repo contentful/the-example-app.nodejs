@@ -141,7 +141,7 @@ app.use('/', routes)
 
 // Catch 404 and forward to error handler
 app.use(function (request, response, next) {
-  const err = new Error(translate('errorMessage404Route', response.currentLocale))
+  const err = new Error(translate('errorMessage404Route', response.locals.currentLocale.code))
   err.status = 404
   next(err)
 })
