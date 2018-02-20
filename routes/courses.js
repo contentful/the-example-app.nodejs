@@ -63,6 +63,9 @@ module.exports.getCourse = async (request, response, next) => {
   }
 
   // Get lessons
+  if (!course.fields.lessons) {
+    course.fields.lessons = []
+  }
   const lessons = course.fields.lessons
   let {lesson, lessonIndex} = getNextLesson(lessons, request.params.lslug)
 
