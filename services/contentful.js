@@ -75,7 +75,7 @@ module.exports.getCourses = throwOnEmptyResult('Course', (locale = 'en-US', api 
     content_type: 'course',
     locale,
     order: '-sys.createdAt', // Ordering the entries by creation date
-    include: 6 // We use include param to increase the link level, the include value goes from 1 to 6
+    include: 1 // We use include param to increase the link level, the include value goes from 1 to 6
   })
     .then((response) => response.items)
 })
@@ -94,7 +94,7 @@ module.exports.getLandingPage = (slug, locale = 'en-US', api = 'cda') => {
     content_type: 'layout',
     locale,
     'fields.slug': slug,
-    include: 6
+    include: 3
   })
     .then((response) => response.items[0])
 }
@@ -113,7 +113,7 @@ module.exports.getCourse = throwOnEmptyResult('Course', (slug, locale = 'en-US',
     content_type: 'course',
     'fields.slug': slug,
     locale,
-    include: 6
+    include: 2
   })
     .then((response) => response.items[0])
 })
@@ -139,7 +139,7 @@ module.exports.getCoursesByCategory = throwOnEmptyResult('Category', (category, 
     'fields.categories.sys.id': category,
     locale,
     order: '-sys.createdAt',
-    include: 6
+    include: 1
   })
     .then((response) => response.items)
 })
