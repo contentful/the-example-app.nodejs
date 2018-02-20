@@ -4,7 +4,7 @@ block content
   .layout-centered
     .error
       h1 #{translate('somethingWentWrongLabel', currentLocale.code)} (#{error.status})
-      // We use the last line to have a human readable output for pug error messages
+      //- We use the last line to have a human readable output for pug error messages
       p #{error.message.split('\n').pop()}
 
       h2 #{translate('hintsLabel', currentLocale.code)}
