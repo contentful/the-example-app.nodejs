@@ -115,8 +115,8 @@ app.use(catchErrors(async function (request, response, next) {
       response.locals.currentLocale = defaultLocale
     }
 
-    if (response.locals.fallbackCode) {
-      setFallbackLocale(response.locals.fallbackCode)
+    if (response.locals.currentLocale.fallbackCode) {
+      setFallbackLocale(response.locals.currentLocale.fallbackCode)
     }
 
     // Creates a query string which adds the current credentials to links
