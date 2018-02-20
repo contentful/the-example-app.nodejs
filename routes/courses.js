@@ -31,7 +31,7 @@ module.exports.getCourses = async (request, response, next) => {
   courses = await getCourses(response.locals.currentLocale.code, response.locals.currentApi.id)
   // Attach entry state flags when using preview API
   if (shouldAttachEntryState(response)) {
-    courses = await Promise.all(courses.map(attachEntryState))
+    courses = await attachEntryStateToCourses(courses)
   }
 
   categories = await getCategories(response.locals.currentLocale.code, response.locals.currentApi.id)
@@ -104,10 +104,15 @@ module.exports.getCoursesByCategory = async (request, response, next) => {
   }
 
   // We get all the entries with the content type `course` filtered by a category
-  const courses = await getCoursesByCategory(activeCategory.sys.id, response.locals.currentLocale.code, response.locals.currentApi.id)
+  let courses = await getCoursesByCategory(activeCategory.sys.id, response.locals.currentLocale.code, response.locals.currentApi.id)
 
   // Enhance the breadcrumbs with the active category
   enhanceBreadcrumb(request, activeCategory)
+
+  // Attach entry state flags when using preview API
+  if (shouldAttachEntryState(response)) {
+    courses = await attachEntryStateToCourses(courses)
+  }
 
   response.render('courses', { title: `${activeCategory.fields.title} (${courses.length})`, categories, courses })
 }
@@ -157,6 +162,19 @@ module.exports.getLesson = async (request, response, next) => {
     nextLesson,
     visitedLessons
   })
+}
+
+function attachEntryStateToCourses (courses) {
+  return Promise.all(
+    courses
+      .map((course) => {
+        // Do not include lessons in entry state detection
+        const cleanCourse = Object.assign({}, course)
+        delete cleanCourse.fields.lessons
+        return cleanCourse
+      })
+      .map(attachEntryState)
+  )
 }
 
 function getNextLesson (lessons, lslug) {
