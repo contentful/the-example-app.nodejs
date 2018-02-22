@@ -2,26 +2,30 @@ include _editorialFeatures
 include _lessonModuleCodeSnippet
 include _lessonModuleCopy
 include _lessonModuleImage
+include _emptyModule
 
 mixin lesson(lesson, course, nextLesson)
   .lesson
     h1.lesson__title #{lesson.fields.title}
     +editorialFeatures(lesson)
     .lesson__modules
-      each module in lesson.fields.modules
-        if module.sys.contentType
-          case module.sys.contentType.sys.id
-            when 'lessonCodeSnippets'
-              +lessonModuleCodeSnippet(module)
-            when 'lessonCopy'
-              +lessonModuleCopy(module)
-            when 'lessonImage'
-              +lessonModuleImage(module)
-        else
-          h2 ️️#{translate('lessonModuleErrorTitle', currentLocale.code)}
-          p
-            span #{translate('lessonModuleErrorBody', currentLocale.code)}
-            strong  #{module.sys.id}
+      if lesson.fields.modules.length
+        each module in lesson.fields.modules
+          if module.sys.contentType
+            case module.sys.contentType.sys.id
+              when 'lessonCodeSnippets'
+                +lessonModuleCodeSnippet(module)
+              when 'lessonCopy'
+                +lessonModuleCopy(module)
+              when 'lessonImage'
+                +lessonModuleImage(module)
+          else
+            h2 ️️#{translate('lessonModuleErrorTitle', currentLocale.code)}
+            p
+              span #{translate('lessonModuleErrorBody', currentLocale.code)}
+              strong  #{module.sys.id}
+      else
+        +emptyModule()
     if nextLesson
       a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) #{translate('nextLessonLabel', currentLocale.code)}
 

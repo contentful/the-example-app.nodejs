@@ -105,6 +105,7 @@
   "usingServerCredentialsLabel": "The example app is currently using server side stored credentials to connect to a Contentful space.",
   "usingSessionCredentialsLabel": "The example app is currently using application session stored credentials to connect to a Contentful space.",
   "applicationCredentialsLabel": "Application session credentials",
+  "noContentLabel": "No content found.",
   "errorHighlightedCourse": "⚠️ The course is not published or does not exist.",
   "somethingWentWrongLabel": "Oops, something went wrong",
   "errorMessage404Route": "The page you are trying to open does not exist.",
