@@ -2,6 +2,7 @@ extends layout
 
 include mixins/_breadcrumb
 include mixins/_courseCard
+include mixins/_emptyModule
 
 block content
   .layout-no-sidebar
@@ -35,6 +36,9 @@ block content
                 .editorial-features__hint-message #{translate('editorialFeaturesHint', currentLocale.code)}
 
         .grid-list
-          each course in courses
-            .grid-list__item
-              +courseCard(course)
+          if courses.length
+            each course in courses
+              .grid-list__item
+                +courseCard(course)
+          else
+            +emptyModule()

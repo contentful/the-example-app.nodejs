@@ -105,6 +105,7 @@
   "usingServerCredentialsLabel": "Die Beispielanwendung verwendet derzeit serverseitig gespeicherte Anmeldeinformationen zum Herstellen einer Verbindung mit einem Contentful-Space.",
   "usingSessionCredentialsLabel": "Die Beispielanwendung verwendet derzeit Anmeldeinformationen von der Anwendungssitzung, um eine Verbindung zu einem Contentful-Space herzustellen.",
   "applicationCredentialsLabel": "Anmeldeinformationen für die Anwendungssitzung",
+  "noContentLabel": "Keinen Inhalt gefunden.",
   "errorHighlightedCourse": "⚠️ Dieser Kurs wurde nicht veröffentlicht oder existiert nicht.",
   "somethingWentWrongLabel": "Hmm, etwas ging schief.",
   "errorMessage404Route": "Diese Seite existiert nicht.",
