@@ -74,16 +74,18 @@ module.exports.getSettings = async (request, response, next) => {
  */
 module.exports.postSettings = async (request, response, next) => {
   const currentLocale = response.locals.currentLocale
-  let { spaceId, deliveryToken, previewToken, editorialFeatures } = request.body
+  let { spaceId, environment, deliveryToken, previewToken, editorialFeatures } = request.body
 
   if (request.query.reset) {
     spaceId = process.env.CONTENTFUL_SPACE_ID
     deliveryToken = process.env.CONTENTFUL_DELIVERY_TOKEN
     previewToken = process.env.CONTENTFUL_PREVIEW_TOKEN
+    environment = process.env.CONTENTFUL_ENVIRONMENT
   }
 
   const settings = {
     spaceId,
+    environment,
     deliveryToken,
     previewToken,
     editorialFeatures: !!editorialFeatures
@@ -107,13 +109,20 @@ module.exports.postSettings = async (request, response, next) => {
 }
 
 async function generateErrorList (settings, currentLocale) {
-  const { spaceId, deliveryToken, previewToken } = settings
+  const { spaceId, environment, deliveryToken, previewToken } = settings
   let errorList = []
 
   // Validate required fields.
   if (!spaceId) {
     errorList.push({
       field: 'spaceId',
+      message: translate('fieldIsRequiredLabel', currentLocale.code)
+    })
+  }
+
+  if (!environment) {
+    errorList.push({
+      field: 'environment',
       message: translate('fieldIsRequiredLabel', currentLocale.code)
     })
   }
@@ -138,10 +147,11 @@ async function generateErrorList (settings, currentLocale) {
       await createClient({
         space: spaceId,
         accessToken: deliveryToken,
+        environment,
         // Environment variable is used here to enable testing this app internally at Contentful.
         // You can just omit the host since it defaults to 'cdn.contentful.com'
         host: process.env.CONTENTFUL_DELIVERY_API_HOST
-      }).getSpace()
+      }).getLocales()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
@@ -168,10 +178,11 @@ async function generateErrorList (settings, currentLocale) {
       await createClient({
         space: spaceId,
         accessToken: previewToken,
+        environment,
         // Environment variable is used here to enable testing this app internally at Contentful.
         // You should use 'preview.contentful.com' as host to use the preview api
         host: process.env.CONTENTFUL_PREVIEW_API_HOST
-      }).getSpace()
+      }).getLocales()
     } catch (err) {
       if (err.response.status === 401) {
         errorList.push({
