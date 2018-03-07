@@ -14,7 +14,7 @@ block content
   .layout-centered
     +editorialFeatures(landingPage)
   .modules-container
-    if landingPage.fields.contentModules.length
+    if landingPage.fields.contentModules && landingPage.fields.contentModules.length
       each module in landingPage.fields.contentModules
         case module.sys.contentType.sys.id
           when 'layoutCopy'

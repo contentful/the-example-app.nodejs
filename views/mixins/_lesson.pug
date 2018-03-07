@@ -9,7 +9,7 @@ mixin lesson(lesson, course, nextLesson)
     h1.lesson__title #{lesson.fields.title}
     +editorialFeatures(lesson)
     .lesson__modules
-      if lesson.fields.modules.length
+      if lesson.fields.modules && lesson.fields.modules.length
         each module in lesson.fields.modules
           if module.sys.contentType
             case module.sys.contentType.sys.id
@@ -28,4 +28,3 @@ mixin lesson(lesson, course, nextLesson)
         +emptyModule()
     if nextLesson
       a.lesson__cta.cta(href=`/courses/${course.fields.slug}/lessons/${nextLesson.fields.slug}${queryString}`) #{translate('nextLessonLabel', currentLocale.code)}
-
