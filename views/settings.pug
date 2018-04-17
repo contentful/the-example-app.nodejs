@@ -42,7 +42,7 @@ block content
               p
                 strong #{translate('connectedToSpaceLabel', currentLocale.code)}:
                 br
-                span #{space.name} (#{settings.spaceId})
+                span #{space.name} (ID: #{settings.spaceId}, Environment: #{settings.environment})
               p
                 strong #{translate('credentialSourceLabel', currentLocale.code)}:
                 br
@@ -75,6 +75,12 @@ block content
         if 'spaceId' in errors
           +renderErrors(errors.spaceId)
         .form-item__help-text #{translate('spaceIdHelpText', currentLocale.code)}
+      .form-item
+        label(for="input-environment") #{translate('environmentLabel', currentLocale.code)}
+        input(type="text" name="environment" id="input-environment" value=settings.environment required)
+        if 'environment' in errors
+          +renderErrors(errors.environment)
+        .form-item__help-text #{translate('environmentHelpText', currentLocale.code)}
 
       .form-item
         label(for="input-delivery-token") #{translate('cdaAccessTokenLabel', currentLocale.code)}

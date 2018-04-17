@@ -20,7 +20,8 @@ module.exports.initClients = (options) => {
   const config = options || {
     spaceId: process.env.CONTENTFUL_SPACE_ID,
     deliveryToken: process.env.CONTENTFUL_DELIVERY_TOKEN,
-    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN
+    previewToken: process.env.CONTENTFUL_PREVIEW_TOKEN,
+    environment: process.env.CONTENTFUL_ENVIRONMENT
   }
   deliveryClient = createClient({
     application: applicationName,
@@ -29,7 +30,8 @@ module.exports.initClients = (options) => {
     // Environment variable is used here to enable testing this app internally at Contentful.
     // You can just omit the host since it defaults to 'cdn.contentful.com'
     host: process.env.CONTENTFUL_DELIVERY_API_HOST,
-    removeUnresolved: true
+    removeUnresolved: true,
+    environment: options.environment
   })
   previewClient = createClient({
     application: applicationName,
@@ -38,17 +40,28 @@ module.exports.initClients = (options) => {
     // Environment variable is used here to enable testing this app internally at Contentful.
     // You should use 'preview.contentful.com' as host to use the preview api
     host: process.env.CONTENTFUL_PREVIEW_API_HOST,
-    removeUnresolved: true
+    removeUnresolved: true,
+    environment: options.environment
   })
 }
 
 /**
- * Get the Space the app is connected to. Used for the settings form and to get all available locales
+ * Get the Space the app is connected to. Used for the settings form to validate connectivity.
  * @param api - string - the api to use, cda or cap. Default: 'cda'
  * @returns {undefined}
  */
 module.exports.getSpace = throwOnEmptyResult('Space', (api = 'cda') => {
   return getClient(api).getSpace()
+})
+
+/**
+ * Get the Locales attached to this environment.
+ * @param api - string - the api to use, cda or cap. Default: 'cda'
+ * @returns {undefined}
+ */
+module.exports.getLocales = throwOnEmptyResult('Locales', (api = 'cda') => {
+  return getClient(api).getLocales()
+    .then((response) => response.items)
 })
 
 /**
