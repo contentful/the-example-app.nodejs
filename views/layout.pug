@@ -1,6 +1,6 @@
 doctype html
-html
-  head
+html(lang='en')
+  head(role='header')
     title= helpers.formatMetaTitle(title, currentLocale.code)
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1')
@@ -22,9 +22,9 @@ html
     link(rel='mask-icon' href='/safari-pinned-tab.svg' color='#4a90e2')
     meta(name='theme-color' content='#ffffff')
   body
-    main.main
+    main.main(role='main')
       .main__header
-        header.header
+        header.header(role='banner')
           .header__upper-wrapper
             .header__upper.layout-centered
               .header__upper-title
@@ -78,7 +78,7 @@ html
               .header__logo
                 a.header__logo-link(href=`/${queryString}`)
                   img(src='/images/the-example-app-logo-nodejs.svg' alt=translate('logoAlt', currentLocale.code))
-              nav.header__navigation.main-navigation
+              nav.header__navigation.main-navigation(role='navigation')
                 ul
                   li
                     a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) #{translate('homeLabel', currentLocale.code)}
@@ -91,7 +91,7 @@ html
         .layout-centered
           footer.footer
             .footer__upper
-              nav.footer__navigation.main-navigation
+              nav.footer__navigation.main-navigation(role='navigation')
                 ul
                   li
                     a(href=`/${queryString}` class=(currentPath === '/'? 'active' : '')) #{translate('homeLabel', currentLocale.code)}

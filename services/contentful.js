@@ -52,6 +52,16 @@ module.exports.getSpace = throwOnEmptyResult('Space', (api = 'cda') => {
 })
 
 /**
+ * Get the environment locales
+ * @param api - string - the api to use, cda or cap. Default: 'cda'
+ * @returns {undefined}
+ */
+module.exports.getLocales = throwOnEmptyResult('Environment', (api = 'cda') => {
+  return getClient(api).getLocales()
+    .then((response) => response.items)
+})
+
+/**
  * Gets an entry. Used to detect the `Draft` or `Pending Changes` state
  * @param entryId - string - the entry id
  * @param api - string - the api to use fetching the entry
