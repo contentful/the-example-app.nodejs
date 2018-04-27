@@ -12,7 +12,7 @@ The app demonstrates how decoupling content from its presentation enables greate
 
 <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank"><img src="https://images.contentful.com/qz0n5cdakyl9/4GZmvrdodGM6CksMCkkAEq/700a527b8203d4d3ccd3c303c5b3e2aa/the-example-app.png" alt="Screenshot of the example app"/></a>
 
-You can see a hosted version of `The node.js example app` on <a href="https://the-example-app-nodejs.herokuapp.com/" target="_blank">Heroku</a>.
+You can see a hosted version of `The node.js example app` on <a href="https://the-example-app-nodejs.contentful.com/" target="_blank">Heroku</a>.
 
 ## What is Contentful?
 
