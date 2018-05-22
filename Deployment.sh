@@ -15,7 +15,7 @@ cd $TEMP_PATH
 sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh"
 sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest
 sudo chown -R subham:subham /tmp/mytest
-else
+elif [ -z "${file}" ];then
 echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
 fi
 done
