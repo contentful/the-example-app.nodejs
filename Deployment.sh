@@ -23,3 +23,4 @@ else
 echo "No files to be deployed"
 fi
 rm -rf $TEMP_PATH
+rm -rf /tmp/archive-name.tar.gz
