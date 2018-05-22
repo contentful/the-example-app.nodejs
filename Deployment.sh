@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 cd $(dirname $0)
 TEMP_PATH="$WORKSPACE/tmp"
 [ -d $TEMP_PATH ] || mkdir -p $TEMP_PATH
