@@ -22,5 +22,6 @@ done
 else
 echo "No files to be deployed"
 fi
-rm -rf $TEMP_PATH
-rm -rf /tmp/archive-name.tar.gz
+echo $TEMP_PATH
+sudo rm -rf $TEMP_PATH
+sudo rm -rf /tmp/archive-name.tar.gz
