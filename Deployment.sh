@@ -16,7 +16,7 @@ sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh"
 sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest
 sudo chown -R subham:subham /tmp/mytest
 else
-echo "This \"$I\" file was deleted in last commit,Skipping deployment of file!"
+echo "Could not find file \"$I\",Skipping deployment of file!"
 fi
 done
 else
