@@ -22,5 +22,5 @@ cd $TEMP_PATH
 sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh"
 sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest
 sudo chown -R subham:subham /tmp/mytest
-sudo rm -rf $TEMP_PATH
-sudo rm -rf /tmp/archive-name.tar.gz
+#sudo rm -rf $TEMP_PATH
+#sudo rm -rf /tmp/archive-name.tar.gz
