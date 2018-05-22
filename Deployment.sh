@@ -20,6 +20,6 @@ echo "Could not find file \"$I\",As this file was deleted in last commit..Skippi
 fi
 done
 fi
-echo $TEMP_PATH
+
 sudo rm -rf $TEMP_PATH
 sudo rm -rf /tmp/archive-name.tar.gz
