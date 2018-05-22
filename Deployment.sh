@@ -11,10 +11,6 @@ file=$(find $WORKSPACE/ -name $I)
 if [ -n "${file}" ]
 then 
 sudo cp -pr $file $TEMP_PATH
-cd $TEMP_PATH
-sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh"
-sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest
-sudo chown -R subham:subham /tmp/mytest
 elif [ -z "${file}" ];then
 echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
 fi
@@ -22,6 +18,9 @@ done
 else
 echo "No Changes were done in last commit!"
 fi
-
+cd $TEMP_PATH
+sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh"
+sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest
+sudo chown -R subham:subham /tmp/mytest
 sudo rm -rf $TEMP_PATH
 sudo rm -rf /tmp/archive-name.tar.gz
