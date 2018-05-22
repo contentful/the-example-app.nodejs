@@ -2,7 +2,7 @@
 cd $(dirname $0)
 TEMP_PATH="$WORKSPACE/tmp"
 [ -d $TEMP_PATH ] || mkdir -p $TEMP_PATH
-FILES=$(git diff --name-only HEAD~1 HEAD)
+FILES=$(git diff --name-only HEAD~3 HEAD)
 
 if [ -n "${FILES}" ];then
 for I in $(echo $FILES|xargs basename)
