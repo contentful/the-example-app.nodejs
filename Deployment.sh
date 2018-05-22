@@ -5,7 +5,7 @@ TEMP_PATH="$WORKSPACE/tmp"
 FILES=$(git diff --name-only HEAD~3 HEAD)
 
 if [ -n "${FILES}" ];then
-for I in $(echo $FILES|xargs basename)
+for I in $(echo "${FILES}"|xargs -0 basename)
 do
 file=$(find $WORKSPACE/ -name $I)
 if [ -n "${file}" ]
