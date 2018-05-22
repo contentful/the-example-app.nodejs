@@ -19,8 +19,6 @@ else
 echo "Could not find file \"$I\",Skipping!"
 fi
 done
-else
-echo "No files to be deployed"
 fi
 echo $TEMP_PATH
 sudo rm -rf $TEMP_PATH
