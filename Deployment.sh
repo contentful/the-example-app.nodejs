@@ -5,17 +5,17 @@ TEMP_DIR="$WORKSPACE/tmp"
 FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
 
 if [ -n "${FILES}" ];then
-for I in $(echo "${FILES}"|xargs -0 basename)
-do
-file=$(find $WORKSPACE/ -name $I)
-if [ -n "${file}" ]
-then 
-echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
-sudo cp -pr $file $TEMP_DIR
-elif [ -z "${file}" ];then
-echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
-fi
-done
+  for I in $(echo "${FILES}"|xargs -0 basename)
+ do
+ file=$(find $WORKSPACE/ -name $I)
+   if [ -n "${file}" ]
+   then 
+   echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
+   sudo cp -pr $file $TEMP_DIR
+   elif [ -z "${file}" ];then
+   echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
+   fi
+ done
 else
 echo "No Changes were done in last commit!"
 fi
