@@ -19,6 +19,8 @@ else
 echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
 fi
 done
+else
+echo "No Changes were done in last commit!"
 fi
 
 sudo rm -rf $TEMP_PATH
