@@ -10,6 +10,7 @@ do
 file=$(find $WORKSPACE/ -name $I)
 if [ -n "${file}" ]
 then 
+echo "File \"${file}\" found,Copying to temp dir!"
 sudo cp -pr $file $TEMP_PATH
 elif [ -z "${file}" ];then
 echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
