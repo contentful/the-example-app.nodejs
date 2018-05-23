@@ -22,7 +22,7 @@ fi
 cd $TEMP_DIR
 [ `ls -1|wc -l` -ge 1 ] &&  tar -zcvf /tmp/archive-name.tar.gz .  >> /dev/null
 cd -
-[ $? -eq 0 ] cp -pr /tmp/archive-name.tar.gz .
+[ $? -eq 0 ] && cp -pr /tmp/archive-name.tar.gz .
 #[ $? -eq 0 ] &&  tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest >> /dev/null
 #chown -R subham:subham /tmp/mytest >> /dev/null
 #rm -rf $TEMP_DIR
