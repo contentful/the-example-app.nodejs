@@ -18,7 +18,6 @@ pipeline {
         script {
           sh '''
             SBI/dockerize.sh
-          echo "Second Steps"
           '''
         }
       }
