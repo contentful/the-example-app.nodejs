@@ -5,7 +5,7 @@ TEMP_FILE="SBI/service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
 FILES=$(git diff --name-only HEAD~1 HEAD)
 
-echo $FILES >> $TEMP_FILE
+echo $FILES > $TEMP_FILE
 
 if [ -n "${TEMP_FILE}" ];then
   for I in $(cat "${TEMP_FILE}"|xargs -n1 basename)
