@@ -1,4 +1,4 @@
-!/bin/bash -xe
+#!/bin/bash -xe
 
 TEMP_DIR="$(pwd)/tmp"
 TEMP_FILE="SBI/service-manifest.txt"
