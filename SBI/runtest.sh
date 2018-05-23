@@ -1,9 +1,9 @@
-#!/bin/bash -xe
+!/bin/bash -xe
 
 TEMP_DIR="$(pwd)/tmp"
 TEMP_FILE="SBI/service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
-FILES=$(git diff --name-only HEAD~1 HEAD)
+FILES=$(git diff --name-status HEAD~1 HEAD|grep -v ^D|awk '{print $2}'|xargs -n1 basename)
 
 echo $FILES > $TEMP_FILE
 
@@ -15,8 +15,6 @@ if [ -n "${TEMP_FILE}" ];then
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
    cp -pr $file $TEMP_DIR
-   elif [ -z "${file}" ];then
-   echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
    fi
  done
 else
