@@ -14,7 +14,7 @@ if [ -n "${TEMP_FILE}" ];then
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
-   yes |cp -pr $file $TEMP_DIR
+   cp -pr $file $TEMP_DIR
    elif [ -z "${file}" ];then
    echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
    fi
