@@ -1,5 +1,5 @@
 #!/bin/bash
-case $GIT_BRANCH in
+case $GIT_BRANCH|cut -d'/' -f2 in
    master)
      sh SBI/runtest.sh
      ;;
