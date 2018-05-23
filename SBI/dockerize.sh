@@ -1,16 +1,16 @@
 #!/bin/bash -xe
-cd $(dirname $0)
+#cd $(dirname $0)
 TEMP_DIR="$(pwd)/tmp"
-TEMP_FILE="service-manifest.txt"
+TEMP_FILE="SBI/service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
-FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
+FILES=$(git diff --name-only HEAD~1 HEAD)
 
 echo $FILES >> $TEMP_FILE
 
 if [ -n "${TEMP_FILE}" ];then
   for I in $(cat "${TEMP_FILE}"|xargs -n1 basename)
  do
- file=$(find . -name $I)
+ file=$(find $(pwd)/ -name $I)
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
