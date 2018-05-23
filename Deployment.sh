@@ -20,7 +20,7 @@ else
 echo "No Changes were done in last commit!"
 fi
 cd $TEMP_DIR
-[ `ls -1|wc -l` -ge 1 ] && sudo tar -zcvf /tmp/archive-name.tar.gz . --exclude="*.sh" >> /dev/null
+[ `ls -1|wc -l` -ge 1 ] && sudo tar -zcvf /tmp/archive-name.tar.gz .  >> /dev/null
 [ $? -eq 0 ] && sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest >> /dev/null
 sudo chown -R subham:subham /tmp/mytest >> /dev/null
 sudo rm -rf $TEMP_DIR
