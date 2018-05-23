@@ -1,15 +1,15 @@
 #!/bin/bash
 case $BRANCH_NAME in
-     master)
+   master)
      sh SBI/runtest.sh
      ;;
-     develop)
+   develop)
      sh SBI/runtest.sh
      ;;
-     qa)
+   qa)
      sh SBI/runtest.sh
      ;;
-     *)
+   *)
      if [ -z "$BRANCH_NAME" ]
      then
       echo "No branch name provided!"
