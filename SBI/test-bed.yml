@@ -3,7 +3,9 @@ services:
      
   rcx-bi:
      user: "997:994"
-     image: ubuntu
+     build: .
+     context: ./docker
+     image: rcx-bi
      volumes:
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
