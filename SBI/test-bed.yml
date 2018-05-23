@@ -1,0 +1,14 @@
+version: '2'
+services:
+     
+  rcx-bi:
+     user: "997:994"
+     build: 
+      context: ./docker
+      dockerfile: Dockerfile
+     image: rcx-bi
+     volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - "${JENKINS_HOME}:${JENKINS_HOME}:rw"
+      - "${WORKSPACE}:${WORKSPACE}:rw"
