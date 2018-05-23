@@ -1,13 +1,13 @@
 #!/bin/bash
 case $BRANCH_NAME in
      master)
-     sh SBI/runtests.sh
+     sh SBI/runtest.sh
      ;;
      develop)
      sh SBI/runtest.sh
      ;;
      qa)
-     sh SBI/runtests.sh
+     sh SBI/runtest.sh
      ;;
      *)
      if [ -z "$BRANCH_NAME" ]
