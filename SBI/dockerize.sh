@@ -1,5 +1,5 @@
 #!/bin/bash -xe
-cd $(dirname $0)
+#cd $(dirname $0)
 TEMP_DIR="$WORKSPACE/tmp"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
 FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
