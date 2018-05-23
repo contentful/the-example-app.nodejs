@@ -10,7 +10,10 @@ case $BRANCH_NAME in
      sh SBI/runtests.sh
      ;;
      *)
-      [ -z "${BRANCH_NAME} ] && echo "Branch is null"
-      exit 1
+     if [ -z "$BRANCH_NAME" ]
+     then
+      echo "No branch name provided!"
+     exit 1
+     fi
       ;;
 esac
