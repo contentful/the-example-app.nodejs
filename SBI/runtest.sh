@@ -23,8 +23,7 @@ else
 echo "No Changes were done in last commit!"
 fi
 cd $TEMP_DIR
-[ `ls -1|wc -l` -ge 1 ] &&  tar -zcvf /tmp/archive-name.tar.gz .  >> dev/null
-cd - >> /dev/null
+[ `ls -1|wc -l` -ge 1 ] &&  tar -zcvf /tmp/archive-name.tar.gz .  >> /dev/null && cd - >> /dev/null
 [ $? -eq 0 ] && cp -pr /tmp/archive-name.tar.gz . >> /dev/null
 
 cat /dev/null > $TEMP_FILE
