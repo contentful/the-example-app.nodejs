@@ -1,5 +1,5 @@
 #!/bin/bash -xe
-#cd $(dirname $0)
+
 TEMP_DIR="$(pwd)/tmp"
 TEMP_FILE="SBI/service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
@@ -10,7 +10,8 @@ echo $FILES >> $TEMP_FILE
 if [ -n "${TEMP_FILE}" ];then
   for I in $(cat "${TEMP_FILE}"|xargs -n1 basename)
  do
- file=$(find $WORKSPACE/ -name $I)
+ cd ..
+ file=$(find . -name $I)
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
@@ -19,6 +20,7 @@ if [ -n "${TEMP_FILE}" ];then
    echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
    fi
  done
+ cd -
 else
 echo "No Changes were done in last commit!"
 fi
