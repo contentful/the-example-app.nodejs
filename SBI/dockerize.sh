@@ -27,4 +27,4 @@ cd $TEMP_DIR
 cd -
 [ $? -eq 0 ] && cp -pr /tmp/archive-name.tar.gz .
 
-cat /dev/null > $TEMP_FILE
+#cat /dev/null > $TEMP_FILE
