@@ -10,7 +10,6 @@ echo $FILES >> $TEMP_FILE
 if [ -n "${TEMP_FILE}" ];then
   for I in $(cat "${TEMP_FILE}"|xargs -n1 basename)
  do
- cd ..
  file=$(find . -name $I)
    if [ -n "${file}" ]
    then
