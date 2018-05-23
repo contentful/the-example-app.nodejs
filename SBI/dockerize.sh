@@ -11,7 +11,7 @@ if [ -n "${FILES}" ];then
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
-   sudo cp -pr $file $TEMP_DIR
+   cp -pr $file $TEMP_DIR
    elif [ -z "${file}" ];then
    echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
    fi
@@ -20,8 +20,8 @@ else
 echo "No Changes were done in last commit!"
 fi
 cd $TEMP_DIR
-[ `ls -1|wc -l` -ge 1 ] && sudo tar -zcvf /tmp/archive-name.tar.gz .  >> /dev/null
-[ $? -eq 0 ] && sudo tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest >> /dev/null
-sudo chown -R subham:subham /tmp/mytest >> /dev/null
-sudo rm -rf $TEMP_DIR
-sudo rm -rf /tmp/archive-name.tar.gz
+[ `ls -1|wc -l` -ge 1 ] &&  tar -zcvf /tmp/archive-name.tar.gz .  >> /dev/null
+[ $? -eq 0 ] &&  tar -zxvf /tmp/archive-name.tar.gz -C /tmp/mytest >> /dev/null
+chown -R subham:subham /tmp/mytest >> /dev/null
+rm -rf $TEMP_DIR
+rm -rf /tmp/archive-name.tar.gz
