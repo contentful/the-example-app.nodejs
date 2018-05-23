@@ -1,1 +1,1 @@
-echo
+echo "No test to perform"
