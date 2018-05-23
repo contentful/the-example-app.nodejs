@@ -1,5 +1,6 @@
 #!/bin/bash
-case $($GIT_BRANCH|cut -d'/' -f2) in
+BRANCH="$(echo $GIT_BRANCH|cut -d'/' -f2)"
+case $BRANCH in
    master)
      sh SBI/runtest.sh
      ;;
