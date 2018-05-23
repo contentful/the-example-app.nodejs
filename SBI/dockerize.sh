@@ -4,7 +4,7 @@ TEMP_FILE="service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
 FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
 
-cat $FILES >> $TEMP_FILE
+echo $FILES >> $TEMP_FILE
 
 if [ -n "${TEMP_FILE}" ];then
   for I in $(echo "${TEMP_FILE}"|xargs -n1 basename)
