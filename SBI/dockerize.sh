@@ -19,7 +19,6 @@ if [ -n "${TEMP_FILE}" ];then
    echo "Could not find file \"$I\",As this file was deleted in last commit..Skipping!"
    fi
  done
- cd -
 else
 echo "No Changes were done in last commit!"
 fi
