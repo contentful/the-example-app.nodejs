@@ -1,5 +1,6 @@
 #!/bin/bash -xe
-TEMP_DIR="$WORKSPACE/tmp"
+cd $(dirname $0)
+TEMP_DIR="$(pwd)/tmp"
 TEMP_FILE="service-manifest.txt"
 [ -d $TEMP_DIR ] || mkdir -p $TEMP_DIR
 FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
