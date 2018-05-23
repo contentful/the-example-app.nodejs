@@ -10,7 +10,7 @@ echo $FILES >> $TEMP_FILE
 if [ -n "${TEMP_FILE}" ];then
   for I in $(cat "${TEMP_FILE}"|xargs -n1 basename)
  do
- file=$(find $(pwd)/ -name $I)
+ file=$(find $WORKSPACE/ -name $I)
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
