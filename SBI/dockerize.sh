@@ -7,7 +7,7 @@ FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
 if [ -n "${FILES}" ];then
   for I in $(echo "${FILES}"|xargs -n1 basename)
  do
- file=$(find $WORKSPACE/ -name $I)
+ file=$(find . -name $I)
    if [ -n "${file}" ]
    then
    echo "File \"${file}\" found,Copying to temp dir $TEMP_DIR!"
