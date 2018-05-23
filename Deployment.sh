@@ -5,7 +5,7 @@ TEMP_DIR="$WORKSPACE/tmp"
 FILES=$(git diff --name-only HEAD~1 HEAD|grep -v Deployment.sh)
 
 if [ -n "${FILES}" ];then
-  for I in $(echo "${FILES}"|xargs -0 basename)
+  for I in $(echo "${FILES}"|xargs -n1 basename)
  do
  file=$(find $WORKSPACE/ -name $I)
    if [ -n "${file}" ]
