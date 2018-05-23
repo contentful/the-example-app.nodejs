@@ -8,6 +8,7 @@ case $BRANCH_NAME in
      ;;
      qa)
      sh SBI/runtests.sh
+     ;;
      *)
       [ -z "${BRANCH_NAME} ] && echo "Branch is null"
       exit 1
