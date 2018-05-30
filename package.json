@@ -23,7 +23,7 @@
     "node": ">=8.9.3"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "1.0.1
     "contentful": "^6.0.0",
     "cookie-parser": "~1.4.3",
     "dotenv": "^5.0.0",
