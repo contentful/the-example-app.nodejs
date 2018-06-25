@@ -21,8 +21,11 @@ jobs:
           name: clone-e2e-test
           command: git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
       - run:
-          name: run-e2e-test
+          name: install-e2e-test
           command: cd ./test/e2e && npm install
+      - run:
+          name: test
+          command: cd ../../ && npm run test
       - store_artifacts:
           path: /tmp/artifact-1
 
