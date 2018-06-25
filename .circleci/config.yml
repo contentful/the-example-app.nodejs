@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cypress/base:8
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache 
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: clone-e2e-test
+          command: git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
+      - run:
+          name: install-e2e-test
+          command: cd ./test/e2e && npm install
+      - run:
+          name: test
+          command: npm run test
+      - store_artifacts:
+          path: /tmp/artifact-1
+
+          destination: artifact-file-cypress-result_`date +%Y-%m-%d_%H-%M-%S`
+
+      - store_artifacts:
+          path: /tmp/artifacts
+
