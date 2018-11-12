@@ -8,8 +8,7 @@ pipeline {
     }
     stage('Unit Tests') {
       steps {
-        sh '''npm run bowerInstall
-npm test'''
+        sh 'npm test'
       }
     }
   }
