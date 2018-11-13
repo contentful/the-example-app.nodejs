@@ -16,5 +16,11 @@ pipeline {
         archiveArtifacts(allowEmptyArchive: true, artifacts: '*')
       }
     }
+    stage('DeployToDev') {
+      steps {
+        sh '''scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.104:/home/ubuntu/nodejsproject
+'''
+      }
+    }
   }
 }
