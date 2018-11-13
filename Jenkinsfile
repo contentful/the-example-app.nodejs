@@ -11,9 +11,9 @@ pipeline {
         sh 'npm run test:unit'
       }
     }
-    stage('') {
+    stage('Archive') {
       steps {
-        archiveArtifacts(allowEmptyArchive: true, artifacts: 'ForArtifactory')
+        archiveArtifacts(allowEmptyArchive: true, artifacts: '*')
       }
     }
   }
