@@ -39,7 +39,7 @@ pipeline {
             sh 'sudo -H -u ubuntu scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.96:/home/ubuntu/nodejsproject'
           }
         }
-        stage('') {
+        stage('Start Staging Server') {
           steps {
             sh 'sudo -H -u ubuntu ssh ubuntu@10.0.0.96 \'cd /home/ubuntu/nodejsproject/; npm run start:dev\''
           }
