@@ -33,10 +33,10 @@ pipeline {
 '''
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             input 'Manual Deploy to Staging'
-            sh 'sudo -H -u ubuntu scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.104:/home/ubuntu/nodejsproject'
+            sh 'sudo -H -u ubuntu scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.96:/home/ubuntu/nodejsproject'
           }
         }
       }
