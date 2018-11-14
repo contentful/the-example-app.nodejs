@@ -17,18 +17,9 @@ pipeline {
       }
     }
     stage('DeployToDev') {
-      parallel {
-        stage('DeployToDev') {
-          steps {
-            sh '''sudo -H -u ubuntu scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.104:/home/ubuntu/nodejsproject
+      steps {
+        sh '''sudo -H -u ubuntu scp -r /var/lib/jenkins/workspace/the-example-app.nodejs_golanb/ ubuntu@10.0.0.104:/home/ubuntu/nodejsproject
 '''
-          }
-        }
-        stage('') {
-          steps {
-            sshPublisher(alwaysPublishFromMaster: true)
-          }
-        }
       }
     }
   }
