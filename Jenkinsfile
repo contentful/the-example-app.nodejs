@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Delete From Dev') {
           steps {
-            sh 'sudo -H -u ubuntu ssh ubuntu@10.0.0.104 \'rm -r /home/ubuntu/nodejsproject/\''
+            sh 'sudo -H -u ubuntu ssh ubuntu@10.0.0.104 \'rm -rf /home/ubuntu/nodejsproject/\''
           }
         }
       }
