@@ -12,8 +12,17 @@ pipeline {
       }
     }
     stage('Archive') {
-      steps {
-        archiveArtifacts(allowEmptyArchive: true, artifacts: '*')
+      parallel {
+        stage('Archive') {
+          steps {
+            archiveArtifacts(allowEmptyArchive: true, artifacts: '*')
+          }
+        }
+        stage('Delete From Dev') {
+          steps {
+            sh 'ssh ubuntu@10.0.0.104 \'rm -r /home/ubuntu/nodejsproject/\''
+          }
+        }
       }
     }
     stage('DeployToDev') {
