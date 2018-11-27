@@ -31,6 +31,10 @@ function isCustomCredentials (settings) {
     settings.previewToken !== previewToken
 }
 
+/// something here
+
+/// and here
+
 function cleanupQueryParameters (query) {
   const cleanQuery = Object.assign({}, query)
   delete cleanQuery.space_id

@@ -46,6 +46,8 @@
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.0",
     "nodemon": "^1.15.1",
+    "parse": "^2.1.0",
+    "parse-glob": "^3.0.4",
     "supertest": "^3.0.0",
     "yargs": "^11.0.0"
   }
