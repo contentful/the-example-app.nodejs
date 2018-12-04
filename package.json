@@ -32,7 +32,7 @@
     "helmet": "^3.11.0",
     "lodash": "^4.17.5",
     "marked": "^0.3.16",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "pug": "~2.0.0-beta6"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.0",
-    "nodemon": "^1.15.1",
+    "nodemon": "^1.18.4",
     "supertest": "^3.0.0",
     "yargs": "^11.0.0"
   }
