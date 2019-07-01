@@ -50,3 +50,10 @@
     "yargs": "^11.0.0"
   }
 }
+
+ {
+  "publishConfig": {
+    "registry": "http://54.144.39.176:8081/repository/npm-private/"
+  }
+
+}
