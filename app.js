@@ -22,6 +22,39 @@ const { catchErrors } = require('./handlers/errorHandlers')
 const SETTINGS_NAME = 'theExampleAppSettings'
 
 const app = express()
+const baseConfig = ajv.validate(require('./config/baseSchema'), config);
+if(baseConfig === false){
+    console.log(colors.red(`settings.json incorrect: ${ajv.errorsText()}`));
+    process.exit(2);
+}
+
+// Validate the payment gateway config
+switch(config.paymentGateway)
+{
+    case 'paypal':
+        const paypalConfig = ajv.validate(require('./config/paypalSchema'), require('./config/paypal.json'));
+        if(paypalConfig === false){
+            console.log(colors.red(`PayPal config is incorrect: ${ajv.errorsText()}`));
+            process.exit(2);
+        }
+        break;
+
+    case 'stripe':
+        const stripeConfig = ajv.validate(require('./config/stripeSchema'), require('./config/stripe.json'));
+        if(stripeConfig === false){
+            console.log(colors.red(`Stripe config is incorrect: ${ajv.errorsText()}`));
+            process.exit(2);
+        }
+        break;
+
+    case 'authorizenet':
+        const authorizenetConfig = ajv.validate(require('./config/authorizenetSchema'), require('./config/authorizenet.json'));
+        if(authorizenetConfig === false){
+            console.log(colors.red(`Authorizenet config is incorrect: ${ajv.errorsText()}`));
+            process.exit(2);
+        }
+        break;
+}
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
