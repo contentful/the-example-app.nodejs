@@ -3,3 +3,4 @@ libraries:
         label: 'PMX-JENKINS-TEMPLATE'
     load_parameters:
     npm:
+    scm_init:
