@@ -19,7 +19,7 @@ spec:
     image:
       repository: kunrad/the-example-app.nodejs
       tag: dev-ks2ybyvg
-    replicaCount: 1
+    replicaCount: 2
     hpa:
       enabled: false
 
