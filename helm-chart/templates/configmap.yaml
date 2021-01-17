@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vol-configs-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.metadata.name }}
+    part-of: {{ .Values.metadata.labels.partOf }}
+data:
+{{- toYaml .Values.configmap.data | nindent 2 }}

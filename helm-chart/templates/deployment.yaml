@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.metadata.name }}
+  namespace: {{ .Values.metadata.namespace }}
+  labels:
+    app: {{ .Values.metadata.name }}
+    part-of: {{ .Values.metadata.labels.partOf }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.metadata.name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.metadata.name }}
+        part-of: {{ .Values.metadata.labels.partOf }}
+    spec:
+      tolerations: 
+        {{- toYaml .Values.spec.tolerations | nindent 8 }}
+      affinity:
+        {{- toYaml .Values.spec.affinity | nindent 8 }}
+      containers:
+      - name: {{ .Values.metadata.name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        
+        {{- if .Values.spec.containers.readinessProbe }}
+        readinessProbe:
+{{ toYaml .Values.spec.containers.readinessProbe | indent 10 }}
+        {{- end }}
+        {{- if .Values.spec.containers.livenessProbe }}
+        livenessProbe:
+{{ toYaml .Values.spec.containers.livenessProbe | indent 10 }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.spec.containers.resources | nindent 10 }}
+        securityContext:
+          {{- toYaml .Values.spec.containers.securityContext | nindent 10 }}
+        volumeMounts:
+          {{- toYaml .Values.spec.containers.volumeMounts | nindent 10 }}
+        env: 
+          {{- toYaml .Values.spec.containers.env | nindent 10 }}
+
+      volumes:
+        {{- toYaml .Values.spec.containers.volumes | nindent 8 }}
+      
