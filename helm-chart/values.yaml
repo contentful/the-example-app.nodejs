@@ -1,6 +1,6 @@
 metadata:
   name: sample-nodejs
-  namespace: staging
+  namespace: production
   labels: 
     partOf: sample-nodejs
 
