@@ -1,0 +1,111 @@
+metadata:
+  name: sample-nodejs
+  namespace: TEMP_NAMESPACE
+  labels: 
+    partOf: sample-nodejs
+
+service: 
+  type: NodePort
+  port: 3000
+  protocol: TCP
+
+image:
+    repository: dendipradigta/sample-nodejs
+    tag: TMP_IMAGE_VERSION
+    # tag: latest
+    pullPolicy: Always
+    
+spec:
+  replicasCout: 1
+  restartPolicy: OnFailure
+  
+  tolerations: []
+  # - key: pool
+  #   value: preemptible
+
+  affinity: {}
+  #   nodeAffinity:
+  #     weight: 70
+  #     key: cloud.google.com/gke-preemptible
+  #     operator: In
+  #     values: 
+  #       - "true"
+  #   podAntiAffinity:
+  #     weight: 50
+  #     key: part-of
+  #     operator: In
+  #     values: 
+  #       - avalon
+  #     topologyKey: "kubernetes.io/hostname"
+
+  containers: {}
+    # command: ["/app/sample-nodejs","update", "recipe_with_promo"]
+    # readinessProbe:
+    #   httpGet:
+    #     path: /ping
+    #     port: 7723
+    #   initialDelaySeconds: 10
+    #   periodSeconds: 5
+    #   timeoutSeconds: 5
+    # livenessProbe:
+    #   httpGet:
+    #     path: /ping
+    #     port: 7723
+    #   initialDelaySeconds: 10
+    #   periodSeconds: 5
+    #   timeoutSeconds: 5
+
+    # resources: 
+    #   limits:
+    #     cpu: 100m
+    #     memory: 200Mi
+    #   requests:
+    #     cpu: 50m
+    #     memory: 100Mi
+
+    # securityContext: 
+      # capabilities: 
+      #   drop:
+      #   - all
+      # readOnlyRootFilesystem: true
+      # runAsNonRoot: true
+      # runAsUser: 10002
+
+    # volumeMounts: 
+      # - name: configs
+      #   mountPath: /sample-nodejs
+
+    # env: 
+      # Uncomment this section to add container env variables
+      # - name: DB_HOST
+      #   value: '10.11.0.32'
+      # - name: DB_password
+      #   value: 'xxxxxxx'
+
+    # volumes:
+      # - name: configs
+      #   configMap:
+      #     name: vol-configs-sample-nodejs
+
+configmap: {}
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local;
+
+  tls: []
+    # - secretName: star-kurio-me
+  
+  rules:
+    - host: sample.dendi.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-nodejs
+              servicePort: 80
+
+
+
