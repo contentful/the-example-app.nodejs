@@ -1,6 +1,6 @@
 metadata:
   name: sample-nodejs
-  namespace: staging
+  namespace: TEMP_NAMESPACE
   labels: 
     partOf: sample-nodejs
 
