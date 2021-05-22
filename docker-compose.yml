@@ -1,0 +1,8 @@
+version: '3'
+services:
+  node-project:
+    image: veekrum/cicd_demo
+    command: npm run start:dev
+    container_name: node-dev
+    ports:
+      - "3000:3000"
