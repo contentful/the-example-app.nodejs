@@ -15,19 +15,12 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: clone-e2e-test
+          name: clone-repo
           command: git clone https://github.com/contentful/the-example-app-e2e-tests.git ./test/e2e
       - run:
-          name: install-e2e-test
+          name: install-dependency
           command: cd ./test/e2e && npm install
       - run:
           name: test
           command: npm run test
-      - store_artifacts:
-          path: /tmp/artifact-1
-
-          destination: artifact-file-cypress-result_`date +%Y-%m-%d_%H-%M-%S`
-
-      - store_artifacts:
-          path: /tmp/artifacts
 
