@@ -23,7 +23,7 @@ const SETTINGS_NAME = 'theExampleAppSettings'
 
 const app = express()
 
-// View engine setup
+// View engine setup and updte
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
