@@ -9,8 +9,6 @@ on:
   pull_request:
     branches: [ master ]
 
-  - name: Run ESLint
-    uses: stefanoeb/eslint-action@1.0.2
 
 jobs:
   build:
@@ -21,6 +19,8 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    - name: Run ESLint
+      run: eslint . --ext .js,.jsx,.ts,.tsx
 
     steps:
     - uses: actions/checkout@v2
