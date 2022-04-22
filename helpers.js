@@ -1,6 +1,5 @@
 const marked = require('marked')
 const querystring = require('querystring')
-
 const { translate } = require('./i18n/i18n')
 
 // Parse markdown text
