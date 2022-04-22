@@ -1,3 +1,5 @@
+name: Custom Heroku Deployment
+
 on:
   push:
     branches:
