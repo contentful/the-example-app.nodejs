@@ -27,7 +27,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
       - name: Add Heroku remote
-        run: heroku git:remote --app $HEROKU_APP_NAME
+        run: heroku git:remote --app $HEROKU_APP_NAME && git remote rename heroku heroku-staging
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       - name: Push to Heroku
