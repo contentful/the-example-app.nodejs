@@ -17,7 +17,7 @@ describe('courses', () => {
         expect(response.text.match(/class="course__title"/)).toBeTruthy()
       })
   })
-  test('it should return 404 when a course does not exist', () => {
+  test('it should return 404 status code when a course does not exist', () => {
     return request(app).get('/courses/dont-exist').expect(404)
   })
 
