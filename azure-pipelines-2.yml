@@ -1,0 +1,5 @@
+- task: ArtifactoryPublishBuildInfo@1
+  inputs:
+    artifactoryService: 'jfrog'
+    buildName: 'srs'
+    buildNumber: '1'
