@@ -44,7 +44,7 @@
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.4.0",
+    "jest": "^29.3.1",
     "nodemon": "^1.18.9",
     "supertest": "^3.0.0",
     "yargs": "^11.0.0"
