@@ -1,0 +1,27 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nodesample-dev
+  namespace: dev
+  labels:
+    chart: nodesample
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: nodesample-dev
+  chart:
+    git: git@github.com:kunrad/helm-operator-get-started
+    path: charts/podinfo
+    ref: master
+  values:
+    image:
+      repository: kunrad/the-example-app.nodejs
+      tag: dev-ks2ybyvg
+    replicaCount: 2
+    hpa:
+      enabled: false
+
+
+

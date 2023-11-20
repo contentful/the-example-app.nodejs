@@ -1,0 +1,25 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nodesample-rc
+  namespace: stg
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:stg-*
+spec:
+  releaseName: nodesample-rc
+  chart:
+    git: git@github.com:kunrad/helm-operator-get-started
+    path: charts/podinfo
+    ref: master
+  values:
+    image:
+      repository: kunrad/the-example-app.nodejs
+      tag: stg-9ij63o4c
+    replicaCount: 4
+    hpa:
+      enabled: true
+      maxReplicas: 10
+      cpu: 50
+      memory: 256Mi
